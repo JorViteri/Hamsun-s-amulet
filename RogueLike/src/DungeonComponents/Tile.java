@@ -1,4 +1,4 @@
-package Rogue;
+package DungeonComponents;
 
 import java.awt.Color;
 import asciiPanel.AsciiPanel;

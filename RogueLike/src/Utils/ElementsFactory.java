@@ -1,4 +1,4 @@
-package Rogue;
+package Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +9,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import CreaturesAI.BatAi;
+import CreaturesAI.FungusAi;
+import CreaturesAI.GoblinAi;
+import CreaturesAI.PlayerAi;
+import CreaturesAI.ZombieAi;
+import Elements.Creature;
+import Elements.Effect;
+import Elements.Item;
+import Rogue.World;
 import asciiPanel.AsciiPanel;
 
 public class ElementsFactory {

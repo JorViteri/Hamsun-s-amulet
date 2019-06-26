@@ -1,6 +1,8 @@
-package Rogue;
+package Utils;
 
 import java.util.List;
+
+import Elements.Creature;
 
 public class Path {
 

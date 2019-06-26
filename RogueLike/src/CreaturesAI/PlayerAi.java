@@ -1,6 +1,11 @@
-package Rogue;
+package CreaturesAI;
 
 import java.util.ArrayList;
+
+import DungeonComponents.Tile;
+import Elements.Creature;
+import Elements.Item;
+import Utils.FieldOfView;
 
 
 

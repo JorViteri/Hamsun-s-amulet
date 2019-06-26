@@ -1,4 +1,6 @@
-package Rogue;
+package CreaturesAI;
+
+import Elements.Creature;
 
 public class BatAi extends CreatureAi {
 

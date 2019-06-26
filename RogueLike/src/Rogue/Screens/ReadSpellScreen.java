@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import javax.swing.JTextArea;
 
+import Elements.Creature;
+import Elements.Item;
+import Elements.Spell;
 import asciiPanel.AsciiPanel;
-import Rogue.Creature;
-import Rogue.Item;
-import Rogue.Spell;
 
 public class ReadSpellScreen implements Screen {
 	

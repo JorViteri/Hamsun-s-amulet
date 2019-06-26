@@ -1,4 +1,4 @@
-package Rogue;
+package Elements;
 
 import java.awt.Color;
 import java.util.ArrayList;

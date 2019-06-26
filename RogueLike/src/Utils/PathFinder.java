@@ -1,8 +1,10 @@
-package Rogue;
+package Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+
+import Elements.Creature;
 
 public class PathFinder {
 

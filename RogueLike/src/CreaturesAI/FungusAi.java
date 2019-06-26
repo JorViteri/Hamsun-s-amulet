@@ -1,4 +1,7 @@
-package Rogue;
+package CreaturesAI;
+
+import Elements.Creature;
+import Utils.ElementsFactory;
 
 public class FungusAi extends CreatureAi{
 	

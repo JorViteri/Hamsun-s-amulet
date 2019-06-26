@@ -1,6 +1,8 @@
-package Rogue;
+package DungeonComponents;
 
 import java.util.ArrayList;
+
+import Utils.Position;
 
 public class Node {
 

@@ -1,7 +1,9 @@
-package Rogue;
+package Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Elements.Creature;
 
 public class LevelUpController {
 

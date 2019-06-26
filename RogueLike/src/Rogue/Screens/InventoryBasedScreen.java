@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JTextArea;
 
-import Rogue.Creature;
-import Rogue.Item;
+import Elements.Creature;
+import Elements.Item;
 import asciiPanel.AsciiPanel;
 
 public abstract class InventoryBasedScreen implements Screen {

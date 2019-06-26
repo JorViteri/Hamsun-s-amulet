@@ -1,4 +1,4 @@
-package Rogue;
+package Utils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -40,7 +40,7 @@ public class Position {
 	 * @param b The second position.
 	 * @return The distance
 	 */
-	protected Double distance(Position b) {
+	public Double distance(Position b) {
 		Position a = this;
 		return new Double(Math.sqrt(Math.pow(b.getX() - a.getX(), 2) + Math.pow(b.getY() - a.getY(), 2)));
 	}
@@ -148,7 +148,7 @@ public class Position {
 	 */
 	/*
 	 * public Room getRoom(int level){ for(Room r : PlayScreen.getRooms()){
-	 * //TODO añadir levels if(r.getFloor().contains(this)) return r; } return
+	 * //TODO aï¿½adir levels if(r.getFloor().contains(this)) return r; } return
 	 * null; }
 	 */
 

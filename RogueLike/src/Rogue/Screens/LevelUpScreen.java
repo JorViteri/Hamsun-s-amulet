@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.swing.JTextArea;
 
-import Rogue.Creature;
-import Rogue.LevelUpController;
+import Elements.Creature;
+import Utils.LevelUpController;
 import asciiPanel.AsciiPanel;
 
 public class LevelUpScreen implements Screen {

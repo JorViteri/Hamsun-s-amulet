@@ -1,4 +1,6 @@
-package Rogue;
+package Utils;
+
+import Elements.Creature;
 
 public abstract class LevelUpOption {
 

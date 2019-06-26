@@ -1,8 +1,16 @@
-package Rogue;
+package CreaturesAI;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import DungeonComponents.Line;
+import DungeonComponents.Tile;
+import Elements.Creature;
+import Elements.Item;
+import Utils.LevelUpController;
+import Utils.Path;
+import Utils.Position;
 
 public class CreatureAi {
 

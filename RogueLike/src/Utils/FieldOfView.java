@@ -1,4 +1,8 @@
-package Rogue;
+package Utils;
+
+import DungeonComponents.Line;
+import DungeonComponents.Tile;
+import Rogue.World;
 
 public class FieldOfView {
 

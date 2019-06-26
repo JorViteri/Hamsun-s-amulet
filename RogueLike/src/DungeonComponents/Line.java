@@ -1,8 +1,10 @@
-package Rogue;
+package DungeonComponents;
 
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
+
+import Utils.Position;
 
 public class Line implements Iterable<Position> {
 

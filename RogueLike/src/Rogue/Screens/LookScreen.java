@@ -1,8 +1,8 @@
 package Rogue.Screens;
 
-import Rogue.Creature;
-import Rogue.Item;
-import Rogue.Tile;
+import DungeonComponents.Tile;
+import Elements.Creature;
+import Elements.Item;
 
 public class LookScreen extends TargetBasedScreen {
 

@@ -1,7 +1,7 @@
 package Rogue.Screens;
 
-import Rogue.Creature;
-import Rogue.Item;
+import Elements.Creature;
+import Elements.Item;
 
 public class ExamineScreen extends InventoryBasedScreen {
 

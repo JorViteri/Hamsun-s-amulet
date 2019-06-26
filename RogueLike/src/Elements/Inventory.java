@@ -1,4 +1,4 @@
-package Rogue;
+package Elements;
 
 
 public class Inventory {

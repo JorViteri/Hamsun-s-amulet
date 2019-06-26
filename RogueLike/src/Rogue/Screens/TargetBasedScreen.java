@@ -4,11 +4,10 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTextArea;
 
+import DungeonComponents.Line;
+import Elements.Creature;
+import Utils.Position;
 import asciiPanel.AsciiPanel;
-
-import Rogue.Creature;
-import Rogue.Line;
-import Rogue.Position;
 
 public class TargetBasedScreen implements Screen {
 

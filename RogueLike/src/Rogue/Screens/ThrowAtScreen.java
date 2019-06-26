@@ -1,9 +1,9 @@
 package Rogue.Screens;
 
-import Rogue.Creature;
-import Rogue.Item;
-import Rogue.Line;
-import Rogue.Position;
+import DungeonComponents.Line;
+import Elements.Creature;
+import Elements.Item;
+import Utils.Position;
 
 public class ThrowAtScreen extends TargetBasedScreen {
 	private Item item;

@@ -6,6 +6,13 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
+import DungeonComponents.Corridor;
+import DungeonComponents.Node;
+import DungeonComponents.Room;
+import DungeonComponents.Staircase;
+import DungeonComponents.Tile;
+import Utils.Position;
+
 
 public class WorldBuilder {
 
@@ -64,7 +71,7 @@ public class WorldBuilder {
 					centersList.add(room.getCenter());
 				}
 			}
-			// Pasamos el grafo a Prim para obtener el arbol míninmo, obtenemos los
+			// Pasamos el grafo a Prim para obtener el arbol mï¿½ninmo, obtenemos los
 			// pasillos
 			corridors = minSpanningTreePrim(graph);
 			// Pasamos lista de pasillos y de habitaciones funcion de dibujado
@@ -412,7 +419,7 @@ public class WorldBuilder {
 	}
 
 	
-	//Pequeña funcion que busque habitacion segun su centro
+	//Pequeï¿½a funcion que busque habitacion segun su centro
 	private Room getRoomByCenter(ArrayList<Room> list, Position center){
 		for (Room room :  list){
 			if (room.getCenter().equals(center)){

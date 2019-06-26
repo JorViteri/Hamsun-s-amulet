@@ -3,6 +3,12 @@ package Rogue;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import DungeonComponents.Staircase;
+import DungeonComponents.Tile;
+import Elements.Creature;
+import Elements.Item;
+import Utils.Position;
+
 
 public class World {
 

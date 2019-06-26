@@ -1,7 +1,7 @@
 package Rogue.Screens;
 
-import Rogue.Creature;
-import Rogue.Spell;
+import Elements.Creature;
+import Elements.Spell;
 
 public class CastSpellScreen extends TargetBasedScreen{
 	

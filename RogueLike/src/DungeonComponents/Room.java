@@ -1,7 +1,9 @@
-package Rogue;
+package DungeonComponents;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+
+import Utils.Position;
 
 
 public class Room {
@@ -160,8 +162,8 @@ public class Room {
 	 * public Random getRNG() { return Dungeon.getRNG(); }
 	 */
 
-	// TODO puede venir bien para dar feedback... pero quizás merezca la pena
-	// sólo comprobar un % de la habitación.
+	// TODO puede venir bien para dar feedback... pero quizï¿½s merezca la pena
+	// sï¿½lo comprobar un % de la habitaciï¿½n.
 	// TODO tampoco me interesa aun esta funcion, la voy a dejar a parte
 	/**
 	 * Checks if a room has been completely explored.

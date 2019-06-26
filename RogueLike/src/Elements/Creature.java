@@ -1,15 +1,20 @@
-package Rogue;
+package Elements;
 
 import java.awt.Color;
 
-import Rogue.Position;
-import Rogue.Effect;
+import Rogue.World;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import CreaturesAI.CreatureAi;
+import DungeonComponents.Line;
+import DungeonComponents.Staircase;
+import DungeonComponents.Tile;
+import Elements.Effect;
 import Rogue.Screens.PlayScreen;
+import Utils.Position;
 
 public class Creature {
 

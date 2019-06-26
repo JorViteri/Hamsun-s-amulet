@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
-import Rogue.Creature;
-import Rogue.ElementsFactory;
-import Rogue.FieldOfView;
-import Rogue.Item;
-import Rogue.Tile;
+import DungeonComponents.Tile;
+import Elements.Creature;
+import Elements.Item;
 import Rogue.World;
 import Rogue.WorldBuilder;
+import Utils.ElementsFactory;
+import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 
 public class PlayScreen implements Screen {

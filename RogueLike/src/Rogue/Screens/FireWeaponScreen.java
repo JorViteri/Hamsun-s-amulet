@@ -1,8 +1,8 @@
 package Rogue.Screens;
 
-import Rogue.Creature;
-import Rogue.Position;
-import Rogue.Line;
+import DungeonComponents.Line;
+import Elements.Creature;
+import Utils.Position;
 
 public class FireWeaponScreen extends TargetBasedScreen {
 	public FireWeaponScreen(Creature player, int sx, int sy) {

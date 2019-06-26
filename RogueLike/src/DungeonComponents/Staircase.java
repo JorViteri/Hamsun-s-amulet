@@ -1,4 +1,6 @@
-package Rogue;
+package DungeonComponents;
+
+import Utils.Position;
 
 public class Staircase {
 
