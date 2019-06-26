@@ -1,4 +1,4 @@
-package Rogue.Text;
+package TextManagement;
 
 public class TextManager {
 

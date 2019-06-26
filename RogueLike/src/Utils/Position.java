@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Set;
 
-import Rogue.Screens.PlayScreen;
+import Screens.PlayScreen;
 
 public class Position {
 

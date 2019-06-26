@@ -1,4 +1,4 @@
-package Rogue.Screens;
+package Screens;
 
 import Elements.Creature;
 import Elements.Spell;

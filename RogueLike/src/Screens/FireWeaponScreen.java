@@ -1,4 +1,4 @@
-package Rogue.Screens;
+package Screens;
 
 import DungeonComponents.Line;
 import Elements.Creature;

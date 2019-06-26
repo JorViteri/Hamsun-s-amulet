@@ -1,4 +1,4 @@
-package Rogue.Screens;
+package Screens;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;

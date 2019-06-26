@@ -3,6 +3,7 @@ package Elements;
 import java.awt.Color;
 
 import Rogue.World;
+import Screens.PlayScreen;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,7 +14,6 @@ import DungeonComponents.Line;
 import DungeonComponents.Staircase;
 import DungeonComponents.Tile;
 import Elements.Effect;
-import Rogue.Screens.PlayScreen;
 import Utils.Position;
 
 public class Creature {

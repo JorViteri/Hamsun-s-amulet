@@ -1,4 +1,4 @@
-package Rogue.Screens;
+package Screens;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;

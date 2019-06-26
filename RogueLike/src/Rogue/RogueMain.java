@@ -6,8 +6,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
-import Rogue.Screens.Screen;
-import Rogue.Screens.StartScreen;
+import Screens.Screen;
+import Screens.StartScreen;
 import asciiPanel.AsciiPanel;
 
 import java.awt.BorderLayout;
