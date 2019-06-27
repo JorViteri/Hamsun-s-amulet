@@ -43,7 +43,6 @@ public abstract class InventoryBasedScreen implements Screen {
     
         terminal.clear(' ', 0, 23, 80, 1);
         terminal.write("What would you like to " + getVerb() + "?", 2, 23);
-        //textArea1.append("What would you like to " + getVerb() + "?"+newline);
         textManager.clearTextArea(1);
         textManager.writeText("What would you like to " + getVerb() + "?",1);
         terminal.repaint();

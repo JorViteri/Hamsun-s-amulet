@@ -52,21 +52,7 @@ public class HelpScreen implements Screen {
 		textManager.writeText("[q] to quaff a potion", 1);
 		textManager.writeText("[r] to read something", 1);
 		textManager.writeText("-- press any key to continue --", 1);
-		
-		/*textArea.append("roguelike ayuda"+newline);
-		textArea.append("Desciende por las mazmorras de Uqbar, encuentra el amuleto perdido de Hamsun, y regresa a la superficie para ganar. Emplea lo que encuentres para evitar la muerte."+newline);
-		
-		textArea.append("[g] or [,] to pick up"+newline);
-		textArea.append("[d] to drop"+newline);
-		textArea.append("[e] to eat"+newline);
-		textArea.append("[w] to wear or wield"+newline);
-		textArea.append("[?] for help"+newline);
-		textArea.append("[x] to examine your items"+newline);
-		textArea.append("[;] to look around"+newline);
-		textArea.append("[f] to fire a projectile"+newline);
-		textArea.append("[t] to thow an object"+newline);
-		textArea.append("[q] to quaff a potion"+newline);
-		textArea.append("[r] to read something"+newline);*/
+
 	}
 
 	@Override
