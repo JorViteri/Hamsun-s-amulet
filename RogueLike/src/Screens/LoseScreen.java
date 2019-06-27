@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTextArea;
 
+import TextManagement.TextManager;
 import asciiPanel.AsciiPanel;
 
 public class LoseScreen implements Screen {
@@ -12,12 +13,22 @@ public class LoseScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
 		terminal.write("You lost.", 1, 1);
         terminal.writeCenter("-- press [enter] to restart --", 22);
-
+        TextManager textManager = TextManager.getTextManager();
+        textManager.clearTextArea(1);
+        textManager.writeText("You lost.", 1);
+        textManager.writeText("-- press [enter] to restart --", 1);
 	}
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
+		TextManager  textManager ;
+	    if(key.getKeyCode() == KeyEvent.VK_ENTER){
+	    	textManager = TextManager.getTextManager();
+	    	textManager.clearTextArea(2);
+			return new PlayScreen();
+		} else{
+			return  this;
+		}
 	}
 
 }

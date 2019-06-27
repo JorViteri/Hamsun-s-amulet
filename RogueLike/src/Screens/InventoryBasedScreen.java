@@ -7,6 +7,7 @@ import javax.swing.JTextArea;
 
 import Elements.Creature;
 import Elements.Item;
+import TextManagement.TextManager;
 import asciiPanel.AsciiPanel;
 
 public abstract class InventoryBasedScreen implements Screen {
@@ -25,6 +26,7 @@ public abstract class InventoryBasedScreen implements Screen {
 	
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea1, JTextArea textArea2) {
         ArrayList<String> lines = getList();
+        TextManager textManager = TextManager.getTextManager();
     
         int y = 23 - lines.size();
         int x = 4;
@@ -34,12 +36,16 @@ public abstract class InventoryBasedScreen implements Screen {
     
         for (String line : lines){
             terminal.write(line, x, y++);
-            textArea1.append(line+newline);
+            //textArea1.append(line+newline);
+            textManager.writeText(line, 1);
+            
         }
     
         terminal.clear(' ', 0, 23, 80, 1);
         terminal.write("What would you like to " + getVerb() + "?", 2, 23);
-        textArea1.append("What would you like to " + getVerb() + "?"+newline);
+        //textArea1.append("What would you like to " + getVerb() + "?"+newline);
+        textManager.clearTextArea(1);
+        textManager.writeText("What would you like to " + getVerb() + "?",1);
         terminal.repaint();
     }
 	

@@ -12,6 +12,7 @@ import Elements.Creature;
 import Elements.Item;
 import Rogue.World;
 import Rogue.WorldBuilder;
+import TextManagement.TextManager;
 import Utils.ElementsFactory;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
@@ -28,6 +29,8 @@ public class PlayScreen implements Screen {
 	private Screen subscreen;
 	private final static String newline = "\n";
 	private final static int linelimit=28;
+	private TextManager textManager = TextManager.getTextManager();
+	
 
 	public PlayScreen() {
 		screenWidth = 80;
@@ -88,21 +91,14 @@ public class PlayScreen implements Screen {
 	private void displayMessages(AsciiPanel terminal, ArrayList<String> messages, JTextArea textArea) {
 		int top = screenHeight - messages.size();
 		int end=0;
-		for (int i = 0; i < messages.size(); i++) {
-			
-			
-			
-			//ESTE CACHO ES PARA DETECTAR ERROR INICIO
-			if (top+i<0){
-				boolean caso1 =true;
+		for (int i = 0; i < messages.size(); i++) {			
+			//terminal.writeCenter(messages.get(i), top + i);
+			if (textManager.textArea2ReachedLimit()){
+				textManager.removeFirstLineTextArea(2);
 			}
-			if (top+i>24){
-				boolean caso2_noentiend = true;
-			}
-			//ESTE CACHO ES PARA DETECTAR ERROR FIN
+			textManager.writeText(messages.get(i), 2);
 			
-			
-			terminal.writeCenter(messages.get(i), top + i);
+			/*
 			if(textArea.getLineCount()==linelimit){
 				try {
 					end = textArea.getLineEndOffset(0);
@@ -111,7 +107,7 @@ public class PlayScreen implements Screen {
 				}
 				textArea.replaceRange("", 0, end);
 			}
-			textArea.append(messages.get(i)+newline);
+			textArea.append(messages.get(i)+newline);*/
 			
 		}
 		messages.clear();
@@ -143,18 +139,16 @@ public class PlayScreen implements Screen {
 		String stats;
 
 		displayTiles(terminal, left, top);
-		displayMessages(terminal, messages, textArea2); //TODO ha saltdo erro aqui
+		displayMessages(terminal, messages, textArea2); 
 
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
 
-		// terminal.writeCenter("-- press [escape] to lose or [enter] to win
-		// --", 22);
+		stats = String.format("HP: %3d/%3d\nMana: %d/%d", player.hp(), player.maxHp(), player.getMana(), player.getMaxMana());
+		//terminal.write(stats, 1, 23);
+		textManager.clearTextArea(1);
+	    textManager.writeText(stats, 1); 
 
-		stats = String.format(" %3d/%3d hp %d/%d mana", player.hp(), player.maxHp(), player.getMana(), player.getMaxMana());
-		terminal.write(stats, 1, 23);
-
-		textArea.selectAll();
-		textArea.replaceSelection("");
+		
 		
 		if (subscreen != null)
 			subscreen.displayOutput(terminal, textArea, textArea2);

@@ -8,6 +8,7 @@ import javax.swing.border.Border;
 
 import Screens.Screen;
 import Screens.StartScreen;
+import TextManagement.TextManager;
 import asciiPanel.AsciiPanel;
 
 import java.awt.BorderLayout;
@@ -24,8 +25,8 @@ public class RogueMain extends JFrame implements KeyListener  {
 
 	private AsciiPanel terminal;
 	private Screen screen;
-	private JTextArea textArea1; //textarea for  sub-screens
-	private JTextArea textArea2; //textarea for playscreen
+	private static JTextArea textArea1; //textarea for  sub-screens
+	private static JTextArea textArea2; //textarea for playscreen
 	private JScrollPane scroll1;
 	private JScrollPane scroll2;
 
@@ -92,8 +93,8 @@ public class RogueMain extends JFrame implements KeyListener  {
     	textA.setVisible(true);
     	textA.setLineWrap(true);
     	textA.setWrapStyleWord(true);
-    	int width = 54* w; //55
-		int height = 23 * i; // 43
+    	//int width = 54* w; //55
+		//int height = 23 * i; // 43
 		// Dimension panelDimension = new Dimension(width, height);
 		// textA.setSize(panelDimension);
 		// textA.setMinimumSize(panelDimension);
@@ -114,8 +115,8 @@ public class RogueMain extends JFrame implements KeyListener  {
 		textA.setVisible(true);
 		textA.setLineWrap(true);
     	textA.setWrapStyleWord(true);
-		int width = 135 * w;
-		int height = 22 * i;
+		//int width = 135 * w;
+		//int height = 22 * i;
 		//Dimension panelDimension = new Dimension(width, height);
 		//textA.setSize(panelDimension);
 		//textA.setMinimumSize(panelDimension);
@@ -139,6 +140,7 @@ public class RogueMain extends JFrame implements KeyListener  {
 	
 	public static void main(String[] args){
 		RogueMain rogue = new RogueMain(); 
+		TextManager.getSingletonInstance(textArea1, textArea2);
 		rogue.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rogue.setVisible(true);
 	}

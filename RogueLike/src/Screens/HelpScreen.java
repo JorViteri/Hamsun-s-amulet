@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTextArea;
 
+import TextManagement.TextManager;
 import asciiPanel.AsciiPanel;
 
 public class HelpScreen implements Screen {
@@ -12,7 +13,7 @@ public class HelpScreen implements Screen {
 
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea1, JTextArea textArea2) {
-		writeText(textArea1);
+		writeText();
 		terminal.clear();
 		terminal.writeCenter("roguelike ayuda", 1);
 		terminal.write("Desciende por las mazmorras de Uqbar, encuentra el amuleto perdido de Hamsun,",1, 3);
@@ -34,10 +35,25 @@ public class HelpScreen implements Screen {
 		terminal.writeCenter("-- press any key to continue --", 22);
 	}
 
-	private void writeText(JTextArea textArea) {
-		textArea.selectAll();
-		textArea.replaceSelection("");
-		textArea.append("roguelike ayuda"+newline);
+	private void writeText() {
+		TextManager textManager = TextManager.getTextManager();
+		textManager.clearTextArea(1);
+		textManager.writeText("roguelike ayuda", 1);
+		textManager.writeText("Desciende por las mazmorras de Uqbar, encuentra el amuleto perdido de Hamsun, y regresa a la superficie para ganar. Emplea lo que encuentres para evitar la muerte.", 1);
+		textManager.writeText("[g] or [,] to pick up", 1);
+		textManager.writeText("[d] to drop", 1);
+		textManager.writeText("[e] to eat", 1);
+		textManager.writeText("[w] to wear or wield", 1);
+		textManager.writeText("[?] for help", 1);
+		textManager.writeText("[x] to examine your items", 1);
+		textManager.writeText("[;] to look around", 1);
+		textManager.writeText("[f] to fire a projectile", 1);
+		textManager.writeText("[t] to thow an object", 1);
+		textManager.writeText("[q] to quaff a potion", 1);
+		textManager.writeText("[r] to read something", 1);
+		textManager.writeText("-- press any key to continue --", 1);
+		
+		/*textArea.append("roguelike ayuda"+newline);
 		textArea.append("Desciende por las mazmorras de Uqbar, encuentra el amuleto perdido de Hamsun, y regresa a la superficie para ganar. Emplea lo que encuentres para evitar la muerte."+newline);
 		
 		textArea.append("[g] or [,] to pick up"+newline);
@@ -50,7 +66,7 @@ public class HelpScreen implements Screen {
 		textArea.append("[f] to fire a projectile"+newline);
 		textArea.append("[t] to thow an object"+newline);
 		textArea.append("[q] to quaff a potion"+newline);
-		textArea.append("[r] to read something"+newline);
+		textArea.append("[r] to read something"+newline);*/
 	}
 
 	@Override
