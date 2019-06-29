@@ -280,4 +280,6 @@ public class PlayScreen implements Screen {
 			player = elementsFactory.newPlayer(messages, fov);
 		return player;
 	}
+	
+
 }
