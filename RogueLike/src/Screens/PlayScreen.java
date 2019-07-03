@@ -68,7 +68,7 @@ public class PlayScreen implements Screen {
 			factory.randomWeapon(z);
 			factory.randomWeapon(z);
 			factory.newBow(z);
-			for (int i = 0; i < 20+z; i++){
+			for (int i = 0; i < 10; i++){
 				factory.randomPotion(z);
 				factory.randomSpellBook(z);
 			}
@@ -156,6 +156,7 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
+		boolean newEnemies= true;
 		int level = player.getLevel();
 		
 		if (subscreen != null) {
@@ -247,6 +248,11 @@ public class PlayScreen implements Screen {
 			}
 		}
 		
+		if(playerHasAmulet()&&newEnemies){ 
+			createZombies(elementsFactory);
+			newEnemies=false;
+		}
+		
 		if(player.getLevel()>level){
 			subscreen = new LevelUpScreen(player, player.getLevel()-level);
 		}
@@ -260,17 +266,42 @@ public class PlayScreen implements Screen {
 		return this;
 	}
 
+	private void createZombies(ElementsFactory creatureFactory){
+		for (int z = 0; z < world.depth(); z++) {
+			for (int i = 0; i < 7; i++) {
+				creatureFactory.newZombie(z, player);
+			}
+		}
+		
+	}
+	
+	private boolean playerHasAmulet(){
+		for (Item item : player.inventory().getItems()) {
+			if (item != null && item.getName().equals("Hamsun's amulet")) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	private boolean userIsTryingToExit() {
 		return player.getZ() == 0 && world.tile(player.getX(), player.getY(), player.getZ()) == Tile.STAIRS_UP;
 	}
 
 	private Screen userExits() {
-		for (Item item : player.inventory().getItems()) {
+		if (playerHasAmulet()) {
+			return new WinScreen();
+		} else {
+			return new LoseScreen();
+		}
+		
+		/*for (Item item : player.inventory().getItems()) {
 			if (item != null && item.getName().equals("Hamsun's amulet")) {
 				return new WinScreen();
 			}
 		}
-		return new LoseScreen();
+		return new LoseScreen();*/
 	}
 
 	public static Creature getPlayer() {
