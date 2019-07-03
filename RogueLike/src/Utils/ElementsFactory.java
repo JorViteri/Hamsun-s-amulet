@@ -339,8 +339,8 @@ public class ElementsFactory {
 				do {
 					mx = (int) (Math.random() * 11) - 5;
 					my = (int) (Math.random() * 11) - 5;
-				} while (!creature.canEnter(creature.x + mx, creature.y + my, creature.z)
-						&& creature.canSee(creature.x + mx, creature.y + my, creature.z));
+				} while (!creature.canEnter(creature.getX() + mx, creature.getY() + my, creature.getZ())
+						&& creature.canSee(creature.getX() + mx, creature.getY() + my, creature.getZ()));
 
 				creature.moveBy(mx, my, 0);
 
@@ -352,21 +352,21 @@ public class ElementsFactory {
 			public void start(Creature creature) {
 				for (int ox = -1; ox < 2; ox++) {
 					for (int oy = -1; oy < 2; oy++) {
-						int nx = creature.x + ox;
-						int ny = creature.y + oy;
-						if (ox == 0 && oy == 0 || creature.creature(nx, ny, creature.z) != null)
+						int nx = creature.getX() + ox;
+						int ny = creature.getY() + oy;
+						if (ox == 0 && oy == 0 || creature.creature(nx, ny, creature.getZ()) != null)
 							continue;
 
 						Creature bat = newBat(0);
 
-						if (!bat.canEnter(nx, ny, creature.z)) {
+						if (!bat.canEnter(nx, ny, creature.getZ())) {
 							world.remove(bat);
 							continue;
 						}
-
-						bat.x = nx;
-						bat.y = ny;
-						bat.z = creature.z;
+						
+						bat.setX(nx);
+						bat.setY(ny);
+						bat.setZ(creature.getZ());
 
 						creature.summon(bat);
 					}

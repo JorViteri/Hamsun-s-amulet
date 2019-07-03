@@ -27,9 +27,9 @@ public class Creature {
 	private int defenseValue;
 	private Color color;
 	private char glyph;
-	public int x;
-	public int y;
-	public int z;
+	private int x;
+	private int y;
+	private int z;
 	private int visionRadius;
 	private String name;
 	private Inventory inventory;
@@ -46,6 +46,32 @@ public class Creature {
 	private int regenManaPer1000;
 	private int detectCreatures;
 	private String causeOfDeath;
+	
+	
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getZ() {
+		return z;
+	}
+
+	public void setZ(int z) {
+		this.z = z;
+	}
 
 	public char glyph() {
 		return glyph;

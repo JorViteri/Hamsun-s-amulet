@@ -26,9 +26,9 @@ public class CreatureAi {
 	
 	public void onEnter(int x, int y, int z, Tile tile){
 		if(tile.isGround()){
-			creature.x = x;
-			creature.y = y;
-			creature.z = z;
+			creature.setX(x);
+			creature.setY(y);
+			creature.setZ(z);
 		} else{
 			creature.doAction("bump into a wall");
 		}
@@ -38,7 +38,7 @@ public class CreatureAi {
 		int mx = (int)(Math.random()*3)-1;
 		int my = (int)(Math.random()*3)-1;
 
-		Creature other = creature.creature(creature.x + mx, creature.y + my, creature.z);
+		Creature other = creature.creature(creature.getX() + mx, creature.getY() + my, creature.getZ());
 	    
 	    if (other != null && other.glyph() == creature.glyph())
 	        return;
@@ -59,13 +59,13 @@ public class CreatureAi {
 	}
 	
 	public boolean canSee(int wx, int wy, int wz) {
-		if (creature.z != wz)
+		if (creature.getZ() != wz)
 			return false;
 		
-		if ((creature.x-wx)*(creature.x-wx) + (creature.y-wy)*(creature.y-wy) > creature.visionRadius()*creature.visionRadius())
+		if ((creature.getX()-wx)*(creature.getX()-wx) + (creature.getY()-wy)*(creature.getY()-wy) > creature.visionRadius()*creature.visionRadius())
 			return false;
 		
-		for (Position p : new Line(creature.x, creature.y, wx, wy)){
+		for (Position p : new Line(creature.getX(), creature.getY(), wx, wy)){
 			if (creature.realTile(p.getIntX(), p.getIntY(), wz).isGround() || p.getIntX() == wx && p.getIntY() == wy)
 				continue;
 			
@@ -82,24 +82,24 @@ public class CreatureAi {
 	public void hunt(Creature target) {
 		int mx, my;
 		
-		List<Position> positions = new Path(creature, target.x, target.y).getPositions();
+		List<Position> positions = new Path(creature, target.getX(), target.getY()).getPositions();
 		if (positions==null||positions.isEmpty()){
 			return;
 		}
 		
-		mx = positions.get(0).getIntX() - creature.x;
-		my = positions.get(0).getIntY() - creature.y;
+		mx = positions.get(0).getIntX() - creature.getX();
+		my = positions.get(0).getIntY() - creature.getY();
 	
 		creature.moveBy(mx, my, 0);
 	}
 
 	protected boolean canRangedWeaponAttack(Creature other) {
 		return creature.getWeapon() != null && creature.getWeapon().getRangedAttackValue() > 0
-				&& creature.canSee(other.x, other.y, other.z);
+				&& creature.canSee(other.getX(), other.getY(), other.getZ());
 	}
 
 	protected boolean canThrowAt(Creature other) {
-		return creature.canSee(other.x, other.y, other.z) && getWeaponToThrow() != null;
+		return creature.canSee(other.getX(), other.getY(), other.getZ()) && getWeaponToThrow() != null;
 	}
 
 	protected Item getWeaponToThrow() {
@@ -117,7 +117,7 @@ public class CreatureAi {
 	}
 
 	protected boolean canPickup() {
-		return creature.item(creature.x, creature.y, creature.z) != null && !creature.inventory().isFull();
+		return creature.item(creature.getX(), creature.getY(), creature.getZ()) != null && !creature.inventory().isFull();
 	}
 	
 	protected boolean canUseBetterEquipment() {

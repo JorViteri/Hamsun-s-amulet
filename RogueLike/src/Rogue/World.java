@@ -58,7 +58,7 @@ public class World {
 	
 	public Creature creature(int x, int y, int z){
 		for (Creature c : creatures){
-			if (c.x == x && c.y == y && c.z == z)
+			if (c.getX() == x && c.getY() == y && c.getZ() == z)
 				return c;
 		}
 		return null;
@@ -132,10 +132,11 @@ public class World {
 			y = (int) (Math.random()*height);
 		}
 		while (!tile(x,y,z).isGround()||creature(x,y,z)!=null);
+
+		creature.setX(x);
+		creature.setY(y);
+		creature.setZ(z);
 		
-		creature.x = x;
-		creature.y = y;
-		creature.z = z;
 		creatures.add(creature);
 	}
 	
@@ -194,9 +195,9 @@ public class World {
 	
 
 	public void addAtExitStairs(Creature player) {
-		player.x = exit.getIntX();
-		player.y = (height-1)-exit.getIntY();
-		player.z = exit.getZ();
+		player.setX(exit.getIntX());
+		player.setY((height-1)-exit.getIntY());
+		player.setZ(exit.getZ());
 		creatures.add(player);
 	}
 	

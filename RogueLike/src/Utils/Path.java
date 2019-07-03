@@ -15,8 +15,8 @@ public class Path {
 	}
 
 	public Path(Creature creature, int x, int y) {
-		Position creaturePos = new Position(creature.x, creature.y, creature.z);
-		Position coordPos = new Position(x, y, creature.z);
+		Position creaturePos = new Position(creature.getX(), creature.getY(), creature.getZ());
+		Position coordPos = new Position(x, y, creature.getZ());
 		positions = pf.findPath(creature, creaturePos, coordPos, 300);
 	}
 }

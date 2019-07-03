@@ -81,11 +81,11 @@ public class PlayScreen implements Screen {
 	}
 
 	public int getScrollX() {
-		return Math.max(0, Math.min(player.x - screenWidth / 2, world.width() - screenWidth));
+		return Math.max(0, Math.min(player.getX() - screenWidth / 2, world.width() - screenWidth));
 	}
 
 	public int getScrollY() {
-		return Math.max(0, Math.min(player.y - screenHeight / 2, world.height() - screenHeight));
+		return Math.max(0, Math.min(player.getY() - screenHeight / 2, world.height() - screenHeight));
 	}
 
 	private void displayMessages(AsciiPanel terminal, ArrayList<String> messages, JTextArea textArea) {
@@ -116,17 +116,17 @@ public class PlayScreen implements Screen {
 	// TODO mejorar la funcion para que sea mas eficiente, tengo un apunte en la
 	// libreta al respecto
 	private void displayTiles(AsciiPanel terminal, int left, int top) {
-		fov.update(player.x, player.y, player.z, player.visionRadius());
+		fov.update(player.getX(), player.getY(), player.getZ(), player.visionRadius());
 
 		for (int x = 0; x < screenWidth; x++) {
 			for (int y = 0; y < screenHeight; y++) {
 				int wx = x + left;
 				int wy = y + top;
 
-				if (player.canSee(wx, wy, player.z))
-					terminal.write(world.glyph(wx, wy, player.z), x, y, world.color(wx, wy, player.z));
+				if (player.canSee(wx, wy, player.getZ()))
+					terminal.write(world.glyph(wx, wy, player.getZ()), x, y, world.color(wx, wy, player.getZ()));
 				else
-					terminal.write(fov.tile(wx, wy, player.z).glyph(), x, y, Color.darkGray);
+					terminal.write(fov.tile(wx, wy, player.getZ()).glyph(), x, y, Color.darkGray);
 			}
 		}
 	}
@@ -141,7 +141,7 @@ public class PlayScreen implements Screen {
 		displayTiles(terminal, left, top);
 		displayMessages(terminal, messages, textArea2); 
 
-		terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
+		terminal.write(player.glyph(), player.getX() - left, player.getY() - top, player.color());
 
 		stats = String.format("HP: %3d/%3d\nMana: %d/%d", player.hp(), player.maxHp(), player.getMana(), player.getMaxMana());
 		//terminal.write(stats, 1, 23);
@@ -207,22 +207,22 @@ public class PlayScreen implements Screen {
 				subscreen = new ExamineScreen(player);
 				break;
 			case KeyEvent.VK_MULTIPLY:
-				subscreen = new LookScreen(player, "Looking", player.x - getScrollX(), player.y - getScrollY());
+				subscreen = new LookScreen(player, "Looking", player.getX() - getScrollX(), player.getY() - getScrollY());
 				break;
 			case KeyEvent.VK_T:
-				subscreen = new ThrowScreen(player, player.x - getScrollX(), player.y - getScrollY());
+				subscreen = new ThrowScreen(player, player.getX() - getScrollX(), player.getY() - getScrollY());
 				break;
 			case KeyEvent.VK_F:
 				if (player.getWeapon() == null || player.getWeapon().getRangedAttackValue() == 0)
 					player.notify("You don't have a ranged weapon equiped.");
 				else
-					subscreen = new FireWeaponScreen(player, player.x - getScrollX(), player.y - getScrollY());
+					subscreen = new FireWeaponScreen(player, player.getX() - getScrollX(), player.getY() - getScrollY());
 				break;
 			case KeyEvent.VK_Q:
 				subscreen = new QuaffScreen(player);
 				break;
 			case KeyEvent.VK_R:
-				subscreen = new ReadScreen(player, player.x - getScrollX(), player.y - getScrollY());
+				subscreen = new ReadScreen(player, player.getX() - getScrollX(), player.getY() - getScrollY());
 				break;
 			}
 
@@ -261,7 +261,7 @@ public class PlayScreen implements Screen {
 	}
 
 	private boolean userIsTryingToExit() {
-		return player.z == 0 && world.tile(player.x, player.y, player.z) == Tile.STAIRS_UP;
+		return player.getZ() == 0 && world.tile(player.getX(), player.getY(), player.getZ()) == Tile.STAIRS_UP;
 	}
 
 	private Screen userExits() {

@@ -23,10 +23,10 @@ public class PlayerAi extends CreatureAi {
 	@Override
 	public void onEnter(int x, int y, int z, Tile tile){
 		if (tile.isGround()){
-			creature.x = x;
-			creature.y = y;
-			creature.z = z;
-			Item item = creature.item(creature.x, creature.y, creature.z);
+			creature.setX(x);
+			creature.setY(y);
+			creature.setZ(z);
+			Item item = creature.item(creature.getX(), creature.getY(), creature.getZ());
 			if (item != null){
 				creature.notify("There's a " + creature.nameOf(item) + " here.");
 			}

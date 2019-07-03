@@ -35,8 +35,8 @@ public class TargetBasedScreen implements Screen {
 		Creature objCreature = null;
 		Item objItem = null;
 		int scrollx, scrolly;
-		scrollx = this.player.x-this.sx;
-		scrolly=this.player.y-this.sy;
+		scrollx = this.player.getX()-this.sx;
+		scrolly=this.player.getY()-this.sy;
 		
 		for (Position p : new Line(sx, sy, sx + x, sy + y)) {
 			if (p.getIntX() < 0 || p.getIntX() >= 80 || p.getIntY() < 0 || p.getIntY() >= 24)
@@ -44,8 +44,8 @@ public class TargetBasedScreen implements Screen {
 
 			terminal.write('*', p.getIntX(), p.getIntY(), AsciiPanel.brightMagenta);
 			pointer_pos = String.format("Pointer's Position: %d %d", p.getIntX(), p.getIntY());
-			objCreature = player.creature(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.z);
-			objItem = player.item(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.z); //TODO no estoy almacenando los posiciones de los items wtf
+			objCreature = player.creature(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ());
+			objItem = player.item(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ()); //TODO no estoy almacenando los posiciones de los items wtf
 			
 		}
 		
@@ -86,16 +86,16 @@ public class TargetBasedScreen implements Screen {
         case KeyEvent.VK_U: x++; y--; break;
         case KeyEvent.VK_B: x--; y++; break;
         case KeyEvent.VK_N: x++; y++; break;
-        case KeyEvent.VK_ENTER: selectWorldCoordinate(player.x + x, player.y + y, sx + x, sy + y); return null;
+        case KeyEvent.VK_ENTER: selectWorldCoordinate(player.getX() + x, player.getY() + y, sx + x, sy + y); return null;
         case KeyEvent.VK_ESCAPE: return null;
         }
     
-        if (!isAcceptable(player.x + x, player.y + y)){
+        if (!isAcceptable(player.getX() + x, player.getY() + y)){
             x = px;
             y = py;
         }
     
-        enterWorldCoordinate(player.x + x, player.y + y, sx + x, sy + y);
+        enterWorldCoordinate(player.getX() + x, player.getY() + y, sx + x, sy + y);
     
         return this;
 	}
