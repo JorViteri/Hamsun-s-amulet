@@ -10,10 +10,15 @@ import javax.swing.text.BadLocationException;
 import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
+import Factories.ArmorFactory;
+import Factories.CreatureFactory;
+import Factories.ElementsFactory;
+import Factories.PotionFactory;
+import Factories.SpellBookFactory;
+import Factories.WeaponsFactory;
 import Rogue.World;
 import Rogue.WorldBuilder;
 import TextManagement.TextManager;
-import Utils.ElementsFactory;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 
@@ -25,6 +30,11 @@ public class PlayScreen implements Screen {
 	private int screenWidth;
 	private int screenHeight;
 	private static ElementsFactory elementsFactory;
+	private static CreatureFactory creatureFactory;
+	private static WeaponsFactory weaponsFactory;
+	private static ArmorFactory armorFactory;
+	private static PotionFactory potionFactory;
+	private static SpellBookFactory bookFactory;
 	private static FieldOfView fov;
 	private Screen subscreen;
 	private final static String newline = "\n";
@@ -39,11 +49,16 @@ public class PlayScreen implements Screen {
 		createWorld();
 		fov = new FieldOfView(world);
 		elementsFactory = new ElementsFactory(world);
-		createCreatures(elementsFactory);
-		createItems(elementsFactory);
+		creatureFactory = new CreatureFactory(world);
+		armorFactory = new ArmorFactory(world);
+		potionFactory = new PotionFactory(world);
+		bookFactory = new SpellBookFactory(world);
+		weaponsFactory = new WeaponsFactory(world);
+		createCreatures(creatureFactory);
+		createItems(armorFactory, potionFactory, elementsFactory, weaponsFactory, bookFactory);
 	}
 
-	private void createCreatures(ElementsFactory creatureFactory) {
+	private void createCreatures(CreatureFactory creatureFactory) {
 		player = creatureFactory.newPlayer(messages, fov);
 
 		for (int z = 0; z < world.depth(); z++) {
@@ -59,21 +74,21 @@ public class PlayScreen implements Screen {
 		}
 	}
 
-	private void createItems(ElementsFactory factory) {
+	private void createItems(ArmorFactory armorFactory, PotionFactory potionFactory, ElementsFactory elementsFactory, WeaponsFactory weaponFactory, SpellBookFactory bookFactory) {
 		for (int z = 0; z < world.depth(); z++) {
 			for (int i = 0; i < 20; i++) {
-				factory.newRock(z);
+				elementsFactory.newRock(z);
 			}
-			factory.randomArmor(z);
-			factory.randomWeapon(z);
-			factory.randomWeapon(z);
-			factory.newBow(z);
+			armorFactory.randomArmor(z);
+			weaponFactory.randomWeapon(z);
+			weaponFactory.randomWeapon(z);
+			weaponFactory.newBow(z);
 			for (int i = 0; i < 10; i++){
-				factory.randomPotion(z);
-				factory.randomSpellBook(z);
+				potionFactory.randomPotion(z);
+				bookFactory.randomSpellBook(z);
 			}
 		}
-		factory.newVictoryItem(world.depth() - 1);
+		elementsFactory.newVictoryItem(world.depth() - 1);
 	}
 
 	private void createWorld() {
@@ -249,7 +264,7 @@ public class PlayScreen implements Screen {
 		}
 		
 		if(playerHasAmulet()&&newEnemies){ 
-			createZombies(elementsFactory);
+			createZombies(creatureFactory);
 			newEnemies=false;
 		}
 		
@@ -266,7 +281,7 @@ public class PlayScreen implements Screen {
 		return this;
 	}
 
-	private void createZombies(ElementsFactory creatureFactory){
+	private void createZombies(CreatureFactory creatureFactory){
 		for (int z = 0; z < world.depth(); z++) {
 			for (int i = 0; i < 7; i++) {
 				creatureFactory.newZombie(z, player);
@@ -308,7 +323,7 @@ public class PlayScreen implements Screen {
 		if (player != null)
 			return player;
 		else
-			player = elementsFactory.newPlayer(messages, fov);
+			player = creatureFactory.newPlayer(messages, fov);
 		return player;
 	}
 	

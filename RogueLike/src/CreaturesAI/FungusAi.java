@@ -1,14 +1,15 @@
 package CreaturesAI;
 
 import Elements.Creature;
-import Utils.ElementsFactory;
+import Factories.CreatureFactory;
+import Factories.ElementsFactory;
 
 public class FungusAi extends CreatureAi{
 	
-	private ElementsFactory factory;
+	private CreatureFactory factory;
 	private int spreadcount;
 	
-	public FungusAi(Creature creature, ElementsFactory factory){
+	public FungusAi(Creature creature, CreatureFactory factory){
 		super(creature);
 		this.factory= factory;
 	}
