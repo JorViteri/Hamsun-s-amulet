@@ -1,8 +1,10 @@
 package Screens;
 
+import DungeonComponents.Line;
 import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
+import Utils.Position;
 
 public class LookScreen extends TargetBasedScreen {
 
@@ -27,4 +29,15 @@ public class LookScreen extends TargetBasedScreen {
 		caption = tile.glyph() + " " + tile.getDetails();
 	}
 
+	public boolean isAcceptable(int x, int y) {
+        if (!player.canSee(x, y, player.getZ()))
+            return false;
+    
+        for (Position p : new Line(player.getX(), player.getY(), x, y)){
+            if (!player.realTile(p.getIntX(), p.getIntY(), player.getZ()).isGround())
+                return false;
+        }
+    
+        return true;
+    }
 }

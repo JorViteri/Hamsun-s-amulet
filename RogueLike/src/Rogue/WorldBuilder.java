@@ -40,7 +40,7 @@ public class WorldBuilder {
 	}
 
 	public World build() {
-		return new World(tiles, stairs_list, exit);
+		return new World(tiles, stairs_list, exit, room_lists, corridors_list);
 	}
 
 	public WorldBuilder generateRooms()  {

@@ -357,13 +357,14 @@ public class Creature {
 		ai.onUpdate();
 	}
 
+	//TODO MODIFICAR ESTO MUY IMPORTANTE
 	public Position getPosition() {
-		return pos;
+		return new Position(this.x,this.y,this.z);
 	}
 
-	public void setPosition(Position pos) {
+	/*public void setPosition(Position pos) {
 		this.pos = pos;
-	}
+	}*/
 
 	public void modifyRegenHpPer1000(int amount) {
 		regenHpPer1000 += amount;

@@ -43,7 +43,7 @@ public class PlayScreen implements Screen {
 	
 
 	public PlayScreen() {
-		screenWidth = 80;
+		screenWidth = 80; //prueba random
 		screenHeight = 23;
 		messages = new ArrayList<String>();
 		createWorld();
@@ -69,7 +69,7 @@ public class PlayScreen implements Screen {
 				creatureFactory.newBat(z);
 			}
 			for (int i = 0; i < z + 1; i++) {
-				creatureFactory.newGoblin(z, player);
+				//creatureFactory.newGoblin(z, player);
 			}
 		}
 	}
@@ -240,6 +240,8 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_R:
 				subscreen = new ReadScreen(player, player.getX() - getScrollX(), player.getY() - getScrollY());
 				break;
+			case KeyEvent.VK_CONTROL:
+				subscreen = new CheckEnviromentScreen(player, "enviroment", player.getX()-getScrollX(), player.getY()-getScrollY(), world);
 			}
 
 			switch (key.getKeyChar()) {

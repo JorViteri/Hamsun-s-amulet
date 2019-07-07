@@ -3,6 +3,8 @@ package Rogue;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import DungeonComponents.Corridor;
+import DungeonComponents.Room;
 import DungeonComponents.Staircase;
 import DungeonComponents.Tile;
 import Elements.Creature;
@@ -25,18 +27,22 @@ public class World {
 	}
 	
 	private int depth;
-	public int depth(){
+
+	public int depth() {
 		return depth;
 	}
-	
+
 	private Item[][][] items;
-	
+
 	private Position exit;
 
 	private ArrayList<Staircase> stairs_list;
 	private ArrayList<Creature> creatures;
-	
-	public World(Tile[][][] tiles, ArrayList<Staircase> stairs, Position exit) {
+	private ArrayList<ArrayList<Room>> rooms_lists;
+	private ArrayList<ArrayList<Corridor>> corridors_lists;
+
+	public World(Tile[][][] tiles, ArrayList<Staircase> stairs, Position exit, ArrayList<ArrayList<Room>> rooms_lists,
+			ArrayList<ArrayList<Corridor>> corridors_list) {
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
@@ -45,6 +51,16 @@ public class World {
 		this.stairs_list = stairs;
 		this.items = new Item[width][height][depth];
 		this.exit = exit;
+		this.rooms_lists = rooms_lists;
+		this.corridors_lists = corridors_list;
+	}
+	
+	public ArrayList<ArrayList<Room>> getRoomLists(){
+		return rooms_lists;
+	}
+	
+	public ArrayList<ArrayList<Corridor>> getCorridorLists(){
+		return corridors_lists;
 	}
 	
 	public ArrayList<Staircase> getStairs(){

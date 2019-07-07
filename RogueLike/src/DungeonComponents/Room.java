@@ -63,8 +63,11 @@ public class Room {
 		return 1 + (-(this.getRoomUpperLeft().getIntX() - this.getRoomBottomRight().getIntX()));
 	}
 
-	public int getHeight() {
+	/*public int getHeight() {
 		return 1 + (-(this.getRoomUpperLeft().getIntY() - this.getRoomBottomRight().getIntY()));
+	}*/
+	public int getHeight() {
+		return 1 + (this.getRoomUpperLeft().getIntY() - this.getRoomBottomRight().getIntY());
 	}
 
 	public boolean isCorner(Position p, ArrayList<Position> walls) {
@@ -150,6 +153,19 @@ public class Room {
 				}
 			}
 		}
+		return true;
+	}
+
+	public boolean contais(Position position) {
+		Position topRight = this.getRoomUpperRight();
+		Position bottomLeft = this.getRoomBottomLeft();
+		
+		if(!((position.getIntX()>=bottomLeft.getIntX())&&(position.getIntX()<=topRight.getIntX()))){
+			return false;
+		} 
+		if(!((position.getIntY()>=bottomLeft.getIntY()) &&(position.getIntY()<=topRight.getIntY()))){
+			return false;
+		} 
 		return true;
 	}
 	

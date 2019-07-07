@@ -98,11 +98,11 @@ public class CreatureAi {
 				&& creature.canSee(other.getX(), other.getY(), other.getZ());
 	}
 
-	protected boolean canThrowAt(Creature other) {
+	protected boolean canThrowAt(Creature other) { //TODO aqui esta el problema, no cimprueba que tenga mierdas que lanzar, crei
 		return creature.canSee(other.getX(), other.getY(), other.getZ()) && getWeaponToThrow() != null;
 	}
 
-	protected Item getWeaponToThrow() {
+	protected Item getWeaponToThrow() { //aqui deberia verse
 		Item toThrow = null;
 	
 		for (Item item : creature.inventory().getItems()) {

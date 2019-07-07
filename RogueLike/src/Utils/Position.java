@@ -11,8 +11,8 @@ public class Position {
 	private double x;
 	private double y;
 	private int z;
-	private static int gridWidth = 79;
-	private static int gridHeight = 23;
+	private static int gridWidth = 89;
+	private static int gridHeight = 30; //TODO ok, WTF ES ESTO!??!
 
 	/**
 	 * Constructor.
@@ -157,19 +157,7 @@ public class Position {
 	 * @return True if it is within the map's limits, false otherwise.
 	 */
 	public boolean isValidPosition() {
-		if (0 <= this.getX() && this.getX() < gridWidth && 0 <= this.getY() && this.getY() < gridHeight) {
-			return true;
-		}
-		return false;
-	}
-
-	// TODO me pensare si usar esto en principio
-	/**
-	 * Checks if a position is within the map's limits for a door, considering that it needs space for a corridor and the wall.
-	 * @return True if it's a valid position for a door, false otherwise.
-	 */
-	public boolean isValidPositionForDoor() {
-		if (2 <= this.getX() && this.getX() <= gridWidth - 2 && 2 <= this.getY() && this.getY() <= gridHeight - 2) {
+		if (0 <= this.getX() && this.getX() <= gridWidth && 0 <= this.getY() && this.getY() <= gridHeight) {
 			return true;
 		}
 		return false;

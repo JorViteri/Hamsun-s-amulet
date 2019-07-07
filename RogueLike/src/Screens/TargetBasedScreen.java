@@ -43,9 +43,9 @@ public class TargetBasedScreen implements Screen {
 				continue;
 
 			terminal.write('*', p.getIntX(), p.getIntY(), AsciiPanel.brightMagenta);
-			pointer_pos = String.format("Pointer's Position: %d %d", p.getIntX(), p.getIntY());
+			pointer_pos = String.format("Pointer's Position: %d %d", p.getIntX()+scrollx, p.getIntY()+scrolly); 
 			objCreature = player.creature(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ());
-			objItem = player.item(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ()); //TODO no estoy almacenando los posiciones de los items wtf
+			objItem = player.item(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ()); 
 			
 		}
 		
@@ -61,10 +61,11 @@ public class TargetBasedScreen implements Screen {
 		terminal.clear(' ', 0, 23, 80, 1);
 		terminal.write(caption, 0, 23);
 		textManager.clearTextArea(1);
-		player_pos = String.format("Player's Position: %d, %d",this.sx, this.sy);
+		player_pos = String.format("Player's Position: %d, %d",player.getX(), player.getY());
 		textManager.writeText(player_pos, 1);
 		textManager.writeText(pointer_pos, 1);
 		textManager.writeText(objective, 1);
+		textManager.writeText(caption, 1);
 		
 	}
 
