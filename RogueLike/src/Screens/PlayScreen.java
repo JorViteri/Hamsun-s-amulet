@@ -69,7 +69,7 @@ public class PlayScreen implements Screen {
 				creatureFactory.newBat(z);
 			}
 			for (int i = 0; i < z + 1; i++) {
-				//creatureFactory.newGoblin(z, player);
+				creatureFactory.newGoblin(z, player);
 			}
 		}
 	}
