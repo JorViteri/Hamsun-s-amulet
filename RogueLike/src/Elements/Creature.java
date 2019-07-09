@@ -308,9 +308,9 @@ public class Creature {
 				stair = world.getStairs().get(z - 1);
 				doAction("walk up the stairs to level %d", z + mz + 1);
 				pos_x = stair.getBeginning().getIntX();
-				pos_y = (world.height() - 1) - stair.getBeginning().getIntY();
+				pos_y = (world.getHeight() - 1) - stair.getBeginning().getIntY();
 				pos_z = stair.getBeginning().getZ();
-				tile = world.tile(stair.getBeginning().getIntX(), (world.height() - 1) - stair.getBeginning().getIntY(),
+				tile = world.tile(stair.getBeginning().getIntX(), (world.getHeight() - 1) - stair.getBeginning().getIntY(),
 						stair.getBeginning().getZ());
 			} else {
 				doAction("try to go up but are stopped by the cave ceiling");
@@ -320,10 +320,10 @@ public class Creature {
 			if (tile == Tile.STAIRS_DOWN) {
 				stair = world.getStairs().get(z);
 				pos_x = stair.getEnding().getIntX();
-				pos_y = (world.height() - 1) - stair.getEnding().getIntY();
+				pos_y = (world.getHeight() - 1) - stair.getEnding().getIntY();
 				pos_z = stair.getEnding().getZ();
 				doAction("walk down the stairs to level %d", z + mz + 1);
-				tile = world.tile(stair.getEnding().getIntX(), (world.height() - 1) - stair.getEnding().getIntY(),
+				tile = world.tile(stair.getEnding().getIntX(), (world.getHeight() - 1) - stair.getEnding().getIntY(),
 						stair.getEnding().getZ());
 			} else {
 				doAction("try to go down but are stopped by the cave floor");
@@ -414,7 +414,44 @@ public class Creature {
 		}
 		return others;
 	}
+	
+	public ArrayList<ArrayList<Position>> getVisibleThings() {
+		ArrayList<ArrayList<Position>> result = new ArrayList<>();
+		ArrayList<Position> creatures = new ArrayList<>();
+		ArrayList<Position> items = new ArrayList<>();
+		ArrayList<Position> stairs = new ArrayList<>();
+		Position p = null;
+		int r = this.visionRadius;
+		for (int ox = -r; ox < r + 1; ox++) {
+			for (int oy = -r; oy < r + 1; oy++) {
+				if (ox * ox + oy * oy > r * r){
+					continue;//TODO esta condicion no esta funcionando como deberia por las llaves no bien puestas, oodio la mierda que hacia el pavo este
+				}
+					
+				p = new Position(x + ox, y + oy, z); //TODO crea una posicion que peta en Y
+				if (p.isValidPosition()){
+					Creature otherCreature = world.creature(x + ox, y + oy, z);
+					Item otherItem = world.item(x + ox, y + oy, z); //TODO ArryIndexOutOfBoundsExcetion: 31 wtfff Tampoco pilla todos los items a la vista
+					Tile tile = world.tile(x + ox, y + oy, z);
 
+					if ((otherCreature != null)&&(!otherCreature.equals(this))){
+						creatures.add(p);
+					} else if (otherItem!=null){
+						items.add(p);
+					} else if (tile.isStair()){
+						stairs.add(p);
+					} else{
+						continue;
+					}
+				}
+			}
+		}
+		result.add(creatures);
+		result.add(items);
+		result.add(stairs);
+		return result;
+	}
+	
 	// pasa la frase a segunda persona TODO IMPORTANTE PARA MI PAETE JODIDA DE
 	// WORNDET
 	private String makeSecondPerson(String text) {

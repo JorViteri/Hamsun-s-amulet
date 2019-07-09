@@ -43,7 +43,7 @@ public class TargetBasedScreen implements Screen {
 				continue;
 
 			terminal.write('*', p.getIntX(), p.getIntY(), AsciiPanel.brightMagenta);
-			pointer_pos = String.format("Pointer's Position: %d %d", p.getIntX()+scrollx, p.getIntY()+scrolly); 
+			pointer_pos = String.format("Pointer's Position: %d %d", p.getIntX()+scrollx, p.getIntY()+scrolly); //entiendo que, haciendo esto, la posicion se adapta a la de la partida porque sino es solo en la terminal
 			objCreature = player.creature(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ());
 			objItem = player.item(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ()); 
 			

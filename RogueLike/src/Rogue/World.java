@@ -17,18 +17,18 @@ public class World {
 	private Tile[][][] tiles;
 	
 	private int width;
-	public int width() {
+	public int getWidth() {
 		return width;
 	}
 
 	private int height;
-	public int height() {
+	public int getHeight() {
 		return height;
 	}
 	
 	private int depth;
 
-	public int depth() {
+	public int getDepth() {
 		return depth;
 	}
 
@@ -167,6 +167,9 @@ public class World {
 		while (!tile(x,y,depth).canPutItem() || item(x,y,depth) != null); 
 		
 	    items[x][y][depth] = item;
+	    item.setX(x);
+	    item.setY(y);
+	    item.setZ(depth);
 	}
 	
 	

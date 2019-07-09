@@ -22,12 +22,12 @@ public class FieldOfView {
 	
 	public FieldOfView(World world){
 		this.world = world;
-		this.visible = new boolean[world.width()][world.height()];
-		this.tiles = new Tile[world.width()][world.height()][world.depth()];
+		this.visible = new boolean[world.getWidth()][world.getHeight()];
+		this.tiles = new Tile[world.getWidth()][world.getHeight()][world.getDepth()];
 		
-		for (int i = 0; i < world.width(); i++){
-			for (int j = 0; j<world.height(); j++){
-				for (int z = 0; z< world.depth(); z++){
+		for (int i = 0; i < world.getWidth(); i++){
+			for (int j = 0; j<world.getHeight(); j++){
+				for (int z = 0; z< world.getDepth(); z++){
 					tiles[i][j][z] = Tile.UNKNOWN;
 				}
 			}
@@ -36,14 +36,14 @@ public class FieldOfView {
 	
 	public void update(int wx, int wy, int wz, int r){
 		depth = wz;
-		visible = new boolean[world.width()][world.height()];
+		visible = new boolean[world.getWidth()][world.getHeight()];
 		
 		for (int x = -r; x < r; x++){
 			for (int y = -r; y < r; y++){
 				if (x*x + y*y > r*r)
 					continue;
 				
-				if (wx + x < 0 || wx + x >= world.width() || wy + y < 0 || wy + y >= world.height())
+				if (wx + x < 0 || wx + x >= world.getWidth() || wy + y < 0 || wy + y >= world.getHeight())
 					continue;
 				
 				for (Position p : new Line(wx, wy, wx + x, wy + y)){

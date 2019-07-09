@@ -45,14 +45,14 @@ public class CreatureFactory {
 	}
 
 	public Creature newZombie(int depth, Creature player) {
-		Creature zombie = new Creature(world, 'z', "zombie", AsciiPanel.white, 50, 10, 10, 0);
+		Creature zombie = new Creature(world, 'z', "Zombie", AsciiPanel.white, 50, 10, 10, 0);
 		world.addAtEmptyLocation(zombie, depth);
 		new ZombieAi(zombie, player);
 		return zombie;
 	}
 	
 	public Creature newGoblin(int depth, Creature player) {
-		Creature goblin = new Creature(world, 'g', "goblin", AsciiPanel.brightGreen, 66, 15, 5, 10);
+		Creature goblin = new Creature(world, 'g', "Goblin", AsciiPanel.brightGreen, 66, 15, 5, 10);
 		new GoblinAi(goblin, player);
 		WeaponsFactory wf = new WeaponsFactory(this.world);
 		ArmorFactory af = new  ArmorFactory(this.world);

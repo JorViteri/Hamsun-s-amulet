@@ -46,16 +46,18 @@ public class CheckEnviromentScreen implements Screen {
 		boolean roomdetails = false;
 		Item objItem = null;
 		int dimension = 0;
+		int height = world.getHeight();
 		int scrollx, scrolly;
+		
 		scrollx = this.player.getX()-this.sx;
 		scrolly=this.player.getY()-this.sy;
-		Position playerp = new Position(player.getX(), 30-player.getY(), player.getZ());
+		Position playerp = new Position(player.getX(), (height-1)-player.getY(), player.getZ());
 		
 		
-		if(isRoom(playerp)){ //TODO estoy en una habitacion y me ha dicho que no, que mentira
+		if(isRoom(playerp)){ 
 			room_list = world.getRoomLists().get(this.player.getZ());
 			for(Room r: room_list){
-				if (r.contais(playerp)){ //TODO esta funcion no esta implementada correcatmente
+				if (r.contais(playerp)){ 
 					actualRoom = r;
 					break;
 				}
@@ -89,19 +91,36 @@ public class CheckEnviromentScreen implements Screen {
 		
 		if(!roomdetails){
 			textManager.clearTextArea(1);
-			player_pos = String.format("Player's Position: %d, %d",this.sx, this.sy);
+			player_pos = String.format("Player's Position: %d, %d",player.getX(), player.getY());
 			textManager.writeText(player_pos, 1);
 			textManager.writeText(pointer_pos, 1);
 			textManager.writeText(objective, 1);
 			textManager.writeText(caption, 1);
 		}else{
-			player_pos = String.format("Player's Position: %d, %d",this.sx, this.sy);
+			player_pos = String.format("Player's Position: %d, %d",player.getX(), player.getY());
 			textManager.writeText(player_pos, 1);
 			if (dimension==1){
 				textManager.writeText("You are in a corridor", 1);
 			}else{
 				String room_dim = String.format("Room is %d x %d",actualRoom.getWide(), actualRoom.getHeight());
 				textManager.writeText(room_dim, 1);
+			}
+			//TODO necesito obtener las casillas a la vista del jugador, iterarlas y mostrar lo que hay
+			ArrayList<ArrayList<Position>> visible = player.getVisibleThings();
+			ArrayList<Position> creatures = visible.get(0);
+			for(Position p : creatures){ //TODO lo mejor seria obtener las criaturas por separado en una funcion propia
+				Creature c = world.creature(p.getIntX(),p.getIntY(),p.getZ());
+				textManager.writeText(c.name(),1);
+			}
+			ArrayList<Position> items = visible.get(1);
+			for(Position p : items){
+				Item i = world.item(p.getIntX(), p.getIntY(), p.getZ());
+				textManager.writeText(i.getName(), 1);
+			}
+			ArrayList<Position> stairs = visible.get(2);
+			for(Position p :  stairs){
+				Tile t = world.tile(p.getIntX(), p.getIntY(), p.getZ());
+				textManager.writeText(t.getDetails(), 1);
 			}
 		}
 		
@@ -127,12 +146,12 @@ public class CheckEnviromentScreen implements Screen {
 	
 
 	private boolean isRoom(Position p){ //TODO Hace falta la posicion en la matriz real porque los vecinos se consiguen con esos valoresv 
-		//Position newp = new Position(p.getX(),30-p.getY(), p.getZ());
 		ArrayList<Position> neighbours = p.getNeighbors(8); //p tampoco tiene la Y correcta
 		ArrayList<Position> ground_tiles = new ArrayList<>();
+		int height= this.world.getHeight();
 		Tile north, south, west, east;
 		for (Position n : neighbours) {
-			if (world.tile(n.getIntX(),30-n.getIntY(), n.getZ()).isGround()) { //TODO aqui habria que hacer la conversion a posiciones de la pantalla
+			if (world.tile(n.getIntX(),(height-1)-n.getIntY(), n.getZ()).isGround()) { //TODO aqui habria que hacer la conversion a posiciones de la pantalla
 				ground_tiles.add(n); //siguen siendo posiciones de la matriz real, ojo
 			}
 		}
@@ -147,13 +166,13 @@ public class CheckEnviromentScreen implements Screen {
 				return false;
 			}
 		} else if (ground_tiles.size() == 4) {
-			north = world.tile(p.getPositionN().getIntX(), 30 - p.getPositionN().getIntY(), p.getZ());
-			south = world.tile(p.getPositionS().getIntX(), 30 - p.getPositionS().getIntY(), p.getZ());
+			north = world.tile(p.getPositionN().getIntX(), (height-1) - p.getPositionN().getIntY(), p.getZ());
+			south = world.tile(p.getPositionS().getIntX(), (height-1) - p.getPositionS().getIntY(), p.getZ());
 			if (!north.isGround() && !south.isGround()) {
 				return false;
 			} else {
-				west = world.tile(p.getPositionW().getIntX(), 30 - p.getPositionW().getIntY(), p.getZ());
-				east = world.tile(p.getPositionE().getIntX(), 30 - p.getPositionE().getIntY(), p.getZ());
+				west = world.tile(p.getPositionW().getIntX(),(height-1) - p.getPositionW().getIntY(), p.getZ());
+				east = world.tile(p.getPositionE().getIntX(), (height-1) - p.getPositionE().getIntY(), p.getZ());
 				if (!west.isGround() && !east.isGround()) {
 					return false;
 				} else {
@@ -207,4 +226,7 @@ public class CheckEnviromentScreen implements Screen {
         return true;
     }
 	
+	
+	
+
 }

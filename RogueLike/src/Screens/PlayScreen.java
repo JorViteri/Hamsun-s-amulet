@@ -43,8 +43,9 @@ public class PlayScreen implements Screen {
 	
 
 	public PlayScreen() {
-		screenWidth = 80; //prueba random
-		screenHeight = 23;
+		//TODO son eestos valores porque son los por defecto de la pantalla de juego, pero no del escenario!! el escenario es 90-31
+		screenWidth = 80; //TODO estas dos mierdas de aqui me rompen todo, tengo que cambiarlas YA
+		screenHeight = 23; //Si lo toco, rompe. Pero no entiendo, cómo se le asocia el valor 40 en x?? es el sx y sy de la checkenviroment
 		messages = new ArrayList<String>();
 		createWorld();
 		fov = new FieldOfView(world);
@@ -61,7 +62,7 @@ public class PlayScreen implements Screen {
 	private void createCreatures(CreatureFactory creatureFactory) {
 		player = creatureFactory.newPlayer(messages, fov);
 
-		for (int z = 0; z < world.depth(); z++) {
+		for (int z = 0; z < world.getDepth(); z++) {
 			for (int i = 0; i < 8; i++) {
 				creatureFactory.newFungus(z);
 			}
@@ -75,7 +76,7 @@ public class PlayScreen implements Screen {
 	}
 
 	private void createItems(ArmorFactory armorFactory, PotionFactory potionFactory, ElementsFactory elementsFactory, WeaponsFactory weaponFactory, SpellBookFactory bookFactory) {
-		for (int z = 0; z < world.depth(); z++) {
+		for (int z = 0; z < world.getDepth(); z++) {
 			for (int i = 0; i < 20; i++) {
 				elementsFactory.newRock(z);
 			}
@@ -88,19 +89,19 @@ public class PlayScreen implements Screen {
 				bookFactory.randomSpellBook(z);
 			}
 		}
-		elementsFactory.newVictoryItem(world.depth() - 1);
+		elementsFactory.newVictoryItem(world.getDepth() - 1);
 	}
 
 	private void createWorld() {
 		world = new WorldBuilder(90, 31, 5).makeCaves().build();
 	}
 
-	public int getScrollX() {
-		return Math.max(0, Math.min(player.getX() - screenWidth / 2, world.width() - screenWidth));
+	public int getScrollX() { 
+		return Math.max(0, Math.min(player.getX() - screenWidth / 2, world.getWidth() - screenWidth));
 	}
 
-	public int getScrollY() {
-		return Math.max(0, Math.min(player.getY() - screenHeight / 2, world.height() - screenHeight));
+	public int getScrollY() { 
+		return Math.max(0, Math.min(player.getY() - screenHeight / 2, world.getHeight() - screenHeight));
 	}
 
 	private void displayMessages(AsciiPanel terminal, ArrayList<String> messages, JTextArea textArea) {
@@ -173,6 +174,7 @@ public class PlayScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		boolean newEnemies= true;
 		int level = player.getLevel();
+		boolean update = true;
 		
 		if (subscreen != null) {
 			subscreen = subscreen.respondToUserInput(key);
@@ -242,6 +244,8 @@ public class PlayScreen implements Screen {
 				break;
 			case KeyEvent.VK_CONTROL:
 				subscreen = new CheckEnviromentScreen(player, "enviroment", player.getX()-getScrollX(), player.getY()-getScrollY(), world);
+			default:
+				update = false;
 			}
 
 			switch (key.getKeyChar()) {
@@ -260,6 +264,7 @@ public class PlayScreen implements Screen {
 				player.moveBy(0, 0, 1);
 				break;
 			case '?':
+				update = true;
 				subscreen = new HelpScreen();
 				break;
 			}
@@ -274,7 +279,7 @@ public class PlayScreen implements Screen {
 			subscreen = new LevelUpScreen(player, player.getLevel()-level);
 		}
 
-		if (subscreen == null) {
+		if ((subscreen == null)&&(update==true)) {
 			world.update();
 		}
 		if (player.hp() < 1) {
@@ -284,7 +289,7 @@ public class PlayScreen implements Screen {
 	}
 
 	private void createZombies(CreatureFactory creatureFactory){
-		for (int z = 0; z < world.depth(); z++) {
+		for (int z = 0; z < world.getDepth(); z++) {
 			for (int i = 0; i < 7; i++) {
 				creatureFactory.newZombie(z, player);
 			}
