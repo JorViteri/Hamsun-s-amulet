@@ -18,6 +18,8 @@ import Utils.Position;
 
 public class Creature {
 
+	
+	//TODO cambiar los gettrs y setters de esta clase!!
 	private World world;
 	private CreatureAi ai;
 	private Position pos;
@@ -287,7 +289,7 @@ public class Creature {
 		} else {
 			unequip(armor);
 			if(this.name.equals("Player")){
-				doAction("put on a " + nameOf(item)); //TODOesto solo deberia mostrarse con el jugador
+				doAction("put on a " + nameOf(item)); 
 			}
 			armor = item;
 		}
@@ -427,23 +429,24 @@ public class Creature {
 				if (ox * ox + oy * oy > r * r){
 					continue;//TODO esta condicion no esta funcionando como deberia por las llaves no bien puestas, oodio la mierda que hacia el pavo este
 				}
-					
-				p = new Position(x + ox, y + oy, z); //TODO crea una posicion que peta en Y
-				if (p.isValidPosition()){
-					Creature otherCreature = world.creature(x + ox, y + oy, z);
-					Item otherItem = world.item(x + ox, y + oy, z); //TODO ArryIndexOutOfBoundsExcetion: 31 wtfff Tampoco pilla todos los items a la vista
-					Tile tile = world.tile(x + ox, y + oy, z);
-
-					if ((otherCreature != null)&&(!otherCreature.equals(this))){
-						creatures.add(p);
-					} else if (otherItem!=null){
-						items.add(p);
-					} else if (tile.isStair()){
-						stairs.add(p);
-					} else{
-						continue;
+				if (this.canSee(x+ox, y+oy, z)){ 
+					p = new Position(x + ox, y + oy, z); //TODO crea una posicion que peta en Y
+					if (p.isValidPosition()){
+						Creature otherCreature = world.creature(x + ox, y + oy, z);
+						Item otherItem = world.item(x + ox, y + oy, z); //TODO ArryIndexOutOfBoundsExcetion: 31 wtfff Tampoco pilla todos los items a la vista
+						Tile tile = world.tile(x + ox, y + oy, z);
+						if ((otherCreature != null)&&(!otherCreature.equals(this))){
+							creatures.add(p);
+						} else if (otherItem!=null){
+							items.add(p);
+						} else if (tile.isStair()){
+							stairs.add(p);
+						} else{
+							continue;
+						}
 					}
 				}
+				
 			}
 		}
 		result.add(creatures);
@@ -482,7 +485,7 @@ public class Creature {
 		ai.onNotify(String.format(message, params));
 	}
 
-	public boolean canSee(int wx, int wy, int wz) {
+	public boolean canSee(int wx, int wy, int wz) {  //TODO esta funcion debe tener la solucion
 		return (detectCreatures > 0 && world.creature(wx, wy, wz) != null || ai.canSee(wx, wy, wz));
 	}
 

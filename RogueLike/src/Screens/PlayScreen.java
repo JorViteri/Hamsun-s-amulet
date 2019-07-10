@@ -40,6 +40,7 @@ public class PlayScreen implements Screen {
 	private final static String newline = "\n";
 	private final static int linelimit=28;
 	private TextManager textManager = TextManager.getTextManager();
+	private boolean newEnemies = true;
 	
 
 	public PlayScreen() {
@@ -172,7 +173,6 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		boolean newEnemies= true;
 		int level = player.getLevel();
 		boolean update = true;
 		
@@ -270,9 +270,9 @@ public class PlayScreen implements Screen {
 			}
 		}
 		
-		if(playerHasAmulet()&&newEnemies){ 
+		if(playerHasAmulet()&&this.newEnemies){ 
 			createZombies(creatureFactory);
-			newEnemies=false;
+			this.newEnemies=false;
 		}
 		
 		if(player.getLevel()>level){

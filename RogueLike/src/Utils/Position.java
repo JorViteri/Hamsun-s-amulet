@@ -12,7 +12,7 @@ public class Position {
 	private double y;
 	private int z;
 	private static int gridWidth = 89;
-	private static int gridHeight = 30; //TODO ok, WTF ES ESTO!??!
+	private static int gridHeight = 30; 
 
 	/**
 	 * Constructor.
@@ -283,34 +283,56 @@ public class Position {
 		return new Position(pos.getX() - this.getX(), this.getY() - pos.getY(), this.getZ());
 	}
 
-	// TODO ESTO PINTA IMPORTANTE!
-
 	/**
 	 * Gets the relative position to another Position, in text.
 	 * @param pos The position to which we're calculating the relative Position.
 	 * @return The description of relative position.
 	 */
-	/*
-	 * public String getRelativePosition(Position position){ int x =
-	 * position.getX()-this.getX(); int y = this.getY()-position.getY();
-	 * if(x==0) if(y>0) return messages.getString("north"); else return
-	 * messages.getString("south"); if(y==0) if(x>0) return
-	 * messages.getString("east"); else return messages.getString("west"); if(x
-	 * == -y) if(x>0) return messages.getString("southeast"); else return
-	 * messages.getString("northwest"); if(x == y) if(x>0) return
-	 * messages.getString("northeast"); else return
-	 * messages.getString("southwest");
-	 * 
-	 * if(Math.abs(x) <= Math.abs(y/4)) if(y>0) return
-	 * messages.getString("northish"); else return
-	 * messages.getString("southish"); if(Math.abs(y) <= Math.abs(x/4)) if(x>0)
-	 * return messages.getString("eastish"); else return
-	 * messages.getString("westish");
-	 * 
-	 * if(x>0) { if(y>0) return messages.getString("northeastish"); else return
-	 * messages.getString("southeastish");} else if(y>0)return
-	 * messages.getString("northwestish"); else return
-	 * messages.getString("southwestish"); }
-	 */
+	//TODO esto me vale para oindicar la posicion relativa con los puntos cardinales
+	public String getRelativePosition(Position position) {
+		int x = position.getIntX() - this.getIntX();
+		int y = this.getIntY() - position.getIntY();
+		if (x == 0)
+			if (y > 0)
+				return ("north");
+			else
+				return ("south");
+		if (y == 0)
+			if (x < 0)
+				return ("east");
+			else
+				return ("west");
+		if (x == -y)
+			if (x < 0)
+				return ("southeast");
+			else
+				return ("northwest");
+		if (x == y)
+			if (x < 0)
+				return ("northeast");
+			else
+				return ("southwest");
+
+		if (Math.abs(x) <= Math.abs(y / 4))
+			if (y > 0)
+				return ("northish");
+			else
+				return ("southish");
+		if (Math.abs(y) <= Math.abs(x / 4))
+			if (x < 0)
+				return ("eastish");
+			else
+				return ("westish");
+
+		if (x < 0) {
+			if (y > 0)
+				return ("northeastish");
+			else
+				return ("southeastish");
+		} else if (y > 0)
+			return ("northwestish");
+		else
+			return ("southwestish");
+	}
 
 }

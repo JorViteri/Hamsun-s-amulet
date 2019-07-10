@@ -35,11 +35,13 @@ public class CheckEnviromentScreen implements Screen {
 	}
 	
 	
-	//del estado actual de la partida... o hago dos pantallas para esot??? descricion rapida y chekear sala 
+	//TODO hacer MUCHO mas ligera esta funcion
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
 		Room actualRoom = null;
 		ArrayList<Room> room_list = new ArrayList<>();
 		ArrayList<Corridor> corridor_list = new ArrayList<>();
+		ArrayList<String> aux_strings = new ArrayList<>();
+		ArrayList<Integer> aux_int = new ArrayList<>();
 		TextManager textManager = TextManager.getTextManager();
 		String player_pos, pointer_pos = null, objective="";
 		Creature objCreature = null;
@@ -48,6 +50,7 @@ public class CheckEnviromentScreen implements Screen {
 		int dimension = 0;
 		int height = world.getHeight();
 		int scrollx, scrolly;
+		int index, i;
 		
 		scrollx = this.player.getX()-this.sx;
 		scrolly=this.player.getY()-this.sy;
@@ -103,30 +106,60 @@ public class CheckEnviromentScreen implements Screen {
 				textManager.writeText("You are in a corridor", 1);
 			}else{
 				String room_dim = String.format("Room is %d x %d",actualRoom.getWide(), actualRoom.getHeight());
+				Position dungCenter = new Position((world.getWidth()/2)-1, (world.getHeight()/2)-1, player.getZ());
+				String cardinal = playerp.getRelativePosition(dungCenter);
 				textManager.writeText(room_dim, 1);
+				textManager.writeText(cardinal, 1);
 			}
-			//TODO necesito obtener las casillas a la vista del jugador, iterarlas y mostrar lo que hay
+			
 			ArrayList<ArrayList<Position>> visible = player.getVisibleThings();
 			ArrayList<Position> creatures = visible.get(0);
-			for(Position p : creatures){ //TODO lo mejor seria obtener las criaturas por separado en una funcion propia
-				Creature c = world.creature(p.getIntX(),p.getIntY(),p.getZ());
-				textManager.writeText(c.name(),1);
+			for(Position p : creatures){ 
+				Creature c = world.creature(p.getIntX(), p.getIntY(), p.getZ());
+				if (aux_strings.contains(c.name())) {
+					index = aux_strings.indexOf(c.name());
+					aux_int.set(index, aux_int.get(index)+1);
+				} else {
+					aux_strings.add(c.name());
+					index = aux_strings.indexOf(c.name());
+					aux_int.add(index, 1);
+				}
 			}
+			i = 0 ;
+			for (String s : aux_strings) {
+				String text = String.format(s + " : " + aux_int.get(i));
+				textManager.writeText(text, 1);
+				i++;
+			}
+			aux_strings.clear();
+			aux_int.clear();
 			ArrayList<Position> items = visible.get(1);
-			for(Position p : items){
-				Item i = world.item(p.getIntX(), p.getIntY(), p.getZ());
-				textManager.writeText(i.getName(), 1);
+			for (Position p : items) {
+				Item item = world.item(p.getIntX(), p.getIntY(), p.getZ());
+				if (aux_strings.contains(this.player.nameOf(item))) {
+					index = aux_strings.indexOf(this.player.nameOf(item));
+					aux_int.set(index, ((aux_int.get(index)) + 1)); 
+				} else {
+					aux_strings.add(this.player.nameOf(item));
+					index = aux_strings.indexOf(this.player.nameOf(item));
+					aux_int.add(index, 1);
+				}
+			}
+			i = 0;
+			for (String s : aux_strings) {
+				String text = String.format(s + " : " + aux_int.get(i));
+				textManager.writeText(text, 1);
+				i++;
 			}
 			ArrayList<Position> stairs = visible.get(2);
-			for(Position p :  stairs){
+			for (Position p : stairs) {
 				Tile t = world.tile(p.getIntX(), p.getIntY(), p.getZ());
 				textManager.writeText(t.getDetails(), 1);
 			}
 		}
-		
-		
+
 	}
-	
+
 	public void enterWorldCoordinate(int x, int y, int screenX, int screenY) { //este es el que le pasa el caption, lo que se debe mostrar creo
 		Creature creature = player.creature(x, y, player.getZ());
 		if (creature != null) {
