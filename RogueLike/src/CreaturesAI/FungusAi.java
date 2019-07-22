@@ -7,7 +7,7 @@ import Factories.ElementsFactory;
 public class FungusAi extends CreatureAi{
 	
 	private CreatureFactory factory;
-	private int spreadcount;
+	//private int spreadcount;
 	
 	public FungusAi(Creature creature, CreatureFactory factory){
 		super(creature);
