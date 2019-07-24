@@ -1,0 +1,198 @@
+{
+   "drop": [{
+      "3SP": "soltaron",
+      "3PP": "sueltan",
+      "3SS": "soltó",
+      "3PS": "suelta",
+      "infinitive": "soltar"
+   }],
+   "chant": [{
+      "3SP": "entonaron",
+      "3PP": "entonan",
+      "3SS": "entonó",
+      "3PS": "entona",
+      "infinitive": "entonar"
+   }],
+   "suffer": [
+      {
+         "3SP": "padecieron",
+         "3PP": "padecen",
+         "3SS": "padeció",
+         "3PS": "padece",
+         "infinitive": "padecer"
+      },
+      {
+         "3SP": "sufrieron",
+         "3PP": "sufren",
+         "3SS": "sufrió",
+         "3PS": "sufre",
+         "infinitive": "sufrir"
+      }
+   ],
+   "cut": [
+      {
+         "3SP": "cortaron",
+         "3PP": "cortan",
+         "3SS": "cortó",
+         "3PS": "corta",
+         "infinitive": "cortar"
+      },
+      {
+         "3SP": "Perforaron",
+         "3PP": "perforan",
+         "3SS": "perforó",
+         "3PS": "perfora",
+         "infinitive": "perforar"
+      },
+      {
+         "3SP": "seccionar",
+         "3PP": "seccionan",
+         "3SS": "seccionó",
+         "3PS": "secciona",
+         "infinitive": "seccionar"
+      }
+   ],
+   "equip": [{
+      "3SP": "equiparon",
+      "3PP": "equipan",
+      "3SS": "equipó",
+      "3PS": "equipa",
+      "infinitive": "equipar"
+   }],
+   "throw": [
+      {
+         "3SP": "arrojaron",
+         "3PP": "arrojan",
+         "3SS": "arrojó",
+         "3PS": "arroja",
+         "infinitive": "arrojar"
+      },
+      {
+         "3SP": "lanzaron",
+         "3PP": "lanzan",
+         "3SS": "lanzó",
+         "3PS": "lanza",
+         "infinitive": "lanzar"
+      },
+      {
+         "3SP": "proyectaron",
+         "3PP": "proyectan",
+         "3SS": "proyectó",
+         "3PS": "proyecta",
+         "infinitive": "proyectar"
+      }
+   ],
+   "thrust": [
+      {
+         "3SP": "clavaron",
+         "3PP": "clavan",
+         "3SS": "clavó",
+         "3PS": "clava",
+         "infinitive": "clavar"
+      },
+      {
+         "3SP": "hincaron",
+         "3PP": "hincan",
+         "3SS": "hincó",
+         "3PS": "hinca",
+         "infinitive": "hincar"
+      }
+   ],
+   "consume": [
+      {
+         "3SP": "comieron",
+         "3PP": "Comen",
+         "3SS": "comió",
+         "3PS": "come",
+         "infinitive": "comer"
+      },
+      {
+         "3SP": "consumieron",
+         "3PP": "consumen",
+         "3SS": "consumió",
+         "3PS": "consume",
+         "infinitive": "consumir"
+      },
+      {
+         "3SP": "ingirieron",
+         "3PP": "ingieren",
+         "3SS": "ingirió",
+         "3PS": "ingiere",
+         "infinitive": "ingerir"
+      },
+      {
+         "3SP": "tomaron",
+         "3PP": "toman",
+         "3SS": "tomó",
+         "3PS": "toma",
+         "infinitive": "tomar"
+      }
+   ],
+   "shoot": [{
+      "3SP": "dispararon",
+      "3PP": "disparan",
+      "3SS": "disparó",
+      "3PS": "dispara",
+      "infinitive": "disparar"
+   }],
+   "slash": [{
+      "3SP": "acuchillaron",
+      "3PP": "acuchillan",
+      "3SS": "acuchilló",
+      "3PS": "acuchilla",
+      "infinitive": "acuchillar"
+   }],
+   "check": [
+      {
+         "3SP": "analizaron",
+         "3PP": "analizan",
+         "3SS": "analizó",
+         "3PS": "analiza",
+         "infinitive": "analizar"
+      },
+      {
+         "3SP": "estudiaron",
+         "3PP": "estudian",
+         "3SS": "estudió",
+         "3PS": "estudia",
+         "infinitive": "estudiar"
+      },
+      {
+         "3SP": "Examinaron",
+         "3PP": "examinan",
+         "3SS": "examinó",
+         "3PS": "examina",
+         "infinitive": "examinar"
+      },
+      {
+         "3SP": "exploraron",
+         "3PP": "exploran",
+         "3SS": "exploró",
+         "3PS": "explora",
+         "infinitive": "explorar"
+      },
+      {
+         "3SP": "inspeccionaron",
+         "3PP": "inspeccionan",
+         "3SS": "inspeccionó",
+         "3PS": "inspecciona",
+         "infinitive": "inspeccionar"
+      }
+   ],
+   "drink": [
+      {
+         "3SP": "bebieron",
+         "3PP": "beben",
+         "3SS": "bebió",
+         "3PS": "bebe",
+         "infinitive": "beber"
+      },
+      {
+         "3SP": "tomaron",
+         "3PP": "toman",
+         "3SS": "tomó",
+         "3PS": "toma",
+         "infinitive": "tomar"
+      }
+   ]
+}
