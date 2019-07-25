@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 
 public class RogueMain extends JFrame implements KeyListener  {
 
+	//TODO el texto a mostrar debe elegirse en base al languages.properties
 	private AsciiPanel terminal;
 	private Screen screen;
 	private static JTextArea textArea1; //textarea for  sub-screens

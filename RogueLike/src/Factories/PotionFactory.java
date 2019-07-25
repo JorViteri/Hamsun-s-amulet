@@ -43,7 +43,7 @@ public class PotionFactory {
 	
 	public Item newPotionOfHealth(int depth) {
 		String appearance = potionAppearances.get(0);
-		final Item item = new Item('!', potionColours.get(appearance), "health potion", appearance);
+		final Item item = new Item('!', potionColours.get(appearance), "health potion", "health potion", appearance);
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
@@ -60,7 +60,7 @@ public class PotionFactory {
 
 	public Item newPotionOfMana(int depth) {
 		String appearance = potionAppearances.get(1);
-		Item item = new Item('!', potionColours.get(appearance), "mana potion", appearance);
+		Item item = new Item('!', potionColours.get(appearance), "mana potion", "mana potion", appearance);
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.getMana() == creature.getMaxMana())
@@ -77,7 +77,7 @@ public class PotionFactory {
 
 	public Item newPotionOfPoison(int depth) {
 		String appearance = potionAppearances.get(2);
-		Item item = new Item('!', potionColours.get(appearance), "poison potion", appearance);
+		Item item = new Item('!', potionColours.get(appearance), "poison potion", "poison potion", appearance);
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
 				creature.doAction("look sick");
@@ -94,7 +94,7 @@ public class PotionFactory {
 
 	public Item newPotionOfWarrior(int depth) {
 		String appearance = potionAppearances.get(3);
-		Item item = new Item('!', potionColours.get(appearance), "warrior's potion", appearance);
+		Item item = new Item('!', potionColours.get(appearance), "warrior's potion", "warrior's potion", appearance);
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
 				creature.modifyAttackValue(5);

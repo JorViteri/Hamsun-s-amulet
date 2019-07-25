@@ -31,13 +31,13 @@ public class ElementsFactory {
 	}
 
 	public Item newRock(int depth) {
-		Item rock = new Item(',', AsciiPanel.yellow, "rock", null);
+		Item rock = new Item(',', AsciiPanel.yellow, "rock", "rock", null);
 		world.addAtEmptyLocation(rock, depth);
 		return rock;
 	}
 
 	public Item newVictoryItem(int depth) {
-		Item item = new Item('*', AsciiPanel.brightWhite, "Hamsun's amulet",null);
+		Item item = new Item('*', AsciiPanel.brightWhite, "Hamsun's amulet",  "Hamsun's amulet",null);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}

@@ -16,7 +16,7 @@ public class SpellBookFactory {
 	}
 	
 	public Item newWhiteMagesSpellbook(int depth) {
-		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", null);
+		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", "white mage's spellbook", null);
 		item.addWrittenSpell("minor heal", 4, new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
@@ -76,7 +76,7 @@ public class SpellBookFactory {
 	
 	//TODO muchas cosas
 	public Item newBlueMagesSpellbook(int depth) {
-		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", null);
+		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook"," blue mage's spellbook", null);
 
 		item.addWrittenSpell("blood to mana", 1, new Effect(1) {
 			public void start(Creature creature) {

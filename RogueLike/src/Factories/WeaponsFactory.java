@@ -13,21 +13,21 @@ public class WeaponsFactory {
 	}
 	
 	public Item newDagger(int depth) {
-		Item item = new Item(')', AsciiPanel.white, "dagger", null);
+		Item item = new Item(')', AsciiPanel.white, "dagger","dagger", null);
 		item.modifyAttackValue(5);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}
 
 	public Item newSword(int depth) {
-		Item item = new Item(')', AsciiPanel.brightWhite, "sword", null);
+		Item item = new Item(')', AsciiPanel.brightWhite, "sword", "sword", null);
 		item.modifyAttackValue(10);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}
 
 	public Item newStaff(int depth) {
-		Item item = new Item(')', AsciiPanel.yellow, "staff", null);
+		Item item = new Item(')', AsciiPanel.yellow, "staff", "staff", null);
 		item.modifyAttackValue(5);
 		item.modifyDefenseValue(3);
 		world.addAtEmptyLocation(item, depth);
@@ -35,7 +35,7 @@ public class WeaponsFactory {
 	}
 	
 	public Item newBow(int depth){
-		Item item = new Item(')', AsciiPanel.yellow, "bow", null);
+		Item item = new Item(')', AsciiPanel.yellow, "bow", "bow", null);
         item.modifyAttackValue(1);
         item.modifyRangedAttackValue(5);
         world.addAtEmptyLocation(item, depth);

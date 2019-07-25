@@ -8,6 +8,7 @@ public class Item {
 
 	private char glyph;
 	private Color color;
+	private String key;
 	private String name;
 	private int foodValue;
 	private int attackValue;
@@ -21,9 +22,10 @@ public class Item {
 	private int y;
 	private int z;
 	
-	public Item(char glyph, Color color, String name, String appearance) {
+	public Item(char glyph, Color color, String key,String name, String appearance) {
 		this.glyph = glyph;
 		this.color = color;
+		this.key = key;
 		this.name = name;
 		this.thrownAttackValue = 1;
 		this.writtenSpells = new ArrayList<Spell>();
@@ -78,6 +80,10 @@ public class Item {
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getKey(){
+		return key;
 	}
 
 	public int getFoodValue() {
