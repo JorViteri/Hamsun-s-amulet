@@ -1,22 +1,47 @@
 package Factories;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.Random;
+
 import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
+import Utils.NameSynonymsGetter;
 import asciiPanel.AsciiPanel;
 
 public class SpellBookFactory {
 
 	private World world;
-	
+	private NameSynonymsGetter getter;
+	private String[] arr = {"book", "perchment", "grimoire", "tome"};
 	
 	public SpellBookFactory(World world){
+		Properties prop = new Properties();
+		InputStream input;
+		try {
+			input =  new FileInputStream("language.properties");
+			prop.load(input);
+		} catch (Exception e){
+			e.printStackTrace();
+		}	
 		this.world = world;
+		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
+	}
+	
+	private String getRandomNameSeed(){
+		Random r = new Random();
+		int randomNumber = r.nextInt(arr.length);
+		return arr[randomNumber];
 	}
 	
 	public Item newWhiteMagesSpellbook(int depth) {
-		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", "white mage's spellbook", null);
+		String seed = getter.getRandomSynonym(getRandomNameSeed());
+		String name = "white mage's "+seed;
+		String adj = getter.getRandomAdjSynonym("old");
+		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, adj, null);
 		item.addWrittenSpell("minor heal", 4, new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
@@ -76,7 +101,10 @@ public class SpellBookFactory {
 	
 	//TODO muchas cosas
 	public Item newBlueMagesSpellbook(int depth) {
-		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook"," blue mage's spellbook", null);
+		String seed = getter.getRandomSynonym(getRandomNameSeed());
+		String name = "blue mage's "+seed;
+		String adj = getter.getRandomAdjSynonym("old");
+		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, adj, null);
 
 		item.addWrittenSpell("blood to mana", 1, new Effect(1) {
 			public void start(Creature creature) {

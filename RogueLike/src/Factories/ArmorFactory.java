@@ -30,7 +30,8 @@ public class ArmorFactory {
 	
 	public Item newLightArmor(int depth) {
 		String name = getter.getRandomSynonym("tunic");
-		Item item = new Item('[', AsciiPanel.green, "tunic", name, null);
+		String adj = getter.getRandomAdjSynonym("red");
+		Item item = new Item('[', AsciiPanel.green, "tunic", name, adj, null);
 		item.modifyDefenseValue(2);
 		world.addAtEmptyLocation(item, depth);
 		return item;
@@ -38,7 +39,8 @@ public class ArmorFactory {
 
 	public Item newMediumArmor(int depth) {
 		String name = getter.getRandomSynonym("chain mail");
-		Item item = new Item('[', AsciiPanel.white, "chain mail", name, null);
+		String adj = getter.getRandomAdjSynonym("average");
+		Item item = new Item('[', AsciiPanel.white, "chain mail", name, adj, null);
 		item.modifyDefenseValue(4);
 		world.addAtEmptyLocation(item, depth); //Wordl es null, WTF como sucede esto?? eso no lo he tocado en absoluto!
 		return item;
@@ -46,7 +48,8 @@ public class ArmorFactory {
 
 	public Item newHeavyArmor(int depth) {
 		String name = getter.getRandomSynonym("plate armour");
-		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", name, null);
+		String adj = getter.getRandomAdjSynonym("great_quality");
+		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", name, adj, null);
 		item.modifyDefenseValue(6);
 		world.addAtEmptyLocation(item, depth);
 		return item;

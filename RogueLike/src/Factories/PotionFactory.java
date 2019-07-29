@@ -1,16 +1,20 @@
 package Factories;
 
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
+import Utils.NameSynonymsGetter;
 import asciiPanel.AsciiPanel;
 
 public class PotionFactory {
@@ -18,23 +22,33 @@ public class PotionFactory {
 	private World world;
 	private Map<String,Color> potionColours;
 	private List<String> potionAppearances;
+	private NameSynonymsGetter getter;
 
 	public PotionFactory(World world) {
+		Properties prop = new Properties();
+		InputStream input;
+		try {
+			input =  new FileInputStream("language.properties");
+			prop.load(input);
+		} catch (Exception e){
+			e.printStackTrace();
+		}	
 		this.world = world;
+		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
 		setUpPotionAppearances();
 	}
 
 	private void setUpPotionAppearances() {
 		potionColours = new HashMap<String, Color>();
-		potionColours.put("red potion", AsciiPanel.brightRed);
-		potionColours.put("yellow potion", AsciiPanel.brightYellow);
-		potionColours.put("green potion", AsciiPanel.brightGreen);
-		potionColours.put("cyan potion", AsciiPanel.brightCyan);
-		potionColours.put("blue potion", AsciiPanel.brightBlue);
-		potionColours.put("magenta potion", AsciiPanel.brightMagenta);
-		potionColours.put("dark potion", AsciiPanel.brightBlack);
-		potionColours.put("grey potion", AsciiPanel.white);
-		potionColours.put("light potion", AsciiPanel.brightWhite);
+		potionColours.put("red ", AsciiPanel.brightRed);
+		potionColours.put("yellow ", AsciiPanel.brightYellow);
+		potionColours.put("green ", AsciiPanel.brightGreen);
+		potionColours.put("cyan ", AsciiPanel.brightCyan);
+		potionColours.put("blue ", AsciiPanel.brightBlue);
+		potionColours.put("magenta ", AsciiPanel.brightMagenta);
+		potionColours.put("dark ", AsciiPanel.brightBlack);
+		potionColours.put("grey ", AsciiPanel.white);
+		potionColours.put("light ", AsciiPanel.brightWhite);
 
 		potionAppearances = new ArrayList<String>(potionColours.keySet());
 		Collections.shuffle(potionAppearances);
@@ -43,7 +57,10 @@ public class PotionFactory {
 	
 	public Item newPotionOfHealth(int depth) {
 		String appearance = potionAppearances.get(0);
-		final Item item = new Item('!', potionColours.get(appearance), "health potion", "health potion", appearance);
+		String seed = getter.getRandomSynonym("potion");
+		String name = "health "+seed;
+		String adj = getter.getRandomAdjSynonym("good_quality");
+		final Item item = new Item('!', potionColours.get(appearance), "health potion", name, adj,appearance+seed);
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
@@ -60,7 +77,10 @@ public class PotionFactory {
 
 	public Item newPotionOfMana(int depth) {
 		String appearance = potionAppearances.get(1);
-		Item item = new Item('!', potionColours.get(appearance), "mana potion", "mana potion", appearance);
+		String seed = getter.getRandomSynonym("potion");
+		String name = "mana "+seed;
+		String adj = getter.getRandomAdjSynonym("average");
+		Item item = new Item('!', potionColours.get(appearance), "mana potion", name, adj, appearance+seed);
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.getMana() == creature.getMaxMana())
@@ -77,7 +97,10 @@ public class PotionFactory {
 
 	public Item newPotionOfPoison(int depth) {
 		String appearance = potionAppearances.get(2);
-		Item item = new Item('!', potionColours.get(appearance), "poison potion", "poison potion", appearance);
+		String seed = getter.getRandomSynonym("potion");
+		String name = "poison "+seed;
+		String adj = getter.getRandomAdjSynonym("disgusting");
+		Item item = new Item('!', potionColours.get(appearance), "poison potion", name, adj, appearance+seed);
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
 				creature.doAction("look sick");
@@ -94,14 +117,16 @@ public class PotionFactory {
 
 	public Item newPotionOfWarrior(int depth) {
 		String appearance = potionAppearances.get(3);
-		Item item = new Item('!', potionColours.get(appearance), "warrior's potion", "warrior's potion", appearance);
+		String seed = getter.getRandomSynonym("potion");
+		String name = "warrior's "+seed;
+		String adj = getter.getRandomAdjSynonym("big_size");
+		Item item = new Item('!', potionColours.get(appearance), "warrior's potion", name, adj, appearance+seed);
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
 				creature.modifyAttackValue(5);
 				creature.modifyDefenseValue(5);
 				creature.doAction("look stronger");
 			}
-
 			public void end(Creature creature) {
 				creature.modifyAttackValue(-5);
 				creature.modifyDefenseValue(-5);

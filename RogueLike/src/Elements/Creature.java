@@ -33,6 +33,7 @@ public class Creature {
 	private int y;
 	private int z;
 	private int visionRadius;
+	private String key;
 	private String name;
 	private Inventory inventory;
 	private Item weapon;
@@ -48,7 +49,7 @@ public class Creature {
 	private int regenManaPer1000;
 	private int detectCreatures;
 	private String causeOfDeath;
-	
+	private String characteristic;
 	
 
 	public int getX() {
@@ -98,7 +99,7 @@ public class Creature {
 	public int getMana() {
 		return mana;
 	}
-
+	
 	public void modifyMana(int amount) {
 		mana = Math.max(0, Math.min(mana + amount, maxMana));
 	}
@@ -135,8 +136,15 @@ public class Creature {
 	public String getCauseOfDeath(){
 		return causeOfDeath;
 	}
+	
+	public String getCharacteristic(){
+		return characteristic;
+	}
 
-	public Creature(World world, char glyph, String name, Color color, int maxHp, int attack, int defense, int invt_size) {
+	public String getCharactAndName(){
+		return characteristic+" "+name;
+	}
+	public Creature(World world, char glyph, String key,String name, Color color, int maxHp, int attack, int defense, int invt_size, String characteristic) {
 		this.world = world;
 		this.glyph = glyph;
 		this.color = color;
@@ -145,6 +153,7 @@ public class Creature {
 		this.attackValue = attack;
 		this.defenseValue = defense;
 		this.visionRadius = 9;
+		this.key = key;
 		this.name = name;
 		this.inventory = new Inventory(invt_size);
 		this.level = 1;
@@ -153,6 +162,7 @@ public class Creature {
 		this.maxMana = 5;
 		this.mana = maxMana;
 		this.regenManaPer1000 = 10;
+		this.characteristic=characteristic;
 	}
 
 	public void modifyAttackValue(int value) {
@@ -244,7 +254,7 @@ public class Creature {
 	}
 
 	private void leaveCorpse() {
-		Item corpse = new Item('%', color, name + " corpse", name + " corpse", null);
+		Item corpse = new Item('%', color, name + " corpse", name + " corpse", null, null);
 		corpse.modifyFoodValue(maxHp);
 		world.addAtEmptySpace(corpse, x, y, z);
 		for (Item item : inventory.getItems()) {
@@ -577,7 +587,7 @@ public class Creature {
 	}
 
 	public void meleeAttack(Creature other) {
-		commonAttack(other, attackValue(), "attack the %s for %d damage", other.name);
+		commonAttack(other, attackValue(), "attack the %s for %d damage", other.getCharactAndName()); //TODO aqui es donde se pilla el nombre y eso
 	}
 
 	private void throwAttack(Item item, Creature other) {
@@ -738,4 +748,9 @@ public class Creature {
 		notify("The " + item.getAppearance() + " is a " + item.getName() + "!");
 		ai.setName(item, item.getName());
 	}
+
+	public String getKey() {
+		return key;
+	}
+
 }

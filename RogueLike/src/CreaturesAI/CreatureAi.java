@@ -158,12 +158,14 @@ public class CreatureAi {
 	}
 	
 	public String getName(Item item){
-		String name = itemNames.get(item.getName()); 
-		return name == null ? item.getAppearance() : name;
+		String name = itemNames.get(item.getKey()); 
+		String c = item.getCharacteristic()+name;
+		String d = item.getAppearance();
+		return name == null ? item.getCharacteristic()+item.getAppearance() : item.getCharacteristic()+name;
 	}
 	
 	public void setName(Item item, String name){
-		itemNames.put(item.getName(), name);
+		itemNames.put(item.getKey(), name);
 	}
 	
 }

@@ -105,7 +105,7 @@
       "plural": "arcos",
       "genere": "masculine"
    }}],
-   "grimorie": [{"grimorio": {
+   "grimoire": [{"grimorio": {
       "plural": "grimorio",
       "genere": "masculine"
    }}],
@@ -176,6 +176,20 @@
       }},
       {"zombi": {
          "plural": "zombis",
+         "genere": "masculine"
+      }}
+   ],
+   "goblin": [
+      {"duende": {
+         "plural": "duendes",
+         "genere": "masculine"
+      }},
+      {"hobgoblin": {
+         "plural": "hobgoblin",
+         "genere": "masculine"
+      }},
+      {"trasgo": {
+         "plural": "trasgos",
          "genere": "masculine"
       }}
    ],

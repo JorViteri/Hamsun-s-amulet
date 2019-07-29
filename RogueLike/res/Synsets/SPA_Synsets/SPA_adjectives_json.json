@@ -16,10 +16,10 @@
    "good_character": [
       {"buen": {
          "sing_m": "buen",
-         "plu_m": "buen",
+         "plu_m": "buenos",
          "type": "qualificative",
-         "plu_f": "buen",
-         "sing_f": "buen"
+         "plu_f": "buenas",
+         "sing_f": "buena"
       }},
       {"honorable": {
          "sing_m": "honorable",
@@ -46,10 +46,10 @@
    "cursed": [
       {"condenado": {
          "sing_m": "condenado",
-         "plu_m": "condenado",
+         "plu_m": "condenados",
          "type": "qualificative",
-         "plu_f": "condenado",
-         "sing_f": "condenado"
+         "plu_f": "condenadas",
+         "sing_f": "condenada"
       }},
       {"maldito": {
          "sing_m": "maldito",
@@ -62,8 +62,8 @@
          "sing_m": "réprobo",
          "plu_m": "réprobo",
          "type": "qualificative",
-         "plu_f": "réprobo",
-         "sing_f": "réprobo"
+         "plu_f": "réprobas",
+         "sing_f": "réproba"
       }}
    ],
    "little_voice": [
@@ -134,16 +134,16 @@
       }},
       {"gran": {
          "sing_m": "gran",
-         "plu_m": "gran",
+         "plu_m": "grandes",
          "type": "qualificative",
-         "plu_f": "gran",
+         "plu_f": "grandes",
          "sing_f": "gran"
       }},
       {"guay": {
          "sing_m": "guay",
-         "plu_m": "guay",
+         "plu_m": "guays",
          "type": "qualificative",
-         "plu_f": "guay",
+         "plu_f": "guays",
          "sing_f": "guay"
       }},
       {"súper": {
@@ -174,8 +174,8 @@
       "sing_m": "muerto",
       "plu_m": "muerto",
       "type": "qualificative",
-      "plu_f": "muerto",
-      "sing_f": "muerto"
+      "plu_f": "muertas",
+      "sing_f": "muerta"
    }}],
    "new_quality": [
       {"nuevo": {
@@ -219,31 +219,31 @@
       }},
       {"carmín": {
          "sing_m": "carmín",
-         "plu_m": "carmín",
+         "plu_m": "carmines",
          "type": "qualificative",
-         "plu_f": "carmín",
+         "plu_f": "carmines",
          "sing_f": "carmín"
       }},
       {"cereza": {
          "sing_m": "cereza",
-         "plu_m": "cereza",
+         "plu_m": "cerezas",
          "type": "qualificative",
-         "plu_f": "cereza",
+         "plu_f": "cerezas",
          "sing_f": "cereza"
       }},
       {"colorado": {
          "sing_m": "colorado",
-         "plu_m": "colorado",
+         "plu_m": "colorados",
          "type": "qualificative",
-         "plu_f": "colorado",
-         "sing_f": "colorado"
+         "plu_f": "coloradas",
+         "sing_f": "colorada"
       }},
       {"encarnado": {
          "sing_m": "encarnado",
          "plu_m": "encarnado",
          "type": "qualificative",
-         "plu_f": "encarnado",
-         "sing_f": "encarnado"
+         "plu_f": "encarnadas",
+         "sing_f": "encarnada"
       }},
       {"escarlata": {
          "sing_m": "escarlata",
@@ -275,9 +275,9 @@
       }},
       {"rubescente": {
          "sing_m": "rubescente",
-         "plu_m": "rubescente",
+         "plu_m": "rubescentes",
          "type": "qualificative",
-         "plu_f": "rubescente",
+         "plu_f": "rubescentes",
          "sing_f": "rubescente"
       }}
    ],
@@ -298,9 +298,9 @@
       }},
       {"macanudo": {
          "sing_m": "Macanudo",
-         "plu_m": "macanudo",
+         "plu_m": "macanudos",
          "type": "qualificative",
-         "plu_f": "macanudo",
+         "plu_f": "macanudas",
          "sing_f": "macanuda"
       }},
       {"magnífico": {
@@ -312,13 +312,6 @@
       }}
    ],
    "disgusting": [
-      {"asquerosa": {
-         "sing_m": "asquerosa",
-         "plu_m": "asquerosa",
-         "type": "qualificative",
-         "plu_f": "asquerosa",
-         "sing_f": "asquerosa"
-      }},
       {"asqueroso": {
          "sing_m": "asqueroso",
          "plu_m": "asquerosos",
@@ -358,10 +351,10 @@
    "brave": [
       {"arrojado": {
          "sing_m": "arrojado",
-         "plu_m": "arrojado",
+         "plu_m": "arrojados",
          "type": "qualificative",
-         "plu_f": "arrojado",
-         "sing_f": "arrojado"
+         "plu_f": "arrojadas",
+         "sing_f": "arrojada"
       }},
       {"brioso": {
          "sing_m": "brioso",
@@ -374,8 +367,8 @@
          "sing_m": "corajudo",
          "plu_m": "corajudos",
          "type": "qualificative",
-         "plu_f": "corajudo",
-         "sing_f": "corajudo"
+         "plu_f": "corajudas",
+         "sing_f": "corajuda"
       }},
       {"valeroso": {
          "sing_m": "valeroso",
@@ -549,8 +542,8 @@
          "sing_m": "agrisado",
          "plu_m": "agrisados",
          "type": "qualificative",
-         "plu_f": "agrisado",
-         "sing_f": "agrisado"
+         "plu_f": "agrisadas",
+         "sing_f": "agrisada"
       }},
       {"gris": {
          "sing_m": "gris",
@@ -561,9 +554,9 @@
       }},
       {"grisoso": {
          "sing_m": "grisoso",
-         "plu_m": "grisoso",
+         "plu_m": "grisosos",
          "type": "qualificative",
-         "plu_f": "grisoso",
+         "plu_f": "grisosas",
          "sing_f": "grisosa"
       }},
       {"grisáceo": {
@@ -577,9 +570,9 @@
    "big_size": [
       {"gran": {
          "sing_m": "gran",
-         "plu_m": "gran",
+         "plu_m": "grandes",
          "type": "qualificative",
-         "plu_f": "gran",
+         "plu_f": "grandes",
          "sing_f": "gran"
       }},
       {"grande": {
@@ -616,10 +609,10 @@
    "great_special": [
       {"destacado": {
          "sing_m": "destacado",
-         "plu_m": "destacado",
+         "plu_m": "destacados",
          "type": "qualificative",
-         "plu_f": "destacado",
-         "sing_f": "destacado"
+         "plu_f": "destacadas",
+         "sing_f": "destacada"
       }},
       {"excepcional": {
          "sing_m": "excepcional",
@@ -648,17 +641,17 @@
    "scared": [
       {"asustado": {
          "sing_m": "asustado",
-         "plu_m": "asustado",
+         "plu_m": "asustados",
          "type": "qualificative",
-         "plu_f": "asustado",
-         "sing_f": "asustado"
+         "plu_f": "asustadas",
+         "sing_f": "asustada"
       }},
       {"espantado": {
          "sing_m": "espantado",
-         "plu_m": "espantado",
+         "plu_m": "espantados",
          "type": "qualificative",
-         "plu_f": "espantado",
-         "sing_f": "espantado"
+         "plu_f": "espantadas",
+         "sing_f": "espantada"
       }}
    ]
 }

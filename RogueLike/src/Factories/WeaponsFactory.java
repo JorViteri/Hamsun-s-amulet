@@ -1,33 +1,54 @@
 package Factories;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
 import Elements.Item;
 import Rogue.World;
+import Utils.NameSynonymsGetter;
 import asciiPanel.AsciiPanel;
 
 public class WeaponsFactory {
 
 	private World world;
+	private NameSynonymsGetter getter;
 	
 	public WeaponsFactory(World world){
+		Properties prop = new Properties();
+		InputStream input;
+		try {
+			input =  new FileInputStream("language.properties");
+			prop.load(input);
+		} catch (Exception e){
+			e.printStackTrace();
+		}	
 		this.world = world;
+		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
 	}
 	
 	public Item newDagger(int depth) {
-		Item item = new Item(')', AsciiPanel.white, "dagger","dagger", null);
+		String name = getter.getRandomSynonym("dagger");
+		String adj = getter.getRandomAdjSynonym("grey");
+		Item item = new Item(')', AsciiPanel.white, "dagger", name, adj,null);
 		item.modifyAttackValue(5);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}
 
 	public Item newSword(int depth) {
-		Item item = new Item(')', AsciiPanel.brightWhite, "sword", "sword", null);
+		String name = getter.getRandomSynonym("sword");
+		String adj = getter.getRandomAdjSynonym("great_special");
+		Item item = new Item(')', AsciiPanel.brightWhite, "sword", name, adj, null);
 		item.modifyAttackValue(10);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}
 
 	public Item newStaff(int depth) {
-		Item item = new Item(')', AsciiPanel.yellow, "staff", "staff", null);
+		String name = getter.getRandomSynonym("staff");
+		String adj = getter.getRandomAdjSynonym("old");
+		Item item = new Item(')', AsciiPanel.yellow, "staff", name, adj, null);
 		item.modifyAttackValue(5);
 		item.modifyDefenseValue(3);
 		world.addAtEmptyLocation(item, depth);
@@ -35,7 +56,9 @@ public class WeaponsFactory {
 	}
 	
 	public Item newBow(int depth){
-		Item item = new Item(')', AsciiPanel.yellow, "bow", "bow", null);
+		String name = getter.getRandomSynonym("bow");
+		String adj = getter.getRandomAdjSynonym("new_quality");
+		Item item = new Item(')', AsciiPanel.yellow, "bow", name, adj, null);
         item.modifyAttackValue(1);
         item.modifyRangedAttackValue(5);
         world.addAtEmptyLocation(item, depth);

@@ -17,18 +17,20 @@ public class Item {
 	private int rangedAttackValue;
 	private Effect quaffEffect;
 	private List<Spell> writtenSpells;
+	private String characteristic;
 	private String appearance;
 	private int x;
 	private int y;
 	private int z;
 	
-	public Item(char glyph, Color color, String key,String name, String appearance) {
+	public Item(char glyph, Color color, String key,String name, String characteristic,String appearance) {
 		this.glyph = glyph;
 		this.color = color;
 		this.key = key;
 		this.name = name;
 		this.thrownAttackValue = 1;
 		this.writtenSpells = new ArrayList<Spell>();
+		this.characteristic = characteristic;
 		this.appearance = appearance == null ? name : appearance;
 	}
 	
@@ -132,6 +134,14 @@ public class Item {
 	
 	public List<Spell> getWrittenSpells(){
 		return writtenSpells;
+	}
+	
+	public String getCharacteristic(){
+		if (characteristic == null){
+			return "";
+		} else{
+			return characteristic+" ";
+		}
 	}
 	
 	public String getAppearance(){
