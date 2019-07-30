@@ -16,7 +16,8 @@ public class SpellBookFactory {
 
 	private World world;
 	private NameSynonymsGetter getter;
-	private String[] arr = {"book", "perchment", "grimoire", "tome"};
+	private String[] n_arr = {"book", "perchment", "grimoire", "tome"};
+	private String[] a_arr = {"old","dusty","big_size","magic"};
 	
 	public SpellBookFactory(World world){
 		Properties prop = new Properties();
@@ -31,16 +32,11 @@ public class SpellBookFactory {
 		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
 	}
 	
-	private String getRandomNameSeed(){
-		Random r = new Random();
-		int randomNumber = r.nextInt(arr.length);
-		return arr[randomNumber];
-	}
-	
+
 	public Item newWhiteMagesSpellbook(int depth) {
-		String seed = getter.getRandomSynonym(getRandomNameSeed());
-		String name = "white mage's "+seed;
-		String adj = getter.getRandomAdjSynonym("old");
+		String n_seed = getter.getRandomSynonym(getter.getRandomSeed(n_arr));
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(a_arr));
+		String name = "white mage's "+n_seed;
 		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, adj, null);
 		item.addWrittenSpell("minor heal", 4, new Effect(1) {
 			public void start(Creature creature) {
@@ -101,9 +97,9 @@ public class SpellBookFactory {
 	
 	//TODO muchas cosas
 	public Item newBlueMagesSpellbook(int depth) {
-		String seed = getter.getRandomSynonym(getRandomNameSeed());
-		String name = "blue mage's "+seed;
-		String adj = getter.getRandomAdjSynonym("old");
+		String n_seed = getter.getRandomSynonym(getter.getRandomSeed(n_arr));
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(a_arr));
+		String name = "blue mage's "+n_seed;
 		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, adj, null);
 
 		item.addWrittenSpell("blood to mana", 1, new Effect(1) {

@@ -36,7 +36,8 @@ public class CreatureFactory {
 	}
 	
 	public Creature newPlayer(ArrayList<String> messages, FieldOfView fov) {
-		String adj = getter.getRandomAdjSynonym("brave");
+		String[] arr = {"good_character","glorious","kind","big_character","brave", "great_special"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		Creature player = new Creature(world, '@', "Player", "Player",AsciiPanel.brightWhite, 100, 20, 5, 20, adj);
 		world.addAtExitStairs(player);
 		new PlayerAi(player, messages, fov);
@@ -44,8 +45,9 @@ public class CreatureFactory {
 	}
 
 	public Creature newFungus(int depth) {
+		String[] arr = {"green","disgusting","little_size","big_size","old", "small"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("fungus");
-		String adj = getter.getRandomAdjSynonym("disgusting");
 		Creature fungus = new Creature(world, 'f', "Fungus", name,AsciiPanel.green, 10, 0, 0, 0, adj);
 		world.addAtEmptyLocation(fungus, depth);
 		new FungusAi(fungus, this);
@@ -53,8 +55,9 @@ public class CreatureFactory {
 	}
 
 	public Creature newBat(int depth) {
+		String[] arr = {"scary","disgusting","little_size","big_size","creepy"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("bat");
-		String adj = getter.getRandomAdjSynonym("scary");
 		Creature bat = new Creature(world, 'b', "Bat", name,AsciiPanel.yellow, 15, 5, 0, 0, adj);
 		world.addAtEmptyLocation(bat, depth);
 		new BatAi(bat);
@@ -62,8 +65,9 @@ public class CreatureFactory {
 	}
 
 	public Creature newZombie(int depth, Creature player) {
+		String[] arr = {"scary","disgusting","cursed","creepy"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("zombie");
-		String adj = getter.getRandomAdjSynonym("cursed");
 		Creature zombie = new Creature(world, 'z', "Zombie", name, AsciiPanel.white, 50, 10, 10, 0, adj);
 		world.addAtEmptyLocation(zombie, depth);
 		new ZombieAi(zombie, player);
@@ -71,8 +75,9 @@ public class CreatureFactory {
 	}
 	
 	public Creature newGoblin(int depth, Creature player) {
+		String[] arr = {"normal","disgusting","average","small"}; //TODO anhadir molesto
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("goblin");
-		String adj = getter.getRandomAdjSynonym("little_size");
 		Creature goblin = new Creature(world, 'g', "Goblin", name,AsciiPanel.brightGreen, 66, 15, 5, 10, adj);
 		new GoblinAi(goblin, player);
 		WeaponsFactory wf = new WeaponsFactory(this.world);

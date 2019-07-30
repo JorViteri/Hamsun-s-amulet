@@ -23,6 +23,7 @@ public class PotionFactory {
 	private Map<String,Color> potionColours;
 	private List<String> potionAppearances;
 	private NameSynonymsGetter getter;
+	private String[] arr = {"shiny","disgusting","magic","old"};
 
 	public PotionFactory(World world) {
 		Properties prop = new Properties();
@@ -59,7 +60,7 @@ public class PotionFactory {
 		String appearance = potionAppearances.get(0);
 		String seed = getter.getRandomSynonym("potion");
 		String name = "health "+seed;
-		String adj = getter.getRandomAdjSynonym("good_quality");
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		final Item item = new Item('!', potionColours.get(appearance), "health potion", name, adj,appearance+seed);
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
@@ -79,7 +80,7 @@ public class PotionFactory {
 		String appearance = potionAppearances.get(1);
 		String seed = getter.getRandomSynonym("potion");
 		String name = "mana "+seed;
-		String adj = getter.getRandomAdjSynonym("average");
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		Item item = new Item('!', potionColours.get(appearance), "mana potion", name, adj, appearance+seed);
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
@@ -99,7 +100,7 @@ public class PotionFactory {
 		String appearance = potionAppearances.get(2);
 		String seed = getter.getRandomSynonym("potion");
 		String name = "poison "+seed;
-		String adj = getter.getRandomAdjSynonym("disgusting");
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		Item item = new Item('!', potionColours.get(appearance), "poison potion", name, adj, appearance+seed);
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
@@ -119,7 +120,7 @@ public class PotionFactory {
 		String appearance = potionAppearances.get(3);
 		String seed = getter.getRandomSynonym("potion");
 		String name = "warrior's "+seed;
-		String adj = getter.getRandomAdjSynonym("big_size");
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		Item item = new Item('!', potionColours.get(appearance), "warrior's potion", name, adj, appearance+seed);
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {

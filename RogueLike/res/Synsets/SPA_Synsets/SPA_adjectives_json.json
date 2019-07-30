@@ -429,7 +429,7 @@
          "sing_f": "terrorífica"
       }}
    ],
-   "samll": [
+   "small": [
       {"menudo": {
          "sing_m": "menudo",
          "plu_m": "menudos",
@@ -653,5 +653,68 @@
          "plu_f": "espantadas",
          "sing_f": "espantada"
       }}
+   ],
+   "green": [
+      {"verde": {
+         "sing_m": "verde",
+         "plu_m": "verdes",
+         "type": "qualificative",
+         "plu_f": "verdes",
+         "sing_f": "verde"
+      }},
+      {"verdoso": {
+         "sing_m": "verdoso",
+         "plu_m": "verdosos",
+         "type": "qualificative",
+         "plu_f": "verdosas",
+         "sing_f": "verdosa"
+      }}
+   ],
+   "shiny": [
+      {"brillante": {
+         "sing_m": "brillante",
+         "plu_m": "brillantes",
+         "type": "qualificative",
+         "plu_f": "brillantes",
+         "sing_f": "brillante"
+      }},
+      {"lustroso": {
+         "sing_m": "lustroso",
+         "plu_m": "lustrosos",
+         "type": "qualificative",
+         "plu_f": "lustrosas",
+         "sing_f": "lustrosa"
+      }},
+      {"refulgente": {
+         "sing_m": "refulgente",
+         "plu_m": "refulgentes",
+         "type": "qualificative",
+         "plu_f": "refulgentes",
+         "sing_f": "refulgente"
+      }},
+      {"reluciente": {
+         "sing_m": "reluciente",
+         "plu_m": "relucientes",
+         "type": "qualificative",
+         "plu_f": "relucientes",
+         "sing_f": "reluciente"
+      }}
+   ],
+   "rusty": [
+      {"herrumbroso": {
+         "sing_m": "herrumbroso",
+         "plu_m": "herrumbrosos",
+         "type": "qualificative",
+         "plu_f": "Herrumbrosas",
+         "sing_f": "herrumbrosa"
+      }},
+      {"oxidado": {
+         "sing_m": "oxidado",
+         "plu_m": "oxidados",
+         "type": "qualificative",
+         "plu_f": "oxidadas",
+         "sing_f": "oxidada"
+      }}
    ]
+   
 }

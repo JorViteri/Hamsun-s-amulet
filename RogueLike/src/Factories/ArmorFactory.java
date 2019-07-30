@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Random;
 
 import Elements.Item;
 import Rogue.World;
@@ -29,8 +30,9 @@ public class ArmorFactory {
 	}
 	
 	public Item newLightArmor(int depth) {
+		String[] arr = {"red","green","grey","old","big_size","short"};
 		String name = getter.getRandomSynonym("tunic");
-		String adj = getter.getRandomAdjSynonym("red");
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		Item item = new Item('[', AsciiPanel.green, "tunic", name, adj, null);
 		item.modifyDefenseValue(2);
 		world.addAtEmptyLocation(item, depth);
@@ -38,8 +40,9 @@ public class ArmorFactory {
 	}
 
 	public Item newMediumArmor(int depth) {
+		String[] arr = {"average","old","big_size","new_quality","shiny","rusty","dusty"};
 		String name = getter.getRandomSynonym("chain mail");
-		String adj = getter.getRandomAdjSynonym("average");
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		Item item = new Item('[', AsciiPanel.white, "chain mail", name, adj, null);
 		item.modifyDefenseValue(4);
 		world.addAtEmptyLocation(item, depth); //Wordl es null, WTF como sucede esto?? eso no lo he tocado en absoluto!
@@ -47,8 +50,9 @@ public class ArmorFactory {
 	}
 
 	public Item newHeavyArmor(int depth) {
+		String[] arr = {"great_quality","old","big_size","new_quality","shiny","rusty","dusty"};
 		String name = getter.getRandomSynonym("plate armour");
-		String adj = getter.getRandomAdjSynonym("great_quality");
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", name, adj, null);
 		item.modifyDefenseValue(6);
 		world.addAtEmptyLocation(item, depth);

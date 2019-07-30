@@ -28,17 +28,19 @@ public class WeaponsFactory {
 	}
 	
 	public Item newDagger(int depth) {
+		String[] arr = {"red","green","grey","rusty","new_quality","shiny","average","great_quality"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("dagger");
-		String adj = getter.getRandomAdjSynonym("grey");
-		Item item = new Item(')', AsciiPanel.white, "dagger", name, adj,null);
+		Item item = new Item(')', AsciiPanel.white, "dagger", name, adj, null);
 		item.modifyAttackValue(5);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}
 
 	public Item newSword(int depth) {
+		String[] arr = {"red","green","grey","rusty","new_quality","shiny","great_special","great_quality"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("sword");
-		String adj = getter.getRandomAdjSynonym("great_special");
 		Item item = new Item(')', AsciiPanel.brightWhite, "sword", name, adj, null);
 		item.modifyAttackValue(10);
 		world.addAtEmptyLocation(item, depth);
@@ -46,8 +48,9 @@ public class WeaponsFactory {
 	}
 
 	public Item newStaff(int depth) {
+		String[] arr = {"dusty","new_quality","old","average","great_quality"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("staff");
-		String adj = getter.getRandomAdjSynonym("old");
 		Item item = new Item(')', AsciiPanel.yellow, "staff", name, adj, null);
 		item.modifyAttackValue(5);
 		item.modifyDefenseValue(3);
@@ -56,8 +59,9 @@ public class WeaponsFactory {
 	}
 	
 	public Item newBow(int depth){
+		String[] arr = {"dusty","new_quality","old","average","great_quality"};
+		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
 		String name = getter.getRandomSynonym("bow");
-		String adj = getter.getRandomAdjSynonym("new_quality");
 		Item item = new Item(')', AsciiPanel.yellow, "bow", name, adj, null);
         item.modifyAttackValue(1);
         item.modifyRangedAttackValue(5);

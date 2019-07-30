@@ -19,6 +19,12 @@ public class NameSynonymsGetter {
 		//this.keys = new ArrayList<String>((this.object.keySet()));
 	}
 	
+	public String getRandomSeed(String[] array){
+		Random r = new Random();
+		int randomNumber = r.nextInt(array.length);
+		return array[randomNumber];
+	}
+	
 	//A partir de la key que se le pasa se obtiene un sinonimo
 	public String getRandomSynonym(String word) {
 		String result;
