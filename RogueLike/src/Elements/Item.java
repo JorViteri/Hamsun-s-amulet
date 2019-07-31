@@ -10,6 +10,8 @@ public class Item {
 	private Color color;
 	private String key;
 	private String name;
+	private String n_plu;
+	private String genere;
 	private int foodValue;
 	private int attackValue;
 	private int defenseValue;
@@ -18,12 +20,14 @@ public class Item {
 	private Effect quaffEffect;
 	private List<Spell> writtenSpells;
 	private String characteristic;
+	private String charc_plu;
 	private String appearance;
 	private int x;
 	private int y;
 	private int z;
-	
-	public Item(char glyph, Color color, String key,String name, String characteristic,String appearance) {
+
+	public Item(char glyph, Color color, String key, String name, String n_plu, String genere, String characteristic,
+			String charc_plu, String appearance) {
 		this.glyph = glyph;
 		this.color = color;
 		this.key = key;
@@ -32,6 +36,9 @@ public class Item {
 		this.writtenSpells = new ArrayList<Spell>();
 		this.characteristic = characteristic;
 		this.appearance = appearance == null ? name : appearance;
+		this.n_plu = n_plu;
+		this.genere = genere;
+		this.charc_plu = charc_plu;
 	}
 	
 	
@@ -178,6 +185,20 @@ public class Item {
 			details += "     food:" + foodValue;
 
 		return details;
+	}
+
+
+
+	public String getCharc_plu() {
+		return charc_plu;
+	}
+
+	public String getGenere() {
+		return genere;
+	}
+
+	public String getN_plu() {
+		return n_plu;
 	}
 
 }

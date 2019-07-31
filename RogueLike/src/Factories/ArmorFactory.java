@@ -3,18 +3,19 @@ package Factories;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
 import Elements.Item;
 import Rogue.World;
-import Utils.NameSynonymsGetter;
+import TextManagement.WordDataGetterSPA;
 import asciiPanel.AsciiPanel;
 
 public class ArmorFactory {
 
 	private World world;
-	private NameSynonymsGetter getter;
+	private WordDataGetterSPA getter;
 	
 	public ArmorFactory(World world){
 		Properties prop = new Properties();
@@ -26,14 +27,14 @@ public class ArmorFactory {
 			e.printStackTrace();
 		}		
 		this.world = world;
-		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
+		this.getter = new WordDataGetterSPA();
 	}
 	
 	public Item newLightArmor(int depth) {
 		String[] arr = {"red","green","grey","old","big_size","short"};
-		String name = getter.getRandomSynonym("tunic");
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		Item item = new Item('[', AsciiPanel.green, "tunic", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData("tunic");
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item('[', AsciiPanel.green, "tunic", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 		item.modifyDefenseValue(2);
 		world.addAtEmptyLocation(item, depth);
 		return item;
@@ -41,9 +42,9 @@ public class ArmorFactory {
 
 	public Item newMediumArmor(int depth) {
 		String[] arr = {"average","old","big_size","new_quality","shiny","rusty","dusty"};
-		String name = getter.getRandomSynonym("chain mail");
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		Item item = new Item('[', AsciiPanel.white, "chain mail", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData("chain_mail");
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item('[', AsciiPanel.white, "chain mail", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 		item.modifyDefenseValue(4);
 		world.addAtEmptyLocation(item, depth); //Wordl es null, WTF como sucede esto?? eso no lo he tocado en absoluto!
 		return item;
@@ -51,9 +52,9 @@ public class ArmorFactory {
 
 	public Item newHeavyArmor(int depth) {
 		String[] arr = {"great_quality","old","big_size","new_quality","shiny","rusty","dusty"};
-		String name = getter.getRandomSynonym("plate armour");
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData("plate_armour");
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 		item.modifyDefenseValue(6);
 		world.addAtEmptyLocation(item, depth);
 		return item;

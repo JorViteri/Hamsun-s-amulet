@@ -50,6 +50,9 @@ public class Creature {
 	private int detectCreatures;
 	private String causeOfDeath;
 	private String characteristic;
+	private String n_plu;
+	private String genere;
+	private String charc_plu;
 	
 
 	public int getX() {
@@ -144,7 +147,9 @@ public class Creature {
 	public String getCharactAndName(){
 		return characteristic+" "+name;
 	}
-	public Creature(World world, char glyph, String key,String name, Color color, int maxHp, int attack, int defense, int invt_size, String characteristic) {
+
+	public Creature(World world, char glyph, String key, String name, String n_plu, String genere, Color color,
+			int maxHp, int attack, int defense, int invt_size, String characteristic, String charc_plu) {
 		this.world = world;
 		this.glyph = glyph;
 		this.color = color;
@@ -155,6 +160,8 @@ public class Creature {
 		this.visionRadius = 9;
 		this.key = key;
 		this.name = name;
+		this.n_plu = n_plu;
+		this.genere = genere;
 		this.inventory = new Inventory(invt_size);
 		this.level = 1;
 		this.regenHpPer1000 = 10;
@@ -162,7 +169,8 @@ public class Creature {
 		this.maxMana = 5;
 		this.mana = maxMana;
 		this.regenManaPer1000 = 10;
-		this.characteristic=characteristic;
+		this.characteristic = characteristic;
+		this.charc_plu = charc_plu;
 	}
 
 	public void modifyAttackValue(int value) {
@@ -254,7 +262,7 @@ public class Creature {
 	}
 
 	private void leaveCorpse() {
-		Item corpse = new Item('%', color, name + " corpse", name + " corpse", null, null);
+		Item corpse = new Item('%', color, name + " corpse", name + " corpse", null, null, "common", null, null); //TODO esto no me mola nada
 		corpse.modifyFoodValue(maxHp);
 		world.addAtEmptySpace(corpse, x, y, z);
 		for (Item item : inventory.getItems()) {
@@ -751,6 +759,18 @@ public class Creature {
 
 	public String getKey() {
 		return key;
+	}
+
+	public String getGenere() {
+		return genere;
+	}
+
+	public String getCharc_plu() {
+		return charc_plu;
+	}
+
+	public String getN_plu() {
+		return n_plu;
 	}
 
 }

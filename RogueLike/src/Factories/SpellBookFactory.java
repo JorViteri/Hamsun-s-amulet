@@ -1,43 +1,31 @@
 package Factories;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
-import java.util.Random;
-
+import java.util.ArrayList;
 import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
-import Utils.NameSynonymsGetter;
+import TextManagement.WordDataGetter;
 import asciiPanel.AsciiPanel;
 
 public class SpellBookFactory {
 
 	private World world;
-	private NameSynonymsGetter getter;
+	private WordDataGetter getter;
 	private String[] n_arr = {"book", "perchment", "grimoire", "tome"};
 	private String[] a_arr = {"old","dusty","big_size","magic"};
 	
 	public SpellBookFactory(World world){
-		Properties prop = new Properties();
-		InputStream input;
-		try {
-			input =  new FileInputStream("language.properties");
-			prop.load(input);
-		} catch (Exception e){
-			e.printStackTrace();
-		}	
 		this.world = world;
-		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
+		this.getter = world.getWordDataGetter();
 	}
 	
 
 	public Item newWhiteMagesSpellbook(int depth) {
-		String n_seed = getter.getRandomSynonym(getter.getRandomSeed(n_arr));
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(a_arr));
-		String name = "white mage's "+n_seed;
-		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
+		String name = "white mage's "+nameData.get(0);
+		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 		item.addWrittenSpell("minor heal", 4, new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
@@ -97,10 +85,13 @@ public class SpellBookFactory {
 	
 	//TODO muchas cosas
 	public Item newBlueMagesSpellbook(int depth) {
-		String n_seed = getter.getRandomSynonym(getter.getRandomSeed(n_arr));
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(a_arr));
-		String name = "blue mage's "+n_seed;
-		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
+		if(nameData.get(0).equals("grimorio")){
+			boolean c =  true;
+		}
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
+		String name = "blue mage's "+nameData.get(0);
+		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 
 		item.addWrittenSpell("blood to mana", 1, new Effect(1) {
 			public void start(Creature creature) {

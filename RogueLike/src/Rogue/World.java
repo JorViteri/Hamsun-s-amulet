@@ -9,6 +9,9 @@ import DungeonComponents.Staircase;
 import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterSPA;
 import Utils.Position;
 
 
@@ -40,9 +43,11 @@ public class World {
 	private ArrayList<Creature> creatures;
 	private ArrayList<ArrayList<Room>> rooms_lists;
 	private ArrayList<ArrayList<Corridor>> corridors_lists;
+	private WordDataGetter getter;
 
 	public World(Tile[][][] tiles, ArrayList<Staircase> stairs, Position exit, ArrayList<ArrayList<Room>> rooms_lists,
 			ArrayList<ArrayList<Corridor>> corridors_list) {
+		WordDataGetterFactory factory = new WordDataGetterFactory();
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
@@ -53,6 +58,7 @@ public class World {
 		this.exit = exit;
 		this.rooms_lists = rooms_lists;
 		this.corridors_lists = corridors_list;
+		this.getter = factory.getWordDataGetter();
 	}
 	
 	public ArrayList<ArrayList<Room>> getRoomLists(){
@@ -222,5 +228,9 @@ public class World {
 	
 	public void add(Creature pet) {
 		creatures.add(pet);
+	}
+
+	public WordDataGetter getWordDataGetter() {
+		return this.getter;
 	}
 }

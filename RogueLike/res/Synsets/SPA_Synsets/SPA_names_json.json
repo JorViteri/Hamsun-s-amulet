@@ -193,6 +193,14 @@
          "genere": "masculine"
       }}
    ],
+   "heroine": [{"heroína": {
+      "plural": "heroínas",
+      "genere": "femenine"
+   }}],
+   "hero": [{"héroe": {
+      "plural": "héroes",
+      "genere": "masculine"
+   }}],
    "creature": [
       {"criatura": {
          "plural": "criaturas",

@@ -2,17 +2,18 @@ package Factories;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import Elements.Item;
 import Rogue.World;
-import Utils.NameSynonymsGetter;
+import TextManagement.WordDataGetter;
 import asciiPanel.AsciiPanel;
 
 public class WeaponsFactory {
 
 	private World world;
-	private NameSynonymsGetter getter;
+	private WordDataGetter getter;
 	
 	public WeaponsFactory(World world){
 		Properties prop = new Properties();
@@ -24,14 +25,14 @@ public class WeaponsFactory {
 			e.printStackTrace();
 		}	
 		this.world = world;
-		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
+		this.getter = world.getWordDataGetter();
 	}
 	
 	public Item newDagger(int depth) {
 		String[] arr = {"red","green","grey","rusty","new_quality","shiny","average","great_quality"};
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		String name = getter.getRandomSynonym("dagger");
-		Item item = new Item(')', AsciiPanel.white, "dagger", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData("dagger");
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item(')', AsciiPanel.white, "dagger", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 		item.modifyAttackValue(5);
 		world.addAtEmptyLocation(item, depth);
 		return item;
@@ -39,9 +40,9 @@ public class WeaponsFactory {
 
 	public Item newSword(int depth) {
 		String[] arr = {"red","green","grey","rusty","new_quality","shiny","great_special","great_quality"};
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		String name = getter.getRandomSynonym("sword");
-		Item item = new Item(')', AsciiPanel.brightWhite, "sword", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData("sword");
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item(')', AsciiPanel.brightWhite, "sword", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 		item.modifyAttackValue(10);
 		world.addAtEmptyLocation(item, depth);
 		return item;
@@ -49,9 +50,9 @@ public class WeaponsFactory {
 
 	public Item newStaff(int depth) {
 		String[] arr = {"dusty","new_quality","old","average","great_quality"};
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		String name = getter.getRandomSynonym("staff");
-		Item item = new Item(')', AsciiPanel.yellow, "staff", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData("staff");
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item(')', AsciiPanel.yellow, "staff", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
 		item.modifyAttackValue(5);
 		item.modifyDefenseValue(3);
 		world.addAtEmptyLocation(item, depth);
@@ -60,9 +61,9 @@ public class WeaponsFactory {
 	
 	public Item newBow(int depth){
 		String[] arr = {"dusty","new_quality","old","average","great_quality"};
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		String name = getter.getRandomSynonym("bow");
-		Item item = new Item(')', AsciiPanel.yellow, "bow", name, adj, null);
+		ArrayList<String> nameData = getter.getNounData("bow");
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item(')', AsciiPanel.yellow, "bow", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
         item.modifyAttackValue(1);
         item.modifyRangedAttackValue(5);
         world.addAtEmptyLocation(item, depth);

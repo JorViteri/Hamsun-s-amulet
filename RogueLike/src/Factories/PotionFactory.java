@@ -1,20 +1,16 @@
 package Factories;
 
 import java.awt.Color;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-
 import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
-import Utils.NameSynonymsGetter;
+import TextManagement.WordDataGetter;
 import asciiPanel.AsciiPanel;
 
 public class PotionFactory {
@@ -22,20 +18,12 @@ public class PotionFactory {
 	private World world;
 	private Map<String,Color> potionColours;
 	private List<String> potionAppearances;
-	private NameSynonymsGetter getter;
+	private WordDataGetter getter;
 	private String[] arr = {"shiny","disgusting","magic","old"};
 
 	public PotionFactory(World world) {
-		Properties prop = new Properties();
-		InputStream input;
-		try {
-			input =  new FileInputStream("language.properties");
-			prop.load(input);
-		} catch (Exception e){
-			e.printStackTrace();
-		}	
 		this.world = world;
-		this.getter = new NameSynonymsGetter(prop.getProperty("language"));
+		this.getter = world.getWordDataGetter();
 		setUpPotionAppearances();
 	}
 
@@ -58,10 +46,10 @@ public class PotionFactory {
 	
 	public Item newPotionOfHealth(int depth) {
 		String appearance = potionAppearances.get(0);
-		String seed = getter.getRandomSynonym("potion");
-		String name = "health "+seed;
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		final Item item = new Item('!', potionColours.get(appearance), "health potion", name, adj,appearance+seed);
+		ArrayList<String> nameData = getter.getNounData("potion");
+		String name = "health "+nameData.get(0);
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), appearance+nameData.get(0));
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
@@ -78,10 +66,10 @@ public class PotionFactory {
 
 	public Item newPotionOfMana(int depth) {
 		String appearance = potionAppearances.get(1);
-		String seed = getter.getRandomSynonym("potion");
-		String name = "mana "+seed;
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		Item item = new Item('!', potionColours.get(appearance), "mana potion", name, adj, appearance+seed);
+		ArrayList<String> nameData = getter.getNounData("potion");
+		String name = "mana "+nameData.get(0);
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), appearance+nameData.get(0));
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.getMana() == creature.getMaxMana())
@@ -98,10 +86,10 @@ public class PotionFactory {
 
 	public Item newPotionOfPoison(int depth) {
 		String appearance = potionAppearances.get(2);
-		String seed = getter.getRandomSynonym("potion");
-		String name = "poison "+seed;
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		Item item = new Item('!', potionColours.get(appearance), "poison potion", name, adj, appearance+seed);
+		ArrayList<String> nameData = getter.getNounData("potion");
+		String name = "poison "+nameData.get(0);
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), appearance+nameData.get(0));
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
 				creature.doAction("look sick");
@@ -118,10 +106,10 @@ public class PotionFactory {
 
 	public Item newPotionOfWarrior(int depth) {
 		String appearance = potionAppearances.get(3);
-		String seed = getter.getRandomSynonym("potion");
-		String name = "warrior's "+seed;
-		String adj = getter.getRandomAdjSynonym(getter.getRandomSeed(arr));
-		Item item = new Item('!', potionColours.get(appearance), "warrior's potion", name, adj, appearance+seed);
+		ArrayList<String> nameData = getter.getNounData("potion");
+		String name = "warrior's "+nameData.get(0);
+		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), appearance+nameData.get(0));
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
 				creature.modifyAttackValue(5);

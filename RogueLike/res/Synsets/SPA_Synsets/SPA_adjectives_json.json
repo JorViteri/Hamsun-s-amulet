@@ -654,6 +654,51 @@
          "sing_f": "espantada"
       }}
    ],
+    "bald": [{"calvo": {
+      "sing_m": "calvo",
+      "plu_m": "calvos",
+      "type": "qualificative",
+      "plu_f": "calvas",
+      "sing_f": "calva"
+   }}
+   ],
+    "hairy": [
+      {"hirsuto": {
+         "sing_m": "hirsuto",
+         "plu_m": "hirsutos",
+         "type": "qualificative",
+         "plu_f": "hirsutas",
+         "sing_f": "hirsuta"
+      }},
+      {"peluda": {
+         "sing_m": "peluda",
+         "plu_m": "peluda",
+         "type": "qualificative",
+         "plu_f": "peluda",
+         "sing_f": "peluda"
+      }},
+      {"peludo": {
+         "sing_m": "peludo",
+         "plu_m": "peludos",
+         "type": "qualificative",
+         "plu_f": "peludas",
+         "sing_f": "peluda"
+      }},
+      {"piloso": {
+         "sing_m": "piloso",
+         "plu_m": "pilosos",
+         "type": "qualificative",
+         "plu_f": "pilosas",
+         "sing_f": "pilosa"
+      }},
+      {"velludo": {
+         "sing_m": "velludo",
+         "plu_m": "velludos",
+         "type": "qualificative",
+         "plu_f": "velludas",
+         "sing_f": "velluda"
+      }}
+   ],
    "green": [
       {"verde": {
          "sing_m": "verde",
@@ -715,6 +760,73 @@
          "plu_f": "oxidadas",
          "sing_f": "oxidada"
       }}
+   ],
+   "annoying": [
+      {"cargante": {
+         "sing_m": "cargante",
+         "plu_m": "cargante",
+         "type": "qualificative",
+         "plu_f": "cargante",
+         "sing_f": "cargante"
+      }},
+      {"enfadoso": {
+         "sing_m": "enfadoso",
+         "plu_m": "enfadoso",
+         "type": "qualificative",
+         "plu_f": "enfadoso",
+         "sing_f": "enfadoso"
+      }},
+      {"enojoso": {
+         "sing_m": "enojoso",
+         "plu_m": "enojosos",
+         "type": "qualificative",
+         "plu_f": "enojosas",
+         "sing_f": "enojosa"
+      }},
+      {"fastidioso": {
+         "sing_m": "fastidioso",
+         "plu_m": "fastidiosos",
+         "type": "qualificative",
+         "plu_f": "fastidiosas",
+         "sing_f": "fastidiosa"
+      }},
+      {"irritante": {
+         "sing_m": "irritante",
+         "plu_m": "irritantes",
+         "type": "qualificative",
+         "plu_f": "irritantes",
+         "sing_f": "irritante"
+      }},
+      {"molesto": {
+         "sing_m": "molesto",
+         "plu_m": "molestos",
+         "type": "qualificative",
+         "plu_f": "molestas",
+         "sing_f": "molesta"
+      }},
+      {"pesado": {
+         "sing_m": "pesado",
+         "plu_m": "pesado",
+         "type": "qualificative",
+         "plu_f": "pesado",
+         "sing_f": "pesado"
+      }},
+      {"vejatorio": {
+         "sing_m": "vejatorio",
+         "plu_m": "vejatorios",
+         "type": "qualificative",
+         "plu_f": "vejatorias",
+         "sing_f": "vejatoria"
+      }}
+   ],
+   "dusty": [
+   	 {"polvoriento": {
+      "sing_m": "polvoriento",
+      "plu_m": "polvorientos",
+      "type": "qualificative",
+      "plu_f": "polvorientas",
+      "sing_f": "polvorienta"
+   	}}
    ]
    
 }
