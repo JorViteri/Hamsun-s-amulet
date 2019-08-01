@@ -1,0 +1,208 @@
+{  
+   "dagger":{  
+      "dagger":{  
+         "plural":"daggers",
+         "singular":"dagger"
+      },
+      "sticker":{  
+         "plural":"stickers",
+         "singular":"sticker"
+      }
+   },
+   "corridor":{  
+      "passageway":{  
+         "plural":"passageways",
+         "singular":"passageway"
+      }
+   },
+   "potion":{  
+      "potion":{  
+         "plural":"potions",
+         "singular":"potion"
+      }
+   },
+   "chain_mail":{  
+      "ring_armor":{  
+         "plural":"ring armors",
+         "singular":"ring armor"
+      },
+      "chain_mail":{  
+         "plural":"chain mails",
+         "singular":"chain mail"
+      },
+      "mail":{  
+         "plural":"mails",
+         "singular":"mail"
+      },
+      "ring_mail":{  
+         "plural":"ring mails",
+         "singular":"ring mail"
+      },
+      "chain_armor":{  
+         "plural":"chain armors",
+         "singular":"chain armor"
+      },
+      "ring_armour":{  
+         "plural":"ring armours",
+         "singular":"ring armour"
+      },
+      "chain_armour":{  
+         "plural":"chain armours",
+         "singular":"chain armour"
+      }
+   },
+   "tome":{  
+      "tome":{  
+         "plural":"tomes",
+         "singular":"tome"
+      }
+   },
+   "book":{  
+      "book":{  
+         "plural":"books",
+         "singular":"book"
+      }
+   },
+   "plate_armour":{  
+      "armour_plate":{  
+         "plural":"armour plates",
+         "singular":"armour plate"
+      },
+      "armor_plating":{  
+         "plural":"armor platings",
+         "singular":"armor plating"
+      },
+      "plate_armor":{  
+         "plural":"plate armors",
+         "singular":"plate armor"
+      }
+   },
+   "staff":{  
+      "scepter":{  
+         "plural":"scepters",
+         "singular":"scepter"
+      },
+      "wand":{  
+         "plural":"wands",
+         "singular":"wand"
+      },
+      "sceptre":{  
+         "plural":"sceptres",
+         "singular":"sceptre"
+      },
+      "verge":{  
+         "plural":"verges",
+         "singular":"verge"
+      }
+   },
+   "perchment":{  
+      "parchment":{  
+         "plural":"parchments",
+         "singular":"parchment"
+      }
+   },
+   "hero":{  
+      "hero":{  
+         "plural":"heroes",
+         "singular":"hero"
+      }
+   },
+   "bow":{  
+      "bow":{  
+         "plural":"bows",
+         "singular":"bow"
+      }
+   },
+   "rock":{  
+      "rock":{  
+         "plural":"rocks",
+         "singular":"rock"
+      },
+      "stone":{  
+         "plural":"stones",
+         "singular":"stone"
+      }
+   },
+   "sword":{  
+      "rapier":{  
+         "plural":"rapiers",
+         "singular":"rapier"
+      },
+      "tuck":{  
+         "plural":"tucks",
+         "singular":"tuck"
+      }
+   },
+   "bat":{  
+      "bat":{  
+         "plural":"bats",
+         "singular":"bat"
+      },
+      "chiropteran":{  
+         "plural":"chiropteran",
+         "singular":"chiropteran"
+      }
+   },
+   "fungus":{  
+      "mushroom":{  
+         "plural":"mushrooms",
+         "singular":"mushroom"
+      }
+   },
+   "zombie":{  
+      "living_dead":{  
+         "plural":"living dead",
+         "singular":"living dead"
+      },
+      "zombi":{  
+         "plural":"zombis",
+         "singular":"zombi"
+      },
+      "zombie":{  
+         "plural":"zombies",
+         "singular":"zombie"
+      }
+   },
+   "goblin":{  
+      "goblin":{  
+         "plural":"goblins",
+         "singular":"goblin"
+      },
+      "hob":{  
+         "plural":"hobs",
+         "singular":"hob"
+      },
+      "hobgoblin":{  
+         "plural":"hobgoblins",
+         "singular":"hobgoblin"
+      }
+   },
+   "heroine":{  
+      "heroine":{  
+         "plural":"heroines",
+         "singular":"heroine"
+      }
+   },
+   "grimoire":{  
+      "grimoire":{  
+         "plural":"grimoires",
+         "singular":"grimoire"
+      }
+   },
+   "creature":{  
+      "organism":{  
+         "plural":"organisms",
+         "singular":"organism"
+      },
+      "being":{  
+         "plural":"beings",
+         "singular":"being"
+      }
+   },
+   "tunic":{  
+      "tunic":{  
+         "plural":"tunics",
+         "singular":"tunic"
+      }
+   }
+}

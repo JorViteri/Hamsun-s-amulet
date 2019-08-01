@@ -1,42 +1,30 @@
-{  
-   "here":[  
-      "aquí"
-   ],
-   "better":[  
-      "mejor"
-   ],
-   "away":[  
-      "lejos"
-   ],
-   "now":[  
+{
+   "here": ["aquí"],
+   "better": ["mejor"],
+   "away": ["lejos"],
+   "now": [
       "actualmente",
       "ahora"
    ],
-   "in_front":[  
+   "in_front": [
       "ante",
       "antes",
       "delante",
       "hacia_adelante",
       "por_delante"
    ],
-   "nothing":[  
-      "nada"
-   ],
-   "back":[  
-      "detrás"
-   ],
-   "good":[  
+   "nothing": ["nada"],
+   "back": ["detrás"],
+   "good": [
       "bien",
       "satisfactoriamente"
    ],
-   "worse":[  
-      "peor"
-   ],
-   "much":[  
+   "worse": ["peor"],
+   "much": [
       "muchisimo",
       "mucho"
    ],
-   "little":[  
+   "little": [
       "poco",
       "poquito"
    ]
