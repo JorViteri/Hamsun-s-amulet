@@ -4,6 +4,10 @@ import Elements.Creature;
 import Factories.CreatureFactory;
 import Factories.ElementsFactory;
 
+/**
+ * Defines the basic AI behaviours of the fungus
+ */
+
 public class FungusAi extends CreatureAi{
 	
 	private CreatureFactory factory;

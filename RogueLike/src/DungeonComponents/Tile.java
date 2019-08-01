@@ -2,7 +2,11 @@ package DungeonComponents;
 
 import java.awt.Color;
 import asciiPanel.AsciiPanel;
-
+/**
+ * Defines the tile class win which the dungeon is divided
+ * @author comec
+ *
+ */
 public enum Tile {
 
 	FLOOR((char) 250, AsciiPanel.yellow, "A dirt and rock cave floor."),

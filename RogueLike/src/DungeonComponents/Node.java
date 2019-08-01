@@ -3,7 +3,11 @@ package DungeonComponents;
 import java.util.ArrayList;
 
 import Utils.Position;
-
+/**
+ * Node class used for the generation of the dungeon map by the use of graphs 
+ * @author comec
+ *
+ */
 public class Node {
 
 	private Position position;

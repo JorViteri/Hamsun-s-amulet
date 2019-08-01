@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Utils.Position;
-
+/**
+ * Line composed by positions used to work with distances in the dingeon
+ * @author comec
+ *
+ */
 public class Line implements Iterable<Position> {
 
 	private List<Position> points;

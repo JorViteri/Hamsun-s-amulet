@@ -1,5 +1,8 @@
 package CreaturesAI;
 
+/**
+ * Defines the basic AI behaviours for the creatures
+ */
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,9 @@ import Utils.Position;
 public class CreatureAi {
 
 	protected Creature creature;
+	/**
+	 * Names of the items that know
+	 */
 	private Map<String, String> itemNames;
 	
 	public CreatureAi(Creature creature){
@@ -34,6 +40,9 @@ public class CreatureAi {
 		}
 	}
 	
+	/**
+	 * Moves the creatures of the dungeon
+	 */
 	public void wander(){
 		int mx = (int)(Math.random()*3)-1;
 		int my = (int)(Math.random()*3)-1;
@@ -58,6 +67,13 @@ public class CreatureAi {
 		new LevelUpController().autoLevelUp(creature);
 	}
 	
+	/**
+	 * Checks if the localization given the coordinates is visible
+	 * @param wx
+	 * @param wy
+	 * @param wz
+	 * @return true if it's visible, false the other case
+	 */
 	public boolean canSee(int wx, int wy, int wz) {
 		if (creature.getZ() != wz)
 			return false;
@@ -75,6 +91,7 @@ public class CreatureAi {
 		return true;
 	}
 
+	
 	public Tile rememberedTile(int wx, int wy, int wz) {
         return Tile.UNKNOWN;
     }
@@ -98,11 +115,11 @@ public class CreatureAi {
 				&& creature.canSee(other.getX(), other.getY(), other.getZ());
 	}
 
-	protected boolean canThrowAt(Creature other) { //TODO aqui esta el problema, no cimprueba que tenga mierdas que lanzar, crei
+	protected boolean canThrowAt(Creature other) { 
 		return creature.canSee(other.getX(), other.getY(), other.getZ()) && getWeaponToThrow() != null;
 	}
 
-	protected Item getWeaponToThrow() { //aqui deberia verse
+	protected Item getWeaponToThrow() { 
 		Item toThrow = null;
 	
 		for (Item item : creature.inventory().getItems()) {
@@ -159,8 +176,6 @@ public class CreatureAi {
 	
 	public String getName(Item item){
 		String name = itemNames.get(item.getKey()); 
-		String c = item.getCharacteristic()+name;
-		String d = item.getAppearance();
 		return name == null ? item.getCharacteristic()+item.getAppearance() : item.getCharacteristic()+name;
 	}
 	

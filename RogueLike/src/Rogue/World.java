@@ -11,7 +11,6 @@ import Elements.Creature;
 import Elements.Item;
 import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterFactory;
-import TextManagement.WordDataGetterSPA;
 import Utils.Position;
 
 

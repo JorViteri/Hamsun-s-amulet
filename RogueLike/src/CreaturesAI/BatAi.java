@@ -1,6 +1,9 @@
 package CreaturesAI;
 
 import Elements.Creature;
+/**
+ * Defines the basic AI behaviours of the bats
+ */
 
 public class BatAi extends CreatureAi {
 

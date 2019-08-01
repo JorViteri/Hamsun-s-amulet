@@ -7,6 +7,9 @@ import Elements.Creature;
 import Elements.Item;
 import Utils.FieldOfView;
 
+/**
+ * Implements the behaviors that the player can do
+ */
 
 
 public class PlayerAi extends CreatureAi {

@@ -2,6 +2,11 @@ package DungeonComponents;
 
 import Utils.Position;
 
+/**
+ * Defines a corridor of the dungeon which connects two rooms
+ * @author comec
+ *
+ */
 public class Corridor {
 
 	

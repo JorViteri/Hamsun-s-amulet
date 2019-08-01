@@ -1,6 +1,9 @@
 package CreaturesAI;
 
 import Elements.Creature;
+/**
+ * Defines the basic AI behaviours of the goblins
+ */
 
 public class GoblinAi extends CreatureAi {
 
@@ -11,7 +14,7 @@ public class GoblinAi extends CreatureAi {
 		this.player = player;
 	}
 
-	public void onUpdate(){ //TODO comrpobar aqui que le esta pasando al goblin que se queda tieso
+	public void onUpdate(){ 
 		if (canUseBetterEquipment())
 			useBetterEquipment();
 		else if (canRangedWeaponAttack(player))

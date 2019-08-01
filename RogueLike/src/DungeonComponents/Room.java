@@ -5,10 +5,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import Utils.Position;
 
-
+/**
+ * Defines a room of the dungeon
+ * @author comec
+ *
+ */
 public class Room {
-
-	private static final long serialVersionUID = 1060623638149583738L;
 
 	private Position upLeft;
 	private Position bottomLeft;
@@ -16,13 +18,12 @@ public class Room {
 	private Position bottomRight;
 	private Position center;
 	private int id;
-	private ArrayList<Position> doors = new ArrayList<Position>();
 	private ArrayList<Position> walls = new ArrayList<Position>();
 
 	/** Constructor of a Room
-	 * @param upLeft the upper-left Position
-	 * @param botRight the bottom-right Position
-	 * @param ind The index of the room.
+	 * @param bottomLeft the bottom-left Position
+	 * @param topRight the top-right Position
+	 * @param id The index of the room.
 	 */
 
 	public Room(Position bottomLeft, Position topRight, int id) {
@@ -33,27 +34,7 @@ public class Room {
 		this.bottomRight = new Position(topRight.getX(), bottomLeft.getY(), bottomLeft.getZ());
 		this.center = this.genRoomCenter();
 		this.walls = upLeft.getPositionNW().getSquare(bottomRight.getPositionSE());
-		// addDoors() adds to this.walls the tiles needed
-		// this.doors = addDoors(this.walls);
 	}
-
-	// TODO aun no me interesan las puertas
-	/**
-	 * Picks two random positions within the walls of a room and makes them doors. It avoids picking corners or two together positions
-	 * @param walls The walls of the Room.
-	 * @return A list of the doors.
-	 */
-	/*
-	 * public ArrayList<Position> addDoors(ArrayList<Position> walls) {
-	 * ArrayList<Position> toReturn = new ArrayList<Position>(); Position p, p2;
-	 * int randomIndex = this.getRNG().nextInt(walls.size()); while
-	 * (toReturn.size() != 2) { p = walls.get(randomIndex); // Is valid and it's
-	 * not a corner if (p.isValidPositionForDoor() && !isCorner(p, walls)) { if
-	 * (toReturn.size() == 0) toReturn.add(p); else { // Avoids having two doors
-	 * together. p2 = toReturn.get(0); if (!p2.getNeighbors(4).contains(p) && p
-	 * != p2) toReturn.add(p); } } randomIndex =
-	 * this.getRNG().nextInt(walls.size()); } return toReturn; }
-	 */
 
 	public Position getCenter(){
 		return this.center;
@@ -63,9 +44,7 @@ public class Room {
 		return 1 + (-(this.getRoomUpperLeft().getIntX() - this.getRoomBottomRight().getIntX()));
 	}
 
-	/*public int getHeight() {
-		return 1 + (-(this.getRoomUpperLeft().getIntY() - this.getRoomBottomRight().getIntY()));
-	}*/
+	
 	public int getHeight() {
 		return 1 + (this.getRoomUpperLeft().getIntY() - this.getRoomBottomRight().getIntY());
 	}
@@ -78,13 +57,6 @@ public class Room {
 	public ArrayList<Position> getFloor() {
 		ArrayList<Position> toReturn = new ArrayList<Position>();
 		toReturn.addAll(this.getRoomUpperLeft().getSolidSquare(this.getRoomBottomRight()));
-		return toReturn;
-	}
-
-	public ArrayList<Position> getFloorAndDoors() {
-		ArrayList<Position> toReturn = new ArrayList<Position>();
-		toReturn.addAll(this.getRoomUpperLeft().getSolidSquare(this.getRoomBottomRight()));
-		toReturn.addAll(this.getDoors());
 		return toReturn;
 	}
 	
@@ -101,10 +73,6 @@ public class Room {
 
 	public ArrayList<Position> getWalls() {
 		return this.walls;
-	}
-
-	public ArrayList<Position> getDoors() {
-		return this.doors;
 	}
 
 	public Position getRoomUpperLeft() {
@@ -139,6 +107,11 @@ public class Room {
 		return floor.get(x);
 	}
 
+	/**
+	 * Checks if two rooms share any position
+	 * @param room
+	 * @return false if the rooms share a position
+	 */
 	public boolean disjointRooms(Room room){
 		ArrayList<Position> thisFloor = new ArrayList<>();
 		ArrayList<Position> otherFloor = new ArrayList<>();
@@ -156,6 +129,11 @@ public class Room {
 		return true;
 	}
 
+	/**
+	 * Checks if a Room contains a position
+	 * @param position
+	 * @return true if the position is in the room, false in the other case
+	 */
 	public boolean contais(Position position) {
 		Position topRight = this.getRoomUpperRight();
 		Position bottomLeft = this.getRoomBottomLeft();
@@ -169,44 +147,4 @@ public class Room {
 		return true;
 	}
 	
-	
-	
-
-	// TODO de dungeon lo pilla de playrscreen, dunno why
-	// TODO aun tampoco me interesa esto
-	/*
-	 * public Random getRNG() { return Dungeon.getRNG(); }
-	 */
-
-	// TODO puede venir bien para dar feedback... pero quiz�s merezca la pena
-	// s�lo comprobar un % de la habitaci�n.
-	// TODO tampoco me interesa aun esta funcion, la voy a dejar a parte
-	/**
-	 * Checks if a room has been completely explored.
-	 * @return True if the room is completely explored, false otherwise
-	 */
-
-	/*
-	 * TODO index es el identificador de la habitacion, luego de este obtiene
-	 * sus casillas y va comprobando de una en una si esta explorada
-	 */
-
-	/*
-	public boolean isAllExplored() {
-		Tile t;
-		Room r = PlayScreen.getPlayer().getPosition().getRoom(PlayScreen.getPlayer().getIndexDungeonLevel());
-		int index = r.getIndex();
-		ArrayList<Position> pos = PlayScreen.getDungeon().getLevel(PlayScreen.getPlayer().getIndexDungeonLevel())
-				.getRooms().get(index).getFloorAndDoors();
-		for (Position p : pos) {
-			t = PlayScreen.getDungeon().getLevel(PlayScreen.getPlayer().getIndexDungeonLevel()).getTile(p);
-			if (!t.isExplored())
-				return false;
-		}
-		return true;
-	}*/
-
-	/*
-	 * private int getIndex() { return this.index; }
-	 */
 }

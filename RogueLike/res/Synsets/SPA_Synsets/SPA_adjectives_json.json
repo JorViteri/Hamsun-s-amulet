@@ -1,832 +1,1066 @@
-{
-   "magic": [{"mágico": {
-      "sing_m": "mágico",
-      "plu_m": "mágicos",
-      "type": "qualificative",
-      "plu_f": "mágicas",
-      "sing_f": "mágica"
-   }}],
-   "average": [{"corriente": {
-      "sing_m": "corriente",
-      "plu_m": "corrientes",
-      "type": "qualificative",
-      "plu_f": "corrientes",
-      "sing_f": "corriente"
-   }}],
-   "good_character": [
-      {"buen": {
-         "sing_m": "buen",
-         "plu_m": "buenos",
-         "type": "qualificative",
-         "plu_f": "buenas",
-         "sing_f": "buena"
-      }},
-      {"honorable": {
-         "sing_m": "honorable",
-         "plu_m": "honorables",
-         "type": "qualificative",
-         "plu_f": "honorables",
-         "sing_f": "honorable"
-      }},
-      {"respetable": {
-         "sing_m": "respetable",
-         "plu_m": "respetables",
-         "type": "qualificative",
-         "plu_f": "respetables",
-         "sing_f": "respetable"
-      }}
+{  
+   "magic":[  
+      {  
+         "mágico":{  
+            "sing_m":"mágico",
+            "plu_m":"mágicos",
+            "type":"qualificative",
+            "plu_f":"mágicas",
+            "sing_f":"mágica"
+         }
+      }
    ],
-   "alive": [{"vivo": {
-      "sing_m": "vivo",
-      "plu_m": "vivos",
-      "type": "qualificative",
-      "plu_f": "vivas",
-      "sing_f": "viva"
-   }}],
-   "cursed": [
-      {"condenado": {
-         "sing_m": "condenado",
-         "plu_m": "condenados",
-         "type": "qualificative",
-         "plu_f": "condenadas",
-         "sing_f": "condenada"
-      }},
-      {"maldito": {
-         "sing_m": "maldito",
-         "plu_m": "malditos",
-         "type": "qualificative",
-         "plu_f": "malditas",
-         "sing_f": "maldita"
-      }},
-      {"réprobo": {
-         "sing_m": "réprobo",
-         "plu_m": "réprobo",
-         "type": "qualificative",
-         "plu_f": "réprobas",
-         "sing_f": "réproba"
-      }}
+   "average":[  
+      {  
+         "corriente":{  
+            "sing_m":"corriente",
+            "plu_m":"corrientes",
+            "type":"qualificative",
+            "plu_f":"corrientes",
+            "sing_f":"corriente"
+         }
+      }
    ],
-   "little_voice": [
-      {"débil": {
-         "sing_m": "débil",
-         "plu_m": "débiles",
-         "type": "qualificative",
-         "plu_f": "débiles",
-         "sing_f": "débil"
-      }},
-      {"flojo": {
-         "sing_m": "flojo",
-         "plu_m": "flojos",
-         "type": "qualificative",
-         "plu_f": "flojas",
-         "sing_f": "floja"
-      }}
+   "good_character":[  
+      {  
+         "buen":{  
+            "sing_m":"buen",
+            "plu_m":"buenos",
+            "type":"qualificative",
+            "plu_f":"buenas",
+            "sing_f":"buena"
+         }
+      },
+      {  
+         "honorable":{  
+            "sing_m":"honorable",
+            "plu_m":"honorables",
+            "type":"qualificative",
+            "plu_f":"honorables",
+            "sing_f":"honorable"
+         }
+      },
+      {  
+         "respetable":{  
+            "sing_m":"respetable",
+            "plu_m":"respetables",
+            "type":"qualificative",
+            "plu_f":"respetables",
+            "sing_f":"respetable"
+         }
+      }
    ],
-   "great_quality": [
-      {"bestial": {
-         "sing_m": "bestial",
-         "plu_m": "bestiales",
-         "type": "qualificative",
-         "plu_f": "bestiales",
-         "sing_f": "bestial"
-      }},
-      {"brutal": {
-         "sing_m": "brutal",
-         "plu_m": "brutales",
-         "type": "qualificative",
-         "plu_f": "brutales",
-         "sing_f": "brutal"
-      }},
-      {"bárbaro": {
-         "sing_m": "bárbaro",
-         "plu_m": "bárbaros",
-         "type": "qualificative",
-         "plu_f": "bárbaras",
-         "sing_f": "bárbara"
-      }},
-      {"chachi": {
-         "sing_m": "chachi",
-         "plu_m": "chachi",
-         "type": "qualificative",
-         "plu_f": "chachi",
-         "sing_f": "chachi"
-      }},
-      {"enorme": {
-         "sing_m": "enorme",
-         "plu_m": "enormes",
-         "type": "qualificative",
-         "plu_f": "enormes",
-         "sing_f": "enorme"
-      }},
-      {"fenomenal": {
-         "sing_m": "fenomenal",
-         "plu_m": "fenomenales",
-         "type": "qualificative",
-         "plu_f": "fenomenales",
-         "sing_f": "fenomenal"
-      }},
-      {"genial": {
-         "sing_m": "genial",
-         "plu_m": "geniales",
-         "type": "qualificative",
-         "plu_f": "geniales",
-         "sing_f": "genial"
-      }},
-      {"gran": {
-         "sing_m": "gran",
-         "plu_m": "grandes",
-         "type": "qualificative",
-         "plu_f": "grandes",
-         "sing_f": "gran"
-      }},
-      {"guay": {
-         "sing_m": "guay",
-         "plu_m": "guays",
-         "type": "qualificative",
-         "plu_f": "guays",
-         "sing_f": "guay"
-      }},
-      {"súper": {
-         "sing_m": "súper",
-         "plu_m": "súper",
-         "type": "qualificative",
-         "plu_f": "súper",
-         "sing_f": "súper"
-      }}
+   "alive":[  
+      {  
+         "vivo":{  
+            "sing_m":"vivo",
+            "plu_m":"vivos",
+            "type":"qualificative",
+            "plu_f":"vivas",
+            "sing_f":"viva"
+         }
+      }
    ],
-   "new_unfamiliar": [
-      {"novato": {
-         "sing_m": "novato",
-         "plu_m": "novatos",
-         "type": "qualificative",
-         "plu_f": "novatas",
-         "sing_f": "novata"
-      }},
-      {"nuevo": {
-         "sing_m": "nuevo",
-         "plu_m": "nuevos",
-         "type": "qualificative",
-         "plu_f": "nuevas",
-         "sing_f": "nueva"
-      }}
+   "cursed":[  
+      {  
+         "condenado":{  
+            "sing_m":"condenado",
+            "plu_m":"condenados",
+            "type":"qualificative",
+            "plu_f":"condenadas",
+            "sing_f":"condenada"
+         }
+      },
+      {  
+         "maldito":{  
+            "sing_m":"maldito",
+            "plu_m":"malditos",
+            "type":"qualificative",
+            "plu_f":"malditas",
+            "sing_f":"maldita"
+         }
+      },
+      {  
+         "réprobo":{  
+            "sing_m":"réprobo",
+            "plu_m":"réprobo",
+            "type":"qualificative",
+            "plu_f":"réprobas",
+            "sing_f":"réproba"
+         }
+      }
    ],
-   "dead": [{"muerto": {
-      "sing_m": "muerto",
-      "plu_m": "muerto",
-      "type": "qualificative",
-      "plu_f": "muertas",
-      "sing_f": "muerta"
-   }}],
-   "new_quality": [
-      {"nuevo": {
-         "sing_m": "nuevo",
-         "plu_m": "nuevos",
-         "type": "qualificative",
-         "plu_f": "nuevas",
-         "sing_f": "nueva"
-      }},
-      {"prístino": {
-         "sing_m": "prístino",
-         "plu_m": "prístinos",
-         "type": "qualificative",
-         "plu_f": "prístinas",
-         "sing_f": "prístina"
-      }}
+   "little_voice":[  
+      {  
+         "débil":{  
+            "sing_m":"débil",
+            "plu_m":"débiles",
+            "type":"qualificative",
+            "plu_f":"débiles",
+            "sing_f":"débil"
+         }
+      },
+      {  
+         "flojo":{  
+            "sing_m":"flojo",
+            "plu_m":"flojos",
+            "type":"qualificative",
+            "plu_f":"flojas",
+            "sing_f":"floja"
+         }
+      }
    ],
-   "long": [
-      {"extenso": {
-         "sing_m": "extenso",
-         "plu_m": "extensos",
-         "type": "qualificative",
-         "plu_f": "extensas",
-         "sing_f": "extensa"
-      }},
-      {"largo": {
-         "sing_m": "largo",
-         "plu_m": "largos",
-         "type": "qualificative",
-         "plu_f": "largas",
-         "sing_f": "larga"
-      }}
+   "great_quality":[  
+      {  
+         "bestial":{  
+            "sing_m":"bestial",
+            "plu_m":"bestiales",
+            "type":"qualificative",
+            "plu_f":"bestiales",
+            "sing_f":"bestial"
+         }
+      },
+      {  
+         "brutal":{  
+            "sing_m":"brutal",
+            "plu_m":"brutales",
+            "type":"qualificative",
+            "plu_f":"brutales",
+            "sing_f":"brutal"
+         }
+      },
+      {  
+         "bárbaro":{  
+            "sing_m":"bárbaro",
+            "plu_m":"bárbaros",
+            "type":"qualificative",
+            "plu_f":"bárbaras",
+            "sing_f":"bárbara"
+         }
+      },
+      {  
+         "chachi":{  
+            "sing_m":"chachi",
+            "plu_m":"chachi",
+            "type":"qualificative",
+            "plu_f":"chachi",
+            "sing_f":"chachi"
+         }
+      },
+      {  
+         "enorme":{  
+            "sing_m":"enorme",
+            "plu_m":"enormes",
+            "type":"qualificative",
+            "plu_f":"enormes",
+            "sing_f":"enorme"
+         }
+      },
+      {  
+         "fenomenal":{  
+            "sing_m":"fenomenal",
+            "plu_m":"fenomenales",
+            "type":"qualificative",
+            "plu_f":"fenomenales",
+            "sing_f":"fenomenal"
+         }
+      },
+      {  
+         "genial":{  
+            "sing_m":"genial",
+            "plu_m":"geniales",
+            "type":"qualificative",
+            "plu_f":"geniales",
+            "sing_f":"genial"
+         }
+      },
+      {  
+         "gran":{  
+            "sing_m":"gran",
+            "plu_m":"grandes",
+            "type":"qualificative",
+            "plu_f":"grandes",
+            "sing_f":"gran"
+         }
+      },
+      {  
+         "guay":{  
+            "sing_m":"guay",
+            "plu_m":"guays",
+            "type":"qualificative",
+            "plu_f":"guays",
+            "sing_f":"guay"
+         }
+      },
+      {  
+         "súper":{  
+            "sing_m":"súper",
+            "plu_m":"súper",
+            "type":"qualificative",
+            "plu_f":"súper",
+            "sing_f":"súper"
+         }
+      }
    ],
-   "red": [
-      {"carmesí": {
-         "sing_m": "carmesí",
-         "plu_m": "carmesís",
-         "type": "qualificative",
-         "plu_f": "carmesís",
-         "sing_f": "carmesí"
-      }},
-      {"carmín": {
-         "sing_m": "carmín",
-         "plu_m": "carmines",
-         "type": "qualificative",
-         "plu_f": "carmines",
-         "sing_f": "carmín"
-      }},
-      {"cereza": {
-         "sing_m": "cereza",
-         "plu_m": "cerezas",
-         "type": "qualificative",
-         "plu_f": "cerezas",
-         "sing_f": "cereza"
-      }},
-      {"colorado": {
-         "sing_m": "colorado",
-         "plu_m": "colorados",
-         "type": "qualificative",
-         "plu_f": "coloradas",
-         "sing_f": "colorada"
-      }},
-      {"encarnado": {
-         "sing_m": "encarnado",
-         "plu_m": "encarnado",
-         "type": "qualificative",
-         "plu_f": "encarnadas",
-         "sing_f": "encarnada"
-      }},
-      {"escarlata": {
-         "sing_m": "escarlata",
-         "plu_m": "escarlatas",
-         "type": "qualificative",
-         "plu_f": "escarlatas",
-         "sing_f": "escarlata"
-      }},
-      {"grana": {
-         "sing_m": "grana",
-         "plu_m": "grana",
-         "type": "qualificative",
-         "plu_f": "grana",
-         "sing_f": "grana"
-      }},
-      {"rojizo": {
-         "sing_m": "rojizo",
-         "plu_m": "rojizos",
-         "type": "qualificative",
-         "plu_f": "rojizas",
-         "sing_f": "rojiza"
-      }},
-      {"rojo": {
-         "sing_m": "rojo",
-         "plu_m": "rojos",
-         "type": "qualificative",
-         "plu_f": "rojas",
-         "sing_f": "roja"
-      }},
-      {"rubescente": {
-         "sing_m": "rubescente",
-         "plu_m": "rubescentes",
-         "type": "qualificative",
-         "plu_f": "rubescentes",
-         "sing_f": "rubescente"
-      }}
+   "new_unfamiliar":[  
+      {  
+         "novato":{  
+            "sing_m":"novato",
+            "plu_m":"novatos",
+            "type":"qualificative",
+            "plu_f":"novatas",
+            "sing_f":"novata"
+         }
+      },
+      {  
+         "nuevo":{  
+            "sing_m":"nuevo",
+            "plu_m":"nuevos",
+            "type":"qualificative",
+            "plu_f":"nuevas",
+            "sing_f":"nueva"
+         }
+      }
    ],
-   "glorious": [
-      {"brillante": {
-         "sing_m": "brillante",
-         "plu_m": "brillantes",
-         "type": "qualificative",
-         "plu_f": "brillantes",
-         "sing_f": "brillante"
-      }},
-      {"espléndido": {
-         "sing_m": "espléndido",
-         "plu_m": "espléndidos",
-         "type": "qualificative",
-         "plu_f": "espléndidas",
-         "sing_f": "espléndida"
-      }},
-      {"macanudo": {
-         "sing_m": "Macanudo",
-         "plu_m": "macanudos",
-         "type": "qualificative",
-         "plu_f": "macanudas",
-         "sing_f": "macanuda"
-      }},
-      {"magnífico": {
-         "sing_m": "magnífico",
-         "plu_m": "magníficos",
-         "type": "qualificative",
-         "plu_f": "magníficas",
-         "sing_f": "magnífica"
-      }}
+   "dead":[  
+      {  
+         "muerto":{  
+            "sing_m":"muerto",
+            "plu_m":"muerto",
+            "type":"qualificative",
+            "plu_f":"muertas",
+            "sing_f":"muerta"
+         }
+      }
    ],
-   "disgusting": [
-      {"asqueroso": {
-         "sing_m": "asqueroso",
-         "plu_m": "asquerosos",
-         "type": "qualificative",
-         "plu_f": "asquerosas",
-         "sing_f": "asquerosa"
-      }},
-      {"desagradable": {
-         "sing_m": "desagradable",
-         "plu_m": "desagradables",
-         "type": "qualificative",
-         "plu_f": "desagradables",
-         "sing_f": "desagradable"
-      }},
-      {"despreciable": {
-         "sing_m": "despreciable",
-         "plu_m": "despreciables",
-         "type": "qualificative",
-         "plu_f": "despreciables",
-         "sing_f": "despreciable"
-      }},
-      {"repugnante": {
-         "sing_m": "repugnante",
-         "plu_m": "repugnantes",
-         "type": "qualificative",
-         "plu_f": "repugnantes",
-         "sing_f": "repugnante"
-      }},
-      {"repulsivo": {
-         "sing_m": "repulsivo",
-         "plu_m": "repulsivos",
-         "type": "qualificative",
-         "plu_f": "repulsivas",
-         "sing_f": "repulsiva"
-      }}
+   "new_quality":[  
+      {  
+         "nuevo":{  
+            "sing_m":"nuevo",
+            "plu_m":"nuevos",
+            "type":"qualificative",
+            "plu_f":"nuevas",
+            "sing_f":"nueva"
+         }
+      },
+      {  
+         "prístino":{  
+            "sing_m":"prístino",
+            "plu_m":"prístinos",
+            "type":"qualificative",
+            "plu_f":"prístinas",
+            "sing_f":"prístina"
+         }
+      }
    ],
-   "brave": [
-      {"arrojado": {
-         "sing_m": "arrojado",
-         "plu_m": "arrojados",
-         "type": "qualificative",
-         "plu_f": "arrojadas",
-         "sing_f": "arrojada"
-      }},
-      {"brioso": {
-         "sing_m": "brioso",
-         "plu_m": "briosos",
-         "type": "qualificative",
-         "plu_f": "briosas",
-         "sing_f": "briosa"
-      }},
-      {"corajudo": {
-         "sing_m": "corajudo",
-         "plu_m": "corajudos",
-         "type": "qualificative",
-         "plu_f": "corajudas",
-         "sing_f": "corajuda"
-      }},
-      {"valeroso": {
-         "sing_m": "valeroso",
-         "plu_m": "valerosos",
-         "type": "qualificative",
-         "plu_f": "valerosas",
-         "sing_f": "valerosa"
-      }},
-      {"valiente": {
-         "sing_m": "valiente",
-         "plu_m": "valientes",
-         "type": "qualificative",
-         "plu_f": "valientes",
-         "sing_f": "valiente"
-      }}
+   "long":[  
+      {  
+         "extenso":{  
+            "sing_m":"extenso",
+            "plu_m":"extensos",
+            "type":"qualificative",
+            "plu_f":"extensas",
+            "sing_f":"extensa"
+         }
+      },
+      {  
+         "largo":{  
+            "sing_m":"largo",
+            "plu_m":"largos",
+            "type":"qualificative",
+            "plu_f":"largas",
+            "sing_f":"larga"
+         }
+      }
    ],
-   "scary": [
-      {"alarmante": {
-         "sing_m": "alarmante",
-         "plu_m": "alarmantes",
-         "type": "qualificative",
-         "plu_f": "alarmantes",
-         "sing_f": "alarmante"
-      }},
-      {"escalofriante": {
-         "sing_m": "escalofriante",
-         "plu_m": "escalofriantes",
-         "type": "qualificative",
-         "plu_f": "escalofriantes",
-         "sing_f": "escalofriante"
-      }},
-      {"espantoso": {
-         "sing_m": "espantoso",
-         "plu_m": "espantosos",
-         "type": "qualificative",
-         "plu_f": "espantosas",
-         "sing_f": "espantosa"
-      }},
-      {"estremecedor": {
-         "sing_m": "estremecedor",
-         "plu_m": "estremecedores",
-         "type": "qualificative",
-         "plu_f": "estremecedoras",
-         "sing_f": "estremecedora"
-      }},
-      {"terrible": {
-         "sing_m": "terrible",
-         "plu_m": "terribles",
-         "type": "qualificative",
-         "plu_f": "terribles",
-         "sing_f": "terrible"
-      }},
-      {"terrorífico": {
-         "sing_m": "terrorífico",
-         "plu_m": "terroríficos",
-         "type": "qualificative",
-         "plu_f": "terroríficas",
-         "sing_f": "terrorífica"
-      }}
+   "red":[  
+      {  
+         "carmesí":{  
+            "sing_m":"carmesí",
+            "plu_m":"carmesís",
+            "type":"qualificative",
+            "plu_f":"carmesís",
+            "sing_f":"carmesí"
+         }
+      },
+      {  
+         "carmín":{  
+            "sing_m":"carmín",
+            "plu_m":"carmines",
+            "type":"qualificative",
+            "plu_f":"carmines",
+            "sing_f":"carmín"
+         }
+      },
+      {  
+         "cereza":{  
+            "sing_m":"cereza",
+            "plu_m":"cerezas",
+            "type":"qualificative",
+            "plu_f":"cerezas",
+            "sing_f":"cereza"
+         }
+      },
+      {  
+         "colorado":{  
+            "sing_m":"colorado",
+            "plu_m":"colorados",
+            "type":"qualificative",
+            "plu_f":"coloradas",
+            "sing_f":"colorada"
+         }
+      },
+      {  
+         "encarnado":{  
+            "sing_m":"encarnado",
+            "plu_m":"encarnado",
+            "type":"qualificative",
+            "plu_f":"encarnadas",
+            "sing_f":"encarnada"
+         }
+      },
+      {  
+         "escarlata":{  
+            "sing_m":"escarlata",
+            "plu_m":"escarlatas",
+            "type":"qualificative",
+            "plu_f":"escarlatas",
+            "sing_f":"escarlata"
+         }
+      },
+      {  
+         "grana":{  
+            "sing_m":"grana",
+            "plu_m":"grana",
+            "type":"qualificative",
+            "plu_f":"grana",
+            "sing_f":"grana"
+         }
+      },
+      {  
+         "rojizo":{  
+            "sing_m":"rojizo",
+            "plu_m":"rojizos",
+            "type":"qualificative",
+            "plu_f":"rojizas",
+            "sing_f":"rojiza"
+         }
+      },
+      {  
+         "rojo":{  
+            "sing_m":"rojo",
+            "plu_m":"rojos",
+            "type":"qualificative",
+            "plu_f":"rojas",
+            "sing_f":"roja"
+         }
+      },
+      {  
+         "rubescente":{  
+            "sing_m":"rubescente",
+            "plu_m":"rubescentes",
+            "type":"qualificative",
+            "plu_f":"rubescentes",
+            "sing_f":"rubescente"
+         }
+      }
    ],
-   "small": [
-      {"menudo": {
-         "sing_m": "menudo",
-         "plu_m": "menudos",
-         "type": "qualificative",
-         "plu_f": "menudas",
-         "sing_f": "menuda"
-      }},
-      {"pequeño": {
-         "sing_m": "pequeño",
-         "plu_m": "pequeños",
-         "type": "qualificative",
-         "plu_f": "pequeñas",
-         "sing_f": "pequeña"
-      }}
+   "glorious":[  
+      {  
+         "brillante":{  
+            "sing_m":"brillante",
+            "plu_m":"brillantes",
+            "type":"qualificative",
+            "plu_f":"brillantes",
+            "sing_f":"brillante"
+         }
+      },
+      {  
+         "espléndido":{  
+            "sing_m":"espléndido",
+            "plu_m":"espléndidos",
+            "type":"qualificative",
+            "plu_f":"espléndidas",
+            "sing_f":"espléndida"
+         }
+      },
+      {  
+         "macanudo":{  
+            "sing_m":"Macanudo",
+            "plu_m":"macanudos",
+            "type":"qualificative",
+            "plu_f":"macanudas",
+            "sing_f":"macanuda"
+         }
+      },
+      {  
+         "magnífico":{  
+            "sing_m":"magnífico",
+            "plu_m":"magníficos",
+            "type":"qualificative",
+            "plu_f":"magníficas",
+            "sing_f":"magnífica"
+         }
+      }
    ],
-   "little_quantity": [
-      {"menudo": {
-         "sing_m": "menudo",
-         "plu_m": "menudos",
-         "type": "qualificative",
-         "plu_f": "menudas",
-         "sing_f": "menuda"
-      }},
-      {"pequeño": {
-         "sing_m": "pequeño",
-         "plu_m": "pequeños",
-         "type": "qualificative",
-         "plu_f": "pequeñas",
-         "sing_f": "pequeña"
-      }}
+   "disgusting":[  
+      {  
+         "asqueroso":{  
+            "sing_m":"asqueroso",
+            "plu_m":"asquerosos",
+            "type":"qualificative",
+            "plu_f":"asquerosas",
+            "sing_f":"asquerosa"
+         }
+      },
+      {  
+         "desagradable":{  
+            "sing_m":"desagradable",
+            "plu_m":"desagradables",
+            "type":"qualificative",
+            "plu_f":"desagradables",
+            "sing_f":"desagradable"
+         }
+      },
+      {  
+         "despreciable":{  
+            "sing_m":"despreciable",
+            "plu_m":"despreciables",
+            "type":"qualificative",
+            "plu_f":"despreciables",
+            "sing_f":"despreciable"
+         }
+      },
+      {  
+         "repugnante":{  
+            "sing_m":"repugnante",
+            "plu_m":"repugnantes",
+            "type":"qualificative",
+            "plu_f":"repugnantes",
+            "sing_f":"repugnante"
+         }
+      },
+      {  
+         "repulsivo":{  
+            "sing_m":"repulsivo",
+            "plu_m":"repulsivos",
+            "type":"qualificative",
+            "plu_f":"repulsivas",
+            "sing_f":"repulsiva"
+         }
+      }
    ],
-   "normal": [{"normal": {
-      "sing_m": "normal",
-      "plu_m": "normales",
-      "type": "qualificative",
-      "plu_f": "normales",
-      "sing_f": "normal"
-   }}],
-   "kind": [
-      {"afectuoso": {
-         "sing_m": "afectuoso",
-         "plu_m": "afectuosos",
-         "type": "qualificative",
-         "plu_f": "afectuosas",
-         "sing_f": "afectuosa"
-      }},
-      {"amable": {
-         "sing_m": "amable",
-         "plu_m": "amables",
-         "type": "qualificative",
-         "plu_f": "amables",
-         "sing_f": "amable"
-      }},
-      {"bondadoso": {
-         "sing_m": "bondadoso",
-         "plu_m": "bondadosos",
-         "type": "qualificative",
-         "plu_f": "bondadosas",
-         "sing_f": "bondadosa"
-      }},
-      {"simpático": {
-         "sing_m": "simpático",
-         "plu_m": "simpáticos",
-         "type": "qualificative",
-         "plu_f": "simpáticas",
-         "sing_f": "simpática"
-      }}
+   "brave":[  
+      {  
+         "arrojado":{  
+            "sing_m":"arrojado",
+            "plu_m":"arrojados",
+            "type":"qualificative",
+            "plu_f":"arrojadas",
+            "sing_f":"arrojada"
+         }
+      },
+      {  
+         "brioso":{  
+            "sing_m":"brioso",
+            "plu_m":"briosos",
+            "type":"qualificative",
+            "plu_f":"briosas",
+            "sing_f":"briosa"
+         }
+      },
+      {  
+         "corajudo":{  
+            "sing_m":"corajudo",
+            "plu_m":"corajudos",
+            "type":"qualificative",
+            "plu_f":"corajudas",
+            "sing_f":"corajuda"
+         }
+      },
+      {  
+         "valeroso":{  
+            "sing_m":"valeroso",
+            "plu_m":"valerosos",
+            "type":"qualificative",
+            "plu_f":"valerosas",
+            "sing_f":"valerosa"
+         }
+      },
+      {  
+         "valiente":{  
+            "sing_m":"valiente",
+            "plu_m":"valientes",
+            "type":"qualificative",
+            "plu_f":"valientes",
+            "sing_f":"valiente"
+         }
+      }
    ],
-   "old": [
-      {"antiguo": {
-         "sing_m": "antiguo",
-         "plu_m": "antiguos",
-         "type": "qualificative",
-         "plu_f": "antiguas",
-         "sing_f": "antigua"
-      }},
-      {"viejo": {
-         "sing_m": "viejo",
-         "plu_m": "viejos",
-         "type": "qualificative",
-         "plu_f": "viejas",
-         "sing_f": "vieja"
-      }}
+   "scary":[  
+      {  
+         "alarmante":{  
+            "sing_m":"alarmante",
+            "plu_m":"alarmantes",
+            "type":"qualificative",
+            "plu_f":"alarmantes",
+            "sing_f":"alarmante"
+         }
+      },
+      {  
+         "escalofriante":{  
+            "sing_m":"escalofriante",
+            "plu_m":"escalofriantes",
+            "type":"qualificative",
+            "plu_f":"escalofriantes",
+            "sing_f":"escalofriante"
+         }
+      },
+      {  
+         "espantoso":{  
+            "sing_m":"espantoso",
+            "plu_m":"espantosos",
+            "type":"qualificative",
+            "plu_f":"espantosas",
+            "sing_f":"espantosa"
+         }
+      },
+      {  
+         "estremecedor":{  
+            "sing_m":"estremecedor",
+            "plu_m":"estremecedores",
+            "type":"qualificative",
+            "plu_f":"estremecedoras",
+            "sing_f":"estremecedora"
+         }
+      },
+      {  
+         "terrible":{  
+            "sing_m":"terrible",
+            "plu_m":"terribles",
+            "type":"qualificative",
+            "plu_f":"terribles",
+            "sing_f":"terrible"
+         }
+      },
+      {  
+         "terrorífico":{  
+            "sing_m":"terrorífico",
+            "plu_m":"terroríficos",
+            "type":"qualificative",
+            "plu_f":"terroríficas",
+            "sing_f":"terrorífica"
+         }
+      }
    ],
-   "good_quality": [{"bueno": {
-      "sing_m": "buen",
-      "plu_m": "buenos",
-      "type": "qualificative",
-      "plu_f": "buenas",
-      "sing_f": "buena"
-   }}],
-   "big_character": [
-      {"grande": {
-         "sing_m": "grande",
-         "plu_m": "grandes",
-         "type": "qualificative",
-         "plu_f": "grandes",
-         "sing_f": "grande"
-      }},
-      {"magnánimo": {
-         "sing_m": "magnánimo",
-         "plu_m": "magnánimos",
-         "type": "qualificative",
-         "plu_f": "magnánimas",
-         "sing_f": "magnánima"
-      }}
+   "small":[  
+      {  
+         "menudo":{  
+            "sing_m":"menudo",
+            "plu_m":"menudos",
+            "type":"qualificative",
+            "plu_f":"menudas",
+            "sing_f":"menuda"
+         }
+      },
+      {  
+         "pequeño":{  
+            "sing_m":"pequeño",
+            "plu_m":"pequeños",
+            "type":"qualificative",
+            "plu_f":"pequeñas",
+            "sing_f":"pequeña"
+         }
+      }
    ],
-   "grey": [
-      {"agrisado": {
-         "sing_m": "agrisado",
-         "plu_m": "agrisados",
-         "type": "qualificative",
-         "plu_f": "agrisadas",
-         "sing_f": "agrisada"
-      }},
-      {"gris": {
-         "sing_m": "gris",
-         "plu_m": "grises",
-         "type": "qualificative",
-         "plu_f": "grises",
-         "sing_f": "gris"
-      }},
-      {"grisoso": {
-         "sing_m": "grisoso",
-         "plu_m": "grisosos",
-         "type": "qualificative",
-         "plu_f": "grisosas",
-         "sing_f": "grisosa"
-      }},
-      {"grisáceo": {
-         "sing_m": "grisáceo",
-         "plu_m": "grisáceos",
-         "type": "qualificative",
-         "plu_f": "grisáceas",
-         "sing_f": "grisácea"
-      }}
+   "little_quantity":[  
+      {  
+         "menudo":{  
+            "sing_m":"menudo",
+            "plu_m":"menudos",
+            "type":"qualificative",
+            "plu_f":"menudas",
+            "sing_f":"menuda"
+         }
+      },
+      {  
+         "pequeño":{  
+            "sing_m":"pequeño",
+            "plu_m":"pequeños",
+            "type":"qualificative",
+            "plu_f":"pequeñas",
+            "sing_f":"pequeña"
+         }
+      }
    ],
-   "big_size": [
-      {"gran": {
-         "sing_m": "gran",
-         "plu_m": "grandes",
-         "type": "qualificative",
-         "plu_f": "grandes",
-         "sing_f": "gran"
-      }},
-      {"grande": {
-         "sing_m": "grande",
-         "plu_m": "grandes",
-         "type": "qualificative",
-         "plu_f": "grandes",
-         "sing_f": "grande"
-      }}
+   "normal":[  
+      {  
+         "normal":{  
+            "sing_m":"normal",
+            "plu_m":"normales",
+            "type":"qualificative",
+            "plu_f":"normales",
+            "sing_f":"normal"
+         }
+      }
    ],
-   "short": [{"corto": {
-      "sing_m": "corto",
-      "plu_m": "cortos",
-      "type": "qualificative",
-      "plu_f": "cortas",
-      "sing_f": "corta"
-   }}],
-   "little_size": [
-      {"bajo": {
-         "sing_m": "bajo",
-         "plu_m": "bajos",
-         "type": "qualificative",
-         "plu_f": "bajas",
-         "sing_f": "baja"
-      }},
-      {"corto": {
-         "sing_m": "corto",
-         "plu_m": "cortos",
-         "type": "qualificative",
-         "plu_f": "cortas",
-         "sing_f": "corta"
-      }}
+   "kind":[  
+      {  
+         "afectuoso":{  
+            "sing_m":"afectuoso",
+            "plu_m":"afectuosos",
+            "type":"qualificative",
+            "plu_f":"afectuosas",
+            "sing_f":"afectuosa"
+         }
+      },
+      {  
+         "amable":{  
+            "sing_m":"amable",
+            "plu_m":"amables",
+            "type":"qualificative",
+            "plu_f":"amables",
+            "sing_f":"amable"
+         }
+      },
+      {  
+         "bondadoso":{  
+            "sing_m":"bondadoso",
+            "plu_m":"bondadosos",
+            "type":"qualificative",
+            "plu_f":"bondadosas",
+            "sing_f":"bondadosa"
+         }
+      },
+      {  
+         "simpático":{  
+            "sing_m":"simpático",
+            "plu_m":"simpáticos",
+            "type":"qualificative",
+            "plu_f":"simpáticas",
+            "sing_f":"simpática"
+         }
+      }
    ],
-   "great_special": [
-      {"destacado": {
-         "sing_m": "destacado",
-         "plu_m": "destacados",
-         "type": "qualificative",
-         "plu_f": "destacadas",
-         "sing_f": "destacada"
-      }},
-      {"excepcional": {
-         "sing_m": "excepcional",
-         "plu_m": "excepcionales",
-         "type": "qualificative",
-         "plu_f": "excepcionales",
-         "sing_f": "excepcional"
-      }}
+   "old":[  
+      {  
+         "antiguo":{  
+            "sing_m":"antiguo",
+            "plu_m":"antiguos",
+            "type":"qualificative",
+            "plu_f":"antiguas",
+            "sing_f":"antigua"
+         }
+      },
+      {  
+         "viejo":{  
+            "sing_m":"viejo",
+            "plu_m":"viejos",
+            "type":"qualificative",
+            "plu_f":"viejas",
+            "sing_f":"vieja"
+         }
+      }
    ],
-   "creepy": [
-      {"escalofriante": {
-         "sing_m": "escalofriante",
-         "plu_m": "escalofriantes",
-         "type": "qualificative",
-         "plu_f": "escalofriantes",
-         "sing_f": "escalofriante"
-      }},
-      {"espeluznante": {
-         "sing_m": "espeluznante",
-         "plu_m": "espeluznantes",
-         "type": "qualificative",
-         "plu_f": "espeluznantes",
-         "sing_f": "espeluznante"
-      }}
+   "good_quality":[  
+      {  
+         "bueno":{  
+            "sing_m":"buen",
+            "plu_m":"buenos",
+            "type":"qualificative",
+            "plu_f":"buenas",
+            "sing_f":"buena"
+         }
+      }
    ],
-   "scared": [
-      {"asustado": {
-         "sing_m": "asustado",
-         "plu_m": "asustados",
-         "type": "qualificative",
-         "plu_f": "asustadas",
-         "sing_f": "asustada"
-      }},
-      {"espantado": {
-         "sing_m": "espantado",
-         "plu_m": "espantados",
-         "type": "qualificative",
-         "plu_f": "espantadas",
-         "sing_f": "espantada"
-      }}
+   "big_character":[  
+      {  
+         "grande":{  
+            "sing_m":"grande",
+            "plu_m":"grandes",
+            "type":"qualificative",
+            "plu_f":"grandes",
+            "sing_f":"grande"
+         }
+      },
+      {  
+         "magnánimo":{  
+            "sing_m":"magnánimo",
+            "plu_m":"magnánimos",
+            "type":"qualificative",
+            "plu_f":"magnánimas",
+            "sing_f":"magnánima"
+         }
+      }
    ],
-    "bald": [{"calvo": {
-      "sing_m": "calvo",
-      "plu_m": "calvos",
-      "type": "qualificative",
-      "plu_f": "calvas",
-      "sing_f": "calva"
-   }}
+   "grey":[  
+      {  
+         "agrisado":{  
+            "sing_m":"agrisado",
+            "plu_m":"agrisados",
+            "type":"qualificative",
+            "plu_f":"agrisadas",
+            "sing_f":"agrisada"
+         }
+      },
+      {  
+         "gris":{  
+            "sing_m":"gris",
+            "plu_m":"grises",
+            "type":"qualificative",
+            "plu_f":"grises",
+            "sing_f":"gris"
+         }
+      },
+      {  
+         "grisoso":{  
+            "sing_m":"grisoso",
+            "plu_m":"grisosos",
+            "type":"qualificative",
+            "plu_f":"grisosas",
+            "sing_f":"grisosa"
+         }
+      },
+      {  
+         "grisáceo":{  
+            "sing_m":"grisáceo",
+            "plu_m":"grisáceos",
+            "type":"qualificative",
+            "plu_f":"grisáceas",
+            "sing_f":"grisácea"
+         }
+      }
    ],
-    "hairy": [
-      {"hirsuto": {
-         "sing_m": "hirsuto",
-         "plu_m": "hirsutos",
-         "type": "qualificative",
-         "plu_f": "hirsutas",
-         "sing_f": "hirsuta"
-      }},
-      {"peluda": {
-         "sing_m": "peluda",
-         "plu_m": "peluda",
-         "type": "qualificative",
-         "plu_f": "peluda",
-         "sing_f": "peluda"
-      }},
-      {"peludo": {
-         "sing_m": "peludo",
-         "plu_m": "peludos",
-         "type": "qualificative",
-         "plu_f": "peludas",
-         "sing_f": "peluda"
-      }},
-      {"piloso": {
-         "sing_m": "piloso",
-         "plu_m": "pilosos",
-         "type": "qualificative",
-         "plu_f": "pilosas",
-         "sing_f": "pilosa"
-      }},
-      {"velludo": {
-         "sing_m": "velludo",
-         "plu_m": "velludos",
-         "type": "qualificative",
-         "plu_f": "velludas",
-         "sing_f": "velluda"
-      }}
+   "big_size":[  
+      {  
+         "gran":{  
+            "sing_m":"gran",
+            "plu_m":"grandes",
+            "type":"qualificative",
+            "plu_f":"grandes",
+            "sing_f":"gran"
+         }
+      },
+      {  
+         "grande":{  
+            "sing_m":"grande",
+            "plu_m":"grandes",
+            "type":"qualificative",
+            "plu_f":"grandes",
+            "sing_f":"grande"
+         }
+      }
    ],
-   "green": [
-      {"verde": {
-         "sing_m": "verde",
-         "plu_m": "verdes",
-         "type": "qualificative",
-         "plu_f": "verdes",
-         "sing_f": "verde"
-      }},
-      {"verdoso": {
-         "sing_m": "verdoso",
-         "plu_m": "verdosos",
-         "type": "qualificative",
-         "plu_f": "verdosas",
-         "sing_f": "verdosa"
-      }}
+   "short":[  
+      {  
+         "corto":{  
+            "sing_m":"corto",
+            "plu_m":"cortos",
+            "type":"qualificative",
+            "plu_f":"cortas",
+            "sing_f":"corta"
+         }
+      }
    ],
-   "shiny": [
-      {"brillante": {
-         "sing_m": "brillante",
-         "plu_m": "brillantes",
-         "type": "qualificative",
-         "plu_f": "brillantes",
-         "sing_f": "brillante"
-      }},
-      {"lustroso": {
-         "sing_m": "lustroso",
-         "plu_m": "lustrosos",
-         "type": "qualificative",
-         "plu_f": "lustrosas",
-         "sing_f": "lustrosa"
-      }},
-      {"refulgente": {
-         "sing_m": "refulgente",
-         "plu_m": "refulgentes",
-         "type": "qualificative",
-         "plu_f": "refulgentes",
-         "sing_f": "refulgente"
-      }},
-      {"reluciente": {
-         "sing_m": "reluciente",
-         "plu_m": "relucientes",
-         "type": "qualificative",
-         "plu_f": "relucientes",
-         "sing_f": "reluciente"
-      }}
+   "little_size":[  
+      {  
+         "bajo":{  
+            "sing_m":"bajo",
+            "plu_m":"bajos",
+            "type":"qualificative",
+            "plu_f":"bajas",
+            "sing_f":"baja"
+         }
+      },
+      {  
+         "corto":{  
+            "sing_m":"corto",
+            "plu_m":"cortos",
+            "type":"qualificative",
+            "plu_f":"cortas",
+            "sing_f":"corta"
+         }
+      }
    ],
-   "rusty": [
-      {"herrumbroso": {
-         "sing_m": "herrumbroso",
-         "plu_m": "herrumbrosos",
-         "type": "qualificative",
-         "plu_f": "Herrumbrosas",
-         "sing_f": "herrumbrosa"
-      }},
-      {"oxidado": {
-         "sing_m": "oxidado",
-         "plu_m": "oxidados",
-         "type": "qualificative",
-         "plu_f": "oxidadas",
-         "sing_f": "oxidada"
-      }}
+   "great_special":[  
+      {  
+         "destacado":{  
+            "sing_m":"destacado",
+            "plu_m":"destacados",
+            "type":"qualificative",
+            "plu_f":"destacadas",
+            "sing_f":"destacada"
+         }
+      },
+      {  
+         "excepcional":{  
+            "sing_m":"excepcional",
+            "plu_m":"excepcionales",
+            "type":"qualificative",
+            "plu_f":"excepcionales",
+            "sing_f":"excepcional"
+         }
+      }
    ],
-   "annoying": [
-      {"cargante": {
-         "sing_m": "cargante",
-         "plu_m": "cargante",
-         "type": "qualificative",
-         "plu_f": "cargante",
-         "sing_f": "cargante"
-      }},
-      {"enfadoso": {
-         "sing_m": "enfadoso",
-         "plu_m": "enfadoso",
-         "type": "qualificative",
-         "plu_f": "enfadoso",
-         "sing_f": "enfadoso"
-      }},
-      {"enojoso": {
-         "sing_m": "enojoso",
-         "plu_m": "enojosos",
-         "type": "qualificative",
-         "plu_f": "enojosas",
-         "sing_f": "enojosa"
-      }},
-      {"fastidioso": {
-         "sing_m": "fastidioso",
-         "plu_m": "fastidiosos",
-         "type": "qualificative",
-         "plu_f": "fastidiosas",
-         "sing_f": "fastidiosa"
-      }},
-      {"irritante": {
-         "sing_m": "irritante",
-         "plu_m": "irritantes",
-         "type": "qualificative",
-         "plu_f": "irritantes",
-         "sing_f": "irritante"
-      }},
-      {"molesto": {
-         "sing_m": "molesto",
-         "plu_m": "molestos",
-         "type": "qualificative",
-         "plu_f": "molestas",
-         "sing_f": "molesta"
-      }},
-      {"pesado": {
-         "sing_m": "pesado",
-         "plu_m": "pesado",
-         "type": "qualificative",
-         "plu_f": "pesado",
-         "sing_f": "pesado"
-      }},
-      {"vejatorio": {
-         "sing_m": "vejatorio",
-         "plu_m": "vejatorios",
-         "type": "qualificative",
-         "plu_f": "vejatorias",
-         "sing_f": "vejatoria"
-      }}
+   "creepy":[  
+      {  
+         "escalofriante":{  
+            "sing_m":"escalofriante",
+            "plu_m":"escalofriantes",
+            "type":"qualificative",
+            "plu_f":"escalofriantes",
+            "sing_f":"escalofriante"
+         }
+      },
+      {  
+         "espeluznante":{  
+            "sing_m":"espeluznante",
+            "plu_m":"espeluznantes",
+            "type":"qualificative",
+            "plu_f":"espeluznantes",
+            "sing_f":"espeluznante"
+         }
+      }
    ],
-   "dusty": [
-   	 {"polvoriento": {
-      "sing_m": "polvoriento",
-      "plu_m": "polvorientos",
-      "type": "qualificative",
-      "plu_f": "polvorientas",
-      "sing_f": "polvorienta"
-   	}}
+   "scared":[  
+      {  
+         "asustado":{  
+            "sing_m":"asustado",
+            "plu_m":"asustados",
+            "type":"qualificative",
+            "plu_f":"asustadas",
+            "sing_f":"asustada"
+         }
+      },
+      {  
+         "espantado":{  
+            "sing_m":"espantado",
+            "plu_m":"espantados",
+            "type":"qualificative",
+            "plu_f":"espantadas",
+            "sing_f":"espantada"
+         }
+      }
+   ],
+   "bald":[  
+      {  
+         "calvo":{  
+            "sing_m":"calvo",
+            "plu_m":"calvos",
+            "type":"qualificative",
+            "plu_f":"calvas",
+            "sing_f":"calva"
+         }
+      }
+   ],
+   "hairy":[  
+      {  
+         "hirsuto":{  
+            "sing_m":"hirsuto",
+            "plu_m":"hirsutos",
+            "type":"qualificative",
+            "plu_f":"hirsutas",
+            "sing_f":"hirsuta"
+         }
+      },
+      {  
+         "peluda":{  
+            "sing_m":"peluda",
+            "plu_m":"peluda",
+            "type":"qualificative",
+            "plu_f":"peluda",
+            "sing_f":"peluda"
+         }
+      },
+      {  
+         "peludo":{  
+            "sing_m":"peludo",
+            "plu_m":"peludos",
+            "type":"qualificative",
+            "plu_f":"peludas",
+            "sing_f":"peluda"
+         }
+      },
+      {  
+         "piloso":{  
+            "sing_m":"piloso",
+            "plu_m":"pilosos",
+            "type":"qualificative",
+            "plu_f":"pilosas",
+            "sing_f":"pilosa"
+         }
+      },
+      {  
+         "velludo":{  
+            "sing_m":"velludo",
+            "plu_m":"velludos",
+            "type":"qualificative",
+            "plu_f":"velludas",
+            "sing_f":"velluda"
+         }
+      }
+   ],
+   "green":[  
+      {  
+         "verde":{  
+            "sing_m":"verde",
+            "plu_m":"verdes",
+            "type":"qualificative",
+            "plu_f":"verdes",
+            "sing_f":"verde"
+         }
+      },
+      {  
+         "verdoso":{  
+            "sing_m":"verdoso",
+            "plu_m":"verdosos",
+            "type":"qualificative",
+            "plu_f":"verdosas",
+            "sing_f":"verdosa"
+         }
+      }
+   ],
+   "shiny":[  
+      {  
+         "brillante":{  
+            "sing_m":"brillante",
+            "plu_m":"brillantes",
+            "type":"qualificative",
+            "plu_f":"brillantes",
+            "sing_f":"brillante"
+         }
+      },
+      {  
+         "lustroso":{  
+            "sing_m":"lustroso",
+            "plu_m":"lustrosos",
+            "type":"qualificative",
+            "plu_f":"lustrosas",
+            "sing_f":"lustrosa"
+         }
+      },
+      {  
+         "refulgente":{  
+            "sing_m":"refulgente",
+            "plu_m":"refulgentes",
+            "type":"qualificative",
+            "plu_f":"refulgentes",
+            "sing_f":"refulgente"
+         }
+      },
+      {  
+         "reluciente":{  
+            "sing_m":"reluciente",
+            "plu_m":"relucientes",
+            "type":"qualificative",
+            "plu_f":"relucientes",
+            "sing_f":"reluciente"
+         }
+      }
+   ],
+   "rusty":[  
+      {  
+         "herrumbroso":{  
+            "sing_m":"herrumbroso",
+            "plu_m":"herrumbrosos",
+            "type":"qualificative",
+            "plu_f":"Herrumbrosas",
+            "sing_f":"herrumbrosa"
+         }
+      },
+      {  
+         "oxidado":{  
+            "sing_m":"oxidado",
+            "plu_m":"oxidados",
+            "type":"qualificative",
+            "plu_f":"oxidadas",
+            "sing_f":"oxidada"
+         }
+      }
+   ],
+   "annoying":[  
+      {  
+         "cargante":{  
+            "sing_m":"cargante",
+            "plu_m":"cargante",
+            "type":"qualificative",
+            "plu_f":"cargante",
+            "sing_f":"cargante"
+         }
+      },
+      {  
+         "enfadoso":{  
+            "sing_m":"enfadoso",
+            "plu_m":"enfadoso",
+            "type":"qualificative",
+            "plu_f":"enfadoso",
+            "sing_f":"enfadoso"
+         }
+      },
+      {  
+         "enojoso":{  
+            "sing_m":"enojoso",
+            "plu_m":"enojosos",
+            "type":"qualificative",
+            "plu_f":"enojosas",
+            "sing_f":"enojosa"
+         }
+      },
+      {  
+         "fastidioso":{  
+            "sing_m":"fastidioso",
+            "plu_m":"fastidiosos",
+            "type":"qualificative",
+            "plu_f":"fastidiosas",
+            "sing_f":"fastidiosa"
+         }
+      },
+      {  
+         "irritante":{  
+            "sing_m":"irritante",
+            "plu_m":"irritantes",
+            "type":"qualificative",
+            "plu_f":"irritantes",
+            "sing_f":"irritante"
+         }
+      },
+      {  
+         "molesto":{  
+            "sing_m":"molesto",
+            "plu_m":"molestos",
+            "type":"qualificative",
+            "plu_f":"molestas",
+            "sing_f":"molesta"
+         }
+      },
+      {  
+         "pesado":{  
+            "sing_m":"pesado",
+            "plu_m":"pesado",
+            "type":"qualificative",
+            "plu_f":"pesado",
+            "sing_f":"pesado"
+         }
+      },
+      {  
+         "vejatorio":{  
+            "sing_m":"vejatorio",
+            "plu_m":"vejatorios",
+            "type":"qualificative",
+            "plu_f":"vejatorias",
+            "sing_f":"vejatoria"
+         }
+      }
+   ],
+   "dusty":[  
+      {  
+         "polvoriento":{  
+            "sing_m":"polvoriento",
+            "plu_m":"polvorientos",
+            "type":"qualificative",
+            "plu_f":"polvorientas",
+            "sing_f":"polvorienta"
+         }
+      }
    ]
-   
 }
