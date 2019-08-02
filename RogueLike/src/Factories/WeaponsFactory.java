@@ -15,17 +15,9 @@ public class WeaponsFactory {
 	private World world;
 	private WordDataGetter getter;
 	
-	public WeaponsFactory(World world){
-		Properties prop = new Properties();
-		InputStream input;
-		try {
-			input =  new FileInputStream("language.properties");
-			prop.load(input);
-		} catch (Exception e){
-			e.printStackTrace();
-		}	
+	public WeaponsFactory(World world, WordDataGetter getter){	
 		this.world = world;
-		this.getter = world.getWordDataGetter();
+		this.getter = getter;
 	}
 	
 	public Item newDagger(int depth) {

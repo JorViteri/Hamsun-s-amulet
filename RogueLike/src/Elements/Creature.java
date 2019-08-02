@@ -377,14 +377,9 @@ public class Creature {
 		ai.onUpdate();
 	}
 
-	//TODO MODIFICAR ESTO MUY IMPORTANTE
 	public Position getPosition() {
 		return new Position(this.x,this.y,this.z);
 	}
-
-	/*public void setPosition(Position pos) {
-		this.pos = pos;
-	}*/
 
 	public void modifyRegenHpPer1000(int amount) {
 		regenHpPer1000 += amount;
@@ -445,13 +440,13 @@ public class Creature {
 		for (int ox = -r; ox < r + 1; ox++) {
 			for (int oy = -r; oy < r + 1; oy++) {
 				if (ox * ox + oy * oy > r * r){
-					continue;//TODO esta condicion no esta funcionando como deberia por las llaves no bien puestas, oodio la mierda que hacia el pavo este
+					continue;
 				}
 				if (this.canSee(x+ox, y+oy, z)){ 
-					p = new Position(x + ox, y + oy, z); //TODO crea una posicion que peta en Y
+					p = new Position(x + ox, y + oy, z);
 					if (p.isValidPosition()){
 						Creature otherCreature = world.creature(x + ox, y + oy, z);
-						Item otherItem = world.item(x + ox, y + oy, z); //TODO ArryIndexOutOfBoundsExcetion: 31 wtfff Tampoco pilla todos los items a la vista
+						Item otherItem = world.item(x + ox, y + oy, z); 
 						Tile tile = world.tile(x + ox, y + oy, z);
 						if ((otherCreature != null)&&(!otherCreature.equals(this))){
 							creatures.add(p);

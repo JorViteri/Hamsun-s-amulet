@@ -30,6 +30,7 @@ public class RogueMain extends JFrame implements KeyListener  {
 	private static JTextArea textArea2; //textarea for playscreen
 	private JScrollPane scroll1;
 	private JScrollPane scroll2;
+	private String language;
 
     private final static String newline = "\n";
 
@@ -48,13 +49,11 @@ public class RogueMain extends JFrame implements KeyListener  {
 	    
 	    //TEXTAREA 1******************************************
 		textArea1 = init_textArea(terminal.getCharWidth(), terminal.getCharHeight());
-		//textArea1.requestFocus();
 		scroll1 = new JScrollPane(textArea1);
 		int widht1 = 54* terminal.getCharWidth();
 		int height1 = 23 * terminal.getCharHeight();
 		scroll1.setPreferredSize(new Dimension(widht1, height1));
 		scroll1.setAutoscrolls(true);
-		//add(textArea1, BorderLayout.EAST);
 		add(scroll1, BorderLayout.EAST);
 		
 		
@@ -94,12 +93,6 @@ public class RogueMain extends JFrame implements KeyListener  {
     	textA.setVisible(true);
     	textA.setLineWrap(true);
     	textA.setWrapStyleWord(true);
-    	//int width = 54* w; //55
-		//int height = 23 * i; // 43
-		// Dimension panelDimension = new Dimension(width, height);
-		// textA.setSize(panelDimension);
-		// textA.setMinimumSize(panelDimension);
-		// textA.setPreferredSize(panelDimension);
     	textA.setEditable(true);
     	textA.setFocusable(false);
 		textA.setHighlighter(null);
@@ -116,12 +109,6 @@ public class RogueMain extends JFrame implements KeyListener  {
 		textA.setVisible(true);
 		textA.setLineWrap(true);
     	textA.setWrapStyleWord(true);
-		//int width = 135 * w;
-		//int height = 22 * i;
-		//Dimension panelDimension = new Dimension(width, height);
-		//textA.setSize(panelDimension);
-		//textA.setMinimumSize(panelDimension);
-		//textA.setPreferredSize(panelDimension);
 		textA.setEditable(true);
 		textA.setFocusable(false);
 		textA.setHighlighter(null);
@@ -142,6 +129,7 @@ public class RogueMain extends JFrame implements KeyListener  {
 	public static void main(String[] args){
 		RogueMain rogue = new RogueMain(); 
 		TextManager.getSingletonInstance(textArea1, textArea2);
+		//TODO aqui tengo que obtener la instancia singleton del getter que necesiteSMTOyakata1993
 		rogue.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rogue.setVisible(true);
 	}

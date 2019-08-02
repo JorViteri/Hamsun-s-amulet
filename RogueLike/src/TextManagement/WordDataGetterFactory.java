@@ -6,12 +6,9 @@ import java.util.Properties;
 
 public class WordDataGetterFactory {
 	
-	public WordDataGetterFactory(){
-		
-	}
+	private String language; 
 	
-	public WordDataGetter getWordDataGetter(){
-		String language = null;
+	public WordDataGetterFactory(){
 		Properties prop = new Properties();
 		InputStream input;
 		try {
@@ -19,8 +16,11 @@ public class WordDataGetterFactory {
 			prop.load(input);
 		} catch (Exception e){
 			e.printStackTrace();
-		}		
-		language = prop.getProperty("language");
+		}	
+		this.language = prop.getProperty("language");
+	}
+	
+	public WordDataGetter getWordDataGetter(){
 		switch (language){
 		case "SPA":
 			WordDataGetterSPA result = new WordDataGetterSPA();
@@ -31,5 +31,9 @@ public class WordDataGetterFactory {
 		default:
 			return null;
 		}
+	}
+	
+	public String getLanguage(){
+		return language;
 	}
 }

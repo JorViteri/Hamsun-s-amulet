@@ -21,9 +21,9 @@ public class PotionFactory {
 	private WordDataGetter getter;
 	private String[] arr = {"shiny","disgusting","magic","old"};
 
-	public PotionFactory(World world) {
+	public PotionFactory(World world, WordDataGetter getter) {
 		this.world = world;
-		this.getter = world.getWordDataGetter();
+		this.getter = getter;
 		setUpPotionAppearances();
 	}
 

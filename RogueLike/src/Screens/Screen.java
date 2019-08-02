@@ -7,7 +7,6 @@ import javax.swing.JTextArea;
 import asciiPanel.AsciiPanel;
 
 public interface Screen {
-
 	
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea1, JTextArea textArea2);
 	

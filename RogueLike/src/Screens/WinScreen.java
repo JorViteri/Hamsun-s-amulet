@@ -6,10 +6,18 @@ import java.io.IOException;
 import javax.swing.JTextArea;
 
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
 import asciiPanel.AsciiPanel;
 
 public class WinScreen implements Screen {
 
+	private WordDataGetter getter;
+	
+	public WinScreen(WordDataGetter getter){
+		this.getter = getter;
+	}
+	
+	
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
 		terminal.write("You won.", 1, 1);
@@ -23,11 +31,11 @@ public class WinScreen implements Screen {
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key)  {
-		TextManager  textManager ;
+		TextManager  textManager;
 	    if(key.getKeyCode() == KeyEvent.VK_ENTER){
 	    	textManager = TextManager.getTextManager();
 	    	textManager.clearTextArea(2);
-			return new PlayScreen();
+			return new PlayScreen(this.getter);
 		} else{
 			return  this;
 		}

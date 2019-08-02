@@ -22,6 +22,7 @@ import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
+import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterSPA;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
@@ -29,10 +30,11 @@ import asciiPanel.AsciiPanel;
 public class ElementsFactory {
 
 	private World world;
-	private WordDataGetterSPA getter;
+	private WordDataGetter getter;
 
-	public ElementsFactory(World world) {
+	public ElementsFactory(World world, WordDataGetter getter) {
 		this.world = world;
+		this.getter = getter;
 	}
 
 	public Item newRock(int depth) {

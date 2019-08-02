@@ -22,9 +22,9 @@ public class CreatureFactory {
 	private WordDataGetter getter;
 	
 	//TODO la clase Creature precisa de cambios: tener un campo para nombre y otro para la llave
-	public CreatureFactory(World world){
+	public CreatureFactory(World world, WordDataGetter getter){
 		this.world = world;
-		this.getter = world.getWordDataGetter(); 
+		this.getter = getter; 
 	}
 	
 	public Creature newPlayer(ArrayList<String> messages, FieldOfView fov) { 
@@ -74,8 +74,8 @@ public class CreatureFactory {
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
 		Creature goblin = new Creature(world, 'g', "Goblin",  nameData.get(0), nameData.get(1), nameData.get(2), AsciiPanel.brightGreen, 66, 15, 5, 10, adjData.get(0), adjData.get(1));
 		new GoblinAi(goblin, player);
-		WeaponsFactory wf = new WeaponsFactory(this.world);
-		ArmorFactory af = new  ArmorFactory(this.world);
+		WeaponsFactory wf = new WeaponsFactory(this.world, this.getter);
+		ArmorFactory af = new  ArmorFactory(this.world, this.getter);
 		goblin.equip(wf.randomWeapon(depth));
 		goblin.equip(af.randomArmor(depth));
 		world.addAtEmptyLocation(goblin, depth);

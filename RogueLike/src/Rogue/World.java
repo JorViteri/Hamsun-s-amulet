@@ -46,7 +46,6 @@ public class World {
 
 	public World(Tile[][][] tiles, ArrayList<Staircase> stairs, Position exit, ArrayList<ArrayList<Room>> rooms_lists,
 			ArrayList<ArrayList<Corridor>> corridors_list) {
-		WordDataGetterFactory factory = new WordDataGetterFactory();
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
@@ -57,7 +56,6 @@ public class World {
 		this.exit = exit;
 		this.rooms_lists = rooms_lists;
 		this.corridors_lists = corridors_list;
-		this.getter = factory.getWordDataGetter();
 	}
 	
 	public ArrayList<ArrayList<Room>> getRoomLists(){

@@ -2,6 +2,7 @@ package Screens;
 
 import Elements.Creature;
 import Elements.Item;
+import TextManagement.WordDataGetter;
 
 public class QuaffScreen extends InventoryBasedScreen{
 

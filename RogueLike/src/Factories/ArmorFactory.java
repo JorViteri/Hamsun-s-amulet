@@ -9,25 +9,18 @@ import java.util.Random;
 
 import Elements.Item;
 import Rogue.World;
+import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterSPA;
 import asciiPanel.AsciiPanel;
 
 public class ArmorFactory {
 
 	private World world;
-	private WordDataGetterSPA getter;
+	private WordDataGetter getter;
 	
-	public ArmorFactory(World world){
-		Properties prop = new Properties();
-		InputStream input;
-		try {
-			input =  new FileInputStream("language.properties");
-			prop.load(input);
-		} catch (Exception e){
-			e.printStackTrace();
-		}		
+	public ArmorFactory(World world, WordDataGetter getter){	
 		this.world = world;
-		this.getter = new WordDataGetterSPA();
+		this.getter = getter;
 	}
 	
 	public Item newLightArmor(int depth) {

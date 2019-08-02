@@ -5,10 +5,17 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextArea;
 
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
 import asciiPanel.AsciiPanel;
 
 public class LoseScreen implements Screen {
 
+	private WordDataGetter getter;
+	
+	public LoseScreen(WordDataGetter getter){
+		this.getter = getter;
+	}
+	
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
 		terminal.write("You lost.", 1, 1);
@@ -21,11 +28,11 @@ public class LoseScreen implements Screen {
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		TextManager  textManager ;
+		TextManager  textManager;
 	    if(key.getKeyCode() == KeyEvent.VK_ENTER){
 	    	textManager = TextManager.getTextManager();
 	    	textManager.clearTextArea(2);
-			return new PlayScreen();
+			return new PlayScreen(this.getter);
 		} else{
 			return  this;
 		}

@@ -1,5 +1,7 @@
 package TextManagement;
 
+import java.util.ArrayList;
+
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
@@ -10,10 +12,13 @@ public class TextManager {
 	private JTextArea textArea1;
 	private JTextArea textArea2;
 	private final static int linelimit=28;
+	private WordDataGetter getter;
 	
 	private TextManager(JTextArea textArea1, JTextArea textArea2){
 		this.textArea1 = textArea1;
 		this.textArea2 = textArea2;
+		WordDataGetterFactory factory = new WordDataGetterFactory();
+		this.getter = factory.getWordDataGetter();
 	}
 	
 	public static TextManager getSingletonInstance(JTextArea textArea1, JTextArea textArea2){
@@ -37,6 +42,8 @@ public class TextManager {
 		}
 	}
 	
+
+	
 	public void clearTextArea(int id){
 		switch(id){
 		case 1:
@@ -48,11 +55,9 @@ public class TextManager {
 			textArea2.replaceSelection("");
 		}
 	}
+
 	
-	//NECESITO CONSEGUIR EL FIN OFFSET DE LA PRIMERA LINEA Y CON ESTE EL FIN DE LA SEGUNDA
-	//REEMPLAZO Y YATA,
-	
-	public void replaceLine(String message, int line){ //????
+	public void replaceLine(String message, int line){
 		int beginning = 0, ending = 0;
 		try {
 			beginning =textArea1.getLineStartOffset(line);

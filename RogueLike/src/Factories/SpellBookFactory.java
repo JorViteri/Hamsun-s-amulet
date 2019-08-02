@@ -15,9 +15,9 @@ public class SpellBookFactory {
 	private String[] n_arr = {"book", "perchment", "grimoire", "tome"};
 	private String[] a_arr = {"old","dusty","big_size","magic"};
 	
-	public SpellBookFactory(World world){
+	public SpellBookFactory(World world, WordDataGetter getter){
 		this.world = world;
-		this.getter = world.getWordDataGetter();
+		this.getter = getter;
 	}
 	
 
@@ -128,7 +128,7 @@ public class SpellBookFactory {
 						int ny = creature.getY() + oy;
 						if (ox == 0 && oy == 0 || creature.creature(nx, ny, creature.getZ()) != null)
 							continue;
-						CreatureFactory cf = new CreatureFactory(world);
+						CreatureFactory cf = new CreatureFactory(world, getter);
 						Creature bat = cf.newBat(0); //TODO la profundiadd no deberia ser 0, deberia ser donde este el jugador
 
 						if (!bat.canEnter(nx, ny, creature.getZ())) {

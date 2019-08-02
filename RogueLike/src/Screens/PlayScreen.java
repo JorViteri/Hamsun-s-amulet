@@ -19,6 +19,8 @@ import Factories.WeaponsFactory;
 import Rogue.World;
 import Rogue.WorldBuilder;
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterFactory;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 
@@ -41,21 +43,23 @@ public class PlayScreen implements Screen {
 	private final static int linelimit=28;
 	private TextManager textManager = TextManager.getTextManager();
 	private boolean newEnemies = true;
+	private WordDataGetter getter;
 	
 
-	public PlayScreen() {
+	public PlayScreen(WordDataGetter getter) {
 		//TODO son eestos valores porque son los por defecto de la pantalla de juego, pero no del escenario!! el escenario es 90-31
 		screenWidth = 80; //TODO estas dos mierdas de aqui me rompen todo, tengo que cambiarlas YA
 		screenHeight = 23; //Si lo toco, rompe. Pero no entiendo, cómo se le asocia el valor 40 en x?? es el sx y sy de la checkenviroment
 		messages = new ArrayList<String>();
 		createWorld();
 		fov = new FieldOfView(world);
-		elementsFactory = new ElementsFactory(world);
-		creatureFactory = new CreatureFactory(world);
-		armorFactory = new ArmorFactory(world);
-		potionFactory = new PotionFactory(world);
-		bookFactory = new SpellBookFactory(world);
-		weaponsFactory = new WeaponsFactory(world);
+		this.getter = getter;
+		elementsFactory = new ElementsFactory(world,getter);
+		creatureFactory = new CreatureFactory(world,getter);
+		armorFactory = new ArmorFactory(world,getter);
+		potionFactory = new PotionFactory(world,getter);
+		bookFactory = new SpellBookFactory(world,getter);
+		weaponsFactory = new WeaponsFactory(world,getter);
 		createCreatures(creatureFactory);
 		createItems(armorFactory, potionFactory, elementsFactory, weaponsFactory, bookFactory);
 	}
@@ -181,9 +185,9 @@ public class PlayScreen implements Screen {
 		} else {
 			switch (key.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
-				return new LoseScreen();
+				return new LoseScreen(this.getter);
 			case KeyEvent.VK_ENTER:
-				return new WinScreen();
+				return new WinScreen(this.getter);
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_H:
 				player.moveBy(-1, 0, 0);
@@ -283,7 +287,7 @@ public class PlayScreen implements Screen {
 			world.update();
 		}
 		if (player.hp() < 1) {
-			return new LoseScreen();
+			return new LoseScreen(this.getter);
 		}
 		return this;
 	}
@@ -313,9 +317,9 @@ public class PlayScreen implements Screen {
 
 	private Screen userExits() {
 		if (playerHasAmulet()) {
-			return new WinScreen();
+			return new WinScreen(this.getter);
 		} else {
-			return new LoseScreen();
+			return new LoseScreen(this.getter);
 		}
 		
 		/*for (Item item : player.inventory().getItems()) {
