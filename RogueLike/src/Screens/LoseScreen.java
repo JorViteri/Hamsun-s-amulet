@@ -10,10 +10,8 @@ import asciiPanel.AsciiPanel;
 
 public class LoseScreen implements Screen {
 
-	private WordDataGetter getter;
 	
-	public LoseScreen(WordDataGetter getter){
-		this.getter = getter;
+	public LoseScreen(){
 	}
 	
 	@Override
@@ -32,7 +30,7 @@ public class LoseScreen implements Screen {
 	    if(key.getKeyCode() == KeyEvent.VK_ENTER){
 	    	textManager = TextManager.getTextManager();
 	    	textManager.clearTextArea(2);
-			return new PlayScreen(this.getter);
+			return new PlayScreen();
 		} else{
 			return  this;
 		}

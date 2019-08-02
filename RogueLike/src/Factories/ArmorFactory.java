@@ -10,21 +10,22 @@ import java.util.Random;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterFactory;
 import TextManagement.WordDataGetterSPA;
 import asciiPanel.AsciiPanel;
 
 public class ArmorFactory {
 
 	private World world;
-	private WordDataGetter getter;
 	
-	public ArmorFactory(World world, WordDataGetter getter){	
+	public ArmorFactory(World world){	
 		this.world = world;
-		this.getter = getter;
 	}
 	
 	public Item newLightArmor(int depth) {
 		String[] arr = {"red","green","grey","old","big_size","short"};
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData("tunic");
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
 		Item item = new Item('[', AsciiPanel.green, "tunic", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
@@ -35,6 +36,8 @@ public class ArmorFactory {
 
 	public Item newMediumArmor(int depth) {
 		String[] arr = {"average","old","big_size","new_quality","shiny","rusty","dusty"};
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData("chain_mail");
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
 		Item item = new Item('[', AsciiPanel.white, "chain mail", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
@@ -45,6 +48,8 @@ public class ArmorFactory {
 
 	public Item newHeavyArmor(int depth) {
 		String[] arr = {"great_quality","old","big_size","new_quality","shiny","rusty","dusty"};
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData("plate_armour");
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
 		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", nameData.get(0),nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);

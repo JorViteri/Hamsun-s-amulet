@@ -9,12 +9,9 @@ import TextManagement.WordDataGetterFactory;
 import asciiPanel.AsciiPanel;
 
 public class StartScreen implements Screen {
-	
-	private WordDataGetter getter;
+
 	
 	public StartScreen(){
-		WordDataGetterFactory getterFactory = new WordDataGetterFactory();
-		this.getter = getterFactory.getWordDataGetter();
 	}
 
 	@Override
@@ -27,7 +24,7 @@ public class StartScreen implements Screen {
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
 		
-		return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen(this.getter) : this;
+		return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
 	}
 	
 

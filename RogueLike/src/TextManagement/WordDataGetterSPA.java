@@ -10,7 +10,9 @@ import org.json.JSONObject;
 
 public class WordDataGetterSPA implements WordDataGetter {
 	
-	public WordDataGetterSPA(){
+	private static WordDataGetterSPA getter;
+	
+	private WordDataGetterSPA(){
 	}
 	
 	public String getRandomSeed(String[] array){
@@ -19,6 +21,12 @@ public class WordDataGetterSPA implements WordDataGetter {
 		return array[randomNumber];
 	}
 	
+	public static WordDataGetterSPA getSingletonInstance(){
+		if(getter == null){
+			getter = new  WordDataGetterSPA();
+		}
+		return getter;
+	}
 
 	@Override
 	public ArrayList<String> getNounData(String noun) {

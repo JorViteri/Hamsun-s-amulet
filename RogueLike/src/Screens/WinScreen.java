@@ -11,10 +11,8 @@ import asciiPanel.AsciiPanel;
 
 public class WinScreen implements Screen {
 
-	private WordDataGetter getter;
 	
-	public WinScreen(WordDataGetter getter){
-		this.getter = getter;
+	public WinScreen(){
 	}
 	
 	
@@ -35,7 +33,7 @@ public class WinScreen implements Screen {
 	    if(key.getKeyCode() == KeyEvent.VK_ENTER){
 	    	textManager = TextManager.getTextManager();
 	    	textManager.clearTextArea(2);
-			return new PlayScreen(this.getter);
+			return new PlayScreen();
 		} else{
 			return  this;
 		}

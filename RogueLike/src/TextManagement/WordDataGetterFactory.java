@@ -6,9 +6,11 @@ import java.util.Properties;
 
 public class WordDataGetterFactory {
 	
-	private String language; 
+	private static String language; 
+	private static WordDataGetter getter;
+	private static WordDataGetterFactory factory;
 	
-	public WordDataGetterFactory(){
+	private WordDataGetterFactory(){
 		Properties prop = new Properties();
 		InputStream input;
 		try {
@@ -20,20 +22,31 @@ public class WordDataGetterFactory {
 		this.language = prop.getProperty("language");
 	}
 	
-	public WordDataGetter getWordDataGetter(){
-		switch (language){
-		case "SPA":
-			WordDataGetterSPA result = new WordDataGetterSPA();
-			return result;
-		case "ENG":
-			WordDataGetterENG result1 = new WordDataGetterENG();
-			return result1;
-		default:
-			return null;
+	public static WordDataGetterFactory getInstance(){
+		if (factory==null){
+			factory = new WordDataGetterFactory();
+			language = factory.getLanguage();
 		}
+		return factory;
 	}
-	
-	public String getLanguage(){
+
+	public WordDataGetter getWordDataGetter() {
+		if (getter == null) {
+			switch (language) {
+			case "SPA":
+				getter = WordDataGetterSPA.getSingletonInstance();
+				break;
+			case "ENG":
+				getter = WordDataGetterENG.getSingletonInstance();
+				break;
+			default:
+				return null;
+			}
+		}
+		return getter;
+	}
+
+	public String getLanguage() {
 		return language;
 	}
 }

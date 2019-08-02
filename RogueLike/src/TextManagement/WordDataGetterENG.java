@@ -10,7 +10,16 @@ import org.json.JSONObject;
 
 public class WordDataGetterENG implements WordDataGetter {
 	
-	public WordDataGetterENG(){
+	private static WordDataGetterENG getter;
+	
+	private WordDataGetterENG(){
+	}
+	
+	public static WordDataGetterENG getSingletonInstance(){
+		if(getter == null){
+			getter = new  WordDataGetterENG();
+		}
+		return getter;
 	}
 	
 	public String getRandomSeed(String[] array){

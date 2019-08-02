@@ -11,6 +11,7 @@ import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterFactory;
 import asciiPanel.AsciiPanel;
 
 public class PotionFactory {
@@ -18,12 +19,10 @@ public class PotionFactory {
 	private World world;
 	private Map<String,Color> potionColours;
 	private List<String> potionAppearances;
-	private WordDataGetter getter;
 	private String[] arr = {"shiny","disgusting","magic","old"};
 
-	public PotionFactory(World world, WordDataGetter getter) {
+	public PotionFactory(World world) {
 		this.world = world;
-		this.getter = getter;
 		setUpPotionAppearances();
 	}
 
@@ -46,6 +45,8 @@ public class PotionFactory {
 	
 	public Item newPotionOfHealth(int depth) {
 		String appearance = potionAppearances.get(0);
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData("potion");
 		String name = "health "+nameData.get(0);
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
@@ -66,6 +67,8 @@ public class PotionFactory {
 
 	public Item newPotionOfMana(int depth) {
 		String appearance = potionAppearances.get(1);
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData("potion");
 		String name = "mana "+nameData.get(0);
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
@@ -86,6 +89,8 @@ public class PotionFactory {
 
 	public Item newPotionOfPoison(int depth) {
 		String appearance = potionAppearances.get(2);
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData("potion");
 		String name = "poison "+nameData.get(0);
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
@@ -106,6 +111,8 @@ public class PotionFactory {
 
 	public Item newPotionOfWarrior(int depth) {
 		String appearance = potionAppearances.get(3);
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData("potion");
 		String name = "warrior's "+nameData.get(0);
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));

@@ -30,11 +30,9 @@ import asciiPanel.AsciiPanel;
 public class ElementsFactory {
 
 	private World world;
-	private WordDataGetter getter;
 
-	public ElementsFactory(World world, WordDataGetter getter) {
+	public ElementsFactory(World world) {
 		this.world = world;
-		this.getter = getter;
 	}
 
 	public Item newRock(int depth) {

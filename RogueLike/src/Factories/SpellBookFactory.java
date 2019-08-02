@@ -6,22 +6,23 @@ import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterFactory;
 import asciiPanel.AsciiPanel;
 
 public class SpellBookFactory {
 
 	private World world;
-	private WordDataGetter getter;
 	private String[] n_arr = {"book", "perchment", "grimoire", "tome"};
 	private String[] a_arr = {"old","dusty","big_size","magic"};
 	
-	public SpellBookFactory(World world, WordDataGetter getter){
+	public SpellBookFactory(World world){
 		this.world = world;
-		this.getter = getter;
 	}
 	
 
 	public Item newWhiteMagesSpellbook(int depth) {
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
 		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
 		String name = "white mage's "+nameData.get(0);
@@ -85,6 +86,8 @@ public class SpellBookFactory {
 	
 	//TODO muchas cosas
 	public Item newBlueMagesSpellbook(int depth) {
+		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		ArrayList<String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
 		if(nameData.get(0).equals("grimorio")){
 			boolean c =  true;
@@ -128,7 +131,7 @@ public class SpellBookFactory {
 						int ny = creature.getY() + oy;
 						if (ox == 0 && oy == 0 || creature.creature(nx, ny, creature.getZ()) != null)
 							continue;
-						CreatureFactory cf = new CreatureFactory(world, getter);
+						CreatureFactory cf = new CreatureFactory(world);
 						Creature bat = cf.newBat(0); //TODO la profundiadd no deberia ser 0, deberia ser donde este el jugador
 
 						if (!bat.canEnter(nx, ny, creature.getZ())) {
