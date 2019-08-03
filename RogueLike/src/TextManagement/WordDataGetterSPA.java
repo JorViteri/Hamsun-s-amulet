@@ -121,14 +121,60 @@ public class WordDataGetterSPA implements WordDataGetter {
 
 	@Override
 	public ArrayList<String> getVerbData(String verb) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> result = new ArrayList<>();
+		ArrayList<String> names = new ArrayList<>();
+		String aux;
+		int j;
+		JSONObject objectNames=null;
+		JSONObject object = null;
+		Random random = new Random();
+		verb= verb.replace(" ", "_");
+		try{
+			File file = new File("res/Synsets/SPA_Synsets/SPA_verbs_json.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+			objectNames = object.getJSONObject(verb);
+		} catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}		
+		
+		Collection<String> keys = objectNames.keySet();
+		names = new ArrayList<String>(keys);
+		
+		j=random.nextInt(names.size());
+		aux = names.get(j);
+		aux = aux.replace("[", "");
+		aux = aux.replace("]", "");
+		object = objectNames.getJSONObject(aux);
+		aux =  aux.replace("_", " ");
+		result.add(0, aux);
+		result.add(1,object.getString("3PS"));
+		result.add(2, object.getString("3PP"));
+		result.add(1,object.getString("3SS"));
+		result.add(2, object.getString("3SP"));
+		return result;
 	}
 
 	@Override
 	public ArrayList<String> getAdvData(String adv) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> results = new ArrayList<>();
+		JSONArray objectAdvArr=null;
+		JSONObject object = null;
+		Random random = new Random();
+		int pos;
+		try{
+			File file = new File("res/Synsets/SPA_Synsets/SPA_adverbs_json.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+			objectAdvArr = object.getJSONArray(adv);
+		} catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}		
+		pos = random.nextInt(objectAdvArr.length());
+		results.add(objectAdvArr.getString(pos));
+		return results;
 	}
 	
 	

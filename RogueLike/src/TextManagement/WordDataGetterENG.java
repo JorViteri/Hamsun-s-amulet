@@ -58,11 +58,10 @@ public class WordDataGetterENG implements WordDataGetter {
 		aux = aux.replace("[", "");
 		aux = aux.replace("]", "");
 		object = objectNames.getJSONObject(aux);
-		object = object.getJSONObject(aux);
 		aux =  aux.replace("_", " ");
 		result.add(0, aux);
-		result.add(1,object.getString("plural"));
-		result.add(2, object.getString("genere"));
+		result.add(1,object.getString("singular"));
+		result.add(2, object.getString("plural"));
 		return result;
 	}
 
@@ -74,7 +73,7 @@ public class WordDataGetterENG implements WordDataGetter {
 		Random random = new Random();
 		int pos;
 		try{
-			File file = new File("res/Synsets/ENG_Synsets/ENG_names_json.json");
+			File file = new File("res/Synsets/ENG_Synsets/ENG_adjectives_json.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectAdjArr = object.getJSONArray(adj);
@@ -83,7 +82,8 @@ public class WordDataGetterENG implements WordDataGetter {
 			e.printStackTrace();
 		}		
 		pos = random.nextInt(objectAdjArr.length());
-		results.add(objectAdjArr.getString(pos));
+		results.add(0, objectAdjArr.getString(pos));
+		results.add(1,objectAdjArr.getString(pos));
 		return results;
 	}
 
@@ -140,7 +140,7 @@ public class WordDataGetterENG implements WordDataGetter {
 			e.printStackTrace();
 		}		
 		pos = random.nextInt(objectAdvArr.length());
-		results.add(objectAdvArr.getString(pos));
+		results.add(0,objectAdvArr.getString(pos));
 		return results;
 	}
 	
