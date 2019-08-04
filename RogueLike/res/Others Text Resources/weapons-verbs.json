@@ -1,0 +1,20 @@
+{  
+   "dagger":[  
+      "cut",
+      "thurst",
+      "slash"
+   ],
+   "sword":[  
+      "cut",
+      "thurst",
+      "slash"
+   ],
+   "staff":[  
+      "smash",
+      "hit",
+      "strike"
+   ],
+   "bow":[  
+      "shoot"
+   ]
+}

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
@@ -23,16 +24,10 @@ public class WordDataGetterENG implements WordDataGetter {
 		}
 		return getter;
 	}
-	
-	public String getRandomSeed(String[] array){
-		Random r = new Random();
-		int randomNumber = r.nextInt(array.length);
-		return array[randomNumber];
-	}
 
 	@Override
-	public ArrayList<String> getNounData(String noun) {
-		ArrayList<String> result = new ArrayList<>();
+	public HashMap<String, String> getNounData(String noun) {
+		HashMap<String, String> result = new HashMap<>();
 		ArrayList<String> names = new ArrayList<>();
 		String aux;
 		int j;
@@ -59,15 +54,15 @@ public class WordDataGetterENG implements WordDataGetter {
 		aux = aux.replace("]", "");
 		object = objectNames.getJSONObject(aux);
 		aux =  aux.replace("_", " ");
-		result.add(0, aux);
-		result.add(1,object.getString("singular"));
-		result.add(2, object.getString("plural"));
+		result.put("baseNoun", aux);
+		result.put("singular",object.getString("singular"));
+		result.put("plural", object.getString("plural"));
 		return result;
 	}
 
 	@Override
-	public ArrayList<String> getAdjData(String adj, String genere) {
-		ArrayList<String> results = new ArrayList<>();
+	public HashMap<String, String> getAdjData(String adj, String genere) {
+		HashMap<String, String> results = new HashMap<>();
 		JSONArray objectAdjArr=null;
 		JSONObject object = null;
 		Random random = new Random();
@@ -82,14 +77,14 @@ public class WordDataGetterENG implements WordDataGetter {
 			e.printStackTrace();
 		}		
 		pos = random.nextInt(objectAdjArr.length());
-		results.add(0, objectAdjArr.getString(pos));
-		results.add(1,objectAdjArr.getString(pos));
+		results.put("singular", objectAdjArr.getString(pos));
+		results.put("plural",objectAdjArr.getString(pos));
 		return results;
 	}
 
 	@Override
-	public ArrayList<String> getVerbData(String verb) {
-		ArrayList<String> result = new ArrayList<>();
+	public HashMap<String, String> getVerbData(String verb) {
+		HashMap<String, String> result = new HashMap<>();
 		ArrayList<String> verbs = new ArrayList<>();
 		String aux;
 		int j;
@@ -117,15 +112,15 @@ public class WordDataGetterENG implements WordDataGetter {
 		object = objectVerbs.getJSONObject(aux);
 		object = object.getJSONObject(aux);
 		aux =  aux.replace("_", " ");
-		result.add(0, aux);
-		result.add(1,object.getString("ThirdPerson"));
-		result.add(2, object.getString("Past"));
+		result.put("Present", aux);
+		result.put("ThirdPerson",object.getString("ThirdPerson"));
+		result.put("Past", object.getString("Past"));
 		return result;
 	}
 
 	@Override
-	public ArrayList<String> getAdvData(String adv) {
-		ArrayList<String> results = new ArrayList<>();
+	public HashMap<String, String> getAdvData(String adv) {
+		HashMap<String, String> results = new HashMap<>();
 		JSONArray objectAdvArr=null;
 		JSONObject object = null;
 		Random random = new Random();
@@ -140,7 +135,7 @@ public class WordDataGetterENG implements WordDataGetter {
 			e.printStackTrace();
 		}		
 		pos = random.nextInt(objectAdvArr.length());
-		results.add(0,objectAdvArr.getString(pos));
+		results.put("adverb",objectAdvArr.getString(pos));
 		return results;
 	}
 	

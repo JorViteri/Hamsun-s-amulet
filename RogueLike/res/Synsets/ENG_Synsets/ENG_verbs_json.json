@@ -1,9 +1,8 @@
 {
-   "drop": {
-      "drop": {
-         "ThirdPerson": "drops",
-          "Past": "dropped",
-         "Present": "drop"
+   "drop": {"drop": {
+      "ThirdPerson": "drops",
+      "Past": "dropped",
+      "Present": "drop"
    }},
    "chant": {
       "chant": {
@@ -22,84 +21,16 @@
          "Present": "intone"
       }
    },
-   "suffer": {
-      "suffer": {
-         "ThirdPerson": "suffers",
-         "Past": "suffered",
-         "Present": "suffer"
-      },
-      "get": {
-         "ThirdPerson": "gets",
-         "Past": "got",
-         "Present": "get"
-      },
-      "have": {
-         "ThirdPerson": "has",
-         "Past": "had",
-         "Present": "have"
-      },
-      "sustain": {
-         "ThirdPerson": "sustains",
-         "Past": "sustained",
-         "Present": "sustain"
-      }
-   },
    "cut": {"cut": {
       "ThirdPerson": "cuts",
       "Past": "cut",
       "Present": "cut"
    }},
-   "equip": {
-      "fit": {
-         "ThirdPerson": "fits",
-         "Past": "fitted",
-         "Present": "fit"
-      },
-      "outfit": {
-         "ThirdPerson": "outfits",
-         "Past": "outfitted",
-         "Present": "outfit"
-      },
-      "equip": {
-         "ThirdPerson": "equips",
-         "Past": "equipped",
-         "Present": "equip"
-      },
-      "fit_out": {
-         "ThirdPerson": "fits out",
-         "Past": "fitted out",
-         "Present": "fit out"
-      }
-   },
-   "throw": {
-      "cast": {
-         "ThirdPerson": "casts",
-         "Past": "casted",
-         "Present": "cast"
-      },
-      "hurl": {
-         "ThirdPerson": "hurls",
-         "Past": "hurled",
-         "Present": "hurl"
-      },
-      "hurtle": {
-         "ThirdPerson": "hurtles",
-         "Past": "hurtled",
-         "Present": "hurtle"
-      }
-   },
-   "thrust": {
-      "thrust": {
-         "ThirdPerson": "thrusts",
-         "Past": "thrust",
-         "Present": "thrust"
-      },
-      "pierce": {
-         "ThirdPerson": "pierces",
-         "Past": "pierced",
-         "Present": "pierce"
-      }
-   },
+   "strike": {"strike": {
+      "ThirdPerson": "strikes",
+      "Past": "struck",
+      "Present": "strike"
+   }},
    "consume": {
       "take": {
          "ThirdPerson": "takes",
@@ -127,6 +58,128 @@
          "Present": "ingest"
       }
    },
+   "check": {
+      "canvas": {
+         "ThirdPerson": "canvas",
+         "Past": "canvas",
+         "Present": "canvas"
+      },
+      "study": {
+         "ThirdPerson": "studies",
+         "Past": "studied",
+         "Present": "study"
+      },
+      "examine": {
+         "ThirdPerson": "examines",
+         "Past": "examined",
+         "Present": "examine"
+      },
+      "analyze": {
+         "ThirdPerson": "analyzes",
+         "Past": "analyzed",
+         "Present": "analyze"
+      },
+      "analyse": {
+         "ThirdPerson": "analyses",
+         "Past": "analysed",
+         "Present": "analyse"
+      },
+      "canvass": {
+         "ThirdPerson": "canvasses",
+         "Past": "canvassed",
+         "Present": "canvass"
+      }
+   },
+   "drink": {
+      "imbibe": {
+         "ThirdPerson": "imbibes",
+         "Past": "imbibed",
+         "Present": "imbibe"
+      },
+      "drink": {
+         "ThirdPerson": "drinks",
+         "Past": "drank",
+         "Present": "drink"
+      }
+   },
+   "suffer": {
+      "suffer": {
+         "ThirdPerson": "suffers",
+         "Past": "suffered",
+         "Present": "suffer"
+      },
+      "get": {
+         "ThirdPerson": "gets",
+         "Past": "got",
+         "Present": "get"
+      },
+      "have": {
+         "ThirdPerson": "has",
+         "Past": "had",
+         "Present": "have"
+      },
+      "sustain": {
+         "ThirdPerson": "sustains",
+         "Past": "sustained",
+         "Present": "sustain"
+      }
+   },
+   "hit": {"hit": {
+      "ThirdPerson": "hits",
+      "Past": "hit",
+      "Present": "hit"
+   }},
+   "equip": {
+      "fit": {
+         "ThirdPerson": "fits",
+         "Past": "fitted",
+         "Present": "fit"
+      },
+      "outfit": {
+         "ThirdPerson": "outfits",
+         "Past": "outfitted",
+         "Present": "outfit"
+      },
+      "equip": {
+         "ThirdPerson": "equips",
+         "Past": "equipped",
+         "Present": "equip"
+      },
+      "fit_out": {
+         "ThirdPerson": "fits out",
+         "Past": "fitted out",
+         "Present": "fit out"
+      }
+   },
+   "throw": {
+      "cast": {
+         "ThirdPerson": "casts",
+         "Past": "cast",
+         "Present": "cast"
+      },
+      "hurl": {
+         "ThirdPerson": "hurls",
+         "Past": "hurled",
+         "Present": "hurl"
+      },
+      "hurtle": {
+         "ThirdPerson": "hurtles",
+         "Past": "hurtled",
+         "Present": "hurtle"
+      }
+   },
+   "thrust": {
+      "thrust": {
+         "ThirdPerson": "thrusts",
+         "Past": "thrust",
+         "Present": "thrust"
+      },
+      "pierce": {
+         "ThirdPerson": "pierces",
+         "Past": "pierced",
+         "Present": "pierce"
+      }
+   },
    "shoot": {
       "pip": {
          "ThirdPerson": "pips",
@@ -151,43 +204,9 @@
          "Present": "gash"
       }
    },
-   "check": {
-      "canvas": {
-         "ThirdPerson": "canvases",
-         "Past": "canvased",
-         "Present": "canvas"
-      },
-      "study": {
-         "ThirdPerson": "studies",
-         "Past": "studied",
-         "Present": "study"
-      },
-      "examine": {
-         "ThirdPerson": "examines",
-         "Past": "examined",
-         "Present": "examine"
-      },
-      "analyze": {
-         "ThirdPerson": "analyzes",
-         "Past": "analyzed",
-         "Present": "analyze"
-      },
-      "canvass": {
-         "ThirdPerson": "canvasses",
-         "Past": "canvassed",
-         "Present": "canvass"
-      }
-   },
-   "drink": {
-      "imbibe": {
-         "ThirdPerson": "imbibes",
-         "Past": "imbibed",
-         "Present": "imbibe"
-      },
-      "drink": {
-         "ThirdPerson": "drinks",
-         "Past": "drank",
-         "Present": "drink"
-      }
-   }
+   "smash": {"smash": {
+      "ThirdPerson": "smashes",
+      "Past": "smashed",
+      "Present": "smash"
+   }}
 }

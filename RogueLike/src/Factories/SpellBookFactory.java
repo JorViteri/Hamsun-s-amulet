@@ -1,6 +1,8 @@
 package Factories;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
@@ -23,10 +25,11 @@ public class SpellBookFactory {
 	public Item newWhiteMagesSpellbook(int depth) {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
-		ArrayList<String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
-		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
+		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
+		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
 		String name = "white mage's "+nameData.get(0);
-		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
+		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, nameData.get("plural"),
+				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.addWrittenSpell("minor heal", 4, new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
@@ -88,13 +91,14 @@ public class SpellBookFactory {
 	public Item newBlueMagesSpellbook(int depth) {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
-		ArrayList<String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
+		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
 		if(nameData.get(0).equals("grimorio")){
 			boolean c =  true;
 		}
-		ArrayList<String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
+		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
 		String name = "blue mage's "+nameData.get(0);
-		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, nameData.get(1), nameData.get(2), adjData.get(0), adjData.get(1), null);
+		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, nameData.get("plural"),
+				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 
 		item.addWrittenSpell("blood to mana", 1, new Effect(1) {
 			public void start(Creature creature) {
