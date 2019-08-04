@@ -49,7 +49,7 @@ public class PotionFactory {
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData("potion");
 		String name = "health "+nameData.get(0);
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
@@ -71,7 +71,7 @@ public class PotionFactory {
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("potion");
 		String name = "mana "+nameData.get(0);
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(1) {
 			public void start(Creature creature) {
@@ -93,7 +93,7 @@ public class PotionFactory {
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData("potion");
 		String name = "poison "+nameData.get(0);
-		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {
@@ -115,7 +115,7 @@ public class PotionFactory {
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("potion");
 		String name = "warrior's "+nameData.get(0);
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(20) {
 			public void start(Creature creature) {

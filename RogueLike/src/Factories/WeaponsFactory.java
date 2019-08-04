@@ -25,8 +25,8 @@ public class WeaponsFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("dagger");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
-		Item item = new Item(')', AsciiPanel.white, "dagger", nameData.get("nounBase"), nameData.get("plural"),
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
+		Item item = new Item(')', AsciiPanel.white, "dagger", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyAttackValue(5);
 		world.addAtEmptyLocation(item, depth);
@@ -38,8 +38,8 @@ public class WeaponsFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("sword");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
-		Item item = new Item(')', AsciiPanel.brightWhite, "sword", nameData.get("nounBase"), nameData.get("plural"),
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genre"));
+		Item item = new Item(')', AsciiPanel.brightWhite, "sword", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyAttackValue(10);
 		world.addAtEmptyLocation(item, depth);
@@ -51,8 +51,8 @@ public class WeaponsFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("staff");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
-		Item item = new Item(')', AsciiPanel.yellow, "staff", nameData.get("nounBase"), nameData.get("plural"),
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
+		Item item = new Item(')', AsciiPanel.yellow, "staff", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyAttackValue(5);
 		item.modifyDefenseValue(3);
@@ -65,8 +65,8 @@ public class WeaponsFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("bow");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
-		Item item = new Item(')', AsciiPanel.yellow, "bow", nameData.get("nounBase"), nameData.get("plural"),
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
+		Item item = new Item(')', AsciiPanel.yellow, "bow", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyAttackValue(1);
 		item.modifyRangedAttackValue(5);

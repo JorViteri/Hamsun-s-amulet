@@ -31,9 +31,10 @@ public class CreatureFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
-		Creature player = new Creature(world, '@', "Player", nameData.get(0), nameData.get(1), nameData.get(2),
-				AsciiPanel.brightWhite, 100, 20, 5, 20, adjData.get(0), adjData.get(1));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
+		Creature player = new Creature(world, '@', "Player", nameData.get("baseNoun"), nameData.get("plural"),
+				nameData.get("genere"), AsciiPanel.brightWhite, 100, 20, 5, 20, adjData.get("singular"),
+				adjData.get("plural"));
 		world.addAtExitStairs(player);
 		new PlayerAi(player, messages, fov);
 		return player;
@@ -44,7 +45,7 @@ public class CreatureFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("fungus");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Creature fungus = new Creature(world, 'f', "Fungus", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), AsciiPanel.green, 10, 0, 0, 0, adjData.get("singular"), adjData.get("plural"));
 		world.addAtEmptyLocation(fungus, depth);
@@ -57,7 +58,7 @@ public class CreatureFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("bat");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Creature bat = new Creature(world, 'b', "Bat", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), AsciiPanel.yellow, 15, 5, 0, 0, adjData.get("singular"), adjData.get("plural"));
 		world.addAtEmptyLocation(bat, depth);
@@ -70,7 +71,7 @@ public class CreatureFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("zombie");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Creature zombie = new Creature(world, 'z', "Zombie", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), AsciiPanel.white, 50, 10, 10, 0, adjData.get("singular"),
 				adjData.get("plural"));
@@ -84,7 +85,7 @@ public class CreatureFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("goblin");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get(2));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Creature goblin = new Creature(world, 'g', "Goblin", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), AsciiPanel.brightGreen, 66, 15, 5, 10, adjData.get("singular"),
 				adjData.get("plural"));

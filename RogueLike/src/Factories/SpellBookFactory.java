@@ -26,8 +26,8 @@ public class SpellBookFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
-		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
-		String name = "white mage's "+nameData.get(0);
+		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
+		String name = "white mage's "+nameData.get("baseNoun");
 		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.addWrittenSpell("minor heal", 4, new Effect(1) {
@@ -92,11 +92,11 @@ public class SpellBookFactory {
 		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
-		if(nameData.get(0).equals("grimorio")){
+		if(nameData.get("baseNoun").equals("grimorio")){
 			boolean c =  true;
 		}
-		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get(2));
-		String name = "blue mage's "+nameData.get(0);
+		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
+		String name = "blue mage's "+nameData.get("baseNoun");
 		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 
