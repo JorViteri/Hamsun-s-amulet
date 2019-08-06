@@ -20,7 +20,7 @@ import Rogue.World;
 import Rogue.WorldBuilder;
 import TextManagement.TextManager;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 

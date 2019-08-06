@@ -1,11 +1,31 @@
 package TextManagement;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class RestrictionsFactory {
 
 	private String language;
+	private static RestrictionsFactory factory;
 
-	public RestrictionsFactory(String language) {
-		this.language = language;
+	private RestrictionsFactory() {
+		Properties prop = new Properties();
+		InputStream input;
+		try {
+			input =  new FileInputStream("language.properties");
+			prop.load(input);
+		} catch (Exception e){
+			e.printStackTrace();
+		}	
+		this.language = prop.getProperty("language");
+	}
+
+	public static RestrictionsFactory getInstance() {
+		if (factory == null) {
+			factory = new RestrictionsFactory();
+		}
+		return factory;
 	}
 
 	public Restrictions getRestrictions(String VbNum, String VbPerson, String VbForm, String VbTime, String SujGen,

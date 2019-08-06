@@ -11,7 +11,7 @@ import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public class PotionFactory {
@@ -45,10 +45,10 @@ public class PotionFactory {
 	
 	public Item newPotionOfHealth(int depth) {
 		String appearance = potionAppearances.get(0);
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData("potion");
-		String name = "health "+nameData.get(0);
+		String name = "health "+nameData.get("baseNoun");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(1) {
@@ -67,10 +67,10 @@ public class PotionFactory {
 
 	public Item newPotionOfMana(int depth) {
 		String appearance = potionAppearances.get(1);
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("potion");
-		String name = "mana "+nameData.get(0);
+		String name = "mana "+nameData.get("baseNoun");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(1) {
@@ -89,10 +89,10 @@ public class PotionFactory {
 
 	public Item newPotionOfPoison(int depth) {
 		String appearance = potionAppearances.get(2);
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData("potion");
-		String name = "poison "+nameData.get(0);
+		String name = "poison "+nameData.get("baseNoun");
 		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(20) {
@@ -111,10 +111,10 @@ public class PotionFactory {
 
 	public Item newPotionOfWarrior(int depth) {
 		String appearance = potionAppearances.get(3);
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("potion");
-		String name = "warrior's "+nameData.get(0);
+		String name = "warrior's "+nameData.get("baseNoun");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item('!', potionColours.get(appearance), "health potion", name, nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), appearance+nameData.get("baseNoun"));
 		item.setQuaffEffect(new Effect(20) {

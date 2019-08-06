@@ -11,7 +11,7 @@ import java.util.Random;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import TextManagement.WordDataGetterSPA;
 import asciiPanel.AsciiPanel;
 
@@ -25,11 +25,11 @@ public class ArmorFactory {
 
 	public Item newLightArmor(int depth) {
 		String[] arr = { "red", "green", "grey", "old", "big_size", "short" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("tunic");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
-		Item item = new Item('[', AsciiPanel.green, "tunic", nameData.get("nounBase"), nameData.get("plural"),
+		Item item = new Item('[', AsciiPanel.green, "tunic", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyDefenseValue(2);
 		world.addAtEmptyLocation(item, depth);
@@ -38,24 +38,24 @@ public class ArmorFactory {
 
 	public Item newMediumArmor(int depth) {
 		String[] arr = { "average", "old", "big_size", "new_quality", "shiny", "rusty", "dusty" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("chain_mail");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
-		Item item = new Item('[', AsciiPanel.white, "chain mail", nameData.get("nounBase"), nameData.get("plural"),
+		Item item = new Item('[', AsciiPanel.brightCyan, "chain mail", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyDefenseValue(4);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}
 
-	public Item newHeavyArmor(int depth) {
+	public Item newHeavyArmor(int depth) { //TODO me da nombre null
 		String[] arr = { "great_quality", "old", "big_size", "new_quality", "shiny", "rusty", "dusty" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("plate_armour");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
-		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", nameData.get("nounBase"),
+		Item item = new Item('[', AsciiPanel.brightWhite, "plate armour", nameData.get("baseNoun"),
 				nameData.get("plural"), nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyDefenseValue(6);
 		world.addAtEmptyLocation(item, depth);

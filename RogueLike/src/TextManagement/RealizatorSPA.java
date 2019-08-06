@@ -13,16 +13,25 @@ import org.json.JSONObject;
 public class RealizatorSPA implements Realizator{
 	
 	private WordDataGetter getter;
-	public RealizatorSPA(){
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+	private static RealizatorSPA realizator;
+	
+	private RealizatorSPA(){
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		this.getter = factory.getWordDataGetter();
+	}
+	
+	public static RealizatorSPA getInstance(){
+		if (realizator == null){
+			realizator =  new RealizatorSPA();
+		}
+		return realizator;
 	}
 
 	@Override
 	public String realizatePhrase(String actionType,HashMap<String, String> Subject, HashMap<String, String> CD, HashMap <String, String> CI, HashMap <String, String> CCI,
 			Restrictions restrictions) {
 		String finalPhrase = null;
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, Integer> template = getTemplate(actionType); //aqui obtendriqa la plantilla que necesito 
 		String verb = getter.getActionVerb(actionType, CCI.get("key")); //la llave del synset de los verbos que me interesa

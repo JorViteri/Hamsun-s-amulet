@@ -4,13 +4,14 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class WordDataGetterFactory {
+public class WordDataGetterAndRealizatorFactory {
 	
 	private static String language; 
 	private static WordDataGetter getter;
-	private static WordDataGetterFactory factory;
+	private static Realizator realizator;
+	private static WordDataGetterAndRealizatorFactory factory;
 	
-	private WordDataGetterFactory(){
+	private WordDataGetterAndRealizatorFactory(){
 		Properties prop = new Properties();
 		InputStream input;
 		try {
@@ -22,9 +23,9 @@ public class WordDataGetterFactory {
 		this.language = prop.getProperty("language");
 	}
 	
-	public static WordDataGetterFactory getInstance(){
+	public static WordDataGetterAndRealizatorFactory getInstance(){
 		if (factory==null){
-			factory = new WordDataGetterFactory();
+			factory = new WordDataGetterAndRealizatorFactory();
 			language = factory.getLanguage();
 		}
 		return factory;
@@ -44,6 +45,22 @@ public class WordDataGetterFactory {
 			}
 		}
 		return getter;
+	}
+
+	public Realizator getRealizator(){
+		if (realizator == null) {
+			switch (language) {
+			case "SPA":
+				realizator = RealizatorSPA.getInstance();
+				break;
+			case "ENG":
+				realizator = RealizatorENG.getInstance();
+				break;
+			default:
+				return null;
+			}
+		}
+		return realizator;
 	}
 
 	public String getLanguage() {

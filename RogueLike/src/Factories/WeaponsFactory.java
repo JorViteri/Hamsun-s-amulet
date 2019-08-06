@@ -9,7 +9,7 @@ import java.util.Properties;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public class WeaponsFactory {
@@ -22,7 +22,7 @@ public class WeaponsFactory {
 
 	public Item newDagger(int depth) {
 		String[] arr = { "red", "green", "grey", "rusty", "new_quality", "shiny", "average", "great_quality" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("dagger");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
@@ -35,10 +35,10 @@ public class WeaponsFactory {
 
 	public Item newSword(int depth) {
 		String[] arr = { "red", "green", "grey", "rusty", "new_quality", "shiny", "great_special", "great_quality" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("sword");
-		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genre"));
+		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
 		Item item = new Item(')', AsciiPanel.brightWhite, "sword", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.modifyAttackValue(10);
@@ -48,7 +48,7 @@ public class WeaponsFactory {
 
 	public Item newStaff(int depth) {
 		String[] arr = { "dusty", "new_quality", "old", "average", "great_quality" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("staff");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
@@ -62,7 +62,7 @@ public class WeaponsFactory {
 
 	public Item newBow(int depth) {
 		String[] arr = { "dusty", "new_quality", "old", "average", "great_quality" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("bow");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));

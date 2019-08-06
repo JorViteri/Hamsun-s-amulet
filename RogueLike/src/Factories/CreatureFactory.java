@@ -11,7 +11,7 @@ import CreaturesAI.ZombieAi;
 import Elements.Creature;
 import Rogue.World;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 
@@ -28,7 +28,7 @@ public class CreatureFactory {
 	public Creature newPlayer(ArrayList<String> messages, FieldOfView fov) {
 		String[] a_arr = { "good_character", "glorious", "kind", "big_character", "brave", "great_special" };
 		String[] n_arr = { "hero", "heroine" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
@@ -42,7 +42,7 @@ public class CreatureFactory {
 
 	public Creature newFungus(int depth) {
 		String[] arr = { "green", "disgusting", "little_size", "big_size", "old", "small" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("fungus");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
@@ -55,7 +55,7 @@ public class CreatureFactory {
 
 	public Creature newBat(int depth) {
 		String[] arr = { "scary", "disgusting", "little_size", "big_size", "creepy", "hairy" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("bat");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
@@ -68,7 +68,7 @@ public class CreatureFactory {
 
 	public Creature newZombie(int depth, Creature player) {
 		String[] arr = { "scary", "disgusting", "cursed", "creepy" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("zombie");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));
@@ -82,7 +82,7 @@ public class CreatureFactory {
 
 	public Creature newGoblin(int depth, Creature player) {
 		String[] arr = { "normal", "disgusting", "average", "small", "bald", "annoying" };
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> nameData = getter.getNounData("goblin");
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(arr), nameData.get("genere"));

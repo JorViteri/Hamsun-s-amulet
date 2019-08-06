@@ -10,7 +10,7 @@ import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.Position;
 
 

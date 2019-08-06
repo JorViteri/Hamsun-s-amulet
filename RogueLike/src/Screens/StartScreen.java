@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextArea;
 
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public class StartScreen implements Screen {

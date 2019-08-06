@@ -17,7 +17,7 @@ public class TextManager {
 	private TextManager(JTextArea textArea1, JTextArea textArea2){
 		this.textArea1 = textArea1;
 		this.textArea2 = textArea2;
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		this.getter = factory.getWordDataGetter();
 	}
 	

@@ -8,7 +8,7 @@ import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public class SpellBookFactory {
@@ -23,7 +23,7 @@ public class SpellBookFactory {
 	
 
 	public Item newWhiteMagesSpellbook(int depth) {
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
 		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
@@ -89,7 +89,7 @@ public class SpellBookFactory {
 	
 	//TODO muchas cosas
 	public Item newBlueMagesSpellbook(int depth) {
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
 		if(nameData.get("baseNoun").equals("grimorio")){

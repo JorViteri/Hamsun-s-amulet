@@ -9,7 +9,7 @@ import javax.swing.border.Border;
 import Screens.Screen;
 import Screens.StartScreen;
 import TextManagement.TextManager;
-import TextManagement.WordDataGetterFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 import java.awt.BorderLayout;
@@ -130,8 +130,9 @@ public class RogueMain extends JFrame implements KeyListener  {
 	public static void main(String[] args){
 		RogueMain rogue = new RogueMain(); 
 		TextManager.getSingletonInstance(textArea1, textArea2);
-		WordDataGetterFactory factory = WordDataGetterFactory.getInstance();
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		factory.getWordDataGetter();
+		factory.getRealizator();
 		rogue.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rogue.setVisible(true);
 	}
