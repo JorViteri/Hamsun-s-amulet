@@ -36,7 +36,7 @@ public class WordDataGetterENG implements WordDataGetter {
 		Random random = new Random();
 		noun= noun.replace(" ", "_");
 		try{
-			File file = new File("res/Synsets/ENG_Synsets/ENG_names_json.json");
+			File file = new File("res/Synsets/ENG_Synsets/ENG_names.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectNames = object.getJSONObject(noun);
@@ -68,7 +68,7 @@ public class WordDataGetterENG implements WordDataGetter {
 		Random random = new Random();
 		int pos;
 		try{
-			File file = new File("res/Synsets/ENG_Synsets/ENG_adjectives_json.json");
+			File file = new File("res/Synsets/ENG_Synsets/ENG_adjectives.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectAdjArr = object.getJSONArray(adj);
@@ -93,7 +93,7 @@ public class WordDataGetterENG implements WordDataGetter {
 		Random random = new Random();
 		verb= verb.replace(" ", "_");
 		try{
-			File file = new File("res/Synsets/ENG_Synsets/ENG_verbs_json.json");
+			File file = new File("res/Synsets/ENG_Synsets/ENG_verbs.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectVerbs = object.getJSONObject(verb);
@@ -126,7 +126,7 @@ public class WordDataGetterENG implements WordDataGetter {
 		Random random = new Random();
 		int pos;
 		try{
-			File file = new File("res/Synsets/ENG_Synsets/ENG_adverbs_json.json");
+			File file = new File("res/Synsets/ENG_Synsets/ENG_adverbs.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectAdvArr = object.getJSONArray(adv);
@@ -137,6 +137,35 @@ public class WordDataGetterENG implements WordDataGetter {
 		pos = random.nextInt(objectAdvArr.length());
 		results.put("adverb",objectAdvArr.getString(pos));
 		return results;
+	}
+
+	
+	@Override
+	public String getArticle(String type, String unused ) { //TODO este no deberia estar definido en la super clase ya que son diferentes respecto a los de español
+		JSONObject object = null;
+		try{
+			File file = new File("res/Others Text Resources/ENG/ENG_articles.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+		} catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}		
+		return object.getString(type);
+	}
+
+	@Override
+	public String getPreposition(String type, String unused1, String unused2) {
+		JSONObject object = null;
+		try{
+			File file = new File("res/Others Text Resources/ENG/ENG_prepositions.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+		} catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}		
+		return object.getString(type);
 	}
 	
 

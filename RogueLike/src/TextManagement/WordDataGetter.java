@@ -65,4 +65,9 @@ public interface WordDataGetter {
 		return objectVbArr.getString(pos);
 	}
 
+	String getPreposition(String CID, String genere, String number);
+
+	String getArticle(String genere, String number);
+
+
 }

@@ -1,0 +1,8 @@
+{  
+   "BasicActionsTemplates":["SUJ VB CD"],
+   "ThrowAttack":["SUJ VB CD CI"],
+   "WeaponsAttacks":[  
+      "SUJ VB CI",
+      "SUJ VB CI CCI"
+   ]
+}

@@ -34,7 +34,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 		Random random = new Random();
 		noun= noun.replace(" ", "_");
 		try{
-			File file = new File("res/Synsets/SPA_Synsets/SPA_names_json.json");
+			File file = new File("res/Synsets/SPA_Synsets/SPA_names.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectNames = object.getJSONObject(noun);
@@ -84,7 +84,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 			adj_plu = "plu_f";
 		}
 		try{ //TODO creo que va a ser mejor hacer de esta una clase general para varios usos y que segun la funcion tendra un objeto u otro
-			File file = new File("res/Synsets/SPA_Synsets/SPA_adjectives_json.json");
+			File file = new File("res/Synsets/SPA_Synsets/SPA_adjectives.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectAdjectivesSysnset= object.getJSONObject(adj);
@@ -125,7 +125,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 		Random random = new Random();
 		verb= verb.replace(" ", "_");
 		try{
-			File file = new File("res/Synsets/SPA_Synsets/SPA_verbs_json.json");
+			File file = new File("res/Synsets/SPA_Synsets/SPA_verbs.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectNames = object.getJSONObject(verb);
@@ -159,7 +159,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 		Random random = new Random();
 		int pos;
 		try{
-			File file = new File("res/Synsets/SPA_Synsets/SPA_adverbs_json.json");
+			File file = new File("res/Synsets/SPA_Synsets/SPA_adverbs.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 			objectAdvArr = object.getJSONArray(adv);
@@ -170,6 +170,46 @@ public class WordDataGetterSPA implements WordDataGetter {
 		pos = random.nextInt(objectAdvArr.length());
 		results.put("adverb",objectAdvArr.getString(pos));
 		return results;
+	}
+
+	@Override
+	public String getArticle(String genere, String number) {		
+		JSONObject object = null;
+		try{
+			File file = new File("res/Others Text Resources/SPA/SPA_articles.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+		} catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}		
+
+		object = object.getJSONObject(number);
+		return object.getString(genere);
+	}
+
+	@Override
+	public String getPreposition(String CID, String genere, String number) {
+		JSONObject object = null;
+		JSONArray arr = null;
+		int index;
+		Random r = new Random();
+		try{
+			File file = new File("res/Others Text Resources/SPA/SPA_prepositions.json");
+			String content = FileUtils.readFileToString(file,"utf-8");
+			object = new JSONObject(content);
+		}catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}
+		if (CID.equals("CCI")){
+			arr = object.getJSONArray(CID);
+			index = r.nextInt(arr.length());
+			return arr.getString(index);
+		} else {
+			object = object.getJSONObject(CID);
+			return object.getString(genere+number);
+		}
 	}
 	
 	

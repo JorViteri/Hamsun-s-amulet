@@ -1,0 +1,10 @@
+{  
+   "singular":{  
+      "masculine":"el",
+      "femenine":"la"
+   },
+   "plural":{  
+      "masculine":"los",
+      "femenine":"las"
+   }
+}

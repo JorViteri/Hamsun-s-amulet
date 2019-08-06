@@ -1,0 +1,18 @@
+{  
+   "SUJ":[  
+      "ART NOUN",
+      "ART ADJ NOUN"
+   ],
+   "CD":[  
+      "ART NOUN",
+      "ART NOUN ADJ"
+   ],
+   "CI":[  
+      "PR ART NOUN",
+      "PR ART NOUN ADJ"
+   ],
+   "CCI":[  
+      "PR ART NOUN",
+      "PR ART NOUN ADJ"
+   ]
+}

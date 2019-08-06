@@ -22,7 +22,7 @@
          "infinitive": "cortar"
       },
       "perforar": {
-         "3SP": "Perforaron",
+         "3SP": "perforaron",
          "3PP": "perforan",
          "3SS": "perforó",
          "3PS": "perfora",
@@ -50,13 +50,6 @@
          "3SS": "pegó",
          "3PS": "pega",
          "infinitive": "pegar"
-      },
-      "golpear_secamente": {
-         "3SP": "golpear_secamente",
-         "3PP": "golpear_secamente",
-         "3SS": "golpear_secamente",
-         "3PS": "golpear_secamente",
-         "infinitive": "golpear_secamente"
       }
    },
    "consume": {
@@ -76,7 +69,7 @@
       },
       "comer": {
          "3SP": "comieron",
-         "3PP": "Comen",
+         "3PP": "comen",
          "3SS": "comió",
          "3PS": "come",
          "infinitive": "comer"
@@ -112,7 +105,7 @@
          "infinitive": "explorar"
       },
       "examinar": {
-         "3SP": "Examinaron",
+         "3SP": "examinaron",
          "3PP": "examinan",
          "3SS": "examinó",
          "3PS": "examina",
@@ -180,13 +173,6 @@
          "3PS": "pega",
          "infinitive": "pegar"
       },
-      "tustar": {
-         "3SP": "tustar",
-         "3PP": "tustar",
-         "3SS": "tustar",
-         "3PS": "tustar",
-         "infinitive": "tustar"
-      },
       "batir": {
          "3SP": "batieron",
          "3PP": "baten",
@@ -196,10 +182,10 @@
       }
    },
    "equip": {"equipar": {
-      "3SP": "equiparon",
-      "3PP": "equipan",
-      "3SS": "equipó",
-      "3PS": "equipa",
+      "3SP": "se equiparon",
+      "3PP": "se equipan",
+      "3SS": "se equipó",
+      "3PS": "se equipa",
       "infinitive": "equipar"
    }},
    "throw": {
