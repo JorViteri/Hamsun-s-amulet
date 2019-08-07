@@ -1,23 +1,23 @@
 {  
-   "Chant":[  
+   "chant":[  
       "chant"
    ],
-   "Check":[  
+   "check":[  
       "check"
    ],
-   "Consume":[  
+   "consume":[  
       "consume"
    ],
-   "Drop":[  
+   "drop":[  
       "drop"
    ],
-   "Equip":[  
+   "equip":[  
       "equip"
    ],
-   "Drink":[  
+   "drink":[  
       "drink"
    ],
-   "Throw":[  
+   "throw":[  
       "throw"
    ]
 }

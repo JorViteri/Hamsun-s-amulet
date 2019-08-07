@@ -2,6 +2,7 @@ package Elements;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Item {
@@ -199,6 +200,27 @@ public class Item {
 
 	public String getN_plu() {
 		return n_plu;
+	}
+
+
+
+	public HashMap<String, String> getMorfData(String num) {
+		HashMap<String, String> data = new HashMap<>();
+		data.put("genere", this.genere);
+		data.put("number", num);
+		return data;
+	}
+	
+	public HashMap<String, String> getNameAndAdjective(String num){
+		HashMap<String,String> data = new HashMap<>();
+		if(num.equals("plural")){
+			data.put("name", this.n_plu);
+			data.put("characteristic", this.charc_plu);
+		} else{
+			data.put("name", this.name);
+			data.put("characteristic", this.characteristic);
+		}
+		return data;
 	}
 
 }

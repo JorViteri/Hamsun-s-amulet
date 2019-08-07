@@ -22,7 +22,7 @@ public class RealizatorENG implements Realizator{
 
 	@Override
 	public String realizatePhrase(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD,
-			HashMap<String, String> CI, HashMap<String, String> CII, Restrictions restrictions) {
+			HashMap<String, String> CI, HashMap<String, String> CII, Restrictions restrictions, String templateType) {
 		// TODO Auto-generated method stub
 		return null;
 	}

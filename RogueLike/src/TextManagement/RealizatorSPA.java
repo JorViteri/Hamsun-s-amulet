@@ -28,13 +28,19 @@ public class RealizatorSPA implements Realizator{
 	}
 
 	@Override
-	public String realizatePhrase(String actionType,HashMap<String, String> Subject, HashMap<String, String> CD, HashMap <String, String> CI, HashMap <String, String> CCI,
-			Restrictions restrictions) {
-		String finalPhrase = null;
+	public String realizatePhrase(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD,
+			HashMap<String, String> CI, HashMap<String, String> CCI, Restrictions restrictions, String templateType) {
+		String finalPhrase = "";
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
-		HashMap<String, Integer> template = getTemplate(actionType); //aqui obtendriqa la plantilla que necesito 
-		String verb = getter.getActionVerb(actionType, CCI.get("key")); //la llave del synset de los verbos que me interesa
+		HashMap<String, Integer> template = getTemplate(templateType); //aqui obtendriqa la plantilla que necesito 
+		String verb = null;
+		if (CCI!=null){  //TODO aqui solo pillo el ID del verbo
+			verb = getter.getActionVerb(actionType, CCI.get("key"));
+		} else{
+			verb = getter.getActionVerb(actionType, null);
+		}
+		verb = getter.getVerbData(verb).get("ThirdPresentSingular"); //aqui tendria que cargarlo y pillar lo que me interese
 		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verb, Subject, CD, CI, CCI, restrictions);
 		int size = template.size();
 		for (int i = 0; i < size; i++) {
@@ -49,7 +55,7 @@ public class RealizatorSPA implements Realizator{
 	@SuppressWarnings("null")
 	@Override
 	public HashMap<String, Integer> getTemplate(String actionType) {
-		HashMap<String,Integer> result = null;
+		HashMap<String,Integer> result = new HashMap<>();
 		JSONObject object = null;
 		Random r = new Random();
 		JSONArray arr = null;
@@ -64,7 +70,7 @@ public class RealizatorSPA implements Realizator{
 			boolean c = true;
 			e.printStackTrace();
 		}	
-		arr = object.getJSONArray("actionType");
+		arr = object.getJSONArray(actionType);
 		int i = r.nextInt(arr.length());
 		template = arr.getString(i);
 		templateSplit = template.split(" ");
@@ -78,7 +84,7 @@ public class RealizatorSPA implements Realizator{
 	
 	@SuppressWarnings("null")
 	private HashMap<String,String> getObjectTemplate(String ID){
-		HashMap<String,String> result = null;
+		HashMap<String,String> result = new HashMap<>();
 		JSONObject object = null;
 		JSONArray arr = null;
 		Random random = new Random();
@@ -107,8 +113,8 @@ public class RealizatorSPA implements Realizator{
 	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, HashMap<String, String> Subject,
 			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CCI,
 			Restrictions restrictions) {
-		HashMap<String, String> result = null;
-		HashMap<String, String> aux;
+		HashMap<String, String> result = new HashMap<>();
+		HashMap<String, String> aux = new HashMap<>();
 		if(template.get("SUJ")!=null){
 			aux = getObjectTemplate("SUJ");
 			result.put("SUJ", constructSUJ(aux, Subject, restrictions));
@@ -152,7 +158,7 @@ public class RealizatorSPA implements Realizator{
 
 	private String constructCI(HashMap<String, String> prepPhrase, HashMap<String, String> CI, Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
-		String result = null;
+		String result = "";
 		if (prepPhrase.get("PR") != null){
 			result = result + getter.getPreposition("CI", res.get("CIGen"), res.get("CINum"));
 		} //TODO Obtener las preposiciones!! actualizar el restricitons para tener las nuevas en cuenta!!!
@@ -171,24 +177,24 @@ public class RealizatorSPA implements Realizator{
 	private String constructSUJ(HashMap<String, String> nominalPhrase, HashMap<String, String> Subject,
 			Restrictions restrict) {
 		HashMap<String, String> res = restrict.getRestrictions();
-		String result = null;
+		String result = "";
 		result = result + getter.getArticle(res.get("SujGen"), res.get("SujNum"));
 		if (nominalPhrase.get("ADJ") != null) {
-			result = result + " " + Subject.get("adjective");
+			result = result + " " + Subject.get("characteristic");
 		}
 		result = result + " " + Subject.get("name");
 		return result;
 	}
 	
 	
-	private String constructCD(HashMap<String, String> nominalPhrase, HashMap<String, String> Subject,
+	private String constructCD(HashMap<String, String> nominalPhrase, HashMap<String, String> object,
 			Restrictions restrict){
 		HashMap<String, String> res = restrict.getRestrictions();
-		String result = null;
-		result = result + getter.getArticle(res.get("SujGen"), res.get("SujNum"));
-		result = result + " " + Subject.get("name");
+		String result = "";
+		result = result + getter.getArticle(res.get("CDGen"), res.get("CDNum"));
+		result = result + " " + object.get("name");
 		if (nominalPhrase.get("ADJ") != null) {
-			result = result + " " + Subject.get("adjective");
+			result = result + " " + object.get("characteristic");
 		}
 		return result;
 	}

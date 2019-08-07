@@ -4,9 +4,14 @@ import java.awt.Color;
 
 import Rogue.World;
 import Screens.PlayScreen;
+import TextManagement.Realizator;
+import TextManagement.Restrictions;
+import TextManagement.RestrictionsFactory;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import CreaturesAI.CreatureAi;
@@ -300,13 +305,13 @@ public class Creature {
 
 		if (item.getAttackValue() + item.getRangedAttackValue() >= item.getDefenseValue()) {
 			unequip(weapon);
-			if(this.name.equals("Player")){
+			if(this.key.equals("Player")){
 				doAction("wield a " + nameOf(item));
 			}
 			weapon = item;
-		} else {
+		} else { //TODO el equipar se me ha petado ;/
 			unequip(armor);
-			if(this.name.equals("Player")){
+			if(this.key.equals("Player")){ //TODO me ha petado al pasar campo nombre a key nani
 				doAction("put on a " + nameOf(item)); 
 			}
 			armor = item;
@@ -408,6 +413,20 @@ public class Creature {
 				other.notify(String.format("The %s %s.", name, makeSecondPerson(message)), params);
 			}
 			other.learnName(item);
+		}
+	}
+	
+	@SuppressWarnings("null")
+	public void doActionComplex(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
+			HashMap<String, String> CII, Restrictions res, String templateType) {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		Realizator realizator = factory.getRealizator();
+		String phrase = realizator.realizatePhrase(actionType, Subject, CD, CI, CII, res, templateType);
+		for (Creature other : getCreaturesWhoSeeMe()) {
+			if (other == this) {
+				other.notify(phrase);
+			}
+
 		}
 	}
 
@@ -682,9 +701,42 @@ public class Creature {
 			regenHpCooldown += 1000;
 		}
 	}
+	
+	public HashMap<String, String> getMorfData(String num){ // TODO en base a la frase se establece el numero de la palabra
+		HashMap<String, String> data = new HashMap<>();
+		data.put("genere", this.genere);
+		data.put("number", num);
+		return data;
+	}
+	
+	public HashMap<String, String> getNameAdjectiveKey(String num){
+		HashMap<String, String> data = new HashMap<>();
+		data.put("key", this.key);
+		if(num.equals("plural")){
+			data.put("name", this.n_plu);
+			data.put("characteristic", this.charc_plu);
+		} else{
+			data.put("name", this.name);
+			data.put("characteristic", this.characteristic);
+		}
+		return data;
+	}
 
-	public void quaff(Item item) { //TODO algun modo de indicar que no ha surtido effecto alguno...
-		doAction(item, "quaff a " + nameOf(item));
+	public void quaff(Item item, HashMap<String, String> verbData, String templateType) { //TODO algun modo de indicar que no ha surtido effecto alguno...
+		RestrictionsFactory factory = RestrictionsFactory.getInstance();
+		HashMap<String, String> subjectData = this.getMorfData(verbData.get("VbNum")); //Esto deberia decidirse junto al verbo en el quaff screen o donde se llame a esto
+		HashMap<String, String> itemData = item.getMorfData("singular");
+		HashMap<String, String> subject = this.getNameAdjectiveKey(verbData.get("VbNum"));
+
+		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
+		itemNameAndAjective.put("name", nameOf(item));
+
+		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
+				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
+				itemData.get("genere"), itemData.get("number"), null, null, null, null);
+
+		doActionComplex(verbData.get("actionType"), subject, itemNameAndAjective, null, null, res, templateType);
+		//doAction(item, "quaff a " + nameOf(item));
 		consumeItem(item);
 	}
 
@@ -748,7 +800,7 @@ public class Creature {
 	}
 
 	public void learnName(Item item) { //TODO este texto no se llama si la pocion no surte efecto, �de donde no se llama?
-		notify("The " + item.getAppearance() + " is a " + item.getName() + "!");
+		notify("The " + item.getAppearance() + " is a " + item.getName() + "!"); //TODO esto me lo tengo que pensar mucho 
 		ai.setName(item, item.getName());
 	}
 

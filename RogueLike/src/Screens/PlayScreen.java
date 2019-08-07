@@ -320,12 +320,6 @@ public class PlayScreen implements Screen {
 			return new LoseScreen();
 		}
 		
-		/*for (Item item : player.inventory().getItems()) {
-			if (item != null && item.getName().equals("Hamsun's amulet")) {
-				return new WinScreen();
-			}
-		}
-		return new LoseScreen();*/
 	}
 
 	public static Creature getPlayer() {

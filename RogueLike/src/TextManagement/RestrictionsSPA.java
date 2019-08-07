@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class RestrictionsSPA implements Restrictions {
 
-	private HashMap<String, String> restrictions;
+	private HashMap<String, String> restrictions = new HashMap<>();
 
 	public RestrictionsSPA(String VbNum, String VbPerson, String VbForm, String VbTime, String SujGen, String SujNum,
 			String CDGen, String CDNum, String CIGen, String CINum, String CCIGen, String CCINum) {
