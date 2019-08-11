@@ -7,9 +7,13 @@ import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
+import TextManagement.RestrictionsFactory;
 import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
+import Screens.PlayScreen;
+import TextManagement.Realizator;
+import TextManagement.Restrictions;
 
 public class SpellBookFactory {
 
@@ -127,8 +131,11 @@ public class SpellBookFactory {
 			}
 		}, true);
 
-		item.addWrittenSpell("summon bats", 11, new Effect(1) {
+		item.addWrittenSpell("summon bats", 1, new Effect(1) {
 			public void start(Creature creature) {
+				HashMap<String, String> ciData = new HashMap<String, String>();
+				HashMap<String, String> CI = new HashMap<String, String>();
+				ArrayList<Creature> bats = new ArrayList<>();
 				for (int ox = -1; ox < 2; ox++) {
 					for (int oy = -1; oy < 2; oy++) {
 						int nx = creature.getX() + ox;
@@ -146,10 +153,24 @@ public class SpellBookFactory {
 						bat.setX(nx);
 						bat.setY(ny);
 						bat.setZ(creature.getZ());
-
-						creature.summon(bat);
+						
+						ciData = bat.getMorfData("plural");
+						CI = bat.getNameAdjectiveKey("plural");	
+						
+						bats.add(bat);
 					}
-				}
+				}	
+				
+				HashMap<String, String> cciData =  item.getMorfData("singular");
+				HashMap<String, String> cci = item.getNameAndAdjective("singular");
+				cci.put("key", "book");
+				HashMap<String, String> verbData = new HashMap<>();
+				verbData.put("actionType", "Attack");
+				verbData.put("VbNum", "singular");
+				verbData.put("VbPerson", "third");
+				verbData.put("VbForm", "active");
+				verbData.put("VbTime", "present");
+				creature.summon(bats, cciData, cci, ciData, CI, verbData, "WeaponsAttacks", item);
 			}
 		}, true);
 

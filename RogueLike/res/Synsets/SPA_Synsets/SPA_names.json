@@ -1,230 +1,292 @@
-{
-   "dagger": {
-      "puñal": {
-         "plural": "puñales",
-         "genere": "masculine"
+{  
+   "magic":{  
+      "magia":{  
+         "plural":"magias",
+         "genere":"femenine"
       },
-      "daga": {
-         "plural": "dagas",
-         "genere": "femenine"
+      "taumaturgia":{  
+         "plural":"taumaturgia",
+         "genere":"femenine"
       }
    },
-   "corridor": {
-      "corredor": {
-         "plural": "corredores",
-         "genere": "masculine"
+   "health":{  
+      "sanidad":{  
+         "plural":"sanidades",
+         "genere":"femenine"
       },
-      "galería": {
-         "plural": "galerías",
-         "genere": "femenine"
-      },
-      "túnel": {
-         "plural": "túneles",
-         "genere": "masculine"
-      },
-      "pasillo": {
-         "plural": "pasillos",
-         "genere": "masculine"
+      "salud":{  
+         "plural":"saludes",
+         "genere":"femenine"
       }
    },
-   "potion": {
-      "pócima": {
-         "plural": "pócimas",
-         "genere": "femenine"
-      },
-      "bebedizo": {
-         "plural": "bebedizo",
-         "genere": "masculine"
-      },
-      "hierba": {
-         "plural": "hierbas",
-         "genere": "femenine"
-      },
-      "brebaje": {
-         "plural": "brebajes",
-         "genere": "masculine"
-      },
-      "poción": {
-         "plural": "pociones",
-         "genere": "femenine"
-      },
-      "brevaje": {
-         "plural": "brevaje",
-         "genere": "masculine"
-      },
-      "yerba": {
-         "plural": "yerbas",
-         "genere": "femenine"
+   "warrior":{  
+      "guerrero":{  
+         "plural":"guerreros",
+         "genere":"masculine"
       }
    },
-   "chain_mail": {"cota_de_malla": {
-      "plural": "cotas de malla",
-      "genere": "femenine"
-   }},
-   "tome": {
-      "volumen": {
-         "plural": "volúmenes",
-         "genere": "masculine"
+   "poison":{  
+      "tósigo":{  
+         "plural":"tósigos",
+         "genere":"masculine"
       },
-      "tomo": {
-         "plural": "tomos",
-         "genere": "masculine"
+      "toxina":{  
+         "plural":"toxinas",
+         "genere":"femenine"
+      },
+      "veneno":{  
+         "plural":"venenos",
+         "genere":"masculine"
+      },
+      "ponzoña":{  
+         "plural":"ponzoñas",
+         "genere":"femenine"
       }
    },
-   "book": {"libro": {
-      "plural": "libros",
-      "genere": "masculine"
-   }},
-   "plate_armour": {"blindaje": {
-      "plural": "blindajes",
-      "genere": "masculine"
-   }},
-   "staff": {
-      "verga": {
-         "plural": "vergas",
-         "genere": "femenine"
+   "dagger":{  
+      "puñal":{  
+         "plural":"puñales",
+         "genere":"masculine"
       },
-      "varita": {
-         "plural": "varitas",
-         "genere": "femenine"
-      },
-      "cetro": {
-         "plural": "cetros",
-         "genere": "masculine"
-      },
-      "vara": {
-         "plural": "varas",
-         "genere": "femenine"
+      "daga":{  
+         "plural":"dagas",
+         "genere":"femenine"
       }
    },
-   "perchment": {"pergamino": {
-      "plural": "pergaminos",
-      "genere": "masculine"
-   }},
-   "hero": {"héroe": {
-      "plural": "héroes",
-      "genere": "masculine"
-   }},
-   "bow": {"arco": {
-      "plural": "arcos",
-      "genere": "masculine"
-   }},
-   "rock": {
-      "piedra": {
-         "plural": "piedras",
-         "genere": "femenine"
+   "corridor":{  
+      "corredor":{  
+         "plural":"corredores",
+         "genere":"masculine"
       },
-      "roca": {
-         "plural": "rocas",
-         "genere": "femenine"
+      "galería":{  
+         "plural":"galerías",
+         "genere":"femenine"
+      },
+      "túnel":{  
+         "plural":"túneles",
+         "genere":"masculine"
+      },
+      "pasillo":{  
+         "plural":"pasillos",
+         "genere":"masculine"
       }
    },
-   "sword": {
-      "estoque": {
-         "plural": "estoques",
-         "genere": "masculine"
+   "potion":{  
+      "pócima":{  
+         "plural":"pócimas",
+         "genere":"femenine"
       },
-      "espada_ropera": {
-         "plural": "espadas ropera",
-         "genere": "femenine"
+      "bebedizo":{  
+         "plural":"bebedizo",
+         "genere":"masculine"
       },
-      "espada": {
-         "plural": "espadas",
-         "genere": "femenine"
+      "hierba":{  
+         "plural":"hierbas",
+         "genere":"femenine"
+      },
+      "brebaje":{  
+         "plural":"brebajes",
+         "genere":"masculine"
+      },
+      "poción":{  
+         "plural":"pociones",
+         "genere":"femenine"
+      },
+      "brevaje":{  
+         "plural":"brevaje",
+         "genere":"masculine"
+      },
+      "yerba":{  
+         "plural":"yerbas",
+         "genere":"femenine"
       }
    },
-   "bat": {
-      "quiróptero": {
-         "plural": "quirópteros",
-         "genere": "masculine"
-      },
-      "murciélago": {
-         "plural": "murciélagos",
-         "genere": "masculine"
-      },
-      "chiropteran": {
-         "plural": "chiropteran",
-         "genere": "masculine"
-      },
-      "quirópteros": {
-         "plural": "quirópteros",
-         "genere": "masculine"
-      },
-      "chiroptera": {
-         "plural": "chiroptera",
-         "genere": "femenine"
+   "chain_mail":{  
+      "cota_de_malla":{  
+         "plural":"cotas de malla",
+         "genere":"femenine"
       }
    },
-   "fungus": {
-      "hongo": {
-         "plural": "hongos",
-         "genere": "masculine"
+   "tome":{  
+      "volumen":{  
+         "plural":"volúmenes",
+         "genere":"masculine"
       },
-      "seta": {
-         "plural": "setas",
-         "genere": "femenine"
+      "tomo":{  
+         "plural":"tomos",
+         "genere":"masculine"
       }
    },
-   "zombie": {
-      "zombi": {
-         "plural": "zombis",
-         "genere": "masculine"
-      },
-      "muertos_vivientes": {
-         "plural": "muertos vivientes",
-         "genere": "masculine"
-      },
-      "muerto_viviente": {
-         "plural": "muertos viviente",
-         "genere": "masculine"
+   "book":{  
+      "libro":{  
+         "plural":"libros",
+         "genere":"masculine"
       }
    },
-   "goblin": {
-      "hobgoblin": {
-         "plural": "hobgoblin",
-         "genere": "masculine"
-      },
-      "trasgo": {
-         "plural": "trasgos",
-         "genere": "masculine"
-      },
-      "duende": {
-         "plural": "duendes",
-         "genere": "masculine"
+   "plate_armour":{  
+      "blindaje":{  
+         "plural":"blindajes",
+         "genere":"masculine"
       }
    },
-   "heroine": {"heroína": {
-      "plural": "heroínas",
-      "genere": "femenine"
-   }},
-   "grimoire": {"grimorio": {
-      "plural": "grimorio",
-      "genere": "masculine"
-   }},
-   "creature": {
-      "ser": {
-         "plural": "seres",
-         "genere": "masculine"
+   "staff":{  
+      "verga":{  
+         "plural":"vergas",
+         "genere":"femenine"
       },
-      "criatura": {
-         "plural": "criaturas",
-         "genere": "femenine"
+      "varita":{  
+         "plural":"varitas",
+         "genere":"femenine"
       },
-      "organismo": {
-         "plural": "organismos",
-         "genere": "masculine"
+      "cetro":{  
+         "plural":"cetros",
+         "genere":"masculine"
       },
-      "ser_vivo": {
-         "plural": "seres vivos",
-         "genere": "masculine"
-      },
-      "organismos": {
-         "plural": "organismos",
-         "genere": "masculine"
+      "vara":{  
+         "plural":"varas",
+         "genere":"femenine"
       }
    },
-   "tunic": {"túnica": {
-      "plural": "túnicas",
-      "genere": "femenine"
-   }}
+   "perchment":{  
+      "pergamino":{  
+         "plural":"pergaminos",
+         "genere":"masculine"
+      }
+   },
+   "hero":{  
+      "héroe":{  
+         "plural":"héroes",
+         "genere":"masculine"
+      }
+   },
+   "bow":{  
+      "arco":{  
+         "plural":"arcos",
+         "genere":"masculine"
+      }
+   },
+   "rock":{  
+      "piedra":{  
+         "plural":"piedras",
+         "genere":"femenine"
+      },
+      "roca":{  
+         "plural":"rocas",
+         "genere":"femenine"
+      }
+   },
+   "sword":{  
+      "estoque":{  
+         "plural":"estoques",
+         "genere":"masculine"
+      },
+      "espada_ropera":{  
+         "plural":"espadas ropera",
+         "genere":"femenine"
+      },
+      "espada":{  
+         "plural":"espadas",
+         "genere":"femenine"
+      }
+   },
+   "bat":{  
+      "quiróptero":{  
+         "plural":"quirópteros",
+         "genere":"masculine"
+      },
+      "murciélago":{  
+         "plural":"murciélagos",
+         "genere":"masculine"
+      },
+      "chiropteran":{  
+         "plural":"chiropteran",
+         "genere":"masculine"
+      },
+      "quirópteros":{  
+         "plural":"quirópteros",
+         "genere":"masculine"
+      },
+      "chiroptera":{  
+         "plural":"chiroptera",
+         "genere":"femenine"
+      }
+   },
+   "fungus":{  
+      "hongo":{  
+         "plural":"hongos",
+         "genere":"masculine"
+      },
+      "seta":{  
+         "plural":"setas",
+         "genere":"femenine"
+      }
+   },
+   "zombie":{  
+      "zombi":{  
+         "plural":"zombis",
+         "genere":"masculine"
+      },
+      "muertos_vivientes":{  
+         "plural":"muertos vivientes",
+         "genere":"masculine"
+      },
+      "muerto_viviente":{  
+         "plural":"muertos viviente",
+         "genere":"masculine"
+      }
+   },
+   "goblin":{  
+      "hobgoblin":{  
+         "plural":"hobgoblin",
+         "genere":"masculine"
+      },
+      "trasgo":{  
+         "plural":"trasgos",
+         "genere":"masculine"
+      },
+      "duende":{  
+         "plural":"duendes",
+         "genere":"masculine"
+      }
+   },
+   "heroine":{  
+      "heroína":{  
+         "plural":"heroínas",
+         "genere":"femenine"
+      }
+   },
+   "grimoire":{  
+      "grimorio":{  
+         "plural":"grimorio",
+         "genere":"masculine"
+      }
+   },
+   "creature":{  
+      "ser":{  
+         "plural":"seres",
+         "genere":"masculine"
+      },
+      "criatura":{  
+         "plural":"criaturas",
+         "genere":"femenine"
+      },
+      "organismo":{  
+         "plural":"organismos",
+         "genere":"masculine"
+      },
+      "ser_vivo":{  
+         "plural":"seres vivos",
+         "genere":"masculine"
+      },
+      "organismos":{  
+         "plural":"organismos",
+         "genere":"masculine"
+      }
+   },
+   "tunic":{  
+      "túnica":{  
+         "plural":"túnicas",
+         "genere":"femenine"
+      }
+   }
 }

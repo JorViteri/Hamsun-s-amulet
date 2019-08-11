@@ -2,6 +2,8 @@ package CreaturesAI;
 
 /**
  * Defines the basic AI behaviours for the creatures
+ * 
+ * @author comec
  */
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +21,7 @@ public class CreatureAi {
 
 	protected Creature creature;
 	/**
-	 * Names of the items that know
+	 * Names of the items that the creature knows
 	 */
 	private Map<String, String> itemNames;
 	
@@ -30,6 +32,14 @@ public class CreatureAi {
 
 	}
 	
+	/**
+	 * Allows the creature to access a new position if it's ground. In the case
+	 * It's ground, the creature mantains it's position and a message is shown.
+	 * @param x Int that indicates the coordinate in x axis.
+	 * @param y Int that indicates the coordinate in y axis.
+	 * @param z Int that indicates the coordinate in z axis.
+	 * @param tile The tile which the creatur is trying to access.
+	 */
 	public void onEnter(int x, int y, int z, Tile tile){
 		if(tile.isGround()){
 			creature.setX(x);
@@ -41,7 +51,7 @@ public class CreatureAi {
 	}
 	
 	/**
-	 * Moves the creatures of the dungeon
+	 * Moves the creatures through the dungeon
 	 */
 	public void wander(){
 		int mx = (int)(Math.random()*3)-1;
@@ -92,10 +102,25 @@ public class CreatureAi {
 	}
 
 	
+	/**
+	 * Checks if the creature knows the tile. By default, the function 
+	 * returns unknown
+	 * 
+	 * @param wx coordinate in x.
+	 * @param wy coordinate in y.
+	 * @param wz coordintae in z.
+	 * @return Tile.UNKNOWN The tile is not known by the creature.
+	 */
 	public Tile rememberedTile(int wx, int wy, int wz) {
         return Tile.UNKNOWN;
     }
 
+	/**
+	 * The creature follows the target creature. It relies in a Path Finding algorithm.
+	 * 
+	 * @param target Objective creature.
+	 */
+	
 	public void hunt(Creature target) {
 		int mx, my;
 		
@@ -109,16 +134,32 @@ public class CreatureAi {
 	
 		creature.moveBy(mx, my, 0);
 	}
-
+	
+	/**
+	 * Checks if It's possible to attack the other creature with a ranged weapon.
+	 * 
+	 * @param other Possible objective creature.
+	 * @return Boolean True if It's possible, false the other case
+	 */
 	protected boolean canRangedWeaponAttack(Creature other) {
 		return creature.getWeapon() != null && creature.getWeapon().getRangedAttackValue() > 0
 				&& creature.canSee(other.getX(), other.getY(), other.getZ());
 	}
 
+	/**
+	 * Checks if It's possible to throw something to the other creature.
+	 * 
+	 * @param other Possible objective creature.
+	 * @return Boolean True if It's possible, false the other case
+	 */
 	protected boolean canThrowAt(Creature other) { 
 		return creature.canSee(other.getX(), other.getY(), other.getZ()) && getWeaponToThrow() != null;
 	}
 
+	/**
+	 * Obtains an item to throw.
+	 * @return Item Item that is going to be throw.
+	 */
 	protected Item getWeaponToThrow() { 
 		Item toThrow = null;
 	
@@ -133,6 +174,10 @@ public class CreatureAi {
 		return toThrow;
 	}
 
+	/**
+	 * Checks if it's possible to pick an item.
+	 * @return Boolean true if It's possible. Returns false in the other case.
+	 */
 	protected boolean canPickup() {
 		return creature.item(creature.getX(), creature.getY(), creature.getZ()) != null && !creature.inventory().isFull();
 	}
@@ -156,6 +201,9 @@ public class CreatureAi {
 		return false;
 	}
 
+	/**
+	 *  Allows the creature to put better equipement
+	 */
 	protected void useBetterEquipment() {
 		int currentWeaponRating = creature.getWeapon() == null ? 0
 				: creature.getWeapon().getAttackValue() + creature.getWeapon().getRangedAttackValue();
@@ -174,11 +222,23 @@ public class CreatureAi {
 		}
 	}
 	
+	/**
+	 * Obtains the name of the item if It's known, if not returns the 
+	 * key of the item.
+	 * @param item
+	 * @return
+	 */
 	public String getName(Item item){
-		String name = itemNames.get(item.getKey()); 
-		return name == null ? item.getCharacteristic()+item.getAppearance() : item.getCharacteristic()+name;
+		String name = itemNames.get(item.getKey());  //TODO lo de los espacios no me vale, eso deberia anhadirlo el realizator segun se necesite o no
+		return name == null ? item.getAppearance() : name;
 	}
 	
+	
+	/**
+	 * Sets a name for a item that was known by It's key.
+	 * @param item
+	 * @param name
+	 */
 	public void setName(Item item, String name){
 		itemNames.put(item.getKey(), name);
 	}

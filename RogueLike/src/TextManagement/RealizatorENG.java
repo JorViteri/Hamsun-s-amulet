@@ -33,4 +33,14 @@ public class RealizatorENG implements Realizator{
 		return null;
 	}
 
+	@Override
+	public String constructNounAppareance(String noun, String appareance) {
+		return appareance + " " + noun;
+	}
+
+	@Override
+	public String constructNounAndNoun(String noun, String descrpNoun) {
+		return descrpNoun + " " + noun;
+	}
+
 }

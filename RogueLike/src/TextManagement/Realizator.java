@@ -11,5 +11,8 @@ public interface Realizator {
 			Restrictions restrictions, String templateType);
 	
 	public HashMap<String, Integer> getTemplate(String actionType); //TODO debe hacer la solicitud al getter, obtener la estructura y añadir las palabras
+	
+	public String constructNounAppareance(String noun, String appareance);
+	public String constructNounAndNoun(String noun, String descrpNoun);
 
 }

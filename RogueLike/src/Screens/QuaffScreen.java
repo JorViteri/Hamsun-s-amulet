@@ -25,7 +25,7 @@ public class QuaffScreen extends InventoryBasedScreen{
 	protected Screen use(Item item){
 		HashMap<String, String> verbData = new HashMap<>();
 		verbData.put("actionType", actionType);
-		verbData.put("VbNum", "singular"); //TODO este dato deberia crearse en base al sujeto
+		verbData.put("VbNum", "singular");
 		verbData.put("VbPerson", "third");
 		verbData.put("VbForm", "active"); //TODO pillar aleatorio con pasiva
 		verbData.put("VbTime", "present"); //TODO pillar "aleatorio"

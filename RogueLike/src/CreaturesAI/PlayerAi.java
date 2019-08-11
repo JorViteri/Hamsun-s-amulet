@@ -31,7 +31,8 @@ public class PlayerAi extends CreatureAi {
 			creature.setZ(z);
 			Item item = creature.item(creature.getX(), creature.getY(), creature.getZ());
 			if (item != null){
-				creature.notify("There's a " + creature.nameOf(item) + " here.");
+				String nameItem = creature.nameOf(item); 
+				creature.notify("There's a " + creature.nameOf(item) + " "+item.getCharacteristic()+ "here.");
 			}
 			if (tile.isStair()){
 				

@@ -52,7 +52,7 @@ public class RealizatorSPA implements Realizator{
 		return finalPhrase;
 	}
 
-	@SuppressWarnings("null")
+	
 	@Override
 	public HashMap<String, Integer> getTemplate(String actionType) {
 		HashMap<String,Integer> result = new HashMap<>();
@@ -69,7 +69,7 @@ public class RealizatorSPA implements Realizator{
 		} catch(Exception e){
 			boolean c = true;
 			e.printStackTrace();
-		}	
+		}
 		arr = object.getJSONArray(actionType);
 		int i = r.nextInt(arr.length());
 		template = arr.getString(i);
@@ -82,7 +82,7 @@ public class RealizatorSPA implements Realizator{
 		
 	}
 	
-	@SuppressWarnings("null")
+	
 	private HashMap<String,String> getObjectTemplate(String ID){
 		HashMap<String,String> result = new HashMap<>();
 		JSONObject object = null;
@@ -109,7 +109,7 @@ public class RealizatorSPA implements Realizator{
 		return result;
 	}
 	
-	@SuppressWarnings("null")
+	
 	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, HashMap<String, String> Subject,
 			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CCI,
 			Restrictions restrictions) {
@@ -132,7 +132,7 @@ public class RealizatorSPA implements Realizator{
 		}
 		if(template.get("CCI")!=null){
 			aux = getObjectTemplate("CCI");
-			result.put("CI", constructCCI(aux, CCI, restrictions));
+			result.put("CCI", constructCCI(aux, CCI, restrictions));
 		}
 		return result;
 	}
@@ -140,18 +140,18 @@ public class RealizatorSPA implements Realizator{
 	
 	private String constructCCI(HashMap<String, String> prepPhrase, HashMap<String, String> CCI, Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
-		String result = null;
+		String result = " ";
 		if (prepPhrase.get("PR") != null){
 			result = result + getter.getPreposition("CCI", res.get("CCIGen"), res.get("CCINum"));
 		}
 		if (prepPhrase.get("ART") != null) {
-			result = result + getter.getArticle(res.get("CCIGen"), res.get("CCIGen"));
+			result = result + " " +getter.getArticle(res.get("CCIGen"), res.get("CCINum"));
 		}
 		if (prepPhrase.get("NOUN") != null) {
 			result = result + " " + CCI.get("name");
 		}		
 		if (prepPhrase.get("ADJ") != null) {
-			result = result + " " + CCI.get("adjective");
+			result = result + " " + CCI.get("characteristic");
 		}
 		return result;
 	}
@@ -163,13 +163,13 @@ public class RealizatorSPA implements Realizator{
 			result = result + getter.getPreposition("CI", res.get("CIGen"), res.get("CINum"));
 		} //TODO Obtener las preposiciones!! actualizar el restricitons para tener las nuevas en cuenta!!!
 		if (prepPhrase.get("ART") != null) {
-			result = result + getter.getArticle(res.get("CIGen"), res.get("CIGen"));
+			result = result + " "+getter.getArticle(res.get("CIGen"), res.get("CINum"));
 		}
 		if (prepPhrase.get("NOUN") != null) {
 			result = result + " " + CI.get("name");
 		}		
 		if (prepPhrase.get("ADJ") != null) {
-			result = result + " " + CI.get("adjective");
+			result = result + " " + CI.get("characteristic");
 		}
 		return result;
 	}
@@ -191,7 +191,7 @@ public class RealizatorSPA implements Realizator{
 			Restrictions restrict){
 		HashMap<String, String> res = restrict.getRestrictions();
 		String result = "";
-		result = result + getter.getArticle(res.get("CDGen"), res.get("CDNum"));
+		result = result +" "+ getter.getArticle(res.get("CDGen"), res.get("CDNum"));
 		result = result + " " + object.get("name");
 		if (nominalPhrase.get("ADJ") != null) {
 			result = result + " " + object.get("characteristic");
@@ -206,5 +206,15 @@ public class RealizatorSPA implements Realizator{
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String constructNounAppareance(String noun, String appareance) {
+		return noun + " " + appareance;
+	}
+
+	@Override
+	public String constructNounAndNoun(String noun, String descrpNoun) {
+		return noun + " de " + descrpNoun;
 	}
 }

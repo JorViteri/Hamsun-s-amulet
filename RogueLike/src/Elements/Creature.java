@@ -416,7 +416,21 @@ public class Creature {
 		}
 	}
 	
-	@SuppressWarnings("null")
+	//doAction en el caso de que haya items de por medio
+	public void doActionComplex(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
+			HashMap<String, String> CII, Restrictions res, String templateType, Item item) {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		Realizator realizator = factory.getRealizator();
+		String phrase = realizator.realizatePhrase(actionType, Subject, CD, CI, CII, res, templateType);
+		for (Creature other : getCreaturesWhoSeeMe()) {
+			if (other == this) {
+				other.notify(phrase);
+			}
+			other.learnName(item);
+		}
+	}
+	
+	//doAction para cuando no hay items de por medio
 	public void doActionComplex(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
 			HashMap<String, String> CII, Restrictions res, String templateType) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
@@ -426,7 +440,6 @@ public class Creature {
 			if (other == this) {
 				other.notify(phrase);
 			}
-
 		}
 	}
 
@@ -735,7 +748,7 @@ public class Creature {
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
 				itemData.get("genere"), itemData.get("number"), null, null, null, null);
 
-		doActionComplex(verbData.get("actionType"), subject, itemNameAndAjective, null, null, res, templateType);
+		doActionComplex(verbData.get("actionType"), subject, itemNameAndAjective, null, null, res, templateType, item);
 		//doAction(item, "quaff a " + nameOf(item));
 		consumeItem(item);
 	}
@@ -774,8 +787,20 @@ public class Creature {
 		effects.removeAll(done);
 	}
 
-	public void summon(Creature other) {
-		world.add(other);
+	public void summon(ArrayList<Creature> others, HashMap<String, String> cciData, HashMap<String, String> cci,
+			HashMap<String, String> ciData, HashMap<String, String> CI, HashMap<String, String> verbData,
+			String templateType, Item item) {
+		for (Creature other : others) {
+			world.add(other);
+		}
+		RestrictionsFactory factory = RestrictionsFactory.getInstance();
+		HashMap<String, String> subjectData = this.getMorfData(verbData.get("VbNum"));
+		HashMap<String, String> subject = this.getNameAdjectiveKey(verbData.get("VbNum"));
+		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
+				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
+				null, null, ciData.get("genere"), ciData.get("number"), cciData.get("genere"), cciData.get("number"));
+		this.doActionComplex(verbData.get("actionType"), subject, null, CI, cci, res, templateType, item);
+
 	}
 
 	// TODO CHECK CODE, IT MIGHT FAIL 

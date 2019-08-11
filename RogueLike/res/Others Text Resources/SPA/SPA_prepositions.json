@@ -4,9 +4,9 @@
       "mediante"
    ],
    "CI":{  
-      "mascsing":"al",
-      "mascplu":"a",
-      "femsing":"a",
-      "femplu":"a"
+      "masculine_singular":"al",
+      "masculine_plural":"a",
+      "femenine_singular":"a",
+      "femenine_plural":"a"
    }
 }

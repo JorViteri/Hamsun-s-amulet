@@ -1,4 +1,34 @@
 {  
+   "magic":{  
+      "magic":{  
+         "plural":"magics",
+         "singular":"magic"
+      },
+      "thaumaturgy":{  
+         "plural":"thaumaturgy",
+         "singular":"thaumaturgy"
+      }
+   },
+   "poison":{  
+      "poison":{  
+         "plural":"poisons",
+         "singular":"poison"
+      },
+      "toxicant":{  
+         "plural":"toxicants",
+         "singular":"toxicant"
+      }
+   },
+   "health":{  
+      "wellness":{  
+         "plural":"wellness",
+         "singular":"wellness"
+      },
+      "health":{  
+         "plural":"health",
+         "singular":"health"
+      }
+   },
    "dagger":{  
       "dagger":{  
          "plural":"daggers",
@@ -13,6 +43,12 @@
       "passageway":{  
          "plural":"passageways",
          "singular":"passageway"
+      }
+   },
+   "warrior":{  
+      "warrior":{  
+         "plural":"warriors",
+         "singular":"warrior"
       }
    },
    "potion":{  

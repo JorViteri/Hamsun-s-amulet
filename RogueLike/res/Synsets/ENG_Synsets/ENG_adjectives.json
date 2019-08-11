@@ -139,6 +139,7 @@
    "rusty":[  
       "rusty"
    ],
+    "magenta": ["magenta"],
    "good_quality":[  
       "good"
    ],
@@ -207,5 +208,27 @@
    "dusty":[  
       "dust-covered",
       "dusty"
+   ],
+   "yellow":[  
+      "xanthous",
+      "yellow",
+      "yellowish"
+   ],
+   "cyan":[  
+      "xanthous",
+      "yellow",
+      "yellowish"
+   ],
+   "blue":[  
+      "blue",
+      "blueish",
+      "bluish"
+   ],
+   "dark":[  
+      "dark"
+   ],
+   "light":[  
+      "light",
+      "light-colored"
    ]
 }

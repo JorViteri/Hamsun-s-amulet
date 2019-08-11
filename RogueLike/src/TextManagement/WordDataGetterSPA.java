@@ -184,6 +184,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 			e.printStackTrace();
 		}		
 
+
 		object = object.getJSONObject(number);
 		return object.getString(genere);
 	}
@@ -208,7 +209,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 			return arr.getString(index);
 		} else {
 			object = object.getJSONObject(CID);
-			return object.getString(genere+number);
+			return object.getString(genere+"_"+number);
 		}
 	}
 	
