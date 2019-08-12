@@ -19,6 +19,9 @@
    ],
    "throw":[  
       "throw"
-   ]
+   ],
+   "be_space":[
+   	 "be" 
+    ]
    
 }

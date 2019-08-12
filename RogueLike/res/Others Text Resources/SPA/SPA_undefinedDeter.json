@@ -1,0 +1,10 @@
+{
+	"masculine":{
+		"singular":"un",
+		"plural":"unos"
+	},
+	"femenine":{
+		"singular":"una",
+		"plural":"unas"
+	}
+}

@@ -41,14 +41,15 @@ public class RealizatorSPA implements Realizator{
 			verb = getter.getActionVerb(actionType, null);
 		}
 		verb = getter.getVerbData(verb).get("ThirdPresentSingular"); //aqui tendria que cargarlo y pillar lo que me interese
-		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verb, Subject, CD, CI, CCI, restrictions);
+		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verb, Subject, CD, CI, CCI, restrictions, actionType);
 		int size = template.size();
 		for (int i = 0; i < size; i++) {
 			String key = getKeyByValue(template,i);
 			String component = hashMapPhrase.get(key);
 			finalPhrase = finalPhrase + component;
 		}
-
+		finalPhrase = finalPhrase.trim();
+		finalPhrase = finalPhrase.substring(0,1).toUpperCase() + finalPhrase.substring(1);
 		return finalPhrase;
 	}
 
@@ -83,13 +84,16 @@ public class RealizatorSPA implements Realizator{
 	}
 	
 	
-	private HashMap<String,String> getObjectTemplate(String ID){
+	private HashMap<String,String> getObjectTemplate(String ID, String actionType){
 		HashMap<String,String> result = new HashMap<>();
 		JSONObject object = null;
 		JSONArray arr = null;
 		Random random = new Random();
 		String objectString = null;
 		String[] StringArr;
+		if (actionType!=null){
+			ID = ID+"_"+actionType;
+		}
 		try{
 			File file = new File("res/Templates/SPA_Templates/SPA_PhraseComponents.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
@@ -112,26 +116,26 @@ public class RealizatorSPA implements Realizator{
 	
 	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, HashMap<String, String> Subject,
 			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CCI,
-			Restrictions restrictions) {
+			Restrictions restrictions, String actionType) {
 		HashMap<String, String> result = new HashMap<>();
 		HashMap<String, String> aux = new HashMap<>();
 		if(template.get("SUJ")!=null){
-			aux = getObjectTemplate("SUJ");
+			aux = getObjectTemplate("SUJ", null);
 			result.put("SUJ", constructSUJ(aux, Subject, restrictions));
 		}
 		if(template.get("VB")!=null){
 			result.put("VB", " "+verb+" ");
 		}
-		if (template.get("CD")!=null){
-			aux = getObjectTemplate("CD");
+		if (template.get("CD")!=null){//TODO con esto puedo pillar el CD con determinante indefinido
+			aux = getObjectTemplate("CD", actionType); 
 			result.put("CD", constructCD(aux, CD, restrictions));
 		}
 		if(template.get("CI")!=null){
-			aux = getObjectTemplate("CI");
+			aux = getObjectTemplate("CI", null);
 			result.put("CI", constructCI(aux, CI, restrictions));
 		}
 		if(template.get("CCI")!=null){
-			aux = getObjectTemplate("CCI");
+			aux = getObjectTemplate("CCI", null);
 			result.put("CCI", constructCCI(aux, CCI, restrictions));
 		}
 		return result;
@@ -191,7 +195,12 @@ public class RealizatorSPA implements Realizator{
 			Restrictions restrict){
 		HashMap<String, String> res = restrict.getRestrictions();
 		String result = "";
-		result = result +" "+ getter.getArticle(res.get("CDGen"), res.get("CDNum"));
+		if (nominalPhrase.get("DetUn")!=null){
+			result = result+getter.getDetUndefined(res.get("CDGen"), res.get("CDNum"));
+		}
+		if (nominalPhrase.get("ART")!=null){
+			result = result +" "+ getter.getArticle(res.get("CDGen"), res.get("CDNum"));
+		}
 		result = result + " " + object.get("name");
 		if (nominalPhrase.get("ADJ") != null) {
 			result = result + " " + object.get("characteristic");
@@ -216,5 +225,10 @@ public class RealizatorSPA implements Realizator{
 	@Override
 	public String constructNounAndNoun(String noun, String descrpNoun) {
 		return noun + " de " + descrpNoun;
+	}
+
+	@Override
+	public String constructNounPosvNoun(String noun, String possNoun) {
+		return noun + " del " + possNoun;
 	}
 }

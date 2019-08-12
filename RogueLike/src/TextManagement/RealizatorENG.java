@@ -43,4 +43,11 @@ public class RealizatorENG implements Realizator{
 		return descrpNoun + " " + noun;
 	}
 
+	@Override
+	public String constructNounPosvNoun(String noun, String possNoun) {
+		return possNoun+"'s "+noun;
+	}
+	
+	
+
 }

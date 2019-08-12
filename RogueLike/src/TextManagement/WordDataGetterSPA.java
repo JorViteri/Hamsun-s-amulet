@@ -183,8 +183,6 @@ public class WordDataGetterSPA implements WordDataGetter {
 			boolean c = true;
 			e.printStackTrace();
 		}		
-
-
 		object = object.getJSONObject(number);
 		return object.getString(genere);
 	}
@@ -212,6 +210,38 @@ public class WordDataGetterSPA implements WordDataGetter {
 			return object.getString(genere+"_"+number);
 		}
 	}
-	
-	
+
+	@Override
+	public String getDirectTranslation(String mainKey, String specificKey) {
+		JSONObject object = null;
+		try {
+			File file = new File("res/Others Text Resources/SPA/SPA_directTranslation.json");
+			String content = FileUtils.readFileToString(file, "utf-8");
+			object = new JSONObject(content);
+		} catch (Exception e) {
+			boolean c = true;
+			e.printStackTrace();
+		}
+
+		object = object.getJSONObject(mainKey);
+		return object.getString(specificKey);
+	}
+
+	@Override
+	public String getDetUndefined(String genere, String number) {
+		JSONObject object = null;
+		try{
+			File file = new File("res/Others Text Resources/SPA/SPA_undefinedDeter.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+		} catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}		
+		if (genere==null){
+			genere = "masculine"; //TODO esto es temporal ya que los cuperos deberian tener genero
+		}
+		object = object.getJSONObject(genere);
+		return object.getString(number);
+	}	
 }

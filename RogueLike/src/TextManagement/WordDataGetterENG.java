@@ -167,6 +167,28 @@ public class WordDataGetterENG implements WordDataGetter {
 		}		
 		return object.getString(type);
 	}
+
+	@Override
+	public String getDirectTranslation(String mainKey, String specificKey) { //TODO debe recibir mas de una key... o incluso mas en otros casos... no me vala esto creo ?
+		JSONObject object =  null;
+		try{
+			File file = new File("res/Others Text Resources/ENG/ENG_directTranslation.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+		}catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}
+		
+		object = object.getJSONObject(mainKey);
+		return object.getString(specificKey);
+	}
+
+	@Override
+	public String getDetUndefined(String string, String string2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

@@ -658,13 +658,6 @@
       }
    },
    "big_size":{  
-      "gran":{  
-         "sing_m":"gran",
-         "plu_m":"gran",
-         "type":"qualificative",
-         "plu_f":"gran",
-         "sing_f":"gran"
-      },
       "grande":{  
          "sing_m":"grande",
          "plu_m":"grandes",

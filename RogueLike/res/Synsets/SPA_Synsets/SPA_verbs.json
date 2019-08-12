@@ -17,6 +17,15 @@
          "infinitive":"entonar"
       }
    },
+   "be":{  
+      "haber":{  
+         "3SP":"hay",
+         "3PP":"hubo",
+         "3SS":"hubo",
+         "3PS":"hay",
+         "infinitive":"haber"
+      }
+   },
    "cut":{  
       "cortar":{  
          "3SP":"cortaron",

@@ -17,6 +17,8 @@ public interface WordDataGetter {
 	public HashMap<String, String> getVerbData(String verb);
 
 	public HashMap<String, String> getAdvData(String adv);
+	
+	public String getDirectTranslation(String mainKey, String specificKey);
 
 	default String getRandomSeed(String[] arr){
 		Random r = new Random();
@@ -65,9 +67,11 @@ public interface WordDataGetter {
 		return objectVbArr.getString(pos);
 	}
 
-	String getPreposition(String CID, String genere, String number);
+	public String getPreposition(String CID, String genere, String number);
 
-	String getArticle(String genere, String number);
+	public String getArticle(String genere, String number);
+
+	public String getDetUndefined(String string, String string2);
 
 
 }

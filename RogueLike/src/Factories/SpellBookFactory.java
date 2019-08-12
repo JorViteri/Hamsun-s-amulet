@@ -19,7 +19,7 @@ public class SpellBookFactory {
 
 	private World world;
 	private String[] n_arr = {"book", "perchment", "grimoire", "tome"};
-	private String[] a_arr = {"old","dusty","big_size","magic"};
+	private String[] a_arr = {"old","dusty","big_size"};
 	
 	public SpellBookFactory(World world){
 		this.world = world;
@@ -29,9 +29,11 @@ public class SpellBookFactory {
 	public Item newWhiteMagesSpellbook(int depth) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
+		Realizator realizator = factory.getRealizator();
 		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
 		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
-		String name = "white mage's "+nameData.get("baseNoun");
+		String wizardClass = getter.getDirectTranslation("SpellBookFactory", "white");
+		String name = realizator.constructNounPosvNoun(nameData.get("baseNoun"), wizardClass);
 		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.addWrittenSpell("minor heal", 4, new Effect(1) {
@@ -95,12 +97,11 @@ public class SpellBookFactory {
 	public Item newBlueMagesSpellbook(int depth) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
+		Realizator realizator = factory.getRealizator();
 		HashMap<String,String> nameData = getter.getNounData(getter.getRandomSeed(n_arr));
-		if(nameData.get("baseNoun").equals("grimorio")){
-			boolean c =  true;
-		}
 		HashMap<String,String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
-		String name = "blue mage's "+nameData.get("baseNoun");
+		String wizardClass = getter.getDirectTranslation("SpellBookFactory", "blue");
+		String name = realizator.constructNounPosvNoun(nameData.get("baseNoun"), wizardClass);
 		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 
