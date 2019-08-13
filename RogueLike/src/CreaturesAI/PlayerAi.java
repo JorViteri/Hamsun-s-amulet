@@ -47,14 +47,27 @@ public class PlayerAi extends CreatureAi {
 			if (item != null){
 				creature.notify("There's a " + creature.nameOf(item) + " "+item.getCharacteristic()+ "here.");
 				String templateType = "ToBeInTemplate";
+				HashMap<String, String> verb = new HashMap<>();
+				verb.put("actionType", "be_space");
+				verb.put("adverb", "here");
 				HashMap<String, String> CDMorf  = item.getMorfData("singular");
 				HashMap<String, String> CDNameAndAdjective =  item.getNameAndAdjective("singular");
 				CDNameAndAdjective.put("name", creature.nameOf(item)); 
 				Restrictions res = resFactory.getRestrictions("singular", "third",
 						"active", "present", null, null,CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null);
-				creature.doActionComplex("be_space", null, CDNameAndAdjective, null, null, res, templateType);
+				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, res, templateType);
 			}
 			if (tile.isStair()){
+				
+				String templateType = "ToBeInTemplate";
+				HashMap<String, String> verb = new HashMap<>();
+				verb.put("actionType", "be_space");
+				verb.put("adverb", "here");
+				HashMap<String, String> CDMorf  = tile.getMorfStairs();
+				HashMap<String, String> CDNameAndAdjective =  tile.getStairsNounAndType();
+				Restrictions res = resFactory.getRestrictions("singular", "third",
+						"active", "present", null, null,CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null);
+				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, res, templateType);
 				
 				creature.notify("There're " + tile.getChairTypeString() + " here."); //tengo que hacer que se 
 			}

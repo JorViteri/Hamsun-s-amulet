@@ -6,6 +6,13 @@
          "Present":"drop"
       }
    },
+   "summon":{  
+      "summon":{  
+         "ThirdPerson":"summons",
+         "Past":"summoned",
+         "Present":"summon"
+      }
+   },
    "be":{  
       "be":{  
          "ThirdPerson":"is",

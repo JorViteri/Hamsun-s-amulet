@@ -36,7 +36,8 @@ public class RestrictionsFactory {
 					CDNum, CIGen, CINum, CCIGen, CCINum);
 			return result_spa;
 		case "ENG":
-			RestrictionsENG result_eng = new RestrictionsENG(VbNum, VbPerson, VbForm, VbTime, SujNum, CDNum);
+			RestrictionsENG result_eng = new RestrictionsENG(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen,
+					CDNum, CIGen, CINum, CCIGen, CCINum);
 			return result_eng;
 		default:
 			return null;

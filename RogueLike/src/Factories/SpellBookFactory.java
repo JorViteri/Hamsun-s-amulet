@@ -166,7 +166,7 @@ public class SpellBookFactory {
 				HashMap<String, String> cci = item.getNameAndAdjective("singular");
 				cci.put("key", "book");
 				HashMap<String, String> verbData = new HashMap<>();
-				verbData.put("actionType", "Attack");
+				verbData.put("actionType", "Summon");
 				verbData.put("VbNum", "singular");
 				verbData.put("VbPerson", "third");
 				verbData.put("VbForm", "active");

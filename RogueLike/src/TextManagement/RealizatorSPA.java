@@ -28,20 +28,20 @@ public class RealizatorSPA implements Realizator{
 	}
 
 	@Override
-	public String realizatePhrase(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD,
+	public String realizatePhrase(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD,
 			HashMap<String, String> CI, HashMap<String, String> CCI, Restrictions restrictions, String templateType) {
 		String finalPhrase = "";
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, Integer> template = getTemplate(templateType); //aqui obtendriqa la plantilla que necesito 
-		String verb = null;
+		String verbFinal = null;
 		if (CCI!=null){  //TODO aqui solo pillo el ID del verbo
-			verb = getter.getActionVerb(actionType, CCI.get("key"));
+			verbFinal = getter.getActionVerb(verb.get("actionType"), CCI.get("key"));
 		} else{
-			verb = getter.getActionVerb(actionType, null);
+			verbFinal = getter.getActionVerb(verb.get("actionType"), null);
 		}
-		verb = getter.getVerbData(verb).get("ThirdPresentSingular"); //aqui tendria que cargarlo y pillar lo que me interese
-		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verb, Subject, CD, CI, CCI, restrictions, actionType);
+		verbFinal = getter.getVerbData(verbFinal).get("ThirdPresentSingular"); //aqui tendria que cargarlo y pillar lo que me interese
+		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verbFinal, Subject, CD, CI, CCI, restrictions, verb.get("actionType")); //TODO action type solo debe funcionar en unos casos
 		int size = template.size();
 		for (int i = 0; i < size; i++) {
 			String key = getKeyByValue(template,i);
@@ -91,9 +91,12 @@ public class RealizatorSPA implements Realizator{
 		Random random = new Random();
 		String objectString = null;
 		String[] StringArr;
-		if (actionType!=null){
-			ID = ID+"_"+actionType;
+		if(actionType!=null){
+			if (actionType.equals("be_space")){
+				ID = ID+"_"+actionType;
+			}
 		}
+			
 		try{
 			File file = new File("res/Templates/SPA_Templates/SPA_PhraseComponents.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
@@ -191,7 +194,7 @@ public class RealizatorSPA implements Realizator{
 	}
 	
 	
-	private String constructCD(HashMap<String, String> nominalPhrase, HashMap<String, String> object,
+	private String constructCD(HashMap<String, String> nominalPhrase, HashMap<String, String> cD,
 			Restrictions restrict){
 		HashMap<String, String> res = restrict.getRestrictions();
 		String result = "";
@@ -201,9 +204,9 @@ public class RealizatorSPA implements Realizator{
 		if (nominalPhrase.get("ART")!=null){
 			result = result +" "+ getter.getArticle(res.get("CDGen"), res.get("CDNum"));
 		}
-		result = result + " " + object.get("name");
+		result = result + " " + cD.get("name");
 		if (nominalPhrase.get("ADJ") != null) {
-			result = result + " " + object.get("characteristic");
+			result = result + " " + cD.get("characteristic");
 		}
 		return result;
 	}

@@ -283,6 +283,12 @@
          "genere":"masculine"
       }
    },
+   "stairs":{  
+      "escalera":{  
+         "plural":"escaleras",
+         "genere":"femenine"
+      }
+   },
    "tunic":{  
       "túnica":{  
          "plural":"túnicas",

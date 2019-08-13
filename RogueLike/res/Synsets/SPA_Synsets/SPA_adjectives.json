@@ -33,13 +33,15 @@
          "sing_f":"corriente"
       }
    },
-      "magenta": {"magenta": {
-      "sing_m": "magenta",
-      "plu_m": "magentas",
-      "type": "qualificative",
-      "plu_f": "magentas",
-      "sing_f": "magenta"
-   }},
+   "magenta":{  
+      "magenta":{  
+         "sing_m":"magenta",
+         "plu_m":"magentas",
+         "type":"qualificative",
+         "plu_f":"magentas",
+         "sing_f":"magenta"
+      }
+   },
    "good_character":{  
       "buen":{  
          "sing_m":"buen",
@@ -93,6 +95,31 @@
          "type":"qualificative",
          "plu_f":"condenadas",
          "sing_f":"condenada"
+      }
+   },
+   "upward":{  
+      "alcista":{  
+         "sing_m":"alcista",
+         "plu_m":"alcistas",
+         "type":"qualificative",
+         "plu_f":"alcistas",
+         "sing_f":"alcista"
+      }
+   },
+   "descending":{  
+      "descendente":{  
+         "sing_m":"descendente",
+         "plu_m":"descendentes",
+         "type":"qualificative",
+         "plu_f":"descendentes",
+         "sing_f":"descendente"
+      },
+      "descendiente":{  
+         "sing_m":"descendiente",
+         "plu_m":"descendientes",
+         "type":"qualificative",
+         "plu_f":"descendientes",
+         "sing_f":"descendiente"
       }
    },
    "little_voice":{  

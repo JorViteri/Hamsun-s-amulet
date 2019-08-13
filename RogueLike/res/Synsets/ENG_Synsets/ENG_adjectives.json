@@ -12,6 +12,12 @@
       "wizard",
       "wizardly"
    ],
+   "upward":[  
+      "upward"
+   ],
+   "descending":[  
+      "descending"
+   ],
    "average":[  
       "average",
       "ordinary"
@@ -139,7 +145,9 @@
    "rusty":[  
       "rusty"
    ],
-    "magenta": ["magenta"],
+   "magenta":[  
+      "magenta"
+   ],
    "good_quality":[  
       "good"
    ],

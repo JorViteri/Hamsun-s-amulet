@@ -1,6 +1,10 @@
 package DungeonComponents;
 
 import java.awt.Color;
+import java.util.HashMap;
+
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 /**
  * Defines the tile class win which the dungeon is divided
@@ -58,12 +62,35 @@ public enum Tile {
 		}
 	}
 	
+	//TODO debo suponer que esto solo se llama en caso de que el Tile sea una escalera, lo mismo el siguiente
+	public HashMap<String, String> getMorfStairs(){
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		HashMap<String, String> data = new HashMap<>();
+		HashMap<String, String> nameData = getter.getNounData("stairs");
+		data.put("genere", nameData.get("genere")); 
+		data.put("number", "plural");
+		return data;
+	}
+	
+	public HashMap<String, String> getStairsNounAndType(){
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		HashMap<String, String> data = new HashMap<>();
+		HashMap<String, String> nameData = getter.getNounData("stairs");
+		HashMap<String, String> typeData = getter.getAdjData(this.getChairTypeString(), nameData.get("genere"));
+		
+		data.put("name", nameData.get("baseNoun"));
+		data.put("characteristic", typeData.get("singular"));  //TODO wtf was this?
+		return data;
+	}
+	
 	public String getChairTypeString(){ //TODO this one will be tricky in the translation thing
 		switch(this){
 		case STAIRS_DOWN:
-			return "stairs going down";
+			return "descending";
 		case STAIRS_UP:
-			return "stairs going up";
+			return "upward";
 		default:
 			return "";
 		}

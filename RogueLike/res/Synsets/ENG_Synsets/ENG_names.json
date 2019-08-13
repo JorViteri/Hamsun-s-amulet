@@ -235,6 +235,16 @@
          "singular":"being"
       }
    },
+   "stairs":{  
+      "stairs":{  
+         "plural":"stairs",
+         "singular":"stairs"
+      },
+      "steps":{  
+         "plural":"steps",
+         "singular":"steps"
+      }
+   },
    "tunic":{  
       "tunic":{  
          "plural":"tunics",

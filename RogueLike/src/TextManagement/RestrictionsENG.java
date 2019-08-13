@@ -4,15 +4,22 @@ import java.util.HashMap;
 
 public class RestrictionsENG implements Restrictions {
 
-	private HashMap<String, String> restrictions;
+	private HashMap<String, String> restrictions = new HashMap<>();
 
-	public RestrictionsENG(String VbNum, String VbPerson, String VbForm, String VbTime, String SujNum, String CDNum) {
+	public RestrictionsENG(String VbNum, String VbPerson, String VbForm, String VbTime, String SujGen, String SujNum, String CDGen,
+			String CDNum, String CIGen, String CINum, String CCIGen, String CCINum) {
 		restrictions.put("VbNum", VbNum);
 		restrictions.put("VbPerson", VbPerson);
 		restrictions.put("VbForm", VbForm);
 		restrictions.put("VbTime", VbTime);
 		restrictions.put("SujNum", SujNum);
+		restrictions.put("SujGen", SujGen);
 		restrictions.put("CDNum", CDNum);
+		restrictions.put("CDGen", CDGen);
+		restrictions.put("CINum", CINum);
+		restrictions.put("CIGen", CIGen);
+		restrictions.put("CCINum", CCINum);
+		restrictions.put("CCIGen", CCIGen);
 	}
 
 	@Override

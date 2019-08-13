@@ -49,11 +49,10 @@ public interface WordDataGetter {
 		JSONObject object = null;
 		Random random = new Random();
 		int pos;
-		
-		if(actionType.equals("Attack")){
+		if ((actionType.equals("Attack"))||(actionType.equals("Summon"))){
 			return getAttackVerb(itemKey);
 		}
-		
+	
 		try{
 			File file = new File("res/Others Text Resources/screenActions-verbs.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	

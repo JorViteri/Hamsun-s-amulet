@@ -1,0 +1,26 @@
+{  
+   "SUJ":[  
+      "ART NOUN",
+      "ART ADJ NOUN"
+   ],
+   "CD":[  
+      "ART NOUN",
+      "ART NOUN ADJ"
+   ],
+   "CD_be_space":[  
+      "DetUn NOUN",
+      "DetUn NOUN ADJ"
+   ],
+   "CI":[  
+      "PR ART NOUN",
+      "PR ART NOUN ADJ"
+   ],
+   "CI_summon":[  
+      "ART NOUN",
+      "ART NOUN ADJ"
+   ],
+   "CCI":[  
+      "PR ART NOUN",
+      "PR ART NOUN ADJ"
+   ]
+}

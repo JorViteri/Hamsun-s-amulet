@@ -417,11 +417,11 @@ public class Creature {
 	}
 	
 	//doAction en el caso de que haya items de por medio
-	public void doActionComplex(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
+	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
 			HashMap<String, String> CII, Restrictions res, String templateType, Item item) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
-		String phrase = realizator.realizatePhrase(actionType, Subject, CD, CI, CII, res, templateType);
+		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CII, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			if (other == this) {
 				other.notify(phrase);
@@ -431,11 +431,11 @@ public class Creature {
 	}
 	
 	//doAction para cuando no hay items de por medio
-	public void doActionComplex(String actionType, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
+	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
 			HashMap<String, String> CII, Restrictions res, String templateType) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
-		String phrase = realizator.realizatePhrase(actionType, Subject, CD, CI, CII, res, templateType);
+		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CII, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			if (other == this) {
 				other.notify(phrase);
@@ -715,9 +715,12 @@ public class Creature {
 		}
 	}
 	
+	//TODO el problema es que llamo a esto si so si por los restrictions en español
+	//no lo planifique bien, asi que estoy llamando a esto si o si algo mas abajo en codigo que no deberia tratarse con el texto
+	// es decir, la creacion de las restricciones no deberia ser e esta capa
 	public HashMap<String, String> getMorfData(String num){ // TODO en base a la frase se establece el numero de la palabra
 		HashMap<String, String> data = new HashMap<>();
-		data.put("genere", this.genere);
+		data.put("genere", this.genere); //TODO, esto no vale por el ingles :)))))))))))))))))))))))))))) o no hay que llamarlo? no, en inlges no hacce falta
 		data.put("number", num);
 		return data;
 	}
@@ -744,11 +747,15 @@ public class Creature {
 		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
 		itemNameAndAjective.put("name", nameOf(item));
 
+		//TODO esto no funciona porque varios de esos datos NO vam a estar en ingles
 		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
-				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
+				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"), 
 				itemData.get("genere"), itemData.get("number"), null, null, null, null);
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", verbData.get("actionType"));
+		verb.put("adverb", null);
 
-		doActionComplex(verbData.get("actionType"), subject, itemNameAndAjective, null, null, res, templateType, item);
+		doActionComplex(verb, subject, itemNameAndAjective, null, null, res, templateType, item);
 		//doAction(item, "quaff a " + nameOf(item));
 		consumeItem(item);
 	}
@@ -799,7 +806,11 @@ public class Creature {
 		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
 				null, null, ciData.get("genere"), ciData.get("number"), cciData.get("genere"), cciData.get("number"));
-		this.doActionComplex(verbData.get("actionType"), subject, null, CI, cci, res, templateType, item);
+		
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", verbData.get("actionType"));
+		verb.put("adverb", null);
+		this.doActionComplex(verb, subject, null, CI, cci, res, templateType, item);
 
 	}
 

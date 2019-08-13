@@ -3,7 +3,7 @@ package DungeonComponents;
 import Utils.Position;
 
 /**
- * Dfines the Staircase class which links two floors of the dungeon
+ * Defines the Staircase class which links two floors of the dungeon
  * @author comec
  *
  */

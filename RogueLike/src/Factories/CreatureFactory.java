@@ -34,7 +34,7 @@ public class CreatureFactory {
 		HashMap<String, String> adjData = getter.getAdjData(getter.getRandomSeed(a_arr), nameData.get("genere"));
 		Creature player = new Creature(world, '@', "Player", nameData.get("baseNoun"), nameData.get("plural"),
 				nameData.get("genere"), AsciiPanel.brightWhite, 100, 20, 5, 20, adjData.get("singular"),
-				adjData.get("plural"));
+				adjData.get("plural")); //TODO como es que esto no me ha petado nunca si no hay genero en el ingles?? 
 		world.addAtExitStairs(player);
 		new PlayerAi(player, messages, fov);
 		return player;

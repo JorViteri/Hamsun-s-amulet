@@ -24,6 +24,10 @@ import javax.swing.JFrame;
 
 public class RogueMain extends JFrame implements KeyListener  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1974790262751795811L;
 	//TODO el texto a mostrar debe elegirse en base al languages.properties
 	private AsciiPanel terminal;
 	private Screen screen;

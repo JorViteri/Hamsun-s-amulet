@@ -110,7 +110,6 @@ public class WordDataGetterENG implements WordDataGetter {
 		aux = aux.replace("[", "");
 		aux = aux.replace("]", "");
 		object = objectVerbs.getJSONObject(aux);
-		object = object.getJSONObject(aux);
 		aux =  aux.replace("_", " ");
 		result.put("Present", aux);
 		result.put("ThirdPerson",object.getString("ThirdPerson"));
@@ -141,7 +140,7 @@ public class WordDataGetterENG implements WordDataGetter {
 
 	
 	@Override
-	public String getArticle(String type, String unused ) { //TODO este no deberia estar definido en la super clase ya que son diferentes respecto a los de español
+	public String getArticle(String type, String unused) { //TODO este no deberia estar definido en la super clase ya que son diferentes respecto a los de español
 		JSONObject object = null;
 		try{
 			File file = new File("res/Others Text Resources/ENG/ENG_articles.json");
@@ -153,6 +152,22 @@ public class WordDataGetterENG implements WordDataGetter {
 		}		
 		return object.getString(type);
 	}
+	
+
+	@Override
+	public String getDetUndefined(String type, String notused) {
+		JSONObject object = null;
+		try{
+			File file = new File("res/Others Text Resources/ENG/ENG_articles.json");
+			String content = FileUtils.readFileToString(file,"utf-8");	
+			object= new JSONObject(content);
+		} catch(Exception e){
+			boolean c = true;
+			e.printStackTrace();
+		}
+		
+		return object.getString(type);
+	}	
 
 	@Override
 	public String getPreposition(String type, String unused1, String unused2) {
@@ -182,12 +197,6 @@ public class WordDataGetterENG implements WordDataGetter {
 		
 		object = object.getJSONObject(mainKey);
 		return object.getString(specificKey);
-	}
-
-	@Override
-	public String getDetUndefined(String string, String string2) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 
