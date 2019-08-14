@@ -23,6 +23,7 @@ import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import TextManagement.WordDataGetterSPA;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
@@ -36,12 +37,17 @@ public class ElementsFactory {
 	}
 
 	public Item newRock(int depth) {
-		Item rock = new Item(',', AsciiPanel.yellow, "rock", "rock", null, null, "commom", null, null);
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		HashMap<String, String> nameData = getter.getNounData("rock");
+		HashMap<String, String> adjData = getter.getAdjData("average", nameData.get("genere"));
+		Item rock = new Item(',', AsciiPanel.yellow, "rock", nameData.get("baseNoun"), nameData.get("plural"),
+				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		world.addAtEmptyLocation(rock, depth);
 		return rock;
 	}
 
-	public Item newVictoryItem(int depth) {
+	public Item newVictoryItem(int depth) { //TODO a este le tengo que meter las traducciones manuales o traducir amuleto y completarlo como lo de cadaver
 		Item item = new Item('*', AsciiPanel.brightWhite, "Hamsun's amulet",  "Hamsun's amulet", null, null, "common", null, null);
 		world.addAtEmptyLocation(item, depth);
 		return item;

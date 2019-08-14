@@ -147,6 +147,24 @@
          "genere":"femenine"
       }
    },
+   "corpse": {
+      "cadáver": {
+         "plural": "cadáveres",
+         "genere": "masculine"
+      },
+      "muerto": {
+         "plural": "muertos",
+         "genere": "masculine"
+      },
+      "fiambre": {
+         "plural": "fiambres",
+         "genere": "masculine"
+      },
+      "cuerpo": {
+         "plural": "cuerpos",
+         "genere": "masculine"
+      }
+   },
    "perchment":{  
       "pergamino":{  
          "plural":"pergaminos",

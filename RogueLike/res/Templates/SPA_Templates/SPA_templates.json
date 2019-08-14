@@ -1,11 +1,11 @@
 {  
-   "BasicActionsTemplates":["SUJ VB CD"],
-   "ThrowAttack":["SUJ VB CD CI"],
+   "BasicActionsTemplates":["SUJ VB CD ADV"],
+   "ThrowAttack":["SUJ VB CD CI ADV"],
    "WeaponsAttacks":[  
-      "SUJ VB CI",
-      "SUJ VB CI CCI"
+      "SUJ VB CI ADV",
+      "SUJ VB CI CCI ADV"
    ],
    "ToBeInTemplate":[
-   "VB CD"
+   "VB CD ADV"
    ]
 }

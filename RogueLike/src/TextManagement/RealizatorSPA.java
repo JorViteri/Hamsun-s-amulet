@@ -41,16 +41,17 @@ public class RealizatorSPA implements Realizator{
 			verbFinal = getter.getActionVerb(verb.get("actionType"), null);
 		}
 		verbFinal = getter.getVerbData(verbFinal).get("ThirdPresentSingular"); //aqui tendria que cargarlo y pillar lo que me interese
-		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verbFinal, Subject, CD, CI, CCI, restrictions, verb.get("actionType")); //TODO action type solo debe funcionar en unos casos
+		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verbFinal, verb.get("adverb"), Subject, CD,
+				CI, CCI, restrictions, verb.get("actionType"));
 		int size = template.size();
 		for (int i = 0; i < size; i++) {
-			String key = getKeyByValue(template,i);
+			String key = getKeyByValue(template, i);
 			String component = hashMapPhrase.get(key);
-			finalPhrase = finalPhrase + component;
+			finalPhrase = finalPhrase + component+ " ";
 		}
 		finalPhrase = finalPhrase.trim();
-		finalPhrase = finalPhrase.substring(0,1).toUpperCase() + finalPhrase.substring(1);
-		return finalPhrase;
+		finalPhrase = finalPhrase.substring(0, 1).toUpperCase() + finalPhrase.substring(1);
+		return finalPhrase+".";
 	}
 
 	
@@ -117,7 +118,7 @@ public class RealizatorSPA implements Realizator{
 	}
 	
 	
-	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, HashMap<String, String> Subject,
+	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, String adverb, HashMap<String, String> Subject,
 			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CCI,
 			Restrictions restrictions, String actionType) {
 		HashMap<String, String> result = new HashMap<>();
@@ -127,7 +128,7 @@ public class RealizatorSPA implements Realizator{
 			result.put("SUJ", constructSUJ(aux, Subject, restrictions));
 		}
 		if(template.get("VB")!=null){
-			result.put("VB", " "+verb+" ");
+			result.put("VB", " "+verb);
 		}
 		if (template.get("CD")!=null){//TODO con esto puedo pillar el CD con determinante indefinido
 			aux = getObjectTemplate("CD", actionType); 
@@ -141,13 +142,23 @@ public class RealizatorSPA implements Realizator{
 			aux = getObjectTemplate("CCI", null);
 			result.put("CCI", constructCCI(aux, CCI, restrictions));
 		}
+		if (template.get("ADV") != null) {
+
+			if (adverb != null) {
+				adverb = getter.getAdvData(adverb).get("adverb");
+				result.put("ADV", adverb);
+			} else {
+				result.put("ADV", "");
+			}
+
+		}
 		return result;
 	}
 	
 	
 	private String constructCCI(HashMap<String, String> prepPhrase, HashMap<String, String> CCI, Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
-		String result = " ";
+		String result = "";
 		if (prepPhrase.get("PR") != null){
 			result = result + getter.getPreposition("CCI", res.get("CCIGen"), res.get("CCINum"));
 		}
@@ -160,7 +171,7 @@ public class RealizatorSPA implements Realizator{
 		if (prepPhrase.get("ADJ") != null) {
 			result = result + " " + CCI.get("characteristic");
 		}
-		return result;
+		return result.trim();
 	}
 
 	private String constructCI(HashMap<String, String> prepPhrase, HashMap<String, String> CI, Restrictions restrictions) {
@@ -178,7 +189,7 @@ public class RealizatorSPA implements Realizator{
 		if (prepPhrase.get("ADJ") != null) {
 			result = result + " " + CI.get("characteristic");
 		}
-		return result;
+		return result.trim();
 	}
 
 	private String constructSUJ(HashMap<String, String> nominalPhrase, HashMap<String, String> Subject,
@@ -190,7 +201,7 @@ public class RealizatorSPA implements Realizator{
 			result = result + " " + Subject.get("characteristic");
 		}
 		result = result + " " + Subject.get("name");
-		return result;
+		return result.trim();
 	}
 	
 	
@@ -208,7 +219,7 @@ public class RealizatorSPA implements Realizator{
 		if (nominalPhrase.get("ADJ") != null) {
 			result = result + " " + cD.get("characteristic");
 		}
-		return result;
+		return result.trim();
 	}
 
 	private static String getKeyByValue(HashMap <String, Integer> map, Integer i){

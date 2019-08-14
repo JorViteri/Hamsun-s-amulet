@@ -17,6 +17,38 @@
          "infinitive":"entonar"
       }
    },
+   "descend":{  
+      "caer":{  
+         "3SP":"cayeron",
+         "3PP":"caen",
+         "3SS":"cayó",
+         "3PS":"cae",
+         "infinitive":"caer"
+      },
+      "descender":{  
+         "3SP":"Descendieron",
+         "3PP":"descienden",
+         "3SS":"descendió",
+         "3PS":"desciende",
+         "infinitive":"descender"
+      },
+      "bajar":{  
+         "3SP":"bajaron",
+         "3PP":"bajan",
+         "3SS":"bajó",
+         "3PS":"baja",
+         "infinitive":"bajar"
+      }
+   },
+   "ascend":{  
+      "ascender":{  
+         "3SP":"ascendieron",
+         "3PP":"ascienden",
+         "3SS":"ascendió",
+         "3PS":"asciende",
+         "infinitive":"ascender"
+      }
+   },
    "be":{  
       "haber":{  
          "3SP":"hay",

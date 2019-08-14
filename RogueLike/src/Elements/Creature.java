@@ -7,6 +7,7 @@ import Screens.PlayScreen;
 import TextManagement.Realizator;
 import TextManagement.Restrictions;
 import TextManagement.RestrictionsFactory;
+import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterAndRealizatorFactory;
 
 import java.util.ArrayList;
@@ -267,7 +268,14 @@ public class Creature {
 	}
 
 	private void leaveCorpse() {
-		Item corpse = new Item('%', color, name + " corpse", name + " corpse", null, null, "common", null, null); //TODO esto no me mola nada
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		Realizator realizator = factory.getRealizator();
+		HashMap<String, String> corpseData = getter.getNounData("corpse");
+		HashMap<String, String> adjData = getter.getAdjData("average", corpseData.get("genere"));
+		String finalName = realizator.constructNounAndNoun(corpseData.get("baseNoun"), name);
+		Item corpse = new Item('%', color, name + " corpse", finalName, corpseData.get("plural"),
+				corpseData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		corpse.modifyFoodValue(maxHp);
 		world.addAtEmptySpace(corpse, x, y, z);
 		for (Item item : inventory.getItems()) {

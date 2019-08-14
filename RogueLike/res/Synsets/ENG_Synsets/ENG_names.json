@@ -19,6 +19,28 @@
          "singular":"toxicant"
       }
    },
+      "corpse": {
+      "stiff": {
+         "plural": "stiffs",
+         "singular": "stiff"
+      },
+      "cadaver": {
+         "plural": "cadavers",
+         "singular": "cadaver"
+      },
+      "remains": {
+         "plural": "remains",
+         "singular": "remains"
+      },
+      "corpse": {
+         "plural": "corpses",
+         "singular": "corpse"
+      },
+      "clay": {
+         "plural": "clays",
+         "singular": "clay"
+      }
+   },
    "health":{  
       "wellness":{  
          "plural":"wellness",

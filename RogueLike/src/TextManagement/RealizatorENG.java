@@ -60,7 +60,7 @@ public class RealizatorENG implements Realizator {
 		}
 		finalPhrase = finalPhrase.trim();
 		finalPhrase = finalPhrase.substring(0, 1).toUpperCase() + finalPhrase.substring(1);
-		return finalPhrase;
+		return finalPhrase+".";
 	}
 
 	private String getKeyByValue(HashMap<String, Integer> map, int i) { //quizas seria mejor definir esta funcion en la interaz con un default
