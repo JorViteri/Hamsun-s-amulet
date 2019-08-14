@@ -112,8 +112,9 @@ public class WordDataGetterENG implements WordDataGetter {
 		object = objectVerbs.getJSONObject(aux);
 		aux =  aux.replace("_", " ");
 		result.put("Present", aux);
-		result.put("ThirdPerson",object.getString("ThirdPerson"));
+		result.put("Singular",object.getString("Singular"));
 		result.put("Past", object.getString("Past"));
+		result.put("Plural", object.getString("Plural"));
 		return result;
 	}
 

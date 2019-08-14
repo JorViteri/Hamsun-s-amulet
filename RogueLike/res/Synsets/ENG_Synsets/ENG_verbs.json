@@ -1,234 +1,235 @@
 {  
    "drop":{  
       "drop":{  
-         "ThirdPerson":"drops",
+         "Singular":"drops",
          "Past":"dropped",
          "Present":"drop"
       }
    },
    "summon":{  
       "summon":{  
-         "ThirdPerson":"summons",
+         "Singular":"summons",
          "Past":"summoned",
          "Present":"summon"
       }
    },
    "be":{  
       "be":{  
-         "ThirdPerson":"is",
+         "Singular":"is",
          "Past":"was",
-         "Present":"be"
+         "Present":"be",
+         "Plural":"are"
       }
    },
    "chant":{  
       "chant":{  
-         "ThirdPerson":"chants",
+         "Singular":"chants",
          "Past":"chanted",
          "Present":"chant"
       },
       "tone":{  
-         "ThirdPerson":"tones",
+         "Singular":"tones",
          "Past":"toned",
          "Present":"tone"
       },
       "intone":{  
-         "ThirdPerson":"intones",
+         "Singular":"intones",
          "Past":"intoned",
          "Present":"intone"
       }
    },
    "cut":{  
       "cut":{  
-         "ThirdPerson":"cuts",
+         "Singular":"cuts",
          "Past":"cut",
          "Present":"cut"
       }
    },
    "strike":{  
       "strike":{  
-         "ThirdPerson":"strikes",
+         "Singular":"strikes",
          "Past":"struck",
          "Present":"strike"
       }
    },
    "consume":{  
       "take":{  
-         "ThirdPerson":"takes",
+         "Singular":"takes",
          "Past":"took",
          "Present":"take"
       },
       "take_in":{  
-         "ThirdPerson":"takes in",
+         "Singular":"takes in",
          "Past":"took in",
          "Present":"take in"
       },
       "have":{  
-         "ThirdPerson":"has",
+         "Singular":"has",
          "Past":"had",
          "Present":"have"
       },
       "consume":{  
-         "ThirdPerson":"consumes",
+         "Singular":"consumes",
          "Past":"consumed",
          "Present":"consume"
       },
       "ingest":{  
-         "ThirdPerson":"ingests",
+         "Singular":"ingests",
          "Past":"ingested",
          "Present":"ingest"
       }
    },
    "check":{  
       "canvas":{  
-         "ThirdPerson":"canvas",
+         "Singular":"canvas",
          "Past":"canvas",
          "Present":"canvas"
       },
       "study":{  
-         "ThirdPerson":"studies",
+         "Singular":"studies",
          "Past":"studied",
          "Present":"study"
       },
       "examine":{  
-         "ThirdPerson":"examines",
+         "Singular":"examines",
          "Past":"examined",
          "Present":"examine"
       },
       "analyze":{  
-         "ThirdPerson":"analyzes",
+         "Singular":"analyzes",
          "Past":"analyzed",
          "Present":"analyze"
       },
       "analyse":{  
-         "ThirdPerson":"analyses",
+         "Singular":"analyses",
          "Past":"analysed",
          "Present":"analyse"
       },
       "canvass":{  
-         "ThirdPerson":"canvasses",
+         "Singular":"canvasses",
          "Past":"canvassed",
          "Present":"canvass"
       }
    },
    "drink":{  
       "imbibe":{  
-         "ThirdPerson":"imbibes",
+         "Singular":"imbibes",
          "Past":"imbibed",
          "Present":"imbibe"
       },
       "drink":{  
-         "ThirdPerson":"drinks",
+         "Singular":"drinks",
          "Past":"drank",
          "Present":"drink"
       }
    },
    "suffer":{  
       "suffer":{  
-         "ThirdPerson":"suffers",
+         "Singular":"suffers",
          "Past":"suffered",
          "Present":"suffer"
       },
       "get":{  
-         "ThirdPerson":"gets",
+         "Singular":"gets",
          "Past":"got",
          "Present":"get"
       },
       "have":{  
-         "ThirdPerson":"has",
+         "Singular":"has",
          "Past":"had",
          "Present":"have"
       },
       "sustain":{  
-         "ThirdPerson":"sustains",
+         "Singular":"sustains",
          "Past":"sustained",
          "Present":"sustain"
       }
    },
    "hit":{  
       "hit":{  
-         "ThirdPerson":"hits",
+         "Singular":"hits",
          "Past":"hit",
          "Present":"hit"
       }
    },
    "equip":{  
       "fit":{  
-         "ThirdPerson":"fits",
+         "Singular":"fits",
          "Past":"fitted",
          "Present":"fit"
       },
       "outfit":{  
-         "ThirdPerson":"outfits",
+         "Singular":"outfits",
          "Past":"outfitted",
          "Present":"outfit"
       },
       "equip":{  
-         "ThirdPerson":"equips",
+         "Singular":"equips",
          "Past":"equipped",
          "Present":"equip"
       },
       "fit_out":{  
-         "ThirdPerson":"fits out",
+         "Singular":"fits out",
          "Past":"fitted out",
          "Present":"fit out"
       }
    },
    "throw":{  
       "cast":{  
-         "ThirdPerson":"casts",
+         "Singular":"casts",
          "Past":"cast",
          "Present":"cast"
       },
       "hurl":{  
-         "ThirdPerson":"hurls",
+         "Singular":"hurls",
          "Past":"hurled",
          "Present":"hurl"
       },
       "hurtle":{  
-         "ThirdPerson":"hurtles",
+         "Singular":"hurtles",
          "Past":"hurtled",
          "Present":"hurtle"
       }
    },
    "thrust":{  
       "thrust":{  
-         "ThirdPerson":"thrusts",
+         "Singular":"thrusts",
          "Past":"thrust",
          "Present":"thrust"
       },
       "pierce":{  
-         "ThirdPerson":"pierces",
+         "Singular":"pierces",
          "Past":"pierced",
          "Present":"pierce"
       }
    },
    "shoot":{  
       "pip":{  
-         "ThirdPerson":"pips",
+         "Singular":"pips",
          "Past":"pipped",
          "Present":"pip"
       },
       "shoot":{  
-         "ThirdPerson":"shoots",
+         "Singular":"shoots",
          "Past":"shot",
          "Present":"shoot"
       }
    },
    "slash":{  
       "slash":{  
-         "ThirdPerson":"slashes",
+         "Singular":"slashes",
          "Past":"slashed",
          "Present":"slash"
       },
       "gash":{  
-         "ThirdPerson":"gash",
+         "Singular":"gash",
          "Past":"gashed",
          "Present":"gash"
       }
    },
    "smash":{  
       "smash":{  
-         "ThirdPerson":"smashes",
+         "Singular":"smashes",
          "Past":"smashed",
          "Present":"smash"
       }

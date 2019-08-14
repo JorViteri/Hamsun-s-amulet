@@ -73,15 +73,15 @@ public enum Tile {
 		return data;
 	}
 	
-	public HashMap<String, String> getStairsNounAndType(){
+	public HashMap<String, String> getStairsNounAndType(String number){
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, String> data = new HashMap<>();
 		HashMap<String, String> nameData = getter.getNounData("stairs");
 		HashMap<String, String> typeData = getter.getAdjData(this.getChairTypeString(), nameData.get("genere"));
 		
-		data.put("name", nameData.get("baseNoun"));
-		data.put("characteristic", typeData.get("singular"));  //TODO wtf was this?
+		data.put("name", nameData.get(number));
+		data.put("characteristic", typeData.get(number));  
 		return data;
 	}
 	

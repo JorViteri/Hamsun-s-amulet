@@ -45,7 +45,8 @@ public class RealizatorENG implements Realizator {
 		} else{
 			verbFinal = getter.getActionVerb(verb.get("actionType"), null);
 		}
-		verbFinal = getter.getVerbData(verbFinal).get("ThirdPerson"); //aqui tendria que cargarlo y pillar lo que me interese
+		String vForm = verb.get("Form");
+		verbFinal = getter.getVerbData(verbFinal).get(vForm); //aqui tendria que cargarlo y pillar lo que me interese
 		if (verb.equals("summons")){
 			boolean c = true;
 		}
@@ -55,7 +56,7 @@ public class RealizatorENG implements Realizator {
 		for (int i = 0; i < size; i++) {
 			String key = getKeyByValue(template, i);
 			String component = hashMapPhrase.get(key);
-			finalPhrase = finalPhrase + component;
+			finalPhrase = finalPhrase + component +" ";
 		}
 		finalPhrase = finalPhrase.trim();
 		finalPhrase = finalPhrase.substring(0, 1).toUpperCase() + finalPhrase.substring(1);
@@ -84,7 +85,7 @@ public class RealizatorENG implements Realizator {
 			result.put("SUJ", constructSUJ(aux, subject, restrictions));
 		}
 		if (template.get("VB") != null) {
-			result.put("VB", " " + verb + " ");
+			result.put("VB",  verb);
 		}
 		if (template.get("CD") != null) {
 			aux = getObjectTemplate("CD", actionType);
@@ -101,7 +102,7 @@ public class RealizatorENG implements Realizator {
 		if (template.get("ADV") != null) {
 
 			if (adverb != null) {
-				adverb = " " + getter.getAdvData(adverb).get("adverb");
+				adverb = getter.getAdvData(adverb).get("adverb");
 				result.put("ADV", adverb);
 			} else {
 				result.put("ADV", "");
@@ -126,7 +127,7 @@ public class RealizatorENG implements Realizator {
 			result = result + " " + cCI.get("name");
 		}		
 		
-		return result;
+		return result.trim();
 	}
 
 	private String constructCI(HashMap<String, String> prepPhrase, HashMap<String, String> cI,
@@ -145,7 +146,7 @@ public class RealizatorENG implements Realizator {
 			result = result + " " + cI.get("name");
 		}
 		
-		return result;
+		return result.trim();
 	}
 
 	private String constructCD(HashMap<String, String> nominalPhrase, HashMap<String, String> cD,
@@ -154,12 +155,19 @@ public class RealizatorENG implements Realizator {
 		String result = "";
 		String type = "undefined_nvoc";
 		String number = res.get("CDNum");
+		
+		if (nominalPhrase.get("ADJ")!= null){
+			if (isVowel(cD.get("characteristic").charAt(0))){
+				type = "undefined_voc";
+			}
+		} else {
+			if (isVowel(cD.get("name").charAt(0))){
+				type = "undefined_voc";
+			}
+		}
 
 		if (nominalPhrase.get("DetUn") != null) {
 			if (number.equals("singular")) {
-				if (isVowel(cD.get("name").charAt(0))) {
-					type = "undefined_voc";
-				}
 				result = result + getter.getDetUndefined(type, null);
 			} else {
 				result = result + "";
@@ -167,14 +175,14 @@ public class RealizatorENG implements Realizator {
 		}
 
 		if (nominalPhrase.get("ART") != null) {
-			result = result + " " + getter.getArticle("defined", null);
+			result = result +getter.getArticle("defined", null)+ " ";
 		}
 		if (nominalPhrase.get("ADJ") != null) {
 			result = result + " " + cD.get("characteristic");
 		}
 		result = result + " " + cD.get("name");
 
-		return result;
+		return result.trim();
 	}
 
 	private String constructSUJ(HashMap<String, String> nominalPhrase, HashMap<String, String> subject,
@@ -185,7 +193,7 @@ public class RealizatorENG implements Realizator {
 			result = result + " " + subject.get("characteristic");
 		}
 		result = result + " " + subject.get("name");
-		return result;
+		return result.trim();
 	}
 
 	private HashMap<String, String> getObjectTemplate(String ID, String actionType) {
