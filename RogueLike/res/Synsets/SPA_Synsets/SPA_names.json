@@ -19,6 +19,12 @@
          "genere":"femenine"
       }
    },
+    "body": {
+      "cuerpo": {
+         "plural": "cuerpos",
+         "genere": "masculine"
+      }
+   },
    "level":{  
       "piso":{  
          "plural":"pisos",

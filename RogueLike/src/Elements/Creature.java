@@ -689,39 +689,97 @@ public class Creature {
 	}
 
 	public void meleeAttack(Creature other) {
-		commonAttack(other, attackValue(), "attack the %s for %d damage", other.getCharactAndName()); //TODO aqui es donde se pilla el nombre y eso
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", "Attack");
+		verb.put("adverb", null);
+		verb.put("Form", "Singular");
+		HashMap<String, String> ci = other.getNameAdjectiveKey("singular");
+		HashMap<String, String> cc = new HashMap<>();
+		HashMap<String, String> ccData = new HashMap<>();
+		if (weapon!= null){
+			cc = weapon.getNameAndAdjective("singular");
+			ccData = weapon.getMorfData("singular");
+			cc.put("key", weapon.getKey());
+			cc.put("type", "CCI");
+		} else{
+			WordDataGetterAndRealizatorFactory factoryG = WordDataGetterAndRealizatorFactory.getInstance();
+			WordDataGetter getter = factoryG.getWordDataGetter();
+			HashMap<String, String> ccExtraData = getter.getNounData("body"); 
+			
+			ccData.put("number", "singular");
+			ccData.put("genere", ccExtraData.get("genere"));
+			cc.put("name", ccExtraData.get("baseNoun"));
+			cc.put("key", "body");
+			cc.put("characteristic","");
+			cc.put("type", "CCI");
+		}
+		
+		HashMap<String, String> ciData = other.getMorfData("singular");
+		
+		commonAttack(other, attackValue(), verb, null, null, ci, ciData, cc, ccData, "WeaponsAttacks", null);
 	}
 
 	private void throwAttack(Item item, Creature other) {
-		commonAttack(other, attackValue / 2 + item.getThrownAttackValue(), "throw a %s at the %s for %d damage",
-				nameOf(item), other.name);
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", "ThrowAttack");
+		verb.put("adverb", null);
+		verb.put("Form", "Singular");
+		HashMap<String, String> ci = other.getNameAdjectiveKey("singular");
+		HashMap<String, String> ciData = other.getMorfData("singular");
+		HashMap<String, String> cd = item.getNameAndAdjective("singular");
+		HashMap<String, String> cdData = item.getMorfData("singular");
+
+		commonAttack(other, attackValue / 2 + item.getThrownAttackValue(), verb, cd, cdData, ci, ciData, null, null,
+				"ThrowAttack", item);
 		other.addEffect(item.getQuaffEffect());
 		this.learnName(item);
 	}
 
 	public void rangedWeaponAttack(Creature other) {
-		commonAttack(other, attackValue / 2 + weapon.getRangedAttackValue(), "fire a %s at the %s for %d damage",
-				nameOf(weapon), other.name);
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", "Attack");
+		verb.put("adverb", null);
+		verb.put("Form", "Singular");
+		HashMap<String, String> ci = other.getNameAdjectiveKey("singular");
+		HashMap<String, String> cc = weapon.getNameAndAdjective("singular");
+		cc.put("key", weapon.getKey());
+		cc.put("type", "CCI");
+		HashMap<String, String> ciData = other.getMorfData("singular");
+		HashMap<String, String> ccData = weapon.getMorfData("singular");
+		commonAttack(other, attackValue / 2 + weapon.getRangedAttackValue(), verb, null, null, ci, ciData, cc, ccData,
+				"WeaponsAttacks", null);
 	}
 
-	private void commonAttack(Creature other, int attack, String action, Object... params) {
+	private void commonAttack(Creature other, int attack, HashMap<String, String> verb, HashMap<String, String> cd,
+			HashMap<String, String> cdData, HashMap<String, String> ci, HashMap<String, String> ciData,
+			HashMap<String, String> cc, HashMap<String, String> ccData, String templateType, Item item) {
 
 		int amount = Math.max(0, attack - other.defenseValue());
 
 		amount = (int) (Math.random() * amount) + 1;
 
-		Object[] params2 = new Object[params.length + 1];
-		for (int i = 0; i < params.length; i++) {
-			params2[i] = params[i];
+		HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+		HashMap<String, String> subjectData = this.getMorfData("singular");
+		RestrictionsFactory factory = RestrictionsFactory.getInstance();
+		Restrictions res = null;
+		if (verb.get("actionType").equals("Attack")) {
+			res = factory.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+					subjectData.get("number"), null, null, ciData.get("genere"), ciData.get("number"),
+					ccData.get("genere"), ccData.get("number"));
+			doActionComplex(verb, subject, cd, ci, cc, res, templateType);
+		} else {
+			res = factory.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+					subjectData.get("number"), cdData.get("genere"), cdData.get("number"), ciData.get("genere"),
+					ciData.get("number"), null, null);
+			doActionComplex(verb, subject, cd, ci, cc, res, templateType, item);
 		}
-		params2[params2.length - 1] = amount;
 
-		doAction(action, params2);
+		other.modifyHp(-amount, "Killed in battle");
 
-		other.modifyHp(-amount,"Killed in battle");
-
-		if (other.hp < 1)
+		if (other.hp < 1) {
 			gainXp(other);
+		}
+
 	}
 
 	public void modifyXp(int amount) {

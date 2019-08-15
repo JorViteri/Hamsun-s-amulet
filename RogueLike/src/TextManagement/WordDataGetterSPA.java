@@ -128,6 +128,9 @@ public class WordDataGetterSPA implements WordDataGetter {
 			File file = new File("res/Synsets/SPA_Synsets/SPA_verbs.json");
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
+			if (verb.equals("thrust")){
+				boolean c =  true;
+			}
 			objectNames = object.getJSONObject(verb);
 		} catch(Exception e){
 			boolean c = true;

@@ -18,6 +18,12 @@
          "plural":"toxicants",
          "singular":"toxicant"
       }
+   }, 
+     "body": {
+      "body": {
+         "plural": "bodies",
+         "singular": "body"
+      }
    },
    "corpse":{  
       "stiff":{  
