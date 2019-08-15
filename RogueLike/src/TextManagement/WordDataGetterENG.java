@@ -112,9 +112,11 @@ public class WordDataGetterENG implements WordDataGetter {
 		object = objectVerbs.getJSONObject(aux);
 		aux =  aux.replace("_", " ");
 		result.put("Present", aux);
-		result.put("Singular",object.getString("Singular"));
+		result.put("Singular",object.getString("Singular")); //TODO esto lo necesito por el vb to be, me caguen todo
 		result.put("Past", object.getString("Past"));
-		result.put("Plural", object.getString("Plural"));
+		if (verb.equals("be")){
+			result.put("Plural", object.getString("Plural"));
+		}		
 		return result;
 	}
 

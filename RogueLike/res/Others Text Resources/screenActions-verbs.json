@@ -20,8 +20,13 @@
    "throw":[  
       "throw"
    ],
-   "be_space":[
-   	 "be" 
-    ]
-   
+   "be_space":[  
+      "be"
+   ],
+   "descend":[  
+      "descend"
+   ],
+   "ascend":[  
+      "ascend"
+   ]
 }

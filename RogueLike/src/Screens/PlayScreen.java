@@ -39,8 +39,6 @@ public class PlayScreen implements Screen {
 	private static SpellBookFactory bookFactory;
 	private static FieldOfView fov;
 	private Screen subscreen;
-	private final static String newline = "\n";
-	private final static int linelimit=28;
 	private TextManager textManager = TextManager.getTextManager();
 	private boolean newEnemies = true;
 	
@@ -108,26 +106,11 @@ public class PlayScreen implements Screen {
 	}
 
 	private void displayMessages(AsciiPanel terminal, ArrayList<String> messages, JTextArea textArea) {
-		int top = screenHeight - messages.size();
-		int end=0;
 		for (int i = 0; i < messages.size(); i++) {			
-			//terminal.writeCenter(messages.get(i), top + i);
 			if (textManager.textArea2ReachedLimit()){
 				textManager.removeFirstLineTextArea(2);
 			}
 			textManager.writeText(messages.get(i), 2);
-			
-			/*
-			if(textArea.getLineCount()==linelimit){
-				try {
-					end = textArea.getLineEndOffset(0);
-				} catch (BadLocationException e) {
-					e.printStackTrace();
-				}
-				textArea.replaceRange("", 0, end);
-			}
-			textArea.append(messages.get(i)+newline);*/
-			
 		}
 		messages.clear();
 	}
@@ -163,7 +146,6 @@ public class PlayScreen implements Screen {
 		terminal.write(player.glyph(), player.getX() - left, player.getY() - top, player.color());
 
 		stats = String.format("HP: %3d/%3d\nMana: %d/%d", player.hp(), player.maxHp(), player.getMana(), player.getMaxMana());
-		//terminal.write(stats, 1, 23);
 		textManager.clearTextArea(1);
 	    textManager.writeText(stats, 1); 
 

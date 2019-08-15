@@ -19,6 +19,16 @@
          "genere":"femenine"
       }
    },
+   "level":{  
+      "piso":{  
+         "plural":"pisos",
+         "genere":"masculine"
+      },
+      "planta":{  
+         "plural":"plantas",
+         "genere":"femenine"
+      }
+   },
    "warrior":{  
       "guerrero":{  
          "plural":"guerreros",
@@ -147,22 +157,22 @@
          "genere":"femenine"
       }
    },
-   "corpse": {
-      "cadáver": {
-         "plural": "cadáveres",
-         "genere": "masculine"
+   "corpse":{  
+      "cadáver":{  
+         "plural":"cadáveres",
+         "genere":"masculine"
       },
-      "muerto": {
-         "plural": "muertos",
-         "genere": "masculine"
+      "muerto":{  
+         "plural":"muertos",
+         "genere":"masculine"
       },
-      "fiambre": {
-         "plural": "fiambres",
-         "genere": "masculine"
+      "fiambre":{  
+         "plural":"fiambres",
+         "genere":"masculine"
       },
-      "cuerpo": {
-         "plural": "cuerpos",
-         "genere": "masculine"
+      "cuerpo":{  
+         "plural":"cuerpos",
+         "genere":"masculine"
       }
    },
    "perchment":{  

@@ -162,16 +162,17 @@ public class SpellBookFactory {
 					}
 				}	
 				
-				HashMap<String, String> cciData =  item.getMorfData("singular");
-				HashMap<String, String> cci = item.getNameAndAdjective("singular");
-				cci.put("key", "book");
+				HashMap<String, String> ccData =  item.getMorfData("singular");
+				HashMap<String, String> cc = item.getNameAndAdjective("singular");
+				cc.put("key", "book");
+				cc.put("type", "CCI");
 				HashMap<String, String> verbData = new HashMap<>();
 				verbData.put("actionType", "Summon");
 				verbData.put("VbNum", "singular");
 				verbData.put("VbPerson", "third");
 				verbData.put("VbForm", "active");
 				verbData.put("VbTime", "present");
-				creature.summon(bats, cciData, cci, ciData, CI, verbData, "WeaponsAttacks", item);
+				creature.summon(bats, ccData, cc, ciData, CI, verbData, "WeaponsAttacks", item);
 			}
 		}, true);
 

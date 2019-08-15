@@ -19,26 +19,44 @@
          "singular":"toxicant"
       }
    },
-      "corpse": {
-      "stiff": {
-         "plural": "stiffs",
-         "singular": "stiff"
+   "corpse":{  
+      "stiff":{  
+         "plural":"stiffs",
+         "singular":"stiff"
       },
-      "cadaver": {
-         "plural": "cadavers",
-         "singular": "cadaver"
+      "cadaver":{  
+         "plural":"cadavers",
+         "singular":"cadaver"
       },
-      "remains": {
-         "plural": "remains",
-         "singular": "remains"
+      "remains":{  
+         "plural":"remains",
+         "singular":"remains"
       },
-      "corpse": {
-         "plural": "corpses",
-         "singular": "corpse"
+      "corpse":{  
+         "plural":"corpses",
+         "singular":"corpse"
       },
-      "clay": {
-         "plural": "clays",
-         "singular": "clay"
+      "clay":{  
+         "plural":"clays",
+         "singular":"clay"
+      }
+   },
+   "level":{  
+      "level":{  
+         "plural":"levels",
+         "singular":"level"
+      },
+      "floor":{  
+         "plural":"floors",
+         "singular":"floor"
+      },
+      "storey":{  
+         "plural":"storeys",
+         "singular":"storey"
+      },
+      "story":{  
+         "plural":"stories",
+         "singular":"story"
       }
    },
    "health":{  

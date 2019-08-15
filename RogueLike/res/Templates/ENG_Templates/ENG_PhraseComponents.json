@@ -21,5 +21,8 @@
    "CCI":[  
       "PR ART NOUN",
       "PR ART NOUN ADJ"
+   ],
+    "CCL":[
+      "PR ART NOUN ADJ"
    ]
 }

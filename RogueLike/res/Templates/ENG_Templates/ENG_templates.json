@@ -7,9 +7,12 @@
    ],
    "WeaponsAttacks":[  
       "SUJ VB CI ADV",
-      "SUJ VB CI CCI ADV"
+      "SUJ VB CI CC ADV"
    ],
    "ToBeInTemplate":[  
       "PRO VB CD ADV"
-   ]
+   ],
+   "ChangeDungeonLevel":[  
+      "SUJ VB CD CC"
+   ],
 }

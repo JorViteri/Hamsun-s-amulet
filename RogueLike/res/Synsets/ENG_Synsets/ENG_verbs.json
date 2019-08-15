@@ -15,26 +15,16 @@
    },
    "ascend":{  
       "ascend":{  
-         "ThirdPerson":"ascends",
+         "Singular":"ascends",
          "Past":"ascended",
          "Present":"ascend"
-      },
-      "go_up":{  
-         "ThirdPerson":"goes up",
-         "Past":"went up",
-         "Present":"go up"
       }
    },
    "descend":{  
       "descend":{  
-         "ThirdPerson":"descends",
+         "Singular":"descends",
          "Past":"descended",
          "Present":"descend"
-      },
-      "go_down":{  
-         "ThirdPerson":"goes down",
-         "Past":"went down",
-         "Present":"go down"
       }
    },
    "be":{  

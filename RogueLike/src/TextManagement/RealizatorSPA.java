@@ -29,20 +29,24 @@ public class RealizatorSPA implements Realizator{
 
 	@Override
 	public String realizatePhrase(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD,
-			HashMap<String, String> CI, HashMap<String, String> CCI, Restrictions restrictions, String templateType) {
+			HashMap<String, String> CI, HashMap<String, String> CC, Restrictions restrictions, String templateType) {
 		String finalPhrase = "";
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, Integer> template = getTemplate(templateType); //aqui obtendriqa la plantilla que necesito 
 		String verbFinal = null;
-		if (CCI!=null){  //TODO aqui solo pillo el ID del verbo
-			verbFinal = getter.getActionVerb(verb.get("actionType"), CCI.get("key"));
-		} else{
+		if (CC!=null){
+			if (CC.get("type").equals("CCI")){  //TODO esta comprobacion tengo que hacerla mejor
+				verbFinal = getter.getActionVerb(verb.get("actionType"), CC.get("key"));
+			} else{
+				verbFinal = getter.getActionVerb(verb.get("actionType"), null);
+			}
+		} else {
 			verbFinal = getter.getActionVerb(verb.get("actionType"), null);
 		}
 		verbFinal = getter.getVerbData(verbFinal).get("ThirdPresentSingular"); //aqui tendria que cargarlo y pillar lo que me interese
 		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verbFinal, verb.get("adverb"), Subject, CD,
-				CI, CCI, restrictions, verb.get("actionType"));
+				CI, CC, restrictions, verb.get("actionType"));
 		int size = template.size();
 		for (int i = 0; i < size; i++) {
 			String key = getKeyByValue(template, i);
@@ -119,7 +123,7 @@ public class RealizatorSPA implements Realizator{
 	
 	
 	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, String adverb, HashMap<String, String> Subject,
-			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CCI,
+			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
 			Restrictions restrictions, String actionType) {
 		HashMap<String, String> result = new HashMap<>();
 		HashMap<String, String> aux = new HashMap<>();
@@ -138,9 +142,9 @@ public class RealizatorSPA implements Realizator{
 			aux = getObjectTemplate("CI", null);
 			result.put("CI", constructCI(aux, CI, restrictions));
 		}
-		if(template.get("CCI")!=null){
-			aux = getObjectTemplate("CCI", null);
-			result.put("CCI", constructCCI(aux, CCI, restrictions));
+		if(template.get("CC")!=null){
+			aux = getObjectTemplate(CC.get("type"), null);
+			result.put("CC", constructCC(aux, CC, restrictions));
 		}
 		if (template.get("ADV") != null) {
 
@@ -156,20 +160,22 @@ public class RealizatorSPA implements Realizator{
 	}
 	
 	
-	private String constructCCI(HashMap<String, String> prepPhrase, HashMap<String, String> CCI, Restrictions restrictions) {
+	private String constructCC(HashMap<String, String> prepPhrase, HashMap<String, String> CC, Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
 		String result = "";
+		String prep = "";
 		if (prepPhrase.get("PR") != null){
-			result = result + getter.getPreposition("CCI", res.get("CCIGen"), res.get("CCINum"));
+			prep = getter.getPreposition(CC.get("type"), res.get("CCGen"), res.get("CCNum"));
+			result = result + prep; 
 		}
-		if (prepPhrase.get("ART") != null) {
-			result = result + " " +getter.getArticle(res.get("CCIGen"), res.get("CCINum"));
+		if ((prepPhrase.get("ART") != null) && (!prep.equals("al"))) {
+			result = result + " " +getter.getArticle(res.get("CCGen"), res.get("CCNum"));
 		}
 		if (prepPhrase.get("NOUN") != null) {
-			result = result + " " + CCI.get("name");
+			result = result + " " + CC.get("name");
 		}		
 		if (prepPhrase.get("ADJ") != null) {
-			result = result + " " + CCI.get("characteristic");
+			result = result + " " + CC.get("characteristic");
 		}
 		return result.trim();
 	}
@@ -177,10 +183,12 @@ public class RealizatorSPA implements Realizator{
 	private String constructCI(HashMap<String, String> prepPhrase, HashMap<String, String> CI, Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
 		String result = "";
+		String prep = "";
 		if (prepPhrase.get("PR") != null){
-			result = result + getter.getPreposition("CI", res.get("CIGen"), res.get("CINum"));
-		} //TODO Obtener las preposiciones!! actualizar el restricitons para tener las nuevas en cuenta!!!
-		if (prepPhrase.get("ART") != null) {
+			prep = getter.getPreposition("CI", res.get("CIGen"), res.get("CINum"));
+			result = result + prep;
+		}
+		if ((prepPhrase.get("ART") != null) && (!prep.equals("al")))  {
 			result = result + " "+getter.getArticle(res.get("CIGen"), res.get("CINum"));
 		}
 		if (prepPhrase.get("NOUN") != null) {

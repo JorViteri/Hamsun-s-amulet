@@ -206,7 +206,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 			index = r.nextInt(arr.length());
 			return arr.getString(index);
 		} else {
-			object = object.getJSONObject(CID);
+			object = object.getJSONObject("CI"); //es el mismo que el CCL, menos problemas
 			return object.getString(genere+"_"+number);
 		}
 	}

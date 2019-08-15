@@ -327,39 +327,98 @@ public class Creature {
 	}
 
 	public void moveBy(int mx, int my, int mz) {
+		WordDataGetterAndRealizatorFactory factoryG = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factoryG.getWordDataGetter();
 		Tile tile = world.tile(x + mx, y + my, z);
 		Staircase stair;
 		int pos_x = x + mx;
 		int pos_y = y + my;
 		int pos_z = z + mz;
-
+		int numLevel = 0;
+		
 		if (mx == 0 && my == 0 && mz == 0)
 			return;
 
 		if (mz == -1) {
 			if (tile == Tile.STAIRS_UP) {
+				
+				
 				stair = world.getStairs().get(z - 1);
-				doAction("walk up the stairs to level %d", z + mz + 1);
+				numLevel = z + mz + 1;
+				//doAction("walk up the stairs to level %d", numLevel);
 				pos_x = stair.getBeginning().getIntX();
 				pos_y = (world.getHeight() - 1) - stair.getBeginning().getIntY();
 				pos_z = stair.getBeginning().getZ();
+				
+				
+				RestrictionsFactory factory = RestrictionsFactory.getInstance();
+				HashMap<String, String> subjectData = this.getMorfData("singular");
+				HashMap<String, String> tileData = tile.getMorfStairs();
+				HashMap<String, String> tileNameAdj = tile.getStairsNounAndType("plural");
+				HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+				HashMap<String, String> verb = new HashMap<>();
+				verb.put("actionType", "ascend");
+				verb.put("adverb", null);
+				HashMap<String, String> ccThings = getter.getNounData("level");
+				HashMap<String, String> ccData = new HashMap<>();
+				ccData.put("number", "singular");
+				ccData.put("genere", ccThings.get("genere"));
+				HashMap<String, String> cc = new HashMap<>();
+				cc.put("name", ccThings.get("baseNoun"));
+				cc.put("key", "level");
+				cc.put("characteristic", Integer.toString(numLevel)+"º");
+				cc.put("type", "CCL");
+				Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
+						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"));
+				doActionComplex(verb, subject, tileNameAdj, null, cc, res, "ChangeDungeonLevel");
+
 				tile = world.tile(stair.getBeginning().getIntX(), (world.getHeight() - 1) - stair.getBeginning().getIntY(),
 						stair.getBeginning().getZ());
 			} else {
-				doAction("try to go up but are stopped by the cave ceiling");
+				doAction("try to go up but are stopped by the cave ceiling"); //TODO traduccion simple
 				return;
 			}
 		} else if (mz == 1) {
 			if (tile == Tile.STAIRS_DOWN) {
+				
+				
 				stair = world.getStairs().get(z);
 				pos_x = stair.getEnding().getIntX();
 				pos_y = (world.getHeight() - 1) - stair.getEnding().getIntY();
 				pos_z = stair.getEnding().getZ();
-				doAction("walk down the stairs to level %d", z + mz + 1);
+				numLevel = z + mz + 1;
+				
+				
+				RestrictionsFactory factory = RestrictionsFactory.getInstance();
+				HashMap<String, String> subjectData = this.getMorfData("singular");
+				HashMap<String, String> tileData = tile.getMorfStairs();
+				HashMap<String, String> tileNameAdj = tile.getStairsNounAndType("plural");
+				HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+				HashMap<String, String> verb = new HashMap<>();
+				verb.put("actionType", "descend");
+				verb.put("adverb", null);
+				HashMap<String, String> ccThings = getter.getNounData("level");
+ 				HashMap<String, String> ccData = new HashMap<>();
+ 				ccData.put("number", "singular");
+ 				ccData.put("genere", ccThings.get("genere"));
+ 				HashMap<String, String> cc = new HashMap<>();
+ 				cc.put("name", ccThings.get("baseNoun"));
+ 				cc.put("key", "level");
+ 				cc.put("characteristic", Integer.toString(numLevel)+"º");
+ 				cc.put("type", "CCL");
+				Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
+						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"));
+				doActionComplex(verb, subject, tileNameAdj, null, cc, res, "ChangeDungeonLevel");
+				
+				//doAction("walk down the stairs to level %d", numLevel);
 				tile = world.tile(stair.getEnding().getIntX(), (world.getHeight() - 1) - stair.getEnding().getIntY(),
 						stair.getEnding().getZ());
+				
+				
 			} else {
-				doAction("try to go down but are stopped by the cave floor");
+				doAction("try to go down but are stopped by the cave floor"); //TODO traduccion simple
 				return;
 			}
 		}
@@ -426,10 +485,10 @@ public class Creature {
 	
 	//doAction en el caso de que haya items de por medio
 	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
-			HashMap<String, String> CII, Restrictions res, String templateType, Item item) {
+			HashMap<String, String> CC, Restrictions res, String templateType, Item item) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
-		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CII, res, templateType);
+		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			if (other == this) {
 				other.notify(phrase);
@@ -440,10 +499,10 @@ public class Creature {
 	
 	//doAction para cuando no hay items de por medio
 	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
-			HashMap<String, String> CII, Restrictions res, String templateType) {
+			HashMap<String, String> CC, Restrictions res, String templateType) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
-		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CII, res, templateType);
+		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			if (other == this) {
 				other.notify(phrase);
@@ -755,16 +814,15 @@ public class Creature {
 		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
 		itemNameAndAjective.put("name", nameOf(item));
 
-		//TODO esto no funciona porque varios de esos datos NO vam a estar en ingles
 		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"), 
 				itemData.get("genere"), itemData.get("number"), null, null, null, null);
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
 		verb.put("adverb", null);
+		verb.put("Form", "Singular");
 
 		doActionComplex(verb, subject, itemNameAndAjective, null, null, res, templateType, item);
-		//doAction(item, "quaff a " + nameOf(item));
 		consumeItem(item);
 	}
 
@@ -802,7 +860,7 @@ public class Creature {
 		effects.removeAll(done);
 	}
 
-	public void summon(ArrayList<Creature> others, HashMap<String, String> cciData, HashMap<String, String> cci,
+	public void summon(ArrayList<Creature> others, HashMap<String, String> ccData, HashMap<String, String> cc,
 			HashMap<String, String> ciData, HashMap<String, String> CI, HashMap<String, String> verbData,
 			String templateType, Item item) {
 		for (Creature other : others) {
@@ -813,12 +871,12 @@ public class Creature {
 		HashMap<String, String> subject = this.getNameAdjectiveKey(verbData.get("VbNum"));
 		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
-				null, null, ciData.get("genere"), ciData.get("number"), cciData.get("genere"), cciData.get("number"));
+				null, null, ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"));
 		
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
 		verb.put("adverb", null);
-		this.doActionComplex(verb, subject, null, CI, cci, res, templateType, item);
+		this.doActionComplex(verb, subject, null, CI, cc, res, templateType, item);
 
 	}
 

@@ -1,11 +1,18 @@
 {  
-   "BasicActionsTemplates":["SUJ VB CD ADV"],
-   "ThrowAttack":["SUJ VB CD CI ADV"],
+   "BasicActionsTemplates":[  
+      "SUJ VB CD ADV"
+   ],
+   "ThrowAttack":[  
+      "SUJ VB CD CI ADV"
+   ],
    "WeaponsAttacks":[  
       "SUJ VB CI ADV",
-      "SUJ VB CI CCI ADV"
+      "SUJ VB CI CC ADV"
    ],
-   "ToBeInTemplate":[
-   "VB CD ADV"
+   "ChangeDungeonLevel":[  
+      "SUJ VB CD CC"
+   ],
+   "ToBeInTemplate":[  
+      "VB CD ADV"
    ]
 }

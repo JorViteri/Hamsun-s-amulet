@@ -34,25 +34,31 @@ public class RealizatorENG implements Realizator {
 
 	@Override
 	public String realizatePhrase(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD,
-			HashMap<String, String> CI, HashMap<String, String> CCI, Restrictions restrictions, String templateType) {
+			HashMap<String, String> CI, HashMap<String, String> CC, Restrictions restrictions, String templateType) {
 		String finalPhrase = "";
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
 		HashMap<String, Integer> template = getTemplate(templateType); //aqui obtendriqa la plantilla que necesito 
 		String verbFinal = null;
-		if (CCI!=null){  //TODO aqui solo pillo el ID del verbo
-			verbFinal = getter.getActionVerb(verb.get("actionType"), CCI.get("key"));
-		} else{
+		if (CC!=null){
+			if (CC.get("type").equals("CCI")){  //TODO esta comprobacion tengo que hacerla mejor
+				verbFinal = getter.getActionVerb(verb.get("actionType"), CC.get("key"));
+			} else{
+				verbFinal = getter.getActionVerb(verb.get("actionType"), null);
+			}
+		} else {
 			verbFinal = getter.getActionVerb(verb.get("actionType"), null);
 		}
 		String vForm = verb.get("Form");
-		verbFinal = getter.getVerbData(verbFinal).get(vForm); //aqui tendria que cargarlo y pillar lo que me interese
-		if (verb.equals("summons")){
+		verbFinal = getter.getVerbData(verbFinal).get("Singular"); //aqui tendria que cargarlo y pillar lo que me interese
+		
+		int size = template.size();
+		if (size == 5){
 			boolean c = true;
 		}
 		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verbFinal, verb.get("adverb"), Subject, CD,
-				CI, CCI, restrictions, verb.get("actionType"));
-		int size = template.size();
+				CI, CC, restrictions, verb.get("actionType"));
+		
 		for (int i = 0; i < size; i++) {
 			String key = getKeyByValue(template, i);
 			String component = hashMapPhrase.get(key);
@@ -74,7 +80,7 @@ public class RealizatorENG implements Realizator {
 
 	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, String adverb,
 			HashMap<String, String> subject, HashMap<String, String> cD, HashMap<String, String> cI,
-			HashMap<String, String> cCI, Restrictions restrictions, String actionType) {
+			HashMap<String, String> cC, Restrictions restrictions, String actionType) {
 		HashMap<String, String> result = new HashMap<>();
 		HashMap<String, String> aux = new HashMap<>();
 		if (template.get("PRO") != null) {
@@ -95,9 +101,9 @@ public class RealizatorENG implements Realizator {
 			aux = getObjectTemplate("CI", actionType);
 			result.put("CI", constructCI(aux, cI, restrictions));
 		}
-		if (template.get("CCI") != null) {
-			aux = getObjectTemplate("CCI", null);
-			result.put("CCI", constructCCI(aux, cCI, restrictions));
+		if (template.get("CC") != null) {
+			aux = getObjectTemplate(cC.get("type"), null);
+			result.put("CC", constructCC(aux, cC, restrictions));
 		}
 		if (template.get("ADV") != null) {
 
@@ -112,19 +118,19 @@ public class RealizatorENG implements Realizator {
 		return result;
 	}
 
-	private String constructCCI(HashMap<String, String> prepPhrase, HashMap<String, String> cCI, Restrictions restrictions) {
+	private String constructCC(HashMap<String, String> prepPhrase, HashMap<String, String> cC, Restrictions restrictions) {
 		String result = " ";
 		if (prepPhrase.get("PR") != null){
-			result = result + getter.getPreposition("CCI", null, null);
+			result = result + getter.getPreposition(cC.get("type"), null, null);
 		}
 		if (prepPhrase.get("ART") != null) {
 			result = result + " " +getter.getArticle("defined", null);
 		}
 		if (prepPhrase.get("ADJ") != null) {
-			result = result + " " + cCI.get("characteristic");
+			result = result + " " + cC.get("characteristic");
 		}
 		if (prepPhrase.get("NOUN") != null) {
-			result = result + " " + cCI.get("name");
+			result = result + " " + cC.get("name");
 		}		
 		
 		return result.trim();

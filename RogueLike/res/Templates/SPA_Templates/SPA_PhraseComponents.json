@@ -8,7 +8,6 @@
       "ART NOUN ADJ"
    ],
    "CD_be_space":[  
-      "DetUn NOUN",
       "DetUn NOUN ADJ"
    ],
    "CI":[  
@@ -17,6 +16,9 @@
    ],
    "CCI":[  
       "PR ART NOUN",
+      "PR ART NOUN ADJ"
+   ],
+   "CCL":[
       "PR ART NOUN ADJ"
    ]
 }

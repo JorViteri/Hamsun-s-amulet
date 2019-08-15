@@ -18,13 +18,6 @@
       }
    },
    "descend":{  
-      "caer":{  
-         "3SP":"cayeron",
-         "3PP":"caen",
-         "3SS":"cayó",
-         "3PS":"cae",
-         "infinitive":"caer"
-      },
       "descender":{  
          "3SP":"Descendieron",
          "3PP":"descienden",
