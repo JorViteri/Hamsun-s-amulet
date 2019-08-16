@@ -13,6 +13,10 @@ import DungeonComponents.Line;
 import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
+import TextManagement.Restrictions;
+import TextManagement.RestrictionsFactory;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.LevelUpController;
 import Utils.Path;
 import Utils.Position;
@@ -46,7 +50,29 @@ public class CreatureAi {
 			creature.setY(y);
 			creature.setZ(z);
 		} else{
-			creature.doAction("bump into a wall");
+			WordDataGetterAndRealizatorFactory factoryG = WordDataGetterAndRealizatorFactory.getInstance();
+			WordDataGetter getter = factoryG.getWordDataGetter();
+			RestrictionsFactory factory = RestrictionsFactory.getInstance();
+			HashMap<String, String> subjectData = creature.getMorfData("singular");
+			HashMap<String, String> subject = creature.getNameAdjectiveKey("singular");
+			HashMap<String, String> verb = new HashMap<>();
+			verb.put("actionType", "collide");
+			verb.put("adverb", null);
+			HashMap<String, String> ccThing = getter.getNounData("wall");
+			HashMap<String, String> ccData = new HashMap<>();
+			ccData.put("genere", ccThing.get("genere"));
+			ccData.put("number", "singular");
+			HashMap<String, String> cc =  new HashMap<>();
+			cc.put("name", ccThing.get("baseNoun"));
+			cc.put("type", "CCI");
+			cc.put("characteristic", "");
+			
+			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), null,
+					null, null, null, ccData.get("genere"), ccData.get("number"));
+			
+			creature.doActionComplex(verb, subject, null, null, cc, res, "CollideWall");
+			//creature.doAction("bump into a wall"); //TODO es una accion de CCI
 		}
 	}
 	

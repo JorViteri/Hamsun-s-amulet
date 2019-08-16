@@ -19,10 +19,20 @@
          "genere":"femenine"
       }
    },
-    "body": {
-      "cuerpo": {
-         "plural": "cuerpos",
-         "genere": "masculine"
+   "wall":{  
+      "muro":{  
+         "plural":"muros",
+         "genere":"masculine"
+      },
+      "pared":{  
+         "plural":"paredes",
+         "genere":"femenine"
+      }
+   },
+   "body":{  
+      "cuerpo":{  
+         "plural":"cuerpos",
+         "genere":"masculine"
       }
    },
    "level":{  

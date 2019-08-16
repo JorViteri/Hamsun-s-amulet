@@ -132,7 +132,7 @@ public class RealizatorSPA implements Realizator{
 			result.put("SUJ", constructSUJ(aux, Subject, restrictions));
 		}
 		if(template.get("VB")!=null){
-			result.put("VB", " "+verb);
+			result.put("VB", verb);
 		}
 		if (template.get("CD")!=null){//TODO con esto puedo pillar el CD con determinante indefinido
 			aux = getObjectTemplate("CD", actionType); 
@@ -205,10 +205,10 @@ public class RealizatorSPA implements Realizator{
 		HashMap<String, String> res = restrict.getRestrictions();
 		String result = "";
 		result = result + getter.getArticle(res.get("SujGen"), res.get("SujNum"));
+		result = result + " " + Subject.get("name");
 		if (nominalPhrase.get("ADJ") != null) {
 			result = result + " " + Subject.get("characteristic");
 		}
-		result = result + " " + Subject.get("name");
 		return result.trim();
 	}
 	

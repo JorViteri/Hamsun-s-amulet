@@ -15,4 +15,10 @@
    "ChangeDungeonLevel":[  
       "SUJ VB CD CC"
    ],
+      "MostBasicTemplate":[  
+      "SUJ VB"
+   ],
+     "CollideWall":[  
+      "SUJ VB CC"
+   ]
 }

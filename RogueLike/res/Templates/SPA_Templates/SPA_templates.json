@@ -14,5 +14,11 @@
    ],
    "ToBeInTemplate":[  
       "VB CD ADV"
+   ],
+   "MostBasicTemplate":[  
+      "SUJ VB"
+   ],
+   "CollideWall":[  
+      "SUJ VB CC"
    ]
 }

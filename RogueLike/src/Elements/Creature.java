@@ -257,11 +257,22 @@ public class Creature {
 
 	public void modifyHp(int amount, String causeofDeath) {
 		hp += amount;
-		this.causeOfDeath = causeOfDeath;
+		//this.causeOfDeath = causeOfDeath;
 		if (hp > maxHp) {
 			hp = maxHp;
 		} else if (hp < 1) {
-			doAction("die");
+			
+			RestrictionsFactory factory = RestrictionsFactory.getInstance();
+			HashMap<String, String> subjectData = this.getMorfData("singular");
+			HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+			HashMap<String, String> verb = new HashMap<>();
+			verb.put("actionType", "die");
+			verb.put("adverb", null);
+			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), null,
+					null, null, null, null, null);
+			
+			doActionComplex(verb, subject, null, null, null, res, "MostBasicTemplate");
 			leaveCorpse();
 			world.remove(this);
 		}
@@ -458,14 +469,9 @@ public class Creature {
 	}
 
 
-
 	public void doAction(String message, Object... params) {
 		for (Creature other : getCreaturesWhoSeeMe()) {
-			if (other == this) {
-				other.notify("You " + message + ".", params);
-			} else {
-				other.notify(String.format("The %s %s.", name, makeSecondPerson(message)), params);
-			}
+			other.notify(message, params);
 		}
 	}
 
@@ -755,6 +761,9 @@ public class Creature {
 			HashMap<String, String> cc, HashMap<String, String> ccData, String templateType, Item item) {
 
 		int amount = Math.max(0, attack - other.defenseValue());
+		WordDataGetterAndRealizatorFactory factoryG = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factoryG.getWordDataGetter();
+		String damPoints = getter.getDirectTranslation("Creature", "Damage points");
 
 		amount = (int) (Math.random() * amount) + 1;
 
@@ -773,7 +782,9 @@ public class Creature {
 					ciData.get("number"), null, null);
 			doActionComplex(verb, subject, cd, ci, cc, res, templateType, item);
 		}
-
+		
+		doAction(damPoints+"%d", amount);
+		
 		other.modifyHp(-amount, "Killed in battle");
 
 		if (other.hp < 1) {

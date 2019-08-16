@@ -18,11 +18,17 @@
          "plural":"toxicants",
          "singular":"toxicant"
       }
-   }, 
-     "body": {
-      "body": {
-         "plural": "bodies",
-         "singular": "body"
+   },
+   "wall":{  
+      "wall":{  
+         "plural":"walls",
+         "singular":"wall"
+      }
+   },
+   "body":{  
+      "body":{  
+         "plural":"bodies",
+         "singular":"body"
       }
    },
    "corpse":{  

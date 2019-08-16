@@ -2,5 +2,8 @@
 	"SpellBookFactory":{
 		"white":"\"Mago Blanco\"",
 		"blue":"\"Mago Azul\""
+	},
+	"Creature":{
+		"Damage points":"Puntos de daño: "
 	}
 }

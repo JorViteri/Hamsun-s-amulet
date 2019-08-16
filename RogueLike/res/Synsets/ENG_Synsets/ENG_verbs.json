@@ -6,6 +6,33 @@
          "Present":"drop"
       }
    },
+   "die":{  
+      "choke":{  
+         "Singular":"chokes",
+         "Past":"choked",
+         "Present":"choke"
+      },
+      "die":{  
+         "Singular":"dies",
+         "Past":"died",
+         "Present":"die"
+      },
+      "perish":{  
+         "Singular":"perishes",
+         "Past":"perished",
+         "Present":"perish"
+      },
+      "pass":{  
+         "Singular":"passes",
+         "Past":"passed",
+         "Present":"pass"
+      },
+      "expire":{  
+         "Singular":"expires",
+         "Past":"expired",
+         "Present":"expire"
+      }
+   },
    "summon":{  
       "summon":{  
          "Singular":"summons",
@@ -25,6 +52,18 @@
          "Singular":"descends",
          "Past":"descended",
          "Present":"descend"
+      }
+   },
+   "collide":{  
+      "hit":{  
+         "Singular":"hits",
+         "Past":"hit",
+         "Present":"hit"
+      },
+      "strike":{  
+         "Singular":"strikes",
+         "Past":"struck",
+         "Present":"strike"
       }
    },
    "be":{  
