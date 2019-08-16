@@ -484,29 +484,28 @@ public class Creature {
 	}
 	
 	//doAction en el caso de que haya items de por medio
-	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
-			HashMap<String, String> CC, Restrictions res, String templateType, Item item) {
+	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject,
+			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC, Restrictions res,
+			String templateType, Item item) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
 		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
-			if (other == this) {
-				other.notify(phrase);
-			}
+			other.notify(phrase);
 			other.learnName(item);
 		}
 	}
 	
 	//doAction para cuando no hay items de por medio
-	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD, HashMap<String, String> CI,
-			HashMap<String, String> CC, Restrictions res, String templateType) {
+	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject,
+			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC, Restrictions res,
+			String templateType) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
 		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
-			if (other == this) {
-				other.notify(phrase);
-			}
+			other.notify(phrase);
+
 		}
 	}
 
@@ -727,6 +726,7 @@ public class Creature {
 		HashMap<String, String> ci = other.getNameAdjectiveKey("singular");
 		HashMap<String, String> ciData = other.getMorfData("singular");
 		HashMap<String, String> cd = item.getNameAndAdjective("singular");
+		cd.put("name", nameOf(item));
 		HashMap<String, String> cdData = item.getMorfData("singular");
 
 		commonAttack(other, attackValue / 2 + item.getThrownAttackValue(), verb, cd, cdData, ci, ciData, null, null,
@@ -742,7 +742,7 @@ public class Creature {
 		verb.put("Form", "Singular");
 		HashMap<String, String> ci = other.getNameAdjectiveKey("singular");
 		HashMap<String, String> cc = weapon.getNameAndAdjective("singular");
-		cc.put("key", weapon.getKey());
+		cc.put("key", weapon.getKey()+"_shoot");
 		cc.put("type", "CCI");
 		HashMap<String, String> ciData = other.getMorfData("singular");
 		HashMap<String, String> ccData = weapon.getMorfData("singular");

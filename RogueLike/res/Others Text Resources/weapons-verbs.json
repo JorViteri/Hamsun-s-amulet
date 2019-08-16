@@ -1,7 +1,7 @@
 {  
    "dagger":[  
       "cut",
-      "thurst",
+      "thrust",
       "slash"
    ],
    "sword":[  
@@ -14,15 +14,20 @@
       "hit",
       "strike"
    ],
-   "bow":[  
+   "bow_shoot":[  
       "shoot"
    ],
-   "book":[
-   		"summon"
+   "bow":[  
+      "smash",
+      "hit",
+      "strike"
+   ],
+   "book":[  
+      "summon"
    ],
    "body":[  
       "smash",
       "hit",
       "strike"
-   ],
+   ]
 }
