@@ -425,5 +425,14 @@
          "3PS":"llama",
          "infinitive":"llamar"
       }
+   },
+   "take":{  
+      "coger":{  
+         "3SP":"cogieron",
+         "3PP":"cogen",
+         "3SS":"cogió",
+         "3PS":"coge",
+         "infinitive":"coger"
+      }
    }
 }

@@ -4,6 +4,8 @@
 		"blue":"\"Mago Azul\""
 	},
 	"Creature":{
-		"Damage points":"Puntos de daño: "
+		"Damage points":"Puntos de daño: ",
+		"Cant take more":"¡No se puede coger más!.",
+		"Cant drop":"¡No hay sitio donde soltar!."
 	}
 }

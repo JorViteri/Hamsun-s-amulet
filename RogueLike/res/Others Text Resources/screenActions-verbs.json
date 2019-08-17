@@ -32,10 +32,14 @@
    "ascend":[  
       "ascend"
    ],
-   "die":[
-   	  "die"
+   "die":[  
+      "die"
    ],
-   "collide":[
-   	"collide"
+   "collide":[  
+      "collide"
+   ],
+   "take":[  
+      "take"
    ]
+   
 }

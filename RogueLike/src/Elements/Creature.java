@@ -635,9 +635,25 @@ public class Creature {
 		Item item = world.item(x, y, z);
 
 		if (inventory.isFull() || item == null) {
-			doAction("You can't take more");
+			WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+			WordDataGetter getter = factory.getWordDataGetter();
+			String phrase = getter.getDirectTranslation("Creature", "Cant take more");
+			doAction(phrase);
 		} else {
-			doAction("pickup a %s", nameOf(item));
+			HashMap<String, String> verb = new HashMap<>();
+			verb.put("actionType", "take");
+			verb.put("adverb", null);
+			verb.put("Form", "Singular");
+			HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+			HashMap<String, String> subjectData = this.getMorfData("singular");
+			HashMap<String, String> cd = item.getNameAndAdjective("singular");
+			cd.put("name", nameOf(item));
+			HashMap<String, String> cdData = item.getMorfData("singular");
+			RestrictionsFactory factory = RestrictionsFactory.getInstance();
+			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
+					null, null, null, null);
+			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates");
 			world.remove(x, y, z);
 			inventory.add(item);
 		}
@@ -645,11 +661,27 @@ public class Creature {
 
 	public void drop(Item item) {
 		if (world.addAtEmptySpace(item, x, y, z)) {
-			doAction("drop a " + nameOf(item));
+			HashMap<String, String> verb = new HashMap<>();
+			verb.put("actionType", "drop");
+			verb.put("adverb", null);
+			verb.put("Form", "Singular");
+			HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+			HashMap<String, String> subjectData = this.getMorfData("singular");
+			HashMap<String, String> cd = item.getNameAndAdjective("singular");
+			cd.put("name", nameOf(item));
+			HashMap<String, String> cdData = item.getMorfData("singular");
+			RestrictionsFactory factory = RestrictionsFactory.getInstance();
+			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
+					null, null, null, null);
+			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates");			
 			inventory.remove(item);
 			unequip(item);
 		} else {
-			notify("There's nowhere to drop the %s.", nameOf(item));
+			WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+			WordDataGetter getter = factory.getWordDataGetter();
+			String phrase = getter.getDirectTranslation("Creature", "Cant drop");
+			doAction(phrase);
 		}
 	}
 
@@ -685,10 +717,25 @@ public class Creature {
 
 		Creature c = creature(wx, wy, wz);
 
-		if (c != null)
+		if (c != null) {
+
 			throwAttack(item, c);
-		else
-			doAction("throw a %s", nameOf(item));
+		} else {
+			HashMap<String, String> verb = new HashMap<>();
+			verb.put("actionType", "throw");
+			verb.put("adverb", null);
+			verb.put("Form", "Singular");
+			HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+			HashMap<String, String> subjectData = this.getMorfData("singular");
+			HashMap<String, String> cd = item.getNameAndAdjective("singular");
+			cd.put("name", nameOf(item));
+			HashMap<String, String> cdData = item.getMorfData("singular");
+			RestrictionsFactory factory = RestrictionsFactory.getInstance();
+			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
+					null, null, null, null);
+			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates", item);
+		}
 
 		putAt(item, wx, wy, wz);
 	}
@@ -895,7 +942,28 @@ public class Creature {
 		consumeItem(item);
 	}
 
-	public void eat(Item item) {
+	public void eat(Item item) { //TODO al final voy a definir esos HashMaps como variables privadas de la clase y atpc
+		
+		RestrictionsFactory factory = RestrictionsFactory.getInstance();
+		HashMap<String, String> subjectData = this.getMorfData("singular"); 
+		HashMap<String, String> itemData = item.getMorfData("singular");
+		HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+
+		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
+		itemNameAndAjective.put("name", nameOf(item));
+
+		Restrictions res = factory.getRestrictions("singular", "third",
+				"active", "present", subjectData.get("genere"), subjectData.get("number"), 
+				itemData.get("genere"), itemData.get("number"), null, null, null, null);
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", "consume");
+		verb.put("adverb", null);
+		verb.put("Form", "Singular");
+
+		doActionComplex(verb, subject, itemNameAndAjective, null, null, res, "BasicActionsTemplates", item);
+		
+		
+		
 		doAction("eat a " + nameOf(item));
 		consumeItem(item);
 	}

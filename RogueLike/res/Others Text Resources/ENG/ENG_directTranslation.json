@@ -4,6 +4,8 @@
 		"blue":"\"Blue Mage\""
 	},
 	"Creature":{
-		"Damage points":"Damage points: "
+		"Damage points":"Damage points: ",
+		"Cant take more":"Can't take more!.",
+		"Cant drop":"There's nowhere to drop!."
 	}
 }

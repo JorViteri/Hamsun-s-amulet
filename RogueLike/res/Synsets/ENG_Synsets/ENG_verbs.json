@@ -286,5 +286,12 @@
          "Past":"smashed",
          "Present":"smash"
       }
+   },
+   "take":{  
+      "take":{  
+         "Singular":"takes",
+         "Past":"took",
+         "Present":"take"
+      }
    }
 }

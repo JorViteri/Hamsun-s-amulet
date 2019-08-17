@@ -443,13 +443,6 @@
          "type":"qualificative",
          "plu_f":"valientes",
          "sing_f":"valiente"
-      },
-      "arrojado":{  
-         "sing_m":"arrojado",
-         "plu_m":"arrojados",
-         "type":"qualificative",
-         "plu_f":"arrojadas",
-         "sing_f":"arrojada"
       }
    },
    "scary":{  
