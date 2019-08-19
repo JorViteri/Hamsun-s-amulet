@@ -74,6 +74,26 @@ public class PlayerAi extends CreatureAi {
 				//creature.notify("There're " + tile.getChairTypeString() + " here."); //tengo que hacer que se 
 			}
 				
+		}else {
+			HashMap<String, String> subjectData = creature.getMorfData("singular");
+			HashMap<String, String> subject = creature.getNameAdjectiveKey("singular");
+			HashMap<String, String> verb = new HashMap<>();
+			verb.put("actionType", "collide");
+			verb.put("adverb", null);
+			HashMap<String, String> ccThing = getter.getNounData("wall");
+			HashMap<String, String> ccData = new HashMap<>();
+			ccData.put("genere", ccThing.get("genere"));
+			ccData.put("number", "singular");
+			HashMap<String, String> cc =  new HashMap<>();
+			cc.put("name", ccThing.get("baseNoun"));
+			cc.put("type", "CCI");
+			cc.put("characteristic", "");
+			
+			Restrictions res = resFactory.getRestrictions("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), null,
+					null, null, null, ccData.get("genere"), ccData.get("number"));
+			
+			creature.doActionComplex(verb, subject, null, null, cc, res, "CollideWall");
 		}/*else if (tile.isDiggable()) {
 			creature.dig(x, y, z);
 		}*/

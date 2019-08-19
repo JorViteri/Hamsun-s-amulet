@@ -2,6 +2,7 @@ package Screens;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JTextArea;
 
@@ -13,6 +14,8 @@ import Elements.Creature;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.Position;
 import asciiPanel.AsciiPanel;
 
@@ -25,6 +28,8 @@ public class CheckEnviromentScreen implements Screen {
 	private int sy;
 	private int x;
 	private int y;
+	private HashMap<String, String> uiPhrases = new HashMap<>();
+	private WordDataGetter getter = null;
 	
 	public CheckEnviromentScreen(Creature player, String caption, int sx, int sy, World world) {
 		this.world = world;
@@ -32,8 +37,19 @@ public class CheckEnviromentScreen implements Screen {
 		this.caption=caption;
 		this.sx =sx;
 		this.sy=sy;
+		this.getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
+		this.uiPhrases = this.generateUiPhrases();
 	}
 	
+	private HashMap<String, String> generateUiPhrases(){
+		HashMap<String, String> result = new HashMap<>();
+		result.put("playerPosition", getter.getDirectTranslation("CheckEnviromentScreen", "playerPosition"));
+		result.put("pointerPosition", getter.getDirectTranslation("CheckEnviromentScreen", "pointerPosition"));
+		result.put("objective", getter.getDirectTranslation("CheckEnviromentScreen", "objective"));
+		result.put("roomIs", getter.getDirectTranslation("CheckEnviromentScreen", "roomIs"));
+		result.put("inCorrirdor", getter.getDirectTranslation("CheckEnviromentScreen", "inCorridor"));
+		return result;
+	}
 	
 	//TODO hacer MUCHO mas ligera esta funcion
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
@@ -74,7 +90,7 @@ public class CheckEnviromentScreen implements Screen {
 				continue;
 
 			terminal.write('*', p.getIntX(), p.getIntY(), AsciiPanel.brightMagenta);
-			pointer_pos = String.format("Pointer's Position: %d %d", p.getIntX()+scrollx, p.getIntY()+scrolly);
+			pointer_pos = String.format(uiPhrases.get("pointerPosition"), p.getIntX()+scrollx, p.getIntY()+scrolly);
 			objCreature = player.creature(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ());
 			objItem = player.item(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ()); //TODO no estoy almacenando los posiciones de los items wtf
 			
@@ -84,30 +100,31 @@ public class CheckEnviromentScreen implements Screen {
 			if (objCreature.equals(player)) {
 				roomdetails = true;
 			} else {
-				objective = String.format("Objective: " + objCreature.name());
+				objective = String.format(uiPhrases.get("objective"), objCreature.name());
 			}
 		} else if (objItem != null) {
-			objective = String.format("Objective: " + objItem.getName());
+			objective = String.format(uiPhrases.get("objective"), objItem.getName());
 		} else {
-			objective = String.format("Objective:"); 
+			objective = String.format(uiPhrases.get("objective"),""); 
 		}
 		
 		if(!roomdetails){
 			textManager.clearTextArea(1);
-			player_pos = String.format("Player's Position: %d, %d",player.getX(), player.getY());
+			player_pos = String.format(uiPhrases.get("playerPosition"), player.getX(), player.getY());
 			textManager.writeText(player_pos, 1);
 			textManager.writeText(pointer_pos, 1);
 			textManager.writeText(objective, 1);
 			textManager.writeText(caption, 1);
 		}else{
-			player_pos = String.format("Player's Position: %d, %d",player.getX(), player.getY());
+			player_pos = String.format(uiPhrases.get("playerPosition"), player.getX(), player.getY());
 			textManager.writeText(player_pos, 1);
 			if (dimension==1){
-				textManager.writeText("You are in a corridor", 1);
+				textManager.writeText(uiPhrases.get("inCorridor"), 1);
 			}else{
-				String room_dim = String.format("Room is %d x %d",actualRoom.getWide(), actualRoom.getHeight());
+				String room_dim = String.format(uiPhrases.get("roomIs"),actualRoom.getWide(), actualRoom.getHeight());
 				Position dungCenter = new Position((world.getWidth()/2)-1, (world.getHeight()/2)-1, player.getZ());
-				String cardinal = playerp.getRelativePosition(dungCenter);
+				
+				String cardinal = getter.getDirectTranslation("CheckEnviromentScreen", playerp.getRelativePosition(dungCenter));
 				textManager.writeText(room_dim, 1);
 				textManager.writeText(cardinal, 1);
 			}

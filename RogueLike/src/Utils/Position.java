@@ -2,9 +2,12 @@ package Utils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Set;
 
 import Screens.PlayScreen;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 
 public class Position {
 
@@ -34,7 +37,7 @@ public class Position {
 		this.x = p.getX() - p2.getX();
 		this.y = p2.getY() - p.getY();
 	}
-
+	
 	/**
 	 * Calculates the real distance between two positions. 
 	 * @param b The second position.

@@ -1,27 +1,50 @@
-{
-	"SpellBookFactory":{
-		"white":"\"Mago Blanco\"",
-		"blue":"\"Mago Azul\""
-	},
-	"Creature":{
-		"Damage points":"Puntos de daño: %d",
-		"Cant take more":"¡No se puede coger más!.",
-		"Cant drop":"¡No hay sitio donde soltar!.",
-		"modifyXpLevelUp":"Avance al nivel %d .",
-		"modifyXpLose":"%d xp perdidos.",
-		"modifyXpGain":"%d xp ganados.",
-		"gainMaxHp":"Salud mejorada.",
-		"gainAttackValue":"Fuerza mejorada.",
-		"gainDefenseValue":"Defensa mejorada.",
-		"gainVision":"Conscienia mejorada.",
-		"getDetails":"     Nivel:%d     Ataque:%d     Defensa:%d     HP:%d"
-	},
-	"Tile":{
-		"Floor":"Suelo de rocas del piso.",
-		"Wall":"Pared de piedra de la mazmorra.",
-		"Bounds":"Más allá de los límites.",
-		"StairsDown":"Escalera de piedra que desciende.",
-		"StairsUp":"Escalera de piedra que asciende.",
-		"Unknown":"Desconocido."
-	}
+{  
+   "SpellBookFactory":{  
+      "white":"\"Mago Blanco\"",
+      "blue":"\"Mago Azul\""
+   },
+   "Creature":{  
+      "Damage points":"Puntos de daño: %d",
+      "Cant take more":"¡No se puede coger más!.",
+      "Cant drop":"¡No hay sitio donde soltar!.",
+      "modifyXpLevelUp":"Avance al nivel %d .",
+      "modifyXpLose":"%d xp perdidos.",
+      "modifyXpGain":"%d xp ganados.",
+      "gainMaxHp":"Salud mejorada.",
+      "gainAttackValue":"Fuerza mejorada.",
+      "gainDefenseValue":"Defensa mejorada.",
+      "gainVision":"Conscienia mejorada.",
+      "getDetails":"     Nivel:%d     Ataque:%d     Defensa:%d     HP:%d"
+   },
+   "Tile":{  
+      "Floor":"Suelo de rocas del piso.",
+      "Wall":"Pared de piedra de la mazmorra.",
+      "Bounds":"Más allá de los límites.",
+      "StairsDown":"Escalera de piedra que desciende.",
+      "StairsUp":"Escalera de piedra que asciende.",
+      "Unknown":"Desconocido."
+   },
+   "CheckEnviromentScreen":{  
+      "playerPosition":"Posición del jugador: %d, %d.",
+      "pointerPosition":"Posición del puntero: %d %d.",
+      "objective":"Objetivo: %s.",
+      "roomIs":"La habitación es %d x %d.",
+      "inCorridor":"El jugador está en un pasillo.",
+      "north":"norte",
+      "south":"sur",
+      "east":"este",
+      "west":"oeste",
+      "southeast":"sureste",
+      "northwest":"noroeste",
+      "northeast":"noreste",
+      "southwest":"suroeste",
+      "northish":"Derivando al norte.",
+      "southish":"Derivando al sur.",
+      "eastish":"Derivando al este.",
+      "westish":"Derivando al oeste.",
+      "northeastish":"Derivando al noreste.",
+      "southeastish":"Derivando al sureste.",
+      "northwestish":"Derivando al noroeste.",
+      "southwestish":"Derivando al suroeste."
+   }
 }

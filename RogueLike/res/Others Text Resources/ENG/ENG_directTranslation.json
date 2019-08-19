@@ -16,12 +16,35 @@
       "gainVision":"Awareness improved.",
       "getDetails":"     level:%d     attack:%d     defense:%d     hp:%d"
    },
-	"Tile":{
-		"Floor":"A dirt and rock cave floor.",
-		"Wall":"A dirt and rock cave wall.",
-		"Bounds":"Beyond the edge of the world.",
-		"StairsDown":"A stone staircase that goes down.",
-		"StairsUp":"A stone staircase that goes up.",
-		"Unknown":"Unknown.."
-	}
+   "Tile":{  
+      "Floor":"A dirt and rock cave floor.",
+      "Wall":"A dirt and rock cave wall.",
+      "Bounds":"Beyond the edge of the world.",
+      "StairsDown":"A stone staircase that goes down.",
+      "StairsUp":"A stone staircase that goes up.",
+      "Unknown":"Unknown."
+   },
+   "CheckEnviromentScreen":{  
+      "playerPosition":"Player's Position: %d, %d.",
+      "pointerPosition":"Pointer's Position: %d %d.",
+      "objective":"Objective: %s.",
+      "roomIs":"Room is %d x %d.",
+      "inCorridor":"The player is in a corridor.",
+      "north":"north",
+      "south":"south",
+      "east":"east",
+      "west":"west",
+      "southeast":"southeast",
+      "northwest":"northwest",
+      "northeast":"northeast",
+      "southwest":"southwest",
+      "northish":"northish",
+      "southish":"southish",
+      "eastish":"eastish",
+      "westish":"westish",
+      "northeastish":"northeastish",
+      "southeastish":"southeastish",
+      "northwestish":"northwestish",
+      "southwestish":"southwestish"
+   }
 }
