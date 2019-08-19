@@ -46,5 +46,21 @@
       "southeastish":"southeastish",
       "northwestish":"northwestish",
       "southwestish":"southwestish"
+   },
+   "HelpScreen":{  
+      "title":"Roguelike Help",
+      "gameDescription":"Descend through the dungeons of Uqbar, find Hamsun's lost amulet, and return to the surface to win. Use what you find to avoid death.",
+      "pickUp":"[g] or [,] to pick up.",
+      "drop":"[d] to drop.",
+      "eat":"[e] to eat.",
+      "wearEquip":"[w] to wear or wield.",
+      "help":"[?] for help.",
+      "examine":"[x] to examine your items.",
+      "lookAround":"[;] to look around.",
+      "fire":"[f] to fire a projectile.",
+      "throw":"[t] to thow an object.",
+      "quaff":"[q] to quaff a potion.",
+      "read":"[r] to read something.",
+      "pressContinue":"-- press any key to continue --"
    }
 }
