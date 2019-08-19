@@ -1,11 +1,27 @@
-{
-	"SpellBookFactory":{
-		"white":"\"White Mage\"",
-		"blue":"\"Blue Mage\""
-	},
-	"Creature":{
-		"Damage points":"Damage points: ",
-		"Cant take more":"Can't take more!.",
-		"Cant drop":"There's nowhere to drop!."
+{  
+   "SpellBookFactory":{  
+      "white":"\"White Mage\"",
+      "blue":"\"Blue Mage\""
+   },
+   "Creature":{  
+      "Damage points":"Damage points: %d",
+      "Cant take more":"Can't take more!.",
+      "Cant drop":"There's nowhere to drop!.",
+      "modifyXpLose":"%d xp losed",
+      "modifyXpGain":"%d xp gained",
+      "modifyXpLevelUp":"Advance to level %d",
+      "gainMaxHp":"Health improved.",
+      "gainAttackValue":"Strength improved.",
+      "gainDefenseValue":"Defense improved.",
+      "gainVision":"Awareness improved.",
+      "getDetails":"     level:%d     attack:%d     defense:%d     hp:%d"
+   },
+	"Tile":{
+		"Floor":"A dirt and rock cave floor.",
+		"Wall":"A dirt and rock cave wall.",
+		"Bounds":"Beyond the edge of the world.",
+		"StairsDown":"A stone staircase that goes down.",
+		"StairsUp":"A stone staircase that goes up.",
+		"Unknown":"Unknown.."
 	}
 }

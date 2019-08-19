@@ -6,6 +6,7 @@ import java.util.HashMap;
 import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
+
 /**
  * Defines the tile class win which the dungeon is divided
  * @author comec
@@ -13,12 +14,12 @@ import asciiPanel.AsciiPanel;
  */
 public enum Tile {
 
-	FLOOR((char) 250, AsciiPanel.yellow, "A dirt and rock cave floor."),
-	WALL((char)177, AsciiPanel.yellow, "A dirt and rock cave wall."),
-	BOUNDS('x', AsciiPanel.brightBlack, "Beyond the edge of the world."),
-	STAIRS_DOWN('>', AsciiPanel.white, "A stone staircase that goes down."), 
-	STAIRS_UP('<', AsciiPanel.white, "A stone staircase that goes up."),
-	UNKNOWN(' ', AsciiPanel.white, "(unknown)");
+	FLOOR((char) 250, AsciiPanel.yellow,WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Floor")), 
+	WALL((char) 177, AsciiPanel.yellow, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Wall")), 
+	BOUNDS('x', AsciiPanel.brightBlack, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Bounds")), 
+	STAIRS_DOWN('>', AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "StairsDown")), 
+	STAIRS_UP('<', AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "StairsUp")), 
+	UNKNOWN(' ', AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Unknown"));	
 	
 	private char glyph;
 	public char glyph(){
@@ -32,7 +33,7 @@ public enum Tile {
 
 	private String details;
 	public String getDetails() {
-		return details;
+		return details; //TODO aqui esta el string a modificar que no tengo ni idea de donde se origino
 	}
 
 	Tile(char glyph, Color color, String details){

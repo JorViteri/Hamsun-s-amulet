@@ -89,7 +89,7 @@ public class CheckEnviromentScreen implements Screen {
 		} else if (objItem != null) {
 			objective = String.format("Objective: " + objItem.getName());
 		} else {
-			objective = String.format("Objective: nothing");
+			objective = String.format("Objective:"); 
 		}
 		
 		if(!roomdetails){
@@ -115,7 +115,7 @@ public class CheckEnviromentScreen implements Screen {
 			ArrayList<ArrayList<Position>> visible = player.getVisibleThings();
 			ArrayList<Position> creatures = visible.get(0);
 			for(Position p : creatures){ 
-				Creature c = world.creature(p.getIntX(), p.getIntY(), p.getZ());
+				Creature c = world.creature(p.getIntX(), p.getIntY(), p.getZ()); //TODO esto deberia ser por keys
 				if (aux_strings.contains(c.name())) {
 					index = aux_strings.indexOf(c.name());
 					aux_int.set(index, aux_int.get(index)+1);

@@ -734,7 +734,7 @@ public class Creature {
 			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
 					null, null, null, null);
-			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates", item);
+			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates");
 		}
 
 		putAt(item, wx, wy, wz);
@@ -830,7 +830,7 @@ public class Creature {
 			doActionComplex(verb, subject, cd, ci, cc, res, templateType, item);
 		}
 		
-		doAction(damPoints+"%d", amount);
+		doAction(damPoints, amount);
 		
 		other.modifyHp(-amount, "Killed in battle");
 
@@ -841,37 +841,58 @@ public class Creature {
 	}
 
 	public void modifyXp(int amount) {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
 		xp += amount;
-
-		notify("You %s %d xp.", amount < 0 ? "lose" : "gain", amount);
+		String phrase, verb;
+		
+		if (amount<0){
+			verb = getter.getDirectTranslation("Creature", "modifyXpLose");
+		} else {
+			verb = getter.getDirectTranslation("Creature", "modifyXpGain");
+		}
+		notify(verb, amount); //Indica los puntos de experiencia ganados o perdidos, doComplex??
 
 		while (xp > (int) (Math.pow(level, 1.5) * 20)) {
+			phrase = getter.getDirectTranslation("Creature", "modifyXpLevelUp");
 			level++;
-			doAction("advance to level %d", level);
+			doAction(phrase, level);
 			ai.onGainLevel();
 			modifyHp(level * 2,"Extra HP");
 		}
 	}
 
 	public void gainMaxHp() {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		String phrase = getter.getDirectTranslation("Creature", "gainMaxHp");
 		maxHp += 10;
 		hp += 10;
-		doAction("look healthier");
+		doAction(phrase);
 	}
 
 	public void gainAttackValue() {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		String phrase = getter.getDirectTranslation("Creature", "gainAttackValue");
 		attackValue += 2;
-		doAction("look stronger");
+		doAction(phrase);
 	}
 
 	public void gainDefenseValue() {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		String phrase = getter.getDirectTranslation("Creature", "gainDefenseValue");
 		defenseValue += 2;
-		doAction("look tougher");
+		doAction(phrase);
 	}
 
 	public void gainVision() {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		String phrase = getter.getDirectTranslation("Creature", "gainVision");
 		visionRadius += 1;
-		doAction("look more aware");
+		doAction(phrase);
 	}
 
 	public void modifyVisionRadius(int value) {
@@ -879,8 +900,10 @@ public class Creature {
 	}
 
 	public String getDetails() {
-		return String.format("     level:%d     attack:%d     defense:%d     hp:%d", level, attackValue(),
-				defenseValue(), hp);
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		String phrase = getter.getDirectTranslation("Creature", "getDetails");
+		return String.format(phrase, level, attackValue(), defenseValue(), hp);
 	}
 
 	public Item getItem(int wx, int wy, int wz) {
@@ -960,11 +983,8 @@ public class Creature {
 		verb.put("adverb", null);
 		verb.put("Form", "Singular");
 
-		doActionComplex(verb, subject, itemNameAndAjective, null, null, res, "BasicActionsTemplates", item);
+		doActionComplex(verb, subject, itemNameAndAjective, null, null, res, "BasicActionsTemplates");
 		
-		
-		
-		doAction("eat a " + nameOf(item));
 		consumeItem(item);
 	}
 
