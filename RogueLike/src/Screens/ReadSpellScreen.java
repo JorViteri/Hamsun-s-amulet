@@ -8,6 +8,9 @@ import javax.swing.JTextArea;
 import Elements.Creature;
 import Elements.Item;
 import Elements.Spell;
+import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public class ReadSpellScreen implements Screen {
@@ -28,22 +31,28 @@ public class ReadSpellScreen implements Screen {
 
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
+		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
+		TextManager textManager = TextManager.getTextManager();
+		textManager.clearTextArea(1);
 		ArrayList<String> lines = getList();
 
-		int y = 23 - lines.size();
-		int x = 4;
+		//int y = 23 - lines.size();
+		//int x = 4;
 
-		if (lines.size() > 0)
-			terminal.clear(' ', x, y, 20, lines.size());
+		//if (lines.size() > 0)
+			//terminal.clear(' ', x, y, 20, lines.size());
 
 		for (String line : lines) {
-			terminal.write(line, x, y++);
+			textManager.writeText(line, 1);
+			//terminal.write(line, x, y++);
+			
 		}
 
-		terminal.clear(' ', 0, 23, 80, 1);
-		terminal.write("What would you like to read?", 2, 23);
-
-		terminal.repaint();
+		//terminal.clear(' ', 0, 23, 80, 1);
+		//terminal.write("What would you like to read?", 2, 23);
+		
+		textManager.writeText(getter.getDirectTranslation("ReadSpellScreen", "title"), 1);
+		//terminal.repaint();
 
 	}
 	

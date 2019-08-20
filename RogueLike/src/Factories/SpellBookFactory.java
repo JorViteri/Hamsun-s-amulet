@@ -36,41 +36,41 @@ public class SpellBookFactory {
 		String name = realizator.constructNounPosvNoun(nameData.get("baseNoun"), wizardClass);
 		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
-		item.addWrittenSpell("minor heal", 4, new Effect(1) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "minorHeal"), 4, new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
 					return;
 
 				creature.modifyHp(20,"Healing spell");
-				creature.doAction("look healthier");
+				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "minorHealEffect"));
 			}
 		}, true);
 
-		item.addWrittenSpell("major heal", 8, new Effect(1) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "majorHeal"), 8, new Effect(1) {
 			public void start(Creature creature) {
 				if (creature.hp() == creature.maxHp())
 					return;
 
 				creature.modifyHp(50,"Healing spell");
-				creature.doAction("look healthier");
+				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "majorHealEffect"));
 			}
 		}, true);
 
-		item.addWrittenSpell("slow heal", 12, new Effect(50) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "slowHeal"), 12, new Effect(50) {
 			public void update(Creature creature) {
 				super.update(creature);
 				creature.modifyHp(2,"Healing spell");
 			}
 		}, true);
 
-		item.addWrittenSpell("inner strength", 16, new Effect(50) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "innerStrength"), 16, new Effect(50) {
 			public void start(Creature creature) {
 				creature.modifyAttackValue(2);
 				creature.modifyDefenseValue(2);
 				creature.modifyVisionRadius(1); //TODO
 				creature.modifyRegenHpPer1000(10);
 				creature.modifyRegenManaPer1000(-10);
-				creature.doAction("seem to glow with inner strength");
+				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "innerStrengthEffect"));
 			}
 
 			public void update(Creature creature) {
@@ -105,17 +105,17 @@ public class SpellBookFactory {
 		Item item = new Item('+', AsciiPanel.brightBlue, "blue mage's spellbook", name, nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 
-		item.addWrittenSpell("blood to mana", 1, new Effect(1) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "bloodToMana"), 1, new Effect(1) {
 			public void start(Creature creature) {
 				int amount = Math.min(creature.hp() - 1, creature.getMaxMana() - creature.getMana());
-				creature.modifyHp(-amount, "Killed by mana generation");
+				creature.modifyHp(-amount, getter.getDirectTranslation("SpellBookFactory", "bloodToManaEffect"));
 				creature.modifyMana(amount);
 			}
 		}, true);
 
-		item.addWrittenSpell("blink", 6, new Effect(1) { //TODO no enntiendo este hechizo
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "blink"), 6, new Effect(1) { //TODO no enntiendo este hechizo
 			public void start(Creature creature) {
-				creature.doAction("fade out");
+				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "blinkEffect"));
 
 				int mx = 0;
 				int my = 0;
@@ -128,11 +128,11 @@ public class SpellBookFactory {
 
 				creature.moveBy(mx, my, 0);
 
-				creature.doAction("fade in");
+				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "blinkEndEffect"));
 			}
 		}, true);
 
-		item.addWrittenSpell("summon bats", 1, new Effect(1) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "summonBats"), 1, new Effect(1) {
 			public void start(Creature creature) {
 				HashMap<String, String> ciData = new HashMap<String, String>();
 				HashMap<String, String> CI = new HashMap<String, String>();
@@ -176,9 +176,9 @@ public class SpellBookFactory {
 			}
 		}, true);
 
-		item.addWrittenSpell("detect creatures", 16, new Effect(75) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "detectCreatures"), 16, new Effect(75) {
 			public void start(Creature creature) {
-				creature.doAction("look far off into the distance");
+				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "detectCreaturesEffect"));
 				creature.modifyDetectCreatures(1);
 			}
 

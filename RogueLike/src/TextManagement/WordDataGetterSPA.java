@@ -186,8 +186,9 @@ public class WordDataGetterSPA implements WordDataGetter {
 			boolean c = true;
 			e.printStackTrace();
 		}		
-		if ((number == null)||(number==null)){
+		if ((number == null)||(genere==null)){
 			boolean c =true;
+			
 		}
 		object = object.getJSONObject(number);
 		

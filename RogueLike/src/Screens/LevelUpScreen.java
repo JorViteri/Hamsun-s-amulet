@@ -28,9 +28,9 @@ public class LevelUpScreen implements Screen {
 		List<String> options  = controller.getLevelUpOptions();
 		TextManager textManager = TextManager.getTextManager();
 		
-		terminal.clear(' ', 5, y, 30, options.size() + 2);
-	    terminal.write("     Choose a level up bonus       ", 5, y++);
-	    terminal.write("------------------------------", 5, y++);
+		//terminal.clear(' ', 5, y, 30, options.size() + 2);
+	    //terminal.write("     Choose a level up bonus       ", 5, y++);
+	    //terminal.write("------------------------------", 5, y++);
 	    
 	    textManager.clearTextArea(1);
 	    textManager.writeText("     Choose a level up bonus       ", 1);
@@ -38,7 +38,7 @@ public class LevelUpScreen implements Screen {
 	    
 
 	    for (int i = 0; i < options.size(); i++){
-	      terminal.write(String.format("[%d] %s", i+1, options.get(i)), 5, y++);
+	      //terminal.write(String.format("[%d] %s", i+1, options.get(i)), 5, y++);
 	      textManager.writeText(String.format("[%d] %s", i+1, options.get(i)),1);
 	    }
 	}

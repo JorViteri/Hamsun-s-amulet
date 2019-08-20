@@ -8,6 +8,7 @@ import javax.swing.JTextArea;
 import Elements.Creature;
 import Elements.Item;
 import TextManagement.TextManager;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public abstract class InventoryBasedScreen implements Screen {
@@ -28,23 +29,26 @@ public abstract class InventoryBasedScreen implements Screen {
         ArrayList<String> lines = getList();
         TextManager textManager = TextManager.getTextManager();
         textManager.clearTextArea(1);
-        textManager.writeText("What would you like to " + getVerb() + "?",1);
+        String phrase = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("InventoryBasedScreen", "basePhrase");
+        String verb = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("InventoryBasedScreen", getVerb());
+        String finalPhrase = String.format(phrase, verb);
+        textManager.writeText(finalPhrase,1);
     
         int y = 23 - lines.size();
         int x = 4;
 
-        if (lines.size() > 0)
-            terminal.clear(' ', x, y, 20, lines.size());
+        //if (lines.size() > 0)
+        //    terminal.clear(' ', x, y, 20, lines.size());
     
         for (String line : lines){
-            terminal.write(line, x, y++);
+           // terminal.write(line, x, y++);
             textManager.writeText(line, 1);
             
         }
     
-        terminal.clear(' ', 0, 23, 80, 1);
-        terminal.write("What would you like to " + getVerb() + "?", 2, 23);
-        terminal.repaint();
+       // terminal.clear(' ', 0, 23, 80, 1);
+       // terminal.write("What would you like to " + getVerb() + "?", 2, 23);
+       // terminal.repaint();
     }
 	
 	private ArrayList<String> getList() {

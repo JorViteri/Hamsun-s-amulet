@@ -1,7 +1,22 @@
 {  
    "SpellBookFactory":{  
       "white":"\"Mago Blanco\"",
-      "blue":"\"Mago Azul\""
+      "blue":"\"Mago Azul\"",
+      "minorHeal":"Curación menor",
+      "minorHealEffect":"Algo de vida recuperada",
+      "majorHeal":"Curación mayor",
+      "majorHealEffect":"Mucha vida recuperada",
+      "slowHeal":"Curación lenta",
+      "innerStrength":"Fuerza interior",
+      "innerStrengthEffect":"Emana fuerza interior",
+      "bloodToMana":"Sangre a maná",
+      "blooToManaEffect":"Muerto por la regeneración de maná",
+      "blink":"Pestañeo",
+      "blinkEffect":"Se desvanece",
+      "blinkEndEffect":"Reaparece",
+      "summonBats":"Invocar murcielagos",
+      "detectCreatures":"Detectar criaturas",
+      "detectCreaturesEffect":"Sintiendo lo que hay en la distancia"
    },
    "Creature":{  
       "Damage points":"Puntos de daño: %d",
@@ -62,5 +77,29 @@
       "quaff":"[q] para beber una poción.",
       "read":"[r] para leer algo.",
       "pressContinue":"-- pulsa cualquier tecla para continuar --"
+   },
+   "InventoryBasedScreen":{  
+      "basePhrase":"¿Qué te gustaría %s?",
+      "eat":"comer",
+      "equip":"equiparte",
+      "examine":"examinar",
+      "qaff":"beber",
+      "read":"leer",
+      "throw":"lanzar"
+   },
+   "ReadSpellScreen":{  
+      "title":"¿Qué hechizo te gustaría leer?"
+   },
+   "LevelUpController":{  
+      "hitPoints":"Incrementar HP.",
+      "attackValue":"Icrementar ataque.",
+      "defenseValue":"Incrementar defensa.",
+      "awarenessValue":"Incrementar precepción.",
+      "hpRegeneration":"Incrementar regeneración de HP.",
+      "manaPoints":"Incrementar maná.",
+      "manaRegeneration":"Incrementar regeneración de maná."
+   },
+   "ElementsFactory":{  
+      "hamsunAmulet":"%s de Hamsun"
    }
 }

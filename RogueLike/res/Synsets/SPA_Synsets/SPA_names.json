@@ -19,6 +19,12 @@
          "genere":"femenine"
       }
    },
+    "amulet": {
+      "amuleto": {
+         "plural": "amuletos",
+         "genere": "masculine"
+      }
+   },
    "wall":{  
       "muro":{  
          "plural":"muros",

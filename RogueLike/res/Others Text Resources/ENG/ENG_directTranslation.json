@@ -1,7 +1,22 @@
 {  
    "SpellBookFactory":{  
       "white":"\"White Mage\"",
-      "blue":"\"Blue Mage\""
+      "blue":"\"Blue Mage\"",
+      "minorHeal":"Minor heal",
+      "minorHealEffect":"Some health recovered",
+      "majorHeal":"Major Heal",
+      "majorHealEffect":"Lots of health recovered",
+      "slowHeal":"Slow Heal",
+      "innerStrength":"Inner Strength",
+      "innerStrengthEffect":"Glowing with inner strength",
+      "bloodToMana":"Blood to Mana",
+      "blooToManaEffect":"Killed by mana generation",
+      "blink":"Blink",
+      "blinkEffect":"Fades out",
+      "blinkEndEffect":"Fades in",
+      "summonBats":"Summon bats",
+      "detectCreatures":"Detect Creatures",
+      "detectCreaturesEffect":"Sensing far off into the distance"
    },
    "Creature":{  
       "Damage points":"Damage points: %d",
@@ -62,5 +77,29 @@
       "quaff":"[q] to quaff a potion.",
       "read":"[r] to read something.",
       "pressContinue":"-- press any key to continue --"
+   },
+   "InventoryBasedScreen":{  
+      "basePhrase":"What would you like to %s?",
+      "eat":"eat",
+      "equip":"equip",
+      "examine":"examine",
+      "qaff":"quaff",
+      "read":"read",
+      "throw":"thorw"
+   },
+   "ReadSpellScreen":{  
+      "title":"Which spell would you like to read?"
+   },
+   "LevelUpController":{  
+      "hitPoints":"Increase HP.",
+      "attackValue":"Increase attack.",
+      "defenseValue":"Increase defense.",
+      "awarenessValue":"Increase awareness.",
+      "hpRegeneration":"Increase HP regeneration.",
+      "manaPoints":"Increase mana.",
+      "manaRegeneration":"Increase mana regeneration."
+   },
+   "ElementsFactory":{  
+      "hamsunAmulet":"Hamsun's %s"
    }
 }

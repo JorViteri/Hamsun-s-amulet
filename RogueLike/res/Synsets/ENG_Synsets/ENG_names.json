@@ -19,6 +19,12 @@
          "singular":"toxicant"
       }
    },
+     "amulet": {
+      "amulet": {
+         "plural": "amulets",
+         "singular": "amulet"
+      }
+   },
    "wall":{  
       "wall":{  
          "plural":"walls",

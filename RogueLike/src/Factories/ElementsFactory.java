@@ -47,10 +47,16 @@ public class ElementsFactory {
 		return rock;
 	}
 
-	public Item newVictoryItem(int depth) { //TODO a este le tengo que meter las traducciones manuales o traducir amuleto y completarlo como lo de cadaver
-		Item item = new Item('*', AsciiPanel.brightWhite, "Hamsun's amulet",  "Hamsun's amulet", null, null, "common", null, null);
+	public Item newVictoryItem(int depth) {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		WordDataGetter getter = factory.getWordDataGetter();
+		HashMap<String, String> nameData = getter.getNounData("amulet");
+		Item item = new Item('*', AsciiPanel.brightWhite, "Hamsun's amulet",
+				String.format(getter.getDirectTranslation("ElementsFactory", "hamsunAmulet"), nameData.get("baseNoun")),
+				String.format(getter.getDirectTranslation("ElementsFactory", "hamsunAmulet"), nameData.get("plural")),
+				nameData.get("genere"), null, null, null);
 		world.addAtEmptyLocation(item, depth);
 		return item;
 	}
-	
+
 }
