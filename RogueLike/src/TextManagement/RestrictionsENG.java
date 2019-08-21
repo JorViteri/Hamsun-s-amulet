@@ -7,7 +7,7 @@ public class RestrictionsENG implements Restrictions {
 	private HashMap<String, String> restrictions = new HashMap<>();
 
 	public RestrictionsENG(String VbNum, String VbPerson, String VbForm, String VbTime, String SujGen, String SujNum, String CDGen,
-			String CDNum, String CIGen, String CINum, String CCGen, String CCNum) {
+			String CDNum, String CIGen, String CINum, String CCGen, String CCNum, String AtrGenere, String AtrNumber) {
 		restrictions.put("VbNum", VbNum);
 		restrictions.put("VbPerson", VbPerson);
 		restrictions.put("VbForm", VbForm);
@@ -20,6 +20,8 @@ public class RestrictionsENG implements Restrictions {
 		restrictions.put("CIGen", CIGen);
 		restrictions.put("CCNum", CCNum);
 		restrictions.put("CCGen", CCGen);
+		restrictions.put("AtrGen", AtrGenere);
+		restrictions.put("AtrNum", AtrNumber);
 	}
 
 	@Override

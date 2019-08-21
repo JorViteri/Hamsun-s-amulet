@@ -160,6 +160,15 @@
          "infinitive":"haber"
       }
    },
+   "beSomething":{  
+      "ser":{  
+         "3SP":"eran",
+         "3PP":"son",
+         "3SS":"era",
+         "3PS":"es",
+         "infinitive":"ser"
+      }
+   },
    "cut":{  
       "cortar":{  
          "3SP":"cortaron",

@@ -24,7 +24,6 @@ public class PlayerAi extends CreatureAi {
 	private FieldOfView fov;
 	private WordDataGetterAndRealizatorFactory factory;
 	private WordDataGetter getter;
-	private Realizator realizator;
 	private RestrictionsFactory resFactory;
 	
 	public PlayerAi(Creature creature, ArrayList<String> messages,  FieldOfView fov){
@@ -33,7 +32,6 @@ public class PlayerAi extends CreatureAi {
 		this.fov = fov;
 		this.factory = WordDataGetterAndRealizatorFactory.getInstance();
 		this.getter = factory.getWordDataGetter();
-		this.realizator = factory.getRealizator();
 		this.resFactory =  RestrictionsFactory.getInstance();
 	}
 	
@@ -55,8 +53,8 @@ public class PlayerAi extends CreatureAi {
 				HashMap<String, String> CDNameAndAdjective =  item.getNameAndAdjective("singular");
 				CDNameAndAdjective.put("name", creature.nameOf(item)); 
 				Restrictions res = resFactory.getRestrictions("singular", "third",
-						"active", "present", null, null,CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null);
-				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, res, templateType);
+						"active", "present", null, null,CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null, null, null);
+				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, null ,res, templateType);
 			}
 			if (tile.isStair()){
 				
@@ -68,8 +66,8 @@ public class PlayerAi extends CreatureAi {
 				HashMap<String, String> CDMorf  = tile.getMorfStairs();
 				HashMap<String, String> CDNameAndAdjective =  tile.getStairsNounAndType( CDMorf.get("number"));
 				Restrictions res = resFactory.getRestrictions("singular", "third",
-						"active", "present", null, null,CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null);
-				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, res, templateType);
+						"active", "present", null, null,CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null, null, null);
+				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, null, res, templateType);
 				
 				//creature.notify("There're " + tile.getChairTypeString() + " here."); //tengo que hacer que se 
 			}
@@ -91,9 +89,9 @@ public class PlayerAi extends CreatureAi {
 			
 			Restrictions res = resFactory.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), null,
-					null, null, null, ccData.get("genere"), ccData.get("number"));
+					null, null, null, ccData.get("genere"), ccData.get("number"), null, null);
 			
-			creature.doActionComplex(verb, subject, null, null, cc, res, "CollideWall");
+			creature.doActionComplex(verb, subject, null, null, cc, null, res, "CollideWall");
 		}/*else if (tile.isDiggable()) {
 			creature.dig(x, y, z);
 		}*/

@@ -74,6 +74,14 @@
          "Plural":"are"
       }
    },
+   "beSomething":{  
+      "be":{  
+         "Singular":"is",
+         "Past":"was",
+         "Present":"be",
+         "Plural":"are"
+      }
+   },
    "chant":{  
       "chant":{  
          "Singular":"chants",

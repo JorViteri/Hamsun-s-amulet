@@ -29,15 +29,15 @@ public class RestrictionsFactory {
 	}
 
 	public Restrictions getRestrictions(String VbNum, String VbPerson, String VbForm, String VbTime, String SujGen,
-			String SujNum, String CDGen, String CDNum, String CIGen, String CINum, String CCIGen, String CCINum) {
+			String SujNum, String CDGen, String CDNum, String CIGen, String CINum, String CCIGen, String CCINum, String AtrGenere, String AtrNumber) {
 		switch (language) {
 		case "SPA":
 			RestrictionsSPA result_spa = new RestrictionsSPA(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen,
-					CDNum, CIGen, CINum, CCIGen, CCINum);
+					CDNum, CIGen, CINum, CCIGen, CCINum, AtrGenere, AtrNumber);
 			return result_spa;
 		case "ENG":
 			RestrictionsENG result_eng = new RestrictionsENG(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen,
-					CDNum, CIGen, CINum, CCIGen, CCINum);
+					CDNum, CIGen, CINum, CCIGen, CCINum,AtrGenere, AtrNumber);
 			return result_eng;
 		default:
 			return null;

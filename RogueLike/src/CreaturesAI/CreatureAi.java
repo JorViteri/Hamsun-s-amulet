@@ -69,9 +69,9 @@ public class CreatureAi {
 			
 			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), null,
-					null, null, null, ccData.get("genere"), ccData.get("number"));
+					null, null, null, ccData.get("genere"), ccData.get("number"), null, null);
 			
-			creature.doActionComplex(verb, subject, null, null, cc, res, "CollideWall");
+			creature.doActionComplex(verb, subject, null, null, cc, null, res, "CollideWall");
 			//creature.doAction("bump into a wall"); //TODO es una accion de CCI
 		}
 	}

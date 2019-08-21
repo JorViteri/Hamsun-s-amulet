@@ -34,7 +34,7 @@ public class RealizatorENG implements Realizator {
 
 	@Override
 	public String realizatePhrase(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD,
-			HashMap<String, String> CI, HashMap<String, String> CC, Restrictions restrictions, String templateType) {
+			HashMap<String, String> CI, HashMap<String, String> CC, HashMap<String, String> atribute ,Restrictions restrictions, String templateType) {
 		String finalPhrase = "";
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
@@ -57,7 +57,7 @@ public class RealizatorENG implements Realizator {
 			boolean c = true;
 		}
 		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verbFinal, verb.get("adverb"), Subject, CD,
-				CI, CC, restrictions, verb.get("actionType"));
+				CI, CC, atribute, restrictions, verb.get("actionType"));
 		
 		for (int i = 0; i < size; i++) {
 			String key = getKeyByValue(template, i);
@@ -80,7 +80,7 @@ public class RealizatorENG implements Realizator {
 
 	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, String adverb,
 			HashMap<String, String> subject, HashMap<String, String> cD, HashMap<String, String> cI,
-			HashMap<String, String> cC, Restrictions restrictions, String actionType) {
+			HashMap<String, String> cC, HashMap<String, String> atribute, Restrictions restrictions, String actionType) {
 		HashMap<String, String> result = new HashMap<>();
 		HashMap<String, String> aux = new HashMap<>();
 		if (template.get("PRO") != null) {
@@ -105,6 +105,10 @@ public class RealizatorENG implements Realizator {
 			aux = getObjectTemplate(cC.get("type"), null);
 			result.put("CC", constructCC(aux, cC, restrictions));
 		}
+		if (template.get("ATR") != null) {
+			aux = getObjectTemplate("ATR", null);
+			result.put("ATR", constructATR(aux, atribute, restrictions));
+		}
 		if (template.get("ADV") != null) {
 
 			if (adverb != null) {
@@ -116,6 +120,38 @@ public class RealizatorENG implements Realizator {
 
 		}
 		return result;
+	}
+
+	private String constructATR(HashMap<String, String> aux, HashMap<String, String> atribute,
+			Restrictions restrictions) {
+		HashMap<String, String> res = restrictions.getRestrictions();
+		String result = "";
+		String number = res.get("AtrNum");
+		String type = "undefined_nvoc";
+		
+		if (aux.get("ADJ")!= null){
+			if (isVowel(atribute.get("characteristic").charAt(0))){
+				type = "undefined_voc";
+			}
+		} else {
+			if (isVowel(atribute.get("name").charAt(0))){
+				type = "undefined_voc";
+			}
+		}
+
+		if (aux.get("DetUn") != null) {
+			if (number.equals("singular")) {
+				result = result + getter.getDetUndefined(type, null);
+			} else {
+				result = result + "";
+			}
+		}
+		
+		if (aux.get("ADJ") != null) {
+			result = result + " " + atribute.get("characteristic");
+		}
+		result = result + " " + atribute.get("name");
+		return result.trim();
 	}
 
 	private String constructCC(HashMap<String, String> prepPhrase, HashMap<String, String> cC, Restrictions restrictions) {

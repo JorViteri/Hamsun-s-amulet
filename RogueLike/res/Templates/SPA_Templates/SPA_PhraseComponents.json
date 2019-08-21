@@ -22,6 +22,7 @@
       "PR ART NOUN ADJ"
    ],
    "ATR":[  
-      "ART NOUN"
+      "DetUn NOUN ADJ",
+       "DetUn NOUN"
    ]
 }

@@ -29,7 +29,7 @@ public class RealizatorSPA implements Realizator{
 
 	@Override
 	public String realizatePhrase(HashMap<String, String> verb, HashMap<String, String> Subject, HashMap<String, String> CD,
-			HashMap<String, String> CI, HashMap<String, String> CC, Restrictions restrictions, String templateType) {
+			HashMap<String, String> CI, HashMap<String, String> CC, HashMap<String, String> atribute, Restrictions restrictions, String templateType) {
 		String finalPhrase = "";
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
@@ -46,16 +46,16 @@ public class RealizatorSPA implements Realizator{
 		}
 		verbFinal = getter.getVerbData(verbFinal).get("ThirdPresentSingular"); //aqui tendria que cargarlo y pillar lo que me interese
 		HashMap<String, String> hashMapPhrase = phraseConstructor(template, verbFinal, verb.get("adverb"), Subject, CD,
-				CI, CC, restrictions, verb.get("actionType"));
+				CI, CC, atribute, restrictions, verb.get("actionType"));
 		int size = template.size();
 		for (int i = 0; i < size; i++) {
 			String key = getKeyByValue(template, i);
 			String component = hashMapPhrase.get(key);
-			finalPhrase = finalPhrase + component+ " ";
+			finalPhrase = finalPhrase + component + " ";
 		}
 		finalPhrase = finalPhrase.trim();
 		finalPhrase = finalPhrase.substring(0, 1).toUpperCase() + finalPhrase.substring(1);
-		return finalPhrase+".";
+		return finalPhrase + ".";
 	}
 
 	
@@ -123,7 +123,7 @@ public class RealizatorSPA implements Realizator{
 	
 	
 	private HashMap<String, String> phraseConstructor(HashMap<String, Integer> template, String verb, String adverb, HashMap<String, String> Subject,
-			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
+			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC, HashMap<String, String> atribute,
 			Restrictions restrictions, String actionType) {
 		HashMap<String, String> result = new HashMap<>();
 		HashMap<String, String> aux = new HashMap<>();
@@ -146,6 +146,10 @@ public class RealizatorSPA implements Realizator{
 			aux = getObjectTemplate(CC.get("type"), null);
 			result.put("CC", constructCC(aux, CC, restrictions));
 		}
+		if(template.get("ATR")!=null){
+			aux = getObjectTemplate("ATR", null);
+			result.put("ATR", constructATR(aux, atribute, restrictions));
+		}
 		if (template.get("ADV") != null) {
 
 			if (adverb != null) {
@@ -160,6 +164,18 @@ public class RealizatorSPA implements Realizator{
 	}
 	
 	
+	private String constructATR(HashMap<String, String> aux, HashMap<String, String> atribute,
+			Restrictions restrictions) {
+		HashMap<String, String> res = restrictions.getRestrictions();
+		String result = "";
+		result = result+getter.getDetUndefined(res.get("AtrGen"), res.get("AtrNum"));
+		result = result + " " + atribute.get("name");
+		if (aux.get("ADJ") != null) {
+			result = result + " " + atribute.get("characteristic");
+		}
+		return result.trim();
+	}
+
 	private String constructCC(HashMap<String, String> prepPhrase, HashMap<String, String> CC, Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
 		String result = "";

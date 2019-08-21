@@ -270,9 +270,9 @@ public class Creature {
 			verb.put("adverb", null);
 			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), null,
-					null, null, null, null, null);
+					null, null, null, null, null, null, null);
 			
-			doActionComplex(verb, subject, null, null, null, res, "MostBasicTemplate");
+			doActionComplex(verb, subject, null, null, null, null,res, "MostBasicTemplate");
 			leaveCorpse();
 			world.remove(this);
 		}
@@ -381,8 +381,8 @@ public class Creature {
 				cc.put("type", "CCL");
 				Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
-						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"));
-				doActionComplex(verb, subject, tileNameAdj, null, cc, res, "ChangeDungeonLevel");
+						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"), null, null);
+				doActionComplex(verb, subject, tileNameAdj, null, cc, null, res, "ChangeDungeonLevel");
 
 				tile = world.tile(stair.getBeginning().getIntX(), (world.getHeight() - 1) - stair.getBeginning().getIntY(),
 						stair.getBeginning().getZ());
@@ -420,8 +420,8 @@ public class Creature {
  				cc.put("type", "CCL");
 				Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
-						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"));
-				doActionComplex(verb, subject, tileNameAdj, null, cc, res, "ChangeDungeonLevel");
+						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"), null, null);
+				doActionComplex(verb, subject, tileNameAdj, null, cc, null, res, "ChangeDungeonLevel");
 				
 				//doAction("walk down the stairs to level %d", numLevel);
 				tile = world.tile(stair.getEnding().getIntX(), (world.getHeight() - 1) - stair.getEnding().getIntY(),
@@ -491,28 +491,39 @@ public class Creature {
 	
 	//doAction en el caso de que haya items de por medio
 	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject,
-			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC, Restrictions res,
-			String templateType, Item item) {
+			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
+			HashMap<String, String> Atribute, Restrictions res, String templateType, Item item) {
+
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
-		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, res, templateType);
+		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, Atribute, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(phrase);
-			other.learnName(item); // se llama desde aqui....
+			other.learnName(item);
 		}
+		//learnName(item);
 	}
 	
 	//doAction para cuando no hay items de por medio
 	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject,
-			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC, Restrictions res,
-			String templateType) {
+			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
+			HashMap<String, String> Atribute, Restrictions res, String templateType) {
+		
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		Realizator realizator = factory.getRealizator();
-		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, res, templateType);
+		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, Atribute, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(phrase);
 
 		}
+	}
+	
+	public String getNotification(HashMap<String, String> verb, HashMap<String, String> Subject,
+			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
+			HashMap<String, String> Atribute, Restrictions res, String templateType) {
+		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
+		Realizator realizator = factory.getRealizator();
+		return realizator.realizatePhrase(verb, Subject, CD, CI, CC, Atribute, res, templateType);
 	}
 
 	private List<Creature> getCreaturesWhoSeeMe() {
@@ -652,8 +663,8 @@ public class Creature {
 			RestrictionsFactory factory = RestrictionsFactory.getInstance();
 			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
-					null, null, null, null);
-			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates");
+					null, null, null, null, null, null);
+			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			world.remove(x, y, z);
 			inventory.add(item);
 		}
@@ -673,8 +684,8 @@ public class Creature {
 			RestrictionsFactory factory = RestrictionsFactory.getInstance();
 			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
-					null, null, null, null);
-			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates");			
+					null, null, null, null, null, null);
+			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");			
 			inventory.remove(item);
 			unequip(item);
 		} else {
@@ -733,8 +744,8 @@ public class Creature {
 			RestrictionsFactory factory = RestrictionsFactory.getInstance();
 			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
-					null, null, null, null);
-			doActionComplex(verb, subject, cd, null, null, res, "BasicActionsTemplates");
+					null, null, null, null, null, null);
+			doActionComplex(verb, subject, cd, null, null, null,res, "BasicActionsTemplates");
 		}
 
 		putAt(item, wx, wy, wz);
@@ -821,13 +832,13 @@ public class Creature {
 		if (verb.get("actionType").equals("Attack")) {
 			res = factory.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
 					subjectData.get("number"), null, null, ciData.get("genere"), ciData.get("number"),
-					ccData.get("genere"), ccData.get("number"));
-			doActionComplex(verb, subject, cd, ci, cc, res, templateType);
+					ccData.get("genere"), ccData.get("number"), null, null);
+			doActionComplex(verb, subject, cd, ci, cc, null, res, templateType);
 		} else {
 			res = factory.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
 					subjectData.get("number"), cdData.get("genere"), cdData.get("number"), ciData.get("genere"),
-					ciData.get("number"), null, null);
-			doActionComplex(verb, subject, cd, ci, cc, res, templateType, item);
+					ciData.get("number"), null, null, null, null);
+			doActionComplex(verb, subject, cd, ci, cc, null, res, templateType, item);
 		}
 		
 		doAction(damPoints, amount);
@@ -954,14 +965,14 @@ public class Creature {
 		itemNameAndAjective.put("name", nameOf(item));
 
 		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
-				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"), 
-				itemData.get("genere"), itemData.get("number"), null, null, null, null);
+				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
+				itemData.get("genere"), itemData.get("number"), null, null, null, null, null, null);
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
 		verb.put("adverb", null);
 		verb.put("Form", "Singular");
 
-		doActionComplex(verb, subject, itemNameAndAjective, null, null, res, templateType, item);
+		doActionComplex(verb, subject, itemNameAndAjective, null, null, null, res, templateType, item);
 		consumeItem(item);
 	}
 
@@ -976,13 +987,13 @@ public class Creature {
 
 		Restrictions res = factory.getRestrictions("singular", "third",
 				"active", "present", subjectData.get("genere"), subjectData.get("number"), 
-				itemData.get("genere"), itemData.get("number"), null, null, null, null);
+				itemData.get("genere"), itemData.get("number"), null, null, null, null, null, null);
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "consume");
 		verb.put("adverb", null);
 		verb.put("Form", "Singular");
 
-		doActionComplex(verb, subject, itemNameAndAjective, null, null, res, "BasicActionsTemplates");
+		doActionComplex(verb, subject, itemNameAndAjective, null, null, null, res, "BasicActionsTemplates");
 		
 		consumeItem(item);
 	}
@@ -1027,12 +1038,12 @@ public class Creature {
 		HashMap<String, String> subject = this.getNameAdjectiveKey(verbData.get("VbNum"));
 		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
-				null, null, ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"));
+				null, null, ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"), null, null);
 		
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
 		verb.put("adverb", null);
-		this.doActionComplex(verb, subject, null, CI, cc, res, templateType, item);
+		this.doActionComplex(verb, subject, null, CI, cc, null, res, templateType, item);
 
 	}
 
@@ -1057,9 +1068,23 @@ public class Creature {
 		return ai.getName(item);
 	}
 
-	public void learnName(Item item) { //TODO este texto no se llama si la pocion no surte efecto, �de donde no se llama?
-		notify("The " + item.getAppearance() + " is a " + item.getName() + "!"); //TODO esto me lo tengo que pensar mucho 
-		
+	public void learnName(Item item) { 
+		//doAction("LEARNEDOCWIEDNNCODNIOSNI"); //cuantas veces escribe esto?
+		RestrictionsFactory factory = RestrictionsFactory.getInstance();
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", "beSomething");
+		verb.put("adverb", null);
+		verb.put("Form", "Singular");
+		HashMap<String, String> subject = item.getNameAndAdjective("singular");
+		subject.put("name", item.getAppearance());
+		HashMap<String, String> subjectData = item.getMorfData("singular");
+		HashMap<String, String> atribute = item.getNameAndAdjective("singular");
+		HashMap<String, String> atrData = item.getMorfData("singular");
+		Restrictions res = factory.getRestrictions("singular", "third", "active", "pasive", subjectData.get("genere"),
+				subjectData.get("number"), null, null, null, null, null, null, atrData.get("genere"),
+				atrData.get("number"));
+		String phrase  = getNotification(verb, subject, null, null, null, atribute, res, "ToBeSomething");
+		notify(phrase);
 		ai.setName(item, item.getName());
 	}
 
