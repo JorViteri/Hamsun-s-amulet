@@ -9,6 +9,8 @@ import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.Position;
 import asciiPanel.AsciiPanel;
 
@@ -30,6 +32,7 @@ public class TargetBasedScreen implements Screen {
 
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
+		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 		TextManager textManager = TextManager.getTextManager();
 		String player_pos, pointer_pos = null, objective="";
 		Creature objCreature = null;
@@ -43,25 +46,25 @@ public class TargetBasedScreen implements Screen {
 				continue;
 
 			terminal.write('*', p.getIntX(), p.getIntY(), AsciiPanel.brightMagenta);
-			pointer_pos = String.format("Pointer's Position: %d %d", p.getIntX()+scrollx, p.getIntY()+scrolly); //entiendo que, haciendo esto, la posicion se adapta a la de la partida porque sino es solo en la terminal
+			pointer_pos = String.format(getter.getDirectTranslation("TargetBasedScreen", "pointerPosition"), p.getIntX()+scrollx, p.getIntY()+scrolly); //entiendo que, haciendo esto, la posicion se adapta a la de la partida porque sino es solo en la terminal
 			objCreature = player.creature(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ());
 			objItem = player.item(p.getIntX()+scrollx, p.getIntY()+scrolly, this.player.getZ()); 
 			
 		}
 		
 		if (objCreature!=null){ 
-			objective= String.format("Objective: "+objCreature.name());
+			objective= String.format(getter.getDirectTranslation("TargetBasedScreen", "objective"),objCreature.name());
 		}else if (objItem!=null){
-			objective= String.format("Objective: "+objItem.getName());
+			objective= String.format(getter.getDirectTranslation("TargetBasedScreen", "objective"),objItem.getName());
 		} else{
-			objective= String.format("Objective: nothing");
+			objective= String.format(getter.getDirectTranslation("TargetBasedScreen", "objective")," ").trim();
 		}
 		
 		
 		terminal.clear(' ', 0, 23, 80, 1);
 		terminal.write(caption, 0, 23);
 		textManager.clearTextArea(1);
-		player_pos = String.format("Player's Position: %d, %d",player.getX(), player.getY());
+		player_pos = String.format(getter.getDirectTranslation("TargetBasedScreen", "playerPosition"),player.getX(), player.getY());
 		textManager.writeText(player_pos, 1);
 		textManager.writeText(pointer_pos, 1);
 		textManager.writeText(objective, 1);

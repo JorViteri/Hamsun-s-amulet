@@ -498,7 +498,7 @@ public class Creature {
 		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(phrase);
-			other.learnName(item);
+			other.learnName(item); // se llama desde aqui....
 		}
 	}
 	
@@ -966,7 +966,6 @@ public class Creature {
 	}
 
 	public void eat(Item item) { //TODO al final voy a definir esos HashMaps como variables privadas de la clase y atpc
-		
 		RestrictionsFactory factory = RestrictionsFactory.getInstance();
 		HashMap<String, String> subjectData = this.getMorfData("singular"); 
 		HashMap<String, String> itemData = item.getMorfData("singular");
@@ -1060,6 +1059,7 @@ public class Creature {
 
 	public void learnName(Item item) { //TODO este texto no se llama si la pocion no surte efecto, �de donde no se llama?
 		notify("The " + item.getAppearance() + " is a " + item.getName() + "!"); //TODO esto me lo tengo que pensar mucho 
+		
 		ai.setName(item, item.getName());
 	}
 

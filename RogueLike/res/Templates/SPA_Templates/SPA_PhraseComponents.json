@@ -18,7 +18,10 @@
       "PR ART NOUN",
       "PR ART NOUN ADJ"
    ],
-   "CCL":[
+   "CCL":[  
       "PR ART NOUN ADJ"
+   ],
+   "ATR":[  
+      "ART NOUN"
    ]
 }

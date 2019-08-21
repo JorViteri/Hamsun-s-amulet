@@ -83,7 +83,7 @@
       "eat":"eat",
       "equip":"equip",
       "examine":"examine",
-      "qaff":"quaff",
+      "quaff":"quaff",
       "read":"read",
       "throw":"thorw"
    },
@@ -101,5 +101,14 @@
    },
    "ElementsFactory":{  
       "hamsunAmulet":"Hamsun's %s"
+   },
+   "TargetBasedScreen":{  
+      "playerPosition":"Player's Position: %d, %d.",
+      "pointerPosition":"Pointer's Position: %d %d.",
+      "objective":"Objective: %s."
+   },
+   "FireWeaponScreen":{  
+      "title":"Fire %s at?.",
+      "noObjective":"There's no one there to fire at."
    }
 }

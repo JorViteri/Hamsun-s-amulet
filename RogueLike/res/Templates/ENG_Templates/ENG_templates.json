@@ -12,13 +12,16 @@
    "ToBeInTemplate":[  
       "PRO VB CD ADV"
    ],
+   "ToBeSomething":[  
+      "SUJ VB ATR"
+   ],
    "ChangeDungeonLevel":[  
       "SUJ VB CD CC"
    ],
-      "MostBasicTemplate":[  
+   "MostBasicTemplate":[  
       "SUJ VB"
    ],
-     "CollideWall":[  
+   "CollideWall":[  
       "SUJ VB CC"
    ]
 }

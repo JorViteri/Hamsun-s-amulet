@@ -208,9 +208,9 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_X:
 				subscreen = new ExamineScreen(player);
 				break;
-			case KeyEvent.VK_MULTIPLY:
-				subscreen = new LookScreen(player, "Looking", player.getX() - getScrollX(), player.getY() - getScrollY());
-				break;
+			//case KeyEvent.VK_MULTIPLY:
+				//subscreen = new LookScreen(player, "Looking", player.getX() - getScrollX(), player.getY() - getScrollY());
+				//break;
 			case KeyEvent.VK_T:
 				subscreen = new ThrowScreen(player, player.getX() - getScrollX(), player.getY() - getScrollY());
 				break;

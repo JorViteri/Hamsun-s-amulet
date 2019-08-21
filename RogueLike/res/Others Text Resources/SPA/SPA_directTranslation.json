@@ -83,7 +83,7 @@
       "eat":"comer",
       "equip":"equiparte",
       "examine":"examinar",
-      "qaff":"beber",
+      "quaff":"beber",
       "read":"leer",
       "throw":"lanzar"
    },
@@ -101,5 +101,14 @@
    },
    "ElementsFactory":{  
       "hamsunAmulet":"%s de Hamsun"
+   },
+   "TargetBasedScreen":{  
+      "playerPosition":"Posición del jugador: %d, %d.",
+      "pointerPosition":"Posición del puntero: %d %d.",
+      "objective":"Objetivo: %s."
+   },
+   "FireWeaponScreen":{  
+      "title":"¿Disparar con %s ?.",
+      "noObjective":"No hay a quien disparar"
    }
 }

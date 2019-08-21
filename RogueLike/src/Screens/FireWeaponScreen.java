@@ -2,11 +2,19 @@ package Screens;
 
 import DungeonComponents.Line;
 import Elements.Creature;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.Position;
 
 public class FireWeaponScreen extends TargetBasedScreen {
+
+	private static WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
+
 	public FireWeaponScreen(Creature player, int sx, int sy) {
-		super(player, "Fire " + player.nameOf(player.getWeapon()) + " at?", sx, sy);
+
+		super(player, String.format(getter.getDirectTranslation("FireWeaponScreen", "title"),
+				player.nameOf(player.getWeapon())), sx, sy);
+
 	}
 
 	public boolean isAcceptable(int x, int y) {
@@ -25,7 +33,7 @@ public class FireWeaponScreen extends TargetBasedScreen {
 		Creature other = player.creature(x, y, player.getZ());
 
 		if (other == null)
-			player.notify("There's no one there to fire at.");
+			player.notify(getter.getDirectTranslation("FireWeaponScreen", "noObjective"));
 		else
 			player.rangedWeaponAttack(other);
 	}
