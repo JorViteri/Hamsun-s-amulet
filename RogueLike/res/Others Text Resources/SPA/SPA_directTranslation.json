@@ -29,7 +29,9 @@
       "gainAttackValue":"Fuerza mejorada.",
       "gainDefenseValue":"Defensa mejorada.",
       "gainVision":"Conscienia mejorada.",
-      "getDetails":"     Nivel:%d     Ataque:%d     Defensa:%d     HP:%d"
+      "getDetails":"     Nivel:%d     Ataque:%d     Defensa:%d     HP:%d",
+      "nothingHappens":"No hay suficiente maná, no sucede nada.",
+      "atNothing":"No se está apuntanto a nada."
    },
    "Tile":{  
       "Floor":"Suelo de rocas del piso.",

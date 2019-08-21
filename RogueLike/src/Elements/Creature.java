@@ -499,9 +499,10 @@ public class Creature {
 		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, Atribute, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(phrase);
-			other.learnName(item);
+			if(!verb.get("actionType").equals("Summon")){
+				other.learnName(item);
+			}
 		}
-		//learnName(item);
 	}
 	
 	//doAction para cuando no hay items de por medio
@@ -795,7 +796,7 @@ public class Creature {
 
 		commonAttack(other, attackValue / 2 + item.getThrownAttackValue(), verb, cd, cdData, ci, ciData, null, null,
 				"ThrowAttack", item);
-		other.addEffect(item.getQuaffEffect());
+		other.addEffect(item.getQuaffEffect(), this);
 		this.learnName(item);
 	}
 
@@ -999,17 +1000,17 @@ public class Creature {
 	}
 
 	private void consumeItem(Item item) {
-		addEffect(item.getQuaffEffect());
+		addEffect(item.getQuaffEffect(), this);
 
 		modifyFood(item.getFoodValue());
 		getRidOf(item);
 	}
 
-	private void addEffect(Effect effect) {
+	private void addEffect(Effect effect, Creature source) {
 		if (effect == null)
 			return;
 
-		effect.start(this);
+		effect.start(this, source);
 		effects.add(effect);
 	}
 
@@ -1027,15 +1028,15 @@ public class Creature {
 		effects.removeAll(done);
 	}
 
-	public void summon(ArrayList<Creature> others, HashMap<String, String> ccData, HashMap<String, String> cc,
+	public void placeSummoned(Creature source, ArrayList<Creature> others, HashMap<String, String> ccData, HashMap<String, String> cc,
 			HashMap<String, String> ciData, HashMap<String, String> CI, HashMap<String, String> verbData,
 			String templateType, Item item) {
 		for (Creature other : others) {
 			world.add(other);
 		}
 		RestrictionsFactory factory = RestrictionsFactory.getInstance();
-		HashMap<String, String> subjectData = this.getMorfData(verbData.get("VbNum"));
-		HashMap<String, String> subject = this.getNameAdjectiveKey(verbData.get("VbNum"));
+		HashMap<String, String> subjectData = source.getMorfData(verbData.get("VbNum"));
+		HashMap<String, String> subject = source.getNameAdjectiveKey(verbData.get("VbNum"));
 		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
 				null, null, ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"), null, null);
@@ -1043,24 +1044,27 @@ public class Creature {
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
 		verb.put("adverb", null);
-		this.doActionComplex(verb, subject, null, CI, cc, null, res, templateType, item);
+		this.doActionComplex(verb, subject, null, CI, cc, null, res, templateType, item); //entonces, QUIEN HACE LA ACCION MAMON?
 
 	}
 
 	// TODO CHECK CODE, IT MIGHT FAIL 
 	//Sale a una pantalla de TARGET cuando no debria ser necesario si el objetivo es el jugador TODO
 	public void castSpell(Spell spell, int x2, int y2) {
+		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 		Creature other = creature(x2, y2, z);
-
+		String phrase = "";
 		if (spell.getManaCost() > mana) {
-			doAction("point and mumble but nothing happens");
+			phrase = getter.getDirectTranslation("Creature", "nothingHappens");
+			doAction(phrase);
 			return;
 		} else if (other == null) {
-			doAction("point and mumble at nothing");
+			phrase = getter.getDirectTranslation("Creature", "atNothing");
+			doAction(phrase);
 			return;
 		}
 
-		other.addEffect(spell.getEffect());
+		other.addEffect(spell.getEffect(), this);
 		modifyMana(-spell.getManaCost());
 	}
 

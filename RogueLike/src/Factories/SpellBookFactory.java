@@ -37,7 +37,7 @@ public class SpellBookFactory {
 		Item item = new Item('+', AsciiPanel.brightWhite, "white mage's spellbook", name, nameData.get("plural"),
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "minorHeal"), 4, new Effect(1) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				if (creature.hp() == creature.maxHp())
 					return;
 
@@ -47,7 +47,7 @@ public class SpellBookFactory {
 		}, true);
 
 		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "majorHeal"), 8, new Effect(1) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				if (creature.hp() == creature.maxHp())
 					return;
 
@@ -64,7 +64,7 @@ public class SpellBookFactory {
 		}, true);
 
 		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "innerStrength"), 16, new Effect(50) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				creature.modifyAttackValue(2);
 				creature.modifyDefenseValue(2);
 				creature.modifyVisionRadius(1); //TODO
@@ -106,7 +106,7 @@ public class SpellBookFactory {
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
 
 		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "bloodToMana"), 1, new Effect(1) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				int amount = Math.min(creature.hp() - 1, creature.getMaxMana() - creature.getMana());
 				creature.modifyHp(-amount, getter.getDirectTranslation("SpellBookFactory", "bloodToManaEffect"));
 				creature.modifyMana(amount);
@@ -114,7 +114,7 @@ public class SpellBookFactory {
 		}, true);
 
 		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "blink"), 6, new Effect(1) { //TODO no enntiendo este hechizo
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "blinkEffect"));
 
 				int mx = 0;
@@ -133,7 +133,7 @@ public class SpellBookFactory {
 		}, true);
 
 		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "summonBats"), 1, new Effect(1) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				HashMap<String, String> ciData = new HashMap<String, String>();
 				HashMap<String, String> CI = new HashMap<String, String>();
 				ArrayList<Creature> bats = new ArrayList<>();
@@ -172,12 +172,12 @@ public class SpellBookFactory {
 				verbData.put("VbPerson", "third");
 				verbData.put("VbForm", "active");
 				verbData.put("VbTime", "present");
-				creature.summon(bats, ccData, cc, ciData, CI, verbData, "WeaponsAttacks", item);
+				creature.placeSummoned(source, bats, ccData, cc, ciData, CI, verbData, "WeaponsAttacks", item);
 			}
 		}, true);
 
 		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "detectCreatures"), 16, new Effect(75) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				creature.doAction(getter.getDirectTranslation("SpellBookFactory", "detectCreaturesEffect"));
 				creature.modifyDetectCreatures(1);
 			}

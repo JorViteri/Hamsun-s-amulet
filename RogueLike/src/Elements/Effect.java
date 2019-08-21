@@ -16,7 +16,7 @@ public class Effect implements Cloneable{
 		duration--;
 	}
 	
-	public void start(Creature creature){
+	public void start(Creature creature, Creature source){
 		
 	}
 	

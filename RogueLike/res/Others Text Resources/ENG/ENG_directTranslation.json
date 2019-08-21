@@ -29,7 +29,9 @@
       "gainAttackValue":"Strength improved.",
       "gainDefenseValue":"Defense improved.",
       "gainVision":"Awareness improved.",
-      "getDetails":"     level:%d     attack:%d     defense:%d     hp:%d"
+      "getDetails":"     level:%d     attack:%d     defense:%d     hp:%d",
+       "nothingHappens":"Not enough mana, nothing happens",
+      "atNothing":"Targeting nothing."
    },
    "Tile":{  
       "Floor":"A dirt and rock cave floor.",
