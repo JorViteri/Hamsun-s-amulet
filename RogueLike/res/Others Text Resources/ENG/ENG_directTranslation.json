@@ -31,7 +31,8 @@
       "gainVision":"Awareness improved.",
       "getDetails":"     level:%d     attack:%d     defense:%d     hp:%d",
        "nothingHappens":"Not enough mana, nothing happens",
-      "atNothing":"Targeting nothing."
+      "atNothing":"Targeting nothing.",
+      "cantEquip":"Can't equip %s since you're holding too much stuff."
    },
    "Tile":{  
       "Floor":"A dirt and rock cave floor.",
@@ -112,5 +113,12 @@
    "FireWeaponScreen":{  
       "title":"Fire %s at?.",
       "noObjective":"There's no one there to fire at."
+   },
+   "PotionFactory":{
+   	"lookHealthier":"Feeling better.",
+   	"lookRestored":"Feeling recovered.",
+   	"lookSick":"Feeling sick.",
+   	"lookStrong":"Feeling with a great might.",
+   	"lookNotSoStrong":"Feeling less strong.",
    }
 }

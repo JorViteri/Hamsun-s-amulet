@@ -214,25 +214,17 @@
       }
    },
    "equip":{  
-      "fit":{  
-         "Singular":"fits",
-         "Past":"fitted",
-         "Present":"fit"
-      },
-      "outfit":{  
-         "Singular":"outfits",
-         "Past":"outfitted",
-         "Present":"outfit"
-      },
       "equip":{  
          "Singular":"equips",
          "Past":"equipped",
          "Present":"equip"
-      },
-      "fit_out":{  
-         "Singular":"fits out",
-         "Past":"fitted out",
-         "Present":"fit out"
+      }
+   },
+   "unequip":{  
+      "unequip":{  
+         "Singular":"unequips",
+         "Past":"unequipped",
+         "Present":"unequip"
       }
    },
    "throw":{  

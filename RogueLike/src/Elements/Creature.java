@@ -296,18 +296,33 @@ public class Creature {
 	}
 
 	public void unequip(Item item) {
-		if (item == null)
+		if (item == null){
 			return;
+		}
+		
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", "unequip");
+		verb.put("adverb", null);
+		verb.put("Form", "Singular");
+		HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+		HashMap<String, String> subjectData = this.getMorfData("singular");
+		HashMap<String, String> cd = item.getNameAndAdjective("singular");
+		cd.put("name", nameOf(item));
+		HashMap<String, String> cdData = item.getMorfData("singular");
+		Restrictions res = RestrictionsFactory.getInstance().getRestrictions("singular", "third", "active", "present",
+				subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null,
+				null, null, null, null, null);
 
 		if (item == armor) {
-			doAction("remove a " + nameOf(item));
+			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			armor = null;
 		} else if (item == weapon) {
-			doAction("put away a " + nameOf(item));
+			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			weapon = null;
 		}
 	}
 
+	/*
 	public void equip(Item item) {
 		if (!inventory.contains(item)) {
 			if (inventory.isFull()) {
@@ -330,8 +345,53 @@ public class Creature {
 			weapon = item;
 		} else { //TODO el equipar se me ha petado ;/
 			unequip(armor);
-			if(this.key.equals("Player")){ //TODO me ha petado al pasar campo nombre a key nani
+			if(this.key.equals("Player")){ 
 				doAction("put on a " + nameOf(item)); 
+			}
+			armor = item;
+		}
+	}*/
+	
+
+	public void equip(Item item) {
+		WordDataGetter getter =  WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
+		HashMap<String, String> verb = new HashMap<>();
+		verb.put("actionType", "equip");
+		verb.put("adverb", null);
+		verb.put("Form", "Singular");
+		HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
+		HashMap<String, String> subjectData = this.getMorfData("singular");
+		HashMap<String, String> cd = item.getNameAndAdjective("singular");
+		cd.put("name", nameOf(item));
+		HashMap<String, String> cdData = item.getMorfData("singular");
+		Restrictions res = RestrictionsFactory.getInstance().getRestrictions("singular", "third", "active", "present",
+				subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null,
+				null, null, null, null, null);
+
+		if (!inventory.contains(item)) {
+			if (inventory.isFull()) {
+				notify(getter.getDirectTranslation("Creature", "cantEquip"), nameOf(item));
+				return;
+			} else {
+				world.remove(item);
+				inventory.add(item);
+			}
+		}
+
+		if (item.getAttackValue() == 0 && item.getRangedAttackValue() == 0 && item.getDefenseValue() == 0) {
+			return;
+		}
+
+		if (item.getAttackValue() + item.getRangedAttackValue() >= item.getDefenseValue()) {
+			unequip(weapon);
+			if (this.key.equals("Player")) {
+				doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
+			}
+			weapon = item;
+		} else {
+			unequip(armor);
+			if (this.key.equals("Player")) {
+				doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			}
 			armor = item;
 		}

@@ -31,7 +31,8 @@
       "gainVision":"Conscienia mejorada.",
       "getDetails":"     Nivel:%d     Ataque:%d     Defensa:%d     HP:%d",
       "nothingHappens":"No hay suficiente maná, no sucede nada.",
-      "atNothing":"No se está apuntanto a nada."
+      "atNothing":"No se está apuntanto a nada.",
+      "cantEquip":"No se puede equipar %s ya que llevas demasiado puesto."
    },
    "Tile":{  
       "Floor":"Suelo de rocas del piso.",
@@ -112,5 +113,11 @@
    "FireWeaponScreen":{  
       "title":"¿Disparar con %s ?.",
       "noObjective":"No hay a quien disparar"
+   }, "PotionFactory":{
+   	"lookHealthier":"Se siente mejor.",
+   	"lookRestored":"Energias recuperadas.",
+   	"lookSick":"Se siente enfermo.",
+   	"lookStrong":"Se siente una gran fuerza.",
+   	"lookNotSoStrong":"No se siente una gran fuerza.",
    }
 }

@@ -346,6 +346,15 @@
          "infinitive":"equipar"
       }
    },
+   "unequip":{  
+      "desequipar":{  
+         "3SP":"se desequiparon",
+         "3PP":"se desequipan",
+         "3SS":"se desequipó",
+         "3PS":"se desequipa",
+         "infinitive":"desequipar"
+      }
+   },
    "throw":{  
       "arrojar":{  
          "3SP":"arrojaron",

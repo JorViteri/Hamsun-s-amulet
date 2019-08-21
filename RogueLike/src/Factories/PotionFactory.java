@@ -78,12 +78,12 @@ public class PotionFactory {
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"),
 				realizator.constructNounAppareance(nameData.get("baseNoun"), finalAp));
 		item.setQuaffEffect(new Effect(1) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				if (creature.hp() == creature.maxHp())
 					return;
 
 				creature.modifyHp(15, "Health Potion");
-				creature.doAction("look healthier");
+				creature.doAction(getter.getDirectTranslation("PotionFactory", "lookHealthier"));
 			}
 		});
 
@@ -110,12 +110,12 @@ public class PotionFactory {
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"),
 				realizator.constructNounAppareance(nameData.get("baseNoun"), finalAp));
 		item.setQuaffEffect(new Effect(1) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				if (creature.getMana() == creature.getMaxMana())
 					return;
 
 				creature.modifyMana(10);
-				creature.doAction("look restored");
+				creature.doAction(getter.getDirectTranslation("PotionFactory", "lookRestored"));
 			}
 		});
 
@@ -142,8 +142,8 @@ public class PotionFactory {
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"),
 				realizator.constructNounAppareance(nameData.get("baseNoun"), finalAp));
 		item.setQuaffEffect(new Effect(20) {
-			public void start(Creature creature) {
-				creature.doAction("look sick");
+			public void start(Creature creature, Creature source) {
+				creature.doAction(getter.getDirectTranslation("PotionFactory", "lookSick"));
 			}
 
 			public void update(Creature creature) {
@@ -174,16 +174,16 @@ public class PotionFactory {
 				nameData.get("genere"), adjData.get("singular"), adjData.get("plural"),
 				realizator.constructNounAppareance(nameData.get("baseNoun"), finalAp));
 		item.setQuaffEffect(new Effect(20) {
-			public void start(Creature creature) {
+			public void start(Creature creature, Creature source) {
 				creature.modifyAttackValue(5);
 				creature.modifyDefenseValue(5);
-				creature.doAction("look stronger");
+				creature.doAction(getter.getDirectTranslation("PotionFactory", "lookStrong"));
 			}
 
 			public void end(Creature creature) {
 				creature.modifyAttackValue(-5);
 				creature.modifyDefenseValue(-5);
-				creature.doAction("look less strong");
+				creature.doAction(getter.getDirectTranslation("PotionFactory", "lookNotSoStrong"));
 			}
 		});
 
