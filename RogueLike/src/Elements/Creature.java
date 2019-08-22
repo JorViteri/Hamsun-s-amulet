@@ -160,6 +160,22 @@ public class Creature {
 		return characteristic+" "+name;
 	}
 
+	/**
+	 * Constructor of a Creature 
+	 * @param world the dungeon so it can iteract with it
+	 * @param glyph char that will represent the Creature in the game
+	 * @param key string that will identify creatures of the same type
+	 * @param name string that names the creature
+	 * @param n_plu string that is the name in plural
+	 * @param genere morphological gender of the word
+	 * @param color color in which the glyph will be in the ga,e
+	 * @param maxHp Life point of the creature 
+	 * @param attack Attack points of the creature
+	 * @param defense Defense points of the creature
+	 * @param invt_size Size of the inventory carried by the creature
+	 * @param characteristic String that is a characteristic of the creature
+	 * @param charc_plu the characteristic but in plural
+	 */
 	public Creature(World world, char glyph, String key, String name, String n_plu, String genere, Color color,
 			int maxHp, int attack, int defense, int invt_size, String characteristic, String charc_plu) {
 		this.world = world;

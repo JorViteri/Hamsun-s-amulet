@@ -1,6 +1,5 @@
 package Factories;
 
-import java.awt.Color;
 /**
  * This factory is responsible for the creation of the "potions" that can
  *  be found in the dungeon.
@@ -8,6 +7,7 @@ import java.awt.Color;
  * @author comec
  * 
  */
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,24 +1,25 @@
 package Factories;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.ArrayList;
+/**
+ * Defines the ArmorFactory which creates Items that are used as armor
+ * 
+ * @author comec
+ */
 import java.util.HashMap;
-import java.util.Properties;
-import java.util.Random;
-
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterAndRealizatorFactory;
-import TextManagement.WordDataGetterSPA;
 import asciiPanel.AsciiPanel;
 
 public class ArmorFactory {
 
 	private World world;
 
+	/**
+	 * Constructor
+	 * @param world needs the world so it can place the items in it
+	 */
 	public ArmorFactory(World world) {
 		this.world = world;
 	}
@@ -49,7 +50,7 @@ public class ArmorFactory {
 		return item;
 	}
 
-	public Item newHeavyArmor(int depth) { //TODO me da nombre null
+	public Item newHeavyArmor(int depth) { 
 		String[] arr = { "great_quality", "old", "big_size", "new_quality", "shiny", "rusty", "dusty" };
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();

@@ -1,5 +1,9 @@
 package Elements;
-
+/**
+ * Defines the Item class
+ * 
+ * @author comec
+ */
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +31,18 @@ public class Item {
 	private int y;
 	private int z;
 
+	/**
+	 * Constructor of an Item
+	 * @param glyph char that will represent the Item in the game
+	 * @param color color that will have the glyph in the game
+	 * @param key string that will identify items of the same kind
+	 * @param name string that names the item
+	 * @param n_plu string that is the name in plural
+	 * @param genere string that represents the morphological gender
+	 * @param characteristic string that represents a characteristic of the item
+	 * @param charc_plu string that is the characteristic but in plural
+	 * @param appearance string that represents the appareance of the item (used for potions)
+	 */
 	public Item(char glyph, Color color, String key, String name, String n_plu, String genere, String characteristic,
 			String charc_plu, String appearance) {
 		this.glyph = glyph;
@@ -167,7 +183,7 @@ public class Item {
 		defenseValue += amount;
 	}
 
-	public String getDetails() {
+	public String getDetails() { 
 		String details = "";
 
 		if (attackValue != 0)

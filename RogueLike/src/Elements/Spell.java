@@ -1,5 +1,9 @@
 package Elements;
 
+/**
+ * Defines the class Spell
+ * @author comec
+ */
 public class Spell {
 	
 	private String name;
@@ -19,7 +23,7 @@ public class Spell {
 		return (Effect) effect.clone();
 	}
 	
-	public boolean getSelfTarget(){
+	public boolean getSelfTarget(){ //TODO esto... deberia hacer algo con esto
 		return selfTarget;
 	}
 	

@@ -1,11 +1,12 @@
 package Factories;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Properties;
+/**
+ * Defines the Weapons Factory which creates and places the items used as weapons in the dungeon
+ * 
+ * @author comec
+ */
 
+import java.util.HashMap;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
@@ -16,6 +17,10 @@ public class WeaponsFactory {
 
 	private World world;
 
+	/**
+	 * Constructor
+	 * @param world the world of the dungeon so it can place the items in it
+	 */
 	public WeaponsFactory(World world) {
 		this.world = world;
 	}
@@ -74,6 +79,11 @@ public class WeaponsFactory {
 		return item;
 	}
 
+	/**
+	 * Creates and places a random weapon in a level of the dungeon
+	 * @param depth level of the deungeon in which the weapon will be placed
+	 * @return the item created
+	 */
 	public Item randomWeapon(int depth) {
 		switch ((int) (Math.random() * 3)) {
 		case 0:

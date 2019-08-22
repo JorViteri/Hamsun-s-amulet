@@ -1,8 +1,12 @@
 package Factories;
 
+/**
+ * Defines the Creature Factory which creates and places creatures in the dungeon
+ * 
+ * @author comec
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import CreaturesAI.BatAi;
 import CreaturesAI.FungusAi;
 import CreaturesAI.GoblinAi;
@@ -19,8 +23,10 @@ public class CreatureFactory {
 
 	private World world;
 
-	// TODO la clase Creature precisa de cambios: tener un campo para nombre y
-	// otro para la llave
+	/**
+	 * Constructor
+	 * @param world the world dungeon so it can place the creatures in the dungeon
+	 */
 	public CreatureFactory(World world) {
 		this.world = world;
 	}

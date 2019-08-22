@@ -1,19 +1,20 @@
 package Factories;
 
+/**
+ * Defines the SpellBookFactory which creates Spell Books as Items
+ * 
+ * @author comec
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import Elements.Creature;
 import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
-import TextManagement.RestrictionsFactory;
 import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
-import Screens.PlayScreen;
 import TextManagement.Realizator;
-import TextManagement.Restrictions;
 
 public class SpellBookFactory {
 
@@ -26,6 +27,11 @@ public class SpellBookFactory {
 	}
 	
 
+	/**
+	 * Creates a White Mages spell book which focuses on healing spells which are declared with it's effect too.
+	 * @param depth level of the dungeon in which the book will be placed
+	 * @return
+	 */
 	public Item newWhiteMagesSpellbook(int depth) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
@@ -93,7 +99,11 @@ public class SpellBookFactory {
 	}
 	
 	
-	//TODO muchas cosas
+	/**
+	 * Creates a Blue Mages spell book which focuses on "tricky" spells which are declared with it's effect too.
+	 * @param depth level of the dungeon in which the book will be placed
+	 * @return
+	 */
 	public Item newBlueMagesSpellbook(int depth) {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		WordDataGetter getter = factory.getWordDataGetter();
@@ -190,6 +200,11 @@ public class SpellBookFactory {
 		return item;
 	}
 
+	/**
+	 * Places a random book ina level of the dungeon
+	 * @param depth level of the dungeon in which the book will be placed
+	 * @return the book created
+	 */
 	public Item randomSpellBook(int depth){
 		switch ((int)(Math.random() * 2)){
 		case 0: return newWhiteMagesSpellbook(depth);

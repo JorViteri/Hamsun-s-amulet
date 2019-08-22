@@ -1,5 +1,10 @@
 package Elements;
 
+/**
+ * Defines the inventory class which is a collection of items
+ * @author comec
+ *
+ */
 
 public class Inventory {
 

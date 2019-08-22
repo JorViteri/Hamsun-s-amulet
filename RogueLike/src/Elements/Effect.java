@@ -1,5 +1,10 @@
 package Elements;
 
+/**
+ * Defines the effect class which isn Cloneable
+ * @author comec
+ *
+ */
 public class Effect implements Cloneable{
 
 	protected int duration;

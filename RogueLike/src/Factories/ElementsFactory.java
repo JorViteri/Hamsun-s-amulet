@@ -1,37 +1,25 @@
 package Factories;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import java.awt.Color;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
+/**
+ * Defines the Elements Factory which creates some special items by their characteristics and places the in the dungeon
+ * 
+ * @author comec
+ */
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import CreaturesAI.BatAi;
-import CreaturesAI.FungusAi;
-import CreaturesAI.GoblinAi;
-import CreaturesAI.PlayerAi;
-import CreaturesAI.ZombieAi;
-import Elements.Creature;
-import Elements.Effect;
 import Elements.Item;
 import Rogue.World;
 import TextManagement.WordDataGetter;
 import TextManagement.WordDataGetterAndRealizatorFactory;
-import TextManagement.WordDataGetterSPA;
-import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 
 public class ElementsFactory {
 
 	private World world;
 
+	/**
+	 * Construcot
+	 * @param world world of the dungeon so it can add the items to it
+	 */
 	public ElementsFactory(World world) {
 		this.world = world;
 	}
