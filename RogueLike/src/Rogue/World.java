@@ -1,5 +1,8 @@
 package Rogue;
 
+/**
+ * Defines the World class which represents the dungeon
+ */
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -44,6 +47,14 @@ public class World {
 	private ArrayList<ArrayList<Corridor>> corridors_lists;
 	private WordDataGetter getter;
 
+	/**
+	 * Constructor
+	 * @param tiles The tiles that form the dungeon
+	 * @param stairs The stairs located in the dungeon
+	 * @param exit The position which is the exit of the dungeon(a stair)
+	 * @param rooms_lists The list of rooms (square like areas with a widht bigger than 1 tile)
+	 * @param corridors_list The list of corridors that unite rooms (1 tile of width)
+	 */
 	public World(Tile[][][] tiles, ArrayList<Staircase> stairs, Position exit, ArrayList<ArrayList<Room>> rooms_lists,
 			ArrayList<ArrayList<Corridor>> corridors_list) {
 		this.tiles = tiles;
@@ -143,6 +154,11 @@ public class World {
     }
 }
 
+	/**
+	 * Adds a creature in the dungeon
+	 * @param creature the creature thar is going to be added
+	 * @param z the level of the dungeon in which will be placed
+	 */
 	public void addAtEmptyLocation(Creature creature, int z){
 		int x, y;
 		
@@ -159,6 +175,11 @@ public class World {
 		creatures.add(creature);
 	}
 	
+	/**
+	 * Add an item to the dungeon
+	 * @param item the Item that is going to be added
+	 * @param depth the level of the dungeon in which will be placed
+	 */
 	public void addAtEmptyLocation(Item item, int depth){
 		int x;
 		int y;
@@ -175,7 +196,14 @@ public class World {
 	    item.setZ(depth);
 	}
 	
-	
+	/**
+	 * Add an item in an empty tile (when dropping an item for exaple)
+	 * @param item item that will be placed
+	 * @param x x of the position
+	 * @param y y of the position
+	 * @param z z of the position
+	 * @return true if there was success, false on the contrary case
+	 */
 	public boolean addAtEmptySpace(Item item, int x, int y, int z){
 	    if (item == null)
 	        return true;

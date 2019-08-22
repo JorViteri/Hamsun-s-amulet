@@ -1,6 +1,10 @@
 package Rogue;
 
-
+/**
+ * Class that constructs the World obtaining all the parameters necessary
+ * 
+ * @author comec
+ */
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -28,7 +32,12 @@ public class WorldBuilder {
 	private ArrayList<Staircase> stairs_list;
 	private Position exit;
 	
-	
+	/**
+	 * Constructor
+	 * @param width width of the level
+	 * @param height height of the level
+ 	 * @param depth number of levels in the dungeon
+	 */
 	public WorldBuilder(int width, int height, int depth) {
 		this.width = width;
 		this.height = height;
@@ -39,10 +48,18 @@ public class WorldBuilder {
 		this.stairs_list = new ArrayList<Staircase>();
 	}
 
+	/**
+	 * Calls the constructor of World with the created paramters 
+	 * @return the World created
+	 */
 	public World build() {
 		return new World(tiles, stairs_list, exit, room_lists, corridors_list);
 	}
 
+	/**
+	 * Creates the rooms for the dungeon and the corridors
+	 * @return
+	 */
 	public WorldBuilder generateRooms()  {
 		int old_size, new_size;
 		ArrayList<Node> graph;
@@ -83,6 +100,11 @@ public class WorldBuilder {
 		return this;
 	}
 	
+	/**
+	 * Generates a list of rooms for one level
+	 * @param depth level of the dungeon 
+	 * @return the list of rooms
+	 */
 	private ArrayList<Room> roomGenerator(int depth){
 		boolean first = true;
 		boolean cond;
@@ -157,13 +179,17 @@ public class WorldBuilder {
 		return result;
 	}
 
-	
-
-	
-
-	private ArrayList<Room> removeExpendableRooms(ArrayList<Node> graph, ArrayList<Room> room_list, ArrayList<Position> centers) {
+	/**
+	 * 	Removes rooms that are not in the graph obtained by Delaunay triangulation
+	 * @param graph list of nodes that represents the connected rooms that will be in the level
+	 * @param room_list the list of the rooms generated for a level
+	 * @param centers list of the centers of those rooms
+	 * @return the list of rooms modifided if it was necessary
+	 */
+	private ArrayList<Room> removeExpendableRooms(ArrayList<Node> graph, ArrayList<Room> room_list,
+			ArrayList<Position> centers) {
 		boolean delete;
-		
+
 		for (Position p : centers) {
 			delete = true;
 			for (Node n : graph) {
@@ -172,21 +198,25 @@ public class WorldBuilder {
 				}
 			}
 			if (delete) {
-				for(Room r : room_list){ 
-					if (r.getCenter().equals(p)){
+				for (Room r : room_list) {
+					if (r.getCenter().equals(p)) {
 						room_list.remove(r);
 						break;
 					}
 				}
-				
+
 			}
 		}
 		return room_list;
 	}
 
-
 	
-	// funcion que busque habitacion segun su centro
+	/**
+	 * Obtains a room by it's center
+	 * @param list list of rooms 
+	 * @param center list of the centers of the rooms
+	 * @return
+	 */
 	private Room getRoomByCenter(ArrayList<Room> list, Position center){
 		for (Room room :  list){
 			if (room.getCenter().equals(center)){
@@ -196,6 +226,11 @@ public class WorldBuilder {
 		return null; 
 	}
 	
+	/**
+	 * "Prints" the dungeon into the Tiles multi array that later will be used to paint the dungeon
+	 * @param roomList
+	 * @param corridorList
+	 */
 	private void printDungeon(ArrayList<Room> roomList, ArrayList<Corridor> corridorList) { 
 		ArrayList<Position> positions;
 		Position beginning, ending, middle;
@@ -247,6 +282,13 @@ public class WorldBuilder {
 		}
 	}
 
+	/**
+	 * Checks the position between to rooms in order to decide which type of corridor draw
+	 * @param room1 first room
+	 * @param room2 second room
+	 * @param middle middle point between the centers of those two rooms
+	 * @return an int which indicates the type of corrifor to draw
+	 */
 	private int  isPointInRange(Room room1, Room room2, Position middle) {
 		Position left1 = room1.getRoomUpperLeft();
 		Position left2 = room2.getRoomUpperLeft(); 
@@ -270,7 +312,12 @@ public class WorldBuilder {
 	}
 	
 	
-	
+	/**
+	 * Draws onle line between two rooms
+	 * @param cond indiicates in which axis draw the line
+	 * @param room1 first room
+	 * @param room2 second room
+	 */
 	private void drawOneLine(int cond, Room room1, Room room2) {
 		int beginningx, beginningy, endingx, endingy;
 		int i, stop;
@@ -312,7 +359,13 @@ public class WorldBuilder {
 	
 
 	
-	
+	/**
+	 * Used to draw more complex corridor between two rooms
+	 * @param beginning beggining of the corridor to draw (room center)
+	 * @param ending ending of the corridor to draw (room center)
+	 * @param room1 first room  
+	 * @param room2 second room
+	 */
 	private void drawComplex(Position beginning, Position ending, Room room1, Room room2) {
 		Position middle;
 		int middlex, middley, beginningx, beginningy, endingx, endingy;
@@ -425,6 +478,10 @@ public class WorldBuilder {
 	}
 	
 	
+	/**
+	 * Iniziates the connection of levels of the dungeon
+	 * @return the WorldBuilder modifided
+	 */
 	public WorldBuilder connectRooms(){
 		for (int z = 0; z < this.depth-1; z++){
 			connectRoomsDown(z);
@@ -432,6 +489,10 @@ public class WorldBuilder {
 		return this;
 	}
 	
+	/**
+	 * Sets Tiles as stairs 
+	 * @param z level of the dungeon
+	 */
 	private void connectRoomsDown(int z){
 		int len =  this.room_lists.size();
 		int i = ThreadLocalRandom.current().nextInt(0, len - 1);
@@ -445,6 +506,10 @@ public class WorldBuilder {
 	}
 
 
+	/**
+	 * Sets the exist stairs in one random position of the first level
+	 * @return
+	 */
 	private WorldBuilder addExitStairs() {
         int len = this.room_lists.size();
         while(true){
@@ -460,6 +525,10 @@ public class WorldBuilder {
         return this;
     }
 	
+	/**
+	 * Executes the necessary functions to generate the dungeon
+	 * @return the WorldBuilder with the necessary elements
+	 */
 	public WorldBuilder makeCaves()  {
 		return generateRooms().connectRooms().addExitStairs();
 	}
