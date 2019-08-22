@@ -1,5 +1,10 @@
 package Elements;
 
+/**
+ * Defines the creature class
+ * 
+ * @author comec
+ */
 import java.awt.Color;
 
 import Rogue.World;
@@ -24,11 +29,8 @@ import Utils.Position;
 
 public class Creature {
 
-	
-	//TODO cambiar los gettrs y setters de esta clase!!
 	private World world;
 	private CreatureAi ai;
-	private Position pos;
 	private int maxHp;
 	private int hp;
 	private int attackValue;
@@ -59,6 +61,10 @@ public class Creature {
 	private String n_plu;
 	private String genere;
 	private String charc_plu;
+	private RestrictionsFactory factoryR= null;
+	private WordDataGetter getter = null;
+	private Realizator realizator = null;
+	
 	
 
 	public int getX() {
@@ -177,12 +183,19 @@ public class Creature {
 		this.regenManaPer1000 = 10;
 		this.characteristic = characteristic;
 		this.charc_plu = charc_plu;
+		this.getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
+		this.realizator = WordDataGetterAndRealizatorFactory.getInstance().getRealizator();
+		this.factoryR = RestrictionsFactory.getInstance();
 	}
 
 	public void modifyAttackValue(int value) {
 		attackValue += value;
 	}
 
+	/**
+	 * Obtains the attack value  of the creature plus the value of it's equipement
+	 * @return int that is the attack value
+	 */
 	public int attackValue() {
 		int weaponValue = 0;
 		int armorValue = 0;
@@ -199,6 +212,10 @@ public class Creature {
 		defenseValue += value;
 	}
 
+	/**
+	 * Obtains the defense value  of the creature plus the value of it's equipement
+	 * @return int that is the defense value
+	 */
 	public int defenseValue() {
 		int weaponValue = 0;
 		int armorValue = 0;
@@ -247,6 +264,10 @@ public class Creature {
 		return effects;
 	}
 
+	/**
+	 * Gains exprecience points based on the data of the killed creature
+	 * @param other
+	 */
 	public void gainXp(Creature other) {
 		int amount = other.maxHp + other.attackValue() + other.defenseValue() - level * 2;
 
@@ -254,34 +275,37 @@ public class Creature {
 			modifyXp(amount);
 		}
 	}
-
-	public void modifyHp(int amount, String causeofDeath) {
+	
+	/**
+	 * Modifies the HP of the creature for both recovering and lost of it.
+	 * If the character dies a message is shown.
+	 * @param amount int that will be added or substracted from the hp of the creature
+	 */
+	public void modifyHp(int amount, String casuse) {
 		hp += amount;
-		//this.causeOfDeath = causeOfDeath;
+		//(this.causeOfDeath = causeOfDeath;
 		if (hp > maxHp) {
 			hp = maxHp;
 		} else if (hp < 1) {
-			
-			RestrictionsFactory factory = RestrictionsFactory.getInstance();
 			HashMap<String, String> subjectData = this.getMorfData("singular");
 			HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
 			HashMap<String, String> verb = new HashMap<>();
 			verb.put("actionType", "die");
 			verb.put("adverb", null);
-			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
-					subjectData.get("genere"), subjectData.get("number"), null,
-					null, null, null, null, null, null, null);
-			
-			doActionComplex(verb, subject, null, null, null, null,res, "MostBasicTemplate");
+			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), null, null, null, null, null, null, null,
+					null);
+
+			doActionComplex(verb, subject, null, null, null, null, res, "MostBasicTemplate");
 			leaveCorpse();
 			world.remove(this);
 		}
 	}
 
+	/**
+	 * Generates an item "corpse" when the creature is deceased and it drops all the items that it carried.
+	 */
 	private void leaveCorpse() {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factory.getWordDataGetter();
-		Realizator realizator = factory.getRealizator();
 		HashMap<String, String> corpseData = getter.getNounData("corpse");
 		HashMap<String, String> adjData = getter.getAdjData("average", corpseData.get("genere"));
 		String finalName = realizator.constructNounAndNoun(corpseData.get("baseNoun"), name);
@@ -294,12 +318,17 @@ public class Creature {
 				drop(item);
 		}
 	}
-
+	
+	/**
+	 * The creaute unequips the current gear he has equiped.
+	 * 
+	 * @param item the Item that is going to be removed
+	 */
 	public void unequip(Item item) {
-		if (item == null){
+		if (item == null) {
 			return;
 		}
-		
+
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "unequip");
 		verb.put("adverb", null);
@@ -309,9 +338,9 @@ public class Creature {
 		HashMap<String, String> cd = item.getNameAndAdjective("singular");
 		cd.put("name", nameOf(item));
 		HashMap<String, String> cdData = item.getMorfData("singular");
-		Restrictions res = RestrictionsFactory.getInstance().getRestrictions("singular", "third", "active", "present",
-				subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null,
-				null, null, null, null, null);
+		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+				subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null, null, null, null, null,
+				null);
 
 		if (item == armor) {
 			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
@@ -321,40 +350,12 @@ public class Creature {
 			weapon = null;
 		}
 	}
-
-	/*
-	public void equip(Item item) {
-		if (!inventory.contains(item)) {
-			if (inventory.isFull()) {
-				notify("Can't equip %s since you're holding too much stuff.", nameOf(item));
-				return;
-			} else {
-				world.remove(item);
-				inventory.add(item);
-			}
-		}
-
-		if (item.getAttackValue() == 0 && item.getRangedAttackValue() == 0 && item.getDefenseValue() == 0)
-			return;
-
-		if (item.getAttackValue() + item.getRangedAttackValue() >= item.getDefenseValue()) {
-			unequip(weapon);
-			if(this.key.equals("Player")){
-				doAction("wield a " + nameOf(item));
-			}
-			weapon = item;
-		} else { //TODO el equipar se me ha petado ;/
-			unequip(armor);
-			if(this.key.equals("Player")){ 
-				doAction("put on a " + nameOf(item)); 
-			}
-			armor = item;
-		}
-	}*/
 	
-
+	/**
+	 * Creature equips an item, first removing the one that was carrying
+	 * @param item The item that is going to be equipped
+	 */
 	public void equip(Item item) {
-		WordDataGetter getter =  WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "equip");
 		verb.put("adverb", null);
@@ -364,9 +365,9 @@ public class Creature {
 		HashMap<String, String> cd = item.getNameAndAdjective("singular");
 		cd.put("name", nameOf(item));
 		HashMap<String, String> cdData = item.getMorfData("singular");
-		Restrictions res = RestrictionsFactory.getInstance().getRestrictions("singular", "third", "active", "present",
-				subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null,
-				null, null, null, null, null);
+		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+				subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null, null, null, null, null,
+				null);
 
 		if (!inventory.contains(item)) {
 			if (inventory.isFull()) {
@@ -397,32 +398,32 @@ public class Creature {
 		}
 	}
 
+	/**
+	 * Deals with the movement of the creature and also the change of level of the dungeon trough the stairs
+	 * @param mx Change on the position x
+	 * @param my Change on the position y
+	 * @param mz Change on the position z
+	 */
 	public void moveBy(int mx, int my, int mz) {
-		WordDataGetterAndRealizatorFactory factoryG = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factoryG.getWordDataGetter();
-		Tile tile = world.tile(x + mx, y + my, z);
 		Staircase stair;
+		Tile tile = world.tile(x + mx, y + my, z);
 		int pos_x = x + mx;
 		int pos_y = y + my;
 		int pos_z = z + mz;
 		int numLevel = 0;
-		
+
 		if (mx == 0 && my == 0 && mz == 0)
 			return;
 
 		if (mz == -1) {
 			if (tile == Tile.STAIRS_UP) {
-				
-				
+
 				stair = world.getStairs().get(z - 1);
 				numLevel = z + mz + 1;
-				//doAction("walk up the stairs to level %d", numLevel);
 				pos_x = stair.getBeginning().getIntX();
 				pos_y = (world.getHeight() - 1) - stair.getBeginning().getIntY();
 				pos_z = stair.getBeginning().getZ();
-				
-				
-				RestrictionsFactory factory = RestrictionsFactory.getInstance();
+
 				HashMap<String, String> subjectData = this.getMorfData("singular");
 				HashMap<String, String> tileData = tile.getMorfStairs();
 				HashMap<String, String> tileNameAdj = tile.getStairsNounAndType("plural");
@@ -437,31 +438,28 @@ public class Creature {
 				HashMap<String, String> cc = new HashMap<>();
 				cc.put("name", ccThings.get("baseNoun"));
 				cc.put("key", "level");
-				cc.put("characteristic", Integer.toString(numLevel)+"º");
+				cc.put("characteristic", Integer.toString(numLevel) + "º");
 				cc.put("type", "CCL");
-				Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+				Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
 						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
 						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"), null, null);
 				doActionComplex(verb, subject, tileNameAdj, null, cc, null, res, "ChangeDungeonLevel");
 
-				tile = world.tile(stair.getBeginning().getIntX(), (world.getHeight() - 1) - stair.getBeginning().getIntY(),
-						stair.getBeginning().getZ());
+				tile = world.tile(stair.getBeginning().getIntX(),
+						(world.getHeight() - 1) - stair.getBeginning().getIntY(), stair.getBeginning().getZ());
 			} else {
-				doAction("try to go up but are stopped by the cave ceiling"); //TODO traduccion simple
+				doAction(getter.getDirectTranslation("Creature", "caveCeiling")); //TODO traduccion simple
 				return;
 			}
 		} else if (mz == 1) {
 			if (tile == Tile.STAIRS_DOWN) {
-				
-				
+
 				stair = world.getStairs().get(z);
 				pos_x = stair.getEnding().getIntX();
 				pos_y = (world.getHeight() - 1) - stair.getEnding().getIntY();
 				pos_z = stair.getEnding().getZ();
 				numLevel = z + mz + 1;
-				
-				
-				RestrictionsFactory factory = RestrictionsFactory.getInstance();
+
 				HashMap<String, String> subjectData = this.getMorfData("singular");
 				HashMap<String, String> tileData = tile.getMorfStairs();
 				HashMap<String, String> tileNameAdj = tile.getStairsNounAndType("plural");
@@ -470,26 +468,24 @@ public class Creature {
 				verb.put("actionType", "descend");
 				verb.put("adverb", null);
 				HashMap<String, String> ccThings = getter.getNounData("level");
- 				HashMap<String, String> ccData = new HashMap<>();
- 				ccData.put("number", "singular");
- 				ccData.put("genere", ccThings.get("genere"));
- 				HashMap<String, String> cc = new HashMap<>();
- 				cc.put("name", ccThings.get("baseNoun"));
- 				cc.put("key", "level");
- 				cc.put("characteristic", Integer.toString(numLevel)+"º");
- 				cc.put("type", "CCL");
-				Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+				HashMap<String, String> ccData = new HashMap<>();
+				ccData.put("number", "singular");
+				ccData.put("genere", ccThings.get("genere"));
+				HashMap<String, String> cc = new HashMap<>();
+				cc.put("name", ccThings.get("baseNoun"));
+				cc.put("key", "level");
+				cc.put("characteristic", Integer.toString(numLevel) + "º");
+				cc.put("type", "CCL");
+				Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
 						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
 						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"), null, null);
 				doActionComplex(verb, subject, tileNameAdj, null, cc, null, res, "ChangeDungeonLevel");
-				
-				//doAction("walk down the stairs to level %d", numLevel);
+
 				tile = world.tile(stair.getEnding().getIntX(), (world.getHeight() - 1) - stair.getEnding().getIntY(),
 						stair.getEnding().getZ());
-				
-				
+
 			} else {
-				doAction("try to go down but are stopped by the cave floor"); //TODO traduccion simple
+				doAction(getter.getDirectTranslation("Creature", "caveFloor")); //TODO traduccion simple
 				return;
 			}
 		}
@@ -505,14 +501,24 @@ public class Creature {
 
 	}
 
-	public void moveTo(Position p) {
+	public void moveTo(Position p) { //TODO wtf happened
 		// this.ai.onStep(p);
 	}
 
+	/**
+	 * Allows digging trough the walls (it's for testing)
+	 * @param wx x of the position to dig
+	 * @param wy y of the position to dig
+	 * @param wz z of the position to dig
+	 */
 	public void dig(int wx, int wy, int wz) {
 		world.dig(wx, wy, wz);
 	}
 
+	/**
+	 * Function called when the games updates it's state. 
+	 * Creature updates it's stats and also calls it's ai to update too
+	 */
 	public void update() {
 		regenerateHealth();
 		regenerateMana();
@@ -521,20 +527,30 @@ public class Creature {
 	}
 
 	public Position getPosition() {
-		return new Position(this.x,this.y,this.z);
+		return new Position(this.x, this.y, this.z);
 	}
 
 	public void modifyRegenHpPer1000(int amount) {
 		regenHpPer1000 += amount;
 	}
 
-
+	/**
+	 * This functions allows the notification of the message to the creatures who can see this one.
+	 * @param message String to notify
+	 * @param params Another details of the message
+	 */
 	public void doAction(String message, Object... params) {
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(message, params);
 		}
 	}
 
+	/**
+	 * Similar to the previous one but this one also calls learnName so the creatures learn the item
+	 * @param item Item to learn
+	 * @param message String to notify
+	 * @param params Another details of the message
+	 */
 	public void doAction(Item item, String message, Object... params) {
 		if (hp < 1)
 			return;
@@ -548,45 +564,77 @@ public class Creature {
 			other.learnName(item);
 		}
 	}
-	
-	//doAction en el caso de que haya items de por medio
+
+	/**
+	 * Similar to the previous one but now this relies on text generation so it needs way more parameters.
+	 * @param verb HashMap that contains data regarding the verb
+	 * @param Subject HashMap that contains data regarding the subject
+	 * @param CD HashMap that contains data regarding the object
+	 * @param CI HashMap that contains data regarding the indirect object
+	 * @param CC HashMap that contains data regarding the place in which the action takes place or the means by which the action was made
+	 * @param Atribute HashMap that contains data regarding the attributes associated to the subject by the verb
+	 * @param res HashMap that contains data regarding the  morfological restrictions
+	 * @param templateType String that describes the type of template that must be used by te Realizator
+	 * @param item Item to learn
+	 */
 	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject,
 			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
 			HashMap<String, String> Atribute, Restrictions res, String templateType, Item item) {
 
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		Realizator realizator = factory.getRealizator();
 		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, Atribute, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(phrase);
-			if(!verb.get("actionType").equals("Summon")){
+			if (!verb.get("actionType").equals("Summon")) {
 				other.learnName(item);
 			}
 		}
 	}
-	
-	//doAction para cuando no hay items de por medio
+
+	/**
+	 * Similar to the previous one but this one does not call learnName
+	 * @param verb HashMap that contains data regarding the verb
+	 * @param Subject HashMap that contains data regarding the subject
+	 * @param CD HashMap that contains data regarding the object
+	 * @param CI HashMap that contains data regarding the indirect object
+	 * @param CC HashMap that contains data regarding the place in which the action takes place or the means by which the action was made
+	 * @param Atribute HashMap that contains data regarding the attributes associated to the subject by the verb
+	 * @param res HashMap that contains data regarding the  morphological restrictions
+	 * @param templateType String that describes the type of template that must be used by the Realizator
+	 */
 	public void doActionComplex(HashMap<String, String> verb, HashMap<String, String> Subject,
 			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
 			HashMap<String, String> Atribute, Restrictions res, String templateType) {
-		
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		Realizator realizator = factory.getRealizator();
+
 		String phrase = realizator.realizatePhrase(verb, Subject, CD, CI, CC, Atribute, res, templateType);
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(phrase);
 
 		}
 	}
-	
+
+	/**
+	 * This function obtains a String generated by the realizator but it is not notificated
+	 * @param verb HashMap that contains data regarding the verb
+	 * @param Subject HashMap that contains data regarding the subject
+	 * @param CD HashMap that contains data regarding the object
+	 * @param CI HashMap that contains data regarding the indirect object
+	 * @param CC HashMap that contains data regarding the place in which the action takes place or the means by which the action was made
+	 * @param Atribute HashMap that contains data regarding the attributes associated to the subject by the verb
+	 * @param res HashMap that contains data regarding the  morphological restrictions
+	 * @param templateType String that describes the type of template that must be used by the Realizator
+	 * @return String that is the constructed phrase
+	 */
 	public String getNotification(HashMap<String, String> verb, HashMap<String, String> Subject,
 			HashMap<String, String> CD, HashMap<String, String> CI, HashMap<String, String> CC,
 			HashMap<String, String> Atribute, Restrictions res, String templateType) {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		Realizator realizator = factory.getRealizator();
+
 		return realizator.realizatePhrase(verb, Subject, CD, CI, CC, Atribute, res, templateType);
 	}
 
+	/**
+	 * Obtains list of Creatures which can see this one
+	 * @return list of Creatures
+	 */
 	private List<Creature> getCreaturesWhoSeeMe() {
 		List<Creature> others = new ArrayList<Creature>();
 		int r = 9;
@@ -606,8 +654,12 @@ public class Creature {
 		return others;
 	}
 	
-	public ArrayList<ArrayList<Position>> getVisibleThings() {
-		ArrayList<ArrayList<Position>> result = new ArrayList<>();
+	/**
+	 * Obtains the creatures, items and stairs that are visible
+	 * @return A HashMap containing three lists, one for the creatures, another one for the items and a last one for the stairs
+	 */
+	public HashMap<String, ArrayList<Position>> getVisibleThings() {
+		HashMap<String, ArrayList<Position>> result = new HashMap<>();
 		ArrayList<Position> creatures = new ArrayList<>();
 		ArrayList<Position> items = new ArrayList<>();
 		ArrayList<Position> stairs = new ArrayList<>();
@@ -615,37 +667,36 @@ public class Creature {
 		int r = this.visionRadius;
 		for (int ox = -r; ox < r + 1; ox++) {
 			for (int oy = -r; oy < r + 1; oy++) {
-				if (ox * ox + oy * oy > r * r){
+				if (ox * ox + oy * oy > r * r) {
 					continue;
 				}
-				if (this.canSee(x+ox, y+oy, z)){ 
+				if (this.canSee(x + ox, y + oy, z)) {
 					p = new Position(x + ox, y + oy, z);
-					if (p.isValidPosition()){
+					if (p.isValidPosition()) {
 						Creature otherCreature = world.creature(x + ox, y + oy, z);
-						Item otherItem = world.item(x + ox, y + oy, z); 
+						Item otherItem = world.item(x + ox, y + oy, z);
 						Tile tile = world.tile(x + ox, y + oy, z);
-						if ((otherCreature != null)&&(!otherCreature.equals(this))){
+						if ((otherCreature != null) && (!otherCreature.equals(this))) {
 							creatures.add(p);
-						} else if (otherItem!=null){
+						} else if (otherItem != null) {
 							items.add(p);
-						} else if (tile.isStair()){
+						} else if (tile.isStair()) {
 							stairs.add(p);
-						} else{
+						} else {
 							continue;
 						}
 					}
 				}
-				
+
 			}
 		}
-		result.add(creatures);
-		result.add(items);
-		result.add(stairs);
+		result.put("Creatures", creatures);
+		result.put("Items", items);
+		result.put("Stairs", stairs);
 		return result;
 	}
-	
-	// pasa la frase a segunda persona TODO IMPORTANTE PARA MI PAETE JODIDA DE
-	// WORNDET
+
+	//TODO esta la podre borrar en un futuro
 	private String makeSecondPerson(String text) {
 		String[] words = text.split(" ");
 		words[0] = words[0] + "s";
@@ -674,7 +725,7 @@ public class Creature {
 		ai.onNotify(String.format(message, params));
 	}
 
-	public boolean canSee(int wx, int wy, int wz) {  //TODO esta funcion debe tener la solucion
+	public boolean canSee(int wx, int wy, int wz) {
 		return (detectCreatures > 0 && world.creature(wx, wy, wz) != null || ai.canSee(wx, wy, wz));
 	}
 
@@ -703,12 +754,13 @@ public class Creature {
 			return null;
 	}
 
+	/**
+	 * Takes an item in the position of the creature
+	 */
 	public void pickup() {
 		Item item = world.item(x, y, z);
 
 		if (inventory.isFull() || item == null) {
-			WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-			WordDataGetter getter = factory.getWordDataGetter();
 			String phrase = getter.getDirectTranslation("Creature", "Cant take more");
 			doAction(phrase);
 		} else {
@@ -721,8 +773,7 @@ public class Creature {
 			HashMap<String, String> cd = item.getNameAndAdjective("singular");
 			cd.put("name", nameOf(item));
 			HashMap<String, String> cdData = item.getMorfData("singular");
-			RestrictionsFactory factory = RestrictionsFactory.getInstance();
-			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
 					null, null, null, null, null, null);
 			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
@@ -731,6 +782,10 @@ public class Creature {
 		}
 	}
 
+	/**
+	 * Drops the selected item in a nearby position
+	 * @param item the Item that is going to be dropped
+	 */
 	public void drop(Item item) {
 		if (world.addAtEmptySpace(item, x, y, z)) {
 			HashMap<String, String> verb = new HashMap<>();
@@ -742,26 +797,35 @@ public class Creature {
 			HashMap<String, String> cd = item.getNameAndAdjective("singular");
 			cd.put("name", nameOf(item));
 			HashMap<String, String> cdData = item.getMorfData("singular");
-			RestrictionsFactory factory = RestrictionsFactory.getInstance();
-			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
 					null, null, null, null, null, null);
-			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");			
+			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			inventory.remove(item);
 			unequip(item);
 		} else {
-			WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-			WordDataGetter getter = factory.getWordDataGetter();
 			String phrase = getter.getDirectTranslation("Creature", "Cant drop");
 			doAction(phrase);
 		}
 	}
 
+	/**
+	 * Removes the item and from the inventory unequips it 
+	 * @param item
+	 */
 	private void getRidOf(Item item) {
 		inventory.remove(item);
 		unequip(item);
 	}
 
+
+	/**
+	 * Places the item in the indicated position and unequips it
+	 * @param item
+	 * @param wx
+	 * @param wy
+	 * @param wz
+	 */
 	private void putAt(Item item, int wx, int wy, int wz) {
 		inventory.remove(item);
 		unequip(item);
@@ -775,6 +839,13 @@ public class Creature {
 		}
 	}
 
+	/**
+	 * Throws an item to the indicated coordinates
+	 * @param item
+	 * @param wx
+	 * @param wy
+	 * @param wz
+	 */
 	public void throwItem(Item item, int wx, int wy, int wz) {
 		Position end = new Position(x, y, 0);
 
@@ -802,16 +873,19 @@ public class Creature {
 			HashMap<String, String> cd = item.getNameAndAdjective("singular");
 			cd.put("name", nameOf(item));
 			HashMap<String, String> cdData = item.getMorfData("singular");
-			RestrictionsFactory factory = RestrictionsFactory.getInstance();
-			Restrictions res = factory.getRestrictions("singular", "third", "active", "present",
+			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
 					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
 					null, null, null, null, null, null);
-			doActionComplex(verb, subject, cd, null, null, null,res, "BasicActionsTemplates");
+			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 		}
 
 		putAt(item, wx, wy, wz);
 	}
 
+	/**
+	 * Prepares the data necessary for the generation of the text and calculates the damage of this type of attack
+	 * @param other the Creature which suffers the attack
+	 */
 	public void meleeAttack(Creature other) {
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "Attack");
@@ -820,29 +894,30 @@ public class Creature {
 		HashMap<String, String> ci = other.getNameAdjectiveKey("singular");
 		HashMap<String, String> cc = new HashMap<>();
 		HashMap<String, String> ccData = new HashMap<>();
-		if (weapon!= null){
+		if (weapon != null) {
 			cc = weapon.getNameAndAdjective("singular");
 			ccData = weapon.getMorfData("singular");
 			cc.put("key", weapon.getKey());
 			cc.put("type", "CCI");
-		} else{
-			WordDataGetterAndRealizatorFactory factoryG = WordDataGetterAndRealizatorFactory.getInstance();
-			WordDataGetter getter = factoryG.getWordDataGetter();
-			HashMap<String, String> ccExtraData = getter.getNounData("body"); 
-			
+		} else {
+			HashMap<String, String> ccExtraData = getter.getNounData("body");
 			ccData.put("number", "singular");
 			ccData.put("genere", ccExtraData.get("genere"));
 			cc.put("name", ccExtraData.get("baseNoun"));
 			cc.put("key", "body");
-			cc.put("characteristic","");
+			cc.put("characteristic", "");
 			cc.put("type", "CCI");
 		}
-		
+
 		HashMap<String, String> ciData = other.getMorfData("singular");
-		
+
 		commonAttack(other, attackValue(), verb, null, null, ci, ciData, cc, ccData, "WeaponsAttacks", null);
 	}
 
+	/**
+	 * Prepares the data necessary for the generation of the text and calculates the damage of this type of attack
+	 * @param other the Creature which suffers the attack
+	 */
 	private void throwAttack(Item item, Creature other) {
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "ThrowAttack");
@@ -857,9 +932,13 @@ public class Creature {
 		commonAttack(other, attackValue / 2 + item.getThrownAttackValue(), verb, cd, cdData, ci, ciData, null, null,
 				"ThrowAttack", item);
 		other.addEffect(item.getQuaffEffect(), this);
-		this.learnName(item);
+		//this.learnName(item); //A esto ya lo llamo desde el doActionComplex
 	}
 
+	/**
+	 * Prepares the data necessary for the generation of the text and calculates the damage of this type of attack
+	 * @param other the Creature which suffers the attack
+	 */
 	public void rangedWeaponAttack(Creature other) {
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "Attack");
@@ -867,7 +946,7 @@ public class Creature {
 		verb.put("Form", "Singular");
 		HashMap<String, String> ci = other.getNameAdjectiveKey("singular");
 		HashMap<String, String> cc = weapon.getNameAndAdjective("singular");
-		cc.put("key", weapon.getKey()+"_shoot");
+		cc.put("key", weapon.getKey() + "_shoot");
 		cc.put("type", "CCI");
 		HashMap<String, String> ciData = other.getMorfData("singular");
 		HashMap<String, String> ccData = weapon.getMorfData("singular");
@@ -875,36 +954,47 @@ public class Creature {
 				"WeaponsAttacks", null);
 	}
 
+	/**
+	 * Generates the text necessary and executes the damage in the objective creature
+	 * @param other the objective Creature
+	 * @param attack the value of attack from the attacker
+	 * @param verb HashMap that contains data regarding the verb
+	 * @param cd HashMap that contains data regarding the object
+	 * @param cdData HashMap that contains morphological data regarding the object
+	 * @param ci HashMap that contains data regarding the indirect object
+	 * @param ciData HashMap that contains morphological data regarding the indirect object
+	 * @param cc HashMap that contains data regarding the place in which the action takes place or the means by which the action was made
+	 * @param ccData HashMap that contains morphological data regarding the place in which the action takes place or the means by which the action was made
+	 * @param templateType String that describes the type of template that must be used by the Realizator
+	 * @param item Item used in the attack in case learName is called
+	 */
 	private void commonAttack(Creature other, int attack, HashMap<String, String> verb, HashMap<String, String> cd,
 			HashMap<String, String> cdData, HashMap<String, String> ci, HashMap<String, String> ciData,
 			HashMap<String, String> cc, HashMap<String, String> ccData, String templateType, Item item) {
 
 		int amount = Math.max(0, attack - other.defenseValue());
-		WordDataGetterAndRealizatorFactory factoryG = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factoryG.getWordDataGetter();
 		String damPoints = getter.getDirectTranslation("Creature", "Damage points");
 
 		amount = (int) (Math.random() * amount) + 1;
 
 		HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
 		HashMap<String, String> subjectData = this.getMorfData("singular");
-		RestrictionsFactory factory = RestrictionsFactory.getInstance();
 		Restrictions res = null;
 		if (verb.get("actionType").equals("Attack")) {
-			res = factory.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+			res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
 					subjectData.get("number"), null, null, ciData.get("genere"), ciData.get("number"),
 					ccData.get("genere"), ccData.get("number"), null, null);
 			doActionComplex(verb, subject, cd, ci, cc, null, res, templateType);
 		} else {
-			res = factory.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+			res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
 					subjectData.get("number"), cdData.get("genere"), cdData.get("number"), ciData.get("genere"),
 					ciData.get("number"), null, null, null, null);
 			doActionComplex(verb, subject, cd, ci, cc, null, res, templateType, item);
 		}
-		
+
 		doAction(damPoints, amount);
-		
-		other.modifyHp(-amount, "Killed in battle");
+
+		other.modifyHp(-amount,"Killed in battle");
 
 		if (other.hp < 1) {
 			gainXp(other);
@@ -912,18 +1002,20 @@ public class Creature {
 
 	}
 
+	/**
+	 * Increases or decreases the experience of the creature
+	 * @param amount int to add or remove from the experience of the creature
+	 */
 	public void modifyXp(int amount) {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factory.getWordDataGetter();
 		xp += amount;
 		String phrase, verb;
-		
-		if (amount<0){
+
+		if (amount < 0) {
 			verb = getter.getDirectTranslation("Creature", "modifyXpLose");
 		} else {
 			verb = getter.getDirectTranslation("Creature", "modifyXpGain");
 		}
-		notify(verb, amount); //Indica los puntos de experiencia ganados o perdidos, doComplex??
+		notify(verb, amount);
 
 		while (xp > (int) (Math.pow(level, 1.5) * 20)) {
 			phrase = getter.getDirectTranslation("Creature", "modifyXpLevelUp");
@@ -935,8 +1027,6 @@ public class Creature {
 	}
 
 	public void gainMaxHp() {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factory.getWordDataGetter();
 		String phrase = getter.getDirectTranslation("Creature", "gainMaxHp");
 		maxHp += 10;
 		hp += 10;
@@ -944,24 +1034,18 @@ public class Creature {
 	}
 
 	public void gainAttackValue() {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factory.getWordDataGetter();
 		String phrase = getter.getDirectTranslation("Creature", "gainAttackValue");
 		attackValue += 2;
 		doAction(phrase);
 	}
 
 	public void gainDefenseValue() {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factory.getWordDataGetter();
 		String phrase = getter.getDirectTranslation("Creature", "gainDefenseValue");
 		defenseValue += 2;
 		doAction(phrase);
 	}
 
 	public void gainVision() {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factory.getWordDataGetter();
 		String phrase = getter.getDirectTranslation("Creature", "gainVision");
 		visionRadius += 1;
 		doAction(phrase);
@@ -972,8 +1056,6 @@ public class Creature {
 	}
 
 	public String getDetails() {
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		WordDataGetter getter = factory.getWordDataGetter();
 		String phrase = getter.getDirectTranslation("Creature", "getDetails");
 		return String.format(phrase, level, attackValue(), defenseValue(), hp);
 	}
@@ -992,40 +1074,53 @@ public class Creature {
 			regenHpCooldown += 1000;
 		}
 	}
+
 	
-	//TODO el problema es que llamo a esto si so si por los restrictions en español
-	//no lo planifique bien, asi que estoy llamando a esto si o si algo mas abajo en codigo que no deberia tratarse con el texto
-	// es decir, la creacion de las restricciones no deberia ser e esta capa
-	public HashMap<String, String> getMorfData(String num){ // TODO en base a la frase se establece el numero de la palabra
+	/**
+	 * Obtains the gender of the creature and sets it's number as the one in the parameters
+	 * @param num number to set
+	 * @return HashMap containing gender and the number
+	 */
+	public HashMap<String, String> getMorfData(String num) {
 		HashMap<String, String> data = new HashMap<>();
-		data.put("genere", this.genere); //TODO, esto no vale por el ingles :)))))))))))))))))))))))))))) o no hay que llamarlo? no, en inlges no hacce falta
+		data.put("genere", this.genere);
 		data.put("number", num);
 		return data;
 	}
-	
-	public HashMap<String, String> getNameAdjectiveKey(String num){
+
+	/**
+	 * Gets the name and adjective associated to the creature
+	 * @param num Number in which is wished the name and the chatracteristic
+	 * @return HashMap containing the name and the characteristic
+	 */
+	public HashMap<String, String> getNameAdjectiveKey(String num) {
 		HashMap<String, String> data = new HashMap<>();
 		data.put("key", this.key);
-		if(num.equals("plural")){
+		if (num.equals("plural")) {
 			data.put("name", this.n_plu);
 			data.put("characteristic", this.charc_plu);
-		} else{
+		} else {
 			data.put("name", this.name);
 			data.put("characteristic", this.characteristic);
 		}
 		return data;
 	}
 
-	public void quaff(Item item, HashMap<String, String> verbData, String templateType) { //TODO algun modo de indicar que no ha surtido effecto alguno...
-		RestrictionsFactory factory = RestrictionsFactory.getInstance();
-		HashMap<String, String> subjectData = this.getMorfData(verbData.get("VbNum")); //Esto deberia decidirse junto al verbo en el quaff screen o donde se llame a esto
+	/**
+	 * Action of drinking potion items.
+	 * @param item Item to quaff
+	 * @param verbData HashMap with the information regarding to verb which is going to be used in the text generation
+	 * @param templateType indicates the kind of template that Realizator must use
+	 */
+	public void quaff(Item item, HashMap<String, String> verbData, String templateType) {
+		HashMap<String, String> subjectData = this.getMorfData(verbData.get("VbNum"));
 		HashMap<String, String> itemData = item.getMorfData("singular");
 		HashMap<String, String> subject = this.getNameAdjectiveKey(verbData.get("VbNum"));
 
 		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
 		itemNameAndAjective.put("name", nameOf(item));
 
-		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
+		Restrictions res = factoryR.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
 				itemData.get("genere"), itemData.get("number"), null, null, null, null, null, null);
 		HashMap<String, String> verb = new HashMap<>();
@@ -1036,36 +1131,48 @@ public class Creature {
 		doActionComplex(verb, subject, itemNameAndAjective, null, null, null, res, templateType, item);
 		consumeItem(item);
 	}
-
-	public void eat(Item item) { //TODO al final voy a definir esos HashMaps como variables privadas de la clase y atpc
-		RestrictionsFactory factory = RestrictionsFactory.getInstance();
-		HashMap<String, String> subjectData = this.getMorfData("singular"); 
+	
+	
+	/**
+	 * Action of eating an item.
+	 * @param item Item that is going to be eaten
+	 */
+	public void eat(Item item) {
+		HashMap<String, String> subjectData = this.getMorfData("singular");
 		HashMap<String, String> itemData = item.getMorfData("singular");
 		HashMap<String, String> subject = this.getNameAdjectiveKey("singular");
 
 		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
 		itemNameAndAjective.put("name", nameOf(item));
 
-		Restrictions res = factory.getRestrictions("singular", "third",
-				"active", "present", subjectData.get("genere"), subjectData.get("number"), 
-				itemData.get("genere"), itemData.get("number"), null, null, null, null, null, null);
+		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+				subjectData.get("number"), itemData.get("genere"), itemData.get("number"), null, null, null, null, null,
+				null);
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "consume");
 		verb.put("adverb", null);
 		verb.put("Form", "Singular");
 
 		doActionComplex(verb, subject, itemNameAndAjective, null, null, null, res, "BasicActionsTemplates");
-		
+
 		consumeItem(item);
 	}
 
+	/**
+	 * The action that consumes the item
+	 * @param item Item that is consumed
+	 */
 	private void consumeItem(Item item) {
 		addEffect(item.getQuaffEffect(), this);
-
 		modifyFood(item.getFoodValue());
 		getRidOf(item);
 	}
 
+	/**
+	 * Activates the Effect in this creature
+	 * @param effect Effect that will start
+	 * @param source Creature which is the source of the effect 
+	 */
 	private void addEffect(Effect effect, Creature source) {
 		if (effect == null)
 			return;
@@ -1074,6 +1181,9 @@ public class Creature {
 		effects.add(effect);
 	}
 
+	/**
+	 * Manages the current effects 
+	 */
 	private void updateEffects() {
 		ArrayList<Effect> done = new ArrayList<Effect>();
 
@@ -1088,30 +1198,45 @@ public class Creature {
 		effects.removeAll(done);
 	}
 
-	public void placeSummoned(Creature source, ArrayList<Creature> others, HashMap<String, String> ccData, HashMap<String, String> cc,
-			HashMap<String, String> ciData, HashMap<String, String> CI, HashMap<String, String> verbData,
-			String templateType, Item item) {
+	/**
+	 * The creature places the summoned beings created by the spell that targeted it
+	 * @param source the creature that targeted this one
+	 * @param others the creatures to be summoned
+	 * @param ccData HashMap that contains morphological data regarding the place in which the action takes place or the means by which the action was made
+	 * @param cc HashMap that contains data regarding the place in which the action takes place or the means by which the action was made
+	 * @param ciData HashMap that contains morphological data regarding the indirect object
+	 * @param CI HashMap that contains data regarding the indirect object
+	 * @param verbData HashMap that contains data regarding the verb
+	 * @param templateType indicates the kind of template that Realizator must use
+	 * @param item Item which the source used for the spell
+	 */
+	public void placeSummoned(Creature source, ArrayList<Creature> others, HashMap<String, String> ccData,
+			HashMap<String, String> cc, HashMap<String, String> ciData, HashMap<String, String> CI,
+			HashMap<String, String> verbData, String templateType, Item item) {
 		for (Creature other : others) {
 			world.add(other);
 		}
-		RestrictionsFactory factory = RestrictionsFactory.getInstance();
 		HashMap<String, String> subjectData = source.getMorfData(verbData.get("VbNum"));
 		HashMap<String, String> subject = source.getNameAdjectiveKey(verbData.get("VbNum"));
-		Restrictions res = factory.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
+		Restrictions res = factoryR.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
-				null, null, ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"), null, null);
-		
+				null, null, ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"),
+				null, null);
+
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
 		verb.put("adverb", null);
-		this.doActionComplex(verb, subject, null, CI, cc, null, res, templateType, item); //entonces, QUIEN HACE LA ACCION MAMON?
+		this.doActionComplex(verb, subject, null, CI, cc, null, res, templateType, item);
 
 	}
 
-	// TODO CHECK CODE, IT MIGHT FAIL 
-	//Sale a una pantalla de TARGET cuando no debria ser necesario si el objetivo es el jugador TODO
+	/**
+	 * With this the creature can cast spells
+	 * @param spell Spell which is going to be casted
+	 * @param x2 coordinate x of the objective
+	 * @param y2 coordinate y of the objective
+	 */
 	public void castSpell(Spell spell, int x2, int y2) {
-		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 		Creature other = creature(x2, y2, z);
 		String phrase = "";
 		if (spell.getManaCost() > mana) {
@@ -1132,9 +1257,12 @@ public class Creature {
 		return ai.getName(item);
 	}
 
-	public void learnName(Item item) { 
-		//doAction("LEARNEDOCWIEDNNCODNIOSNI"); //cuantas veces escribe esto?
-		RestrictionsFactory factory = RestrictionsFactory.getInstance();
+	/**
+	 * This function manages the learning of items such as potions which are only know ate the beggining by their aspect. 
+	 * After using it the creature will know it by it's effect
+	 * @param item Item to be learned
+	 */
+	public void learnName(Item item) {
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "beSomething");
 		verb.put("adverb", null);
@@ -1144,10 +1272,10 @@ public class Creature {
 		HashMap<String, String> subjectData = item.getMorfData("singular");
 		HashMap<String, String> atribute = item.getNameAndAdjective("singular");
 		HashMap<String, String> atrData = item.getMorfData("singular");
-		Restrictions res = factory.getRestrictions("singular", "third", "active", "pasive", subjectData.get("genere"),
+		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "pasive", subjectData.get("genere"),
 				subjectData.get("number"), null, null, null, null, null, null, atrData.get("genere"),
 				atrData.get("number"));
-		String phrase  = getNotification(verb, subject, null, null, null, atribute, res, "ToBeSomething");
+		String phrase = getNotification(verb, subject, null, null, null, atribute, res, "ToBeSomething");
 		notify(phrase);
 		ai.setName(item, item.getName());
 	}

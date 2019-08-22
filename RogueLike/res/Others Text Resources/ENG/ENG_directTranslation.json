@@ -30,9 +30,11 @@
       "gainDefenseValue":"Defense improved.",
       "gainVision":"Awareness improved.",
       "getDetails":"     level:%d     attack:%d     defense:%d     hp:%d",
-       "nothingHappens":"Not enough mana, nothing happens",
+      "nothingHappens":"Not enough mana, nothing happens",
       "atNothing":"Targeting nothing.",
-      "cantEquip":"Can't equip %s since you're holding too much stuff."
+      "cantEquip":"Can't equip %s since you're holding too much stuff.",
+      "caveCeiling":"Can't pass the ceiling!",
+      "caveFloor":"Can't pass the floor!"
    },
    "Tile":{  
       "Floor":"A dirt and rock cave floor.",
@@ -114,11 +116,11 @@
       "title":"Fire %s at?.",
       "noObjective":"There's no one there to fire at."
    },
-   "PotionFactory":{
-   	"lookHealthier":"Feeling better.",
-   	"lookRestored":"Feeling recovered.",
-   	"lookSick":"Feeling sick.",
-   	"lookStrong":"Feeling with a great might.",
-   	"lookNotSoStrong":"Feeling less strong.",
+   "PotionFactory":{  
+      "lookHealthier":"Feeling better.",
+      "lookRestored":"Feeling recovered.",
+      "lookSick":"Feeling sick.",
+      "lookStrong":"Feeling with a great might.",
+      "lookNotSoStrong":"Feeling less strong."
    }
 }

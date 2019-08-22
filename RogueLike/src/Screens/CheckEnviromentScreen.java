@@ -129,8 +129,8 @@ public class CheckEnviromentScreen implements Screen {
 				textManager.writeText(cardinal, 1);
 			}
 			
-			ArrayList<ArrayList<Position>> visible = player.getVisibleThings();
-			ArrayList<Position> creatures = visible.get(0);
+			HashMap<String, ArrayList<Position>> visible = player.getVisibleThings();
+			ArrayList<Position> creatures = visible.get("Creatures");
 			for(Position p : creatures){ 
 				Creature c = world.creature(p.getIntX(), p.getIntY(), p.getZ()); //TODO esto deberia ser por keys
 				if (aux_strings.contains(c.name())) {
@@ -150,7 +150,7 @@ public class CheckEnviromentScreen implements Screen {
 			}
 			aux_strings.clear();
 			aux_int.clear();
-			ArrayList<Position> items = visible.get(1);
+			ArrayList<Position> items = visible.get("Items");
 			for (Position p : items) {
 				Item item = world.item(p.getIntX(), p.getIntY(), p.getZ());
 				if (aux_strings.contains(this.player.nameOf(item))) {
@@ -168,7 +168,7 @@ public class CheckEnviromentScreen implements Screen {
 				textManager.writeText(text, 1);
 				i++;
 			}
-			ArrayList<Position> stairs = visible.get(2);
+			ArrayList<Position> stairs = visible.get("Stairs");
 			for (Position p : stairs) {
 				Tile t = world.tile(p.getIntX(), p.getIntY(), p.getZ());
 				textManager.writeText(t.getDetails(), 1);
