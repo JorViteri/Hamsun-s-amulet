@@ -57,8 +57,9 @@ public class PlayerAi extends CreatureAi {
 				HashMap<String, String> CDMorf = item.getMorfData("singular");
 				HashMap<String, String> CDNameAndAdjective = item.getNameAndAdjective("singular");
 				CDNameAndAdjective.put("name", creature.nameOf(item));
-				Restrictions res = resFactory.getRestrictions("singular", "third", "active", "present", null, null,
-						CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null, null, null);
+				//VbNum, VbPerson, VbForm, VbTime, CDGen, CDnum
+				Restrictions res = resFactory.getRestrictionsVbCd("singular", "third", "active", "present",
+						CDMorf.get("genere"), CDMorf.get("number"));
 				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, null, res, templateType);
 			}
 			if (tile.isStair()) {
@@ -70,8 +71,9 @@ public class PlayerAi extends CreatureAi {
 				verb.put("Form", "Plural");
 				HashMap<String, String> CDMorf = tile.getMorfStairs();
 				HashMap<String, String> CDNameAndAdjective = tile.getStairsNounAndType(CDMorf.get("number"));
-				Restrictions res = resFactory.getRestrictions("singular", "third", "active", "present", null, null,
-						CDMorf.get("genere"), CDMorf.get("number"), null, null, null, null, null, null);
+				//VbNum, VbPerson, VbForm, VbTime, CDGen, CDnum
+				Restrictions res = resFactory.getRestrictionsVbCd("singular", "third", "active", "present",
+						CDMorf.get("genere"), CDMorf.get("number"));
 				creature.doActionComplex(verb, null, CDNameAndAdjective, null, null, null, res, templateType);
 
 			}
@@ -91,9 +93,9 @@ public class PlayerAi extends CreatureAi {
 			cc.put("type", "CCI");
 			cc.put("characteristic", "");
 
-			Restrictions res = resFactory.getRestrictions("singular", "third", "active", "present",
-					subjectData.get("genere"), subjectData.get("number"), null, null, null, null, ccData.get("genere"),
-					ccData.get("number"), null, null);
+			//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, ccGenere, ccNumber
+			Restrictions res = resFactory.getRestrictionsVbSujCc("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), ccData.get("genere"), ccData.get("number"));
 
 			creature.doActionComplex(verb, subject, null, null, cc, null, res, "CollideWall");
 		}/*else if (tile.isDiggable()) {

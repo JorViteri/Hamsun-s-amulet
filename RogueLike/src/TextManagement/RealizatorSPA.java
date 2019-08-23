@@ -170,7 +170,7 @@ public class RealizatorSPA implements Realizator{
 		String result = "";
 		result = result+getter.getDetUndefined(res.get("AtrGen"), res.get("AtrNum"));
 		result = result + " " + atribute.get("name");
-		if (aux.get("ADJ") != null) {
+		if ((aux.get("ADJ")!= null)&&(atribute.get("characteristic")!=null)) {
 			result = result + " " + atribute.get("characteristic");
 		}
 		return result.trim();
@@ -190,7 +190,7 @@ public class RealizatorSPA implements Realizator{
 		if (prepPhrase.get("NOUN") != null) {
 			result = result + " " + CC.get("name");
 		}		
-		if (prepPhrase.get("ADJ") != null) {
+		if ((prepPhrase.get("ADJ")!= null)&&(CC.get("characteristic")!=null)) {
 			result = result + " " + CC.get("characteristic");
 		}
 		return result.trim();
@@ -210,20 +210,20 @@ public class RealizatorSPA implements Realizator{
 		if (prepPhrase.get("NOUN") != null) {
 			result = result + " " + CI.get("name");
 		}		
-		if (prepPhrase.get("ADJ") != null) {
+		if ((prepPhrase.get("ADJ")!= null)&&(CI.get("characteristic")!=null)){
 			result = result + " " + CI.get("characteristic");
 		}
 		return result.trim();
 	}
 
-	private String constructSUJ(HashMap<String, String> nominalPhrase, HashMap<String, String> Subject,
+	private String constructSUJ(HashMap<String, String> nominalPhrase, HashMap<String, String> subject,
 			Restrictions restrict) {
 		HashMap<String, String> res = restrict.getRestrictions();
 		String result = "";
 		result = result + getter.getArticle(res.get("SujGen"), res.get("SujNum"));
-		result = result + " " + Subject.get("name");
-		if (nominalPhrase.get("ADJ") != null) {
-			result = result + " " + Subject.get("characteristic");
+		result = result + " " + subject.get("name");
+		if ((nominalPhrase.get("ADJ")!= null)&&(subject.get("characteristic")!=null)) {
+			result = result + " " + subject.get("characteristic");
 		}
 		return result.trim();
 	}
@@ -240,7 +240,7 @@ public class RealizatorSPA implements Realizator{
 			result = result +" "+ getter.getArticle(res.get("CDGen"), res.get("CDNum"));
 		}
 		result = result + " " + cD.get("name");
-		if (nominalPhrase.get("ADJ") != null) {
+		if ((nominalPhrase.get("ADJ")!= null)&&(cD.get("characteristic")!=null)) {
 			result = result + " " + cD.get("characteristic");
 		}
 		return result.trim();

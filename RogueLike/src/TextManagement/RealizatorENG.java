@@ -129,7 +129,7 @@ public class RealizatorENG implements Realizator {
 		String number = res.get("AtrNum");
 		String type = "undefined_nvoc";
 		
-		if (aux.get("ADJ")!= null){
+		if ((aux.get("ADJ")!= null)&&(atribute.get("characteristic")!=null)){
 			if (isVowel(atribute.get("characteristic").charAt(0))){
 				type = "undefined_voc";
 			}
@@ -147,7 +147,7 @@ public class RealizatorENG implements Realizator {
 			}
 		}
 		
-		if (aux.get("ADJ") != null) {
+		if ((aux.get("ADJ")!= null)&&(atribute.get("characteristic")!=null)) {
 			result = result + " " + atribute.get("characteristic");
 		}
 		result = result + " " + atribute.get("name");
@@ -162,7 +162,7 @@ public class RealizatorENG implements Realizator {
 		if (prepPhrase.get("ART") != null) {
 			result = result + " " +getter.getArticle("defined", null);
 		}
-		if (prepPhrase.get("ADJ") != null) {
+		if  ((prepPhrase.get("ADJ") != null) && (cC.get("characteristic") != null)) {
 			result = result + " " + cC.get("characteristic");
 		}
 		if (prepPhrase.get("NOUN") != null) {
@@ -181,7 +181,7 @@ public class RealizatorENG implements Realizator {
 		if (prepPhrase.get("ART") != null) {
 			result = result + " " + getter.getArticle("defined", null);
 		}
-		if (prepPhrase.get("ADJ") != null) {
+		if  ((prepPhrase.get("ADJ") != null) && (cI.get("characteristic") != null)) {
 			result = result + " " + cI.get("characteristic");
 		}
 		if (prepPhrase.get("NOUN") != null) {
@@ -197,13 +197,14 @@ public class RealizatorENG implements Realizator {
 		String result = "";
 		String type = "undefined_nvoc";
 		String number = res.get("CDNum");
-		
-		if (nominalPhrase.get("ADJ")!= null){
-			if (isVowel(cD.get("characteristic").charAt(0))){
+
+		if ((nominalPhrase.get("ADJ") != null) && (cD.get("characteristic") != null)) {
+			if (isVowel(cD.get("characteristic").charAt(0))) {
 				type = "undefined_voc";
+
 			}
 		} else {
-			if (isVowel(cD.get("name").charAt(0))){
+			if (isVowel(cD.get("name").charAt(0))) {
 				type = "undefined_voc";
 			}
 		}
@@ -215,13 +216,14 @@ public class RealizatorENG implements Realizator {
 				result = result + "";
 			}
 		}
-
-		if (nominalPhrase.get("ART") != null) {
+		//WTF is this??? 
+		if  ((nominalPhrase.get("ADJ") != null) && (cD.get("characteristic") != null)) {
 			result = result +getter.getArticle("defined", null)+ " ";
-		}
-		if (nominalPhrase.get("ADJ") != null) {
 			result = result + " " + cD.get("characteristic");
 		}
+		/*if (nominalPhrase.get("ADJ") != null) {
+			result = result + " " + cD.get("characteristic");
+		}*/
 		result = result + " " + cD.get("name");
 
 		return result.trim();
@@ -231,7 +233,7 @@ public class RealizatorENG implements Realizator {
 			Restrictions restrictions) {
 		String result = "";
 		result = result + getter.getArticle("defined", null);
-		if (nominalPhrase.get("ADJ") != null) {
+		if  ((nominalPhrase.get("ADJ") != null) && (subject.get("characteristic") != null)) {
 			result = result + " " + subject.get("characteristic");
 		}
 		result = result + " " + subject.get("name");

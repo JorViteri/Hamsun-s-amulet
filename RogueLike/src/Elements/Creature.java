@@ -65,7 +65,6 @@ public class Creature {
 	private WordDataGetter getter = null;
 	private Realizator realizator = null;
 	
-	
 
 	public int getX() {
 		return x;
@@ -308,9 +307,9 @@ public class Creature {
 			HashMap<String, String> verb = new HashMap<>();
 			verb.put("actionType", "die");
 			verb.put("adverb", null);
-			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
-					subjectData.get("genere"), subjectData.get("number"), null, null, null, null, null, null, null,
-					null);
+			// VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum
+			Restrictions res = factoryR.getRestrictionsVbSuj("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"));
 
 			doActionComplex(verb, subject, null, null, null, null, res, "MostBasicTemplate");
 			leaveCorpse();
@@ -344,7 +343,6 @@ public class Creature {
 		if (item == null) {
 			return;
 		}
-
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "unequip");
 		verb.put("adverb", null);
@@ -354,10 +352,9 @@ public class Creature {
 		HashMap<String, String> cd = item.getNameAndAdjective("singular");
 		cd.put("name", nameOf(item));
 		HashMap<String, String> cdData = item.getMorfData("singular");
-		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
-				subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null, null, null, null, null,
-				null);
-
+		//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum
+		Restrictions res = factoryR.getRestrictionsVbSujCd("singular", "third", "active", "present",
+				subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"));
 		if (item == armor) {
 			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			armor = null;
@@ -366,7 +363,7 @@ public class Creature {
 			weapon = null;
 		}
 	}
-	
+
 	/**
 	 * Creature equips an item, first removing the one that was carrying
 	 * @param item The item that is going to be equipped
@@ -381,9 +378,9 @@ public class Creature {
 		HashMap<String, String> cd = item.getNameAndAdjective("singular");
 		cd.put("name", nameOf(item));
 		HashMap<String, String> cdData = item.getMorfData("singular");
-		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
-				subjectData.get("number"), cdData.get("genere"), cdData.get("number"), null, null, null, null, null,
-				null);
+		//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum
+		Restrictions res = factoryR.getRestrictionsVbSujCd("singular", "third", "active", "present",
+				subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"));
 
 		if (!inventory.contains(item)) {
 			if (inventory.isFull()) {
@@ -456,9 +453,10 @@ public class Creature {
 				cc.put("key", "level");
 				cc.put("characteristic", Integer.toString(numLevel) + "º");
 				cc.put("type", "CCL");
-				Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
+				//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum, CCGen, CCNum
+				Restrictions res = factoryR.getRestrictionsVbSujCdCc("singular", "third", "active", "present",
 						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
-						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"), null, null);
+						tileData.get("number"), ccData.get("genere"), ccData.get("number"));
 				doActionComplex(verb, subject, tileNameAdj, null, cc, null, res, "ChangeDungeonLevel");
 
 				tile = world.tile(stair.getBeginning().getIntX(),
@@ -492,9 +490,10 @@ public class Creature {
 				cc.put("key", "level");
 				cc.put("characteristic", Integer.toString(numLevel) + "º");
 				cc.put("type", "CCL");
-				Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
+				//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum, CCgen, CCNum
+				Restrictions res = factoryR.getRestrictionsVbSujCdCc("singular", "third", "active", "present",
 						subjectData.get("genere"), subjectData.get("number"), tileData.get("genere"),
-						tileData.get("number"), null, null, ccData.get("genere"), ccData.get("number"), null, null);
+						tileData.get("number"), ccData.get("genere"), ccData.get("number"));
 				doActionComplex(verb, subject, tileNameAdj, null, cc, null, res, "ChangeDungeonLevel");
 
 				tile = world.tile(stair.getEnding().getIntX(), (world.getHeight() - 1) - stair.getEnding().getIntY(),
@@ -789,9 +788,9 @@ public class Creature {
 			HashMap<String, String> cd = item.getNameAndAdjective("singular");
 			cd.put("name", nameOf(item));
 			HashMap<String, String> cdData = item.getMorfData("singular");
-			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
-					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
-					null, null, null, null, null, null);
+			//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum
+			Restrictions res = factoryR.getRestrictionsVbSujCd("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"));
 			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			world.remove(x, y, z);
 			inventory.add(item);
@@ -813,9 +812,9 @@ public class Creature {
 			HashMap<String, String> cd = item.getNameAndAdjective("singular");
 			cd.put("name", nameOf(item));
 			HashMap<String, String> cdData = item.getMorfData("singular");
-			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
-					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
-					null, null, null, null, null, null);
+			//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum
+			Restrictions res = factoryR.getRestrictionsVbSujCd("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"));
 			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 			inventory.remove(item);
 			unequip(item);
@@ -889,9 +888,9 @@ public class Creature {
 			HashMap<String, String> cd = item.getNameAndAdjective("singular");
 			cd.put("name", nameOf(item));
 			HashMap<String, String> cdData = item.getMorfData("singular");
-			Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present",
-					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"),
-					null, null, null, null, null, null);
+			//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum
+			Restrictions res = factoryR.getRestrictionsVbSujCd("singular", "third", "active", "present",
+					subjectData.get("genere"), subjectData.get("number"), cdData.get("genere"), cdData.get("number"));
 			doActionComplex(verb, subject, cd, null, null, null, res, "BasicActionsTemplates");
 		}
 
@@ -997,14 +996,16 @@ public class Creature {
 		HashMap<String, String> subjectData = this.getMorfData("singular");
 		Restrictions res = null;
 		if (verb.get("actionType").equals("Attack")) {
-			res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
-					subjectData.get("number"), null, null, ciData.get("genere"), ciData.get("number"),
-					ccData.get("genere"), ccData.get("number"), null, null);
+			//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CIGen, CINuum, CCGen, CCnum
+			res = factoryR.getRestrictionsVbSujCiCc("singular", "third", "active", "present", subjectData.get("genere"),
+					subjectData.get("number"), ciData.get("genere"), ciData.get("number"), ccData.get("genere"),
+					ccData.get("number"));
 			doActionComplex(verb, subject, cd, ci, cc, null, res, templateType);
 		} else {
-			res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
+			//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum, CIgen, CINum
+			res = factoryR.getRestrictionsVbSujCdCi("singular", "third", "active", "present", subjectData.get("genere"),
 					subjectData.get("number"), cdData.get("genere"), cdData.get("number"), ciData.get("genere"),
-					ciData.get("number"), null, null, null, null);
+					ciData.get("number"));
 			doActionComplex(verb, subject, cd, ci, cc, null, res, templateType, item);
 		}
 
@@ -1136,9 +1137,10 @@ public class Creature {
 		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
 		itemNameAndAjective.put("name", nameOf(item));
 
-		Restrictions res = factoryR.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
+		//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum
+		Restrictions res = factoryR.getRestrictionsVbSujCd(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
-				itemData.get("genere"), itemData.get("number"), null, null, null, null, null, null);
+				itemData.get("genere"), itemData.get("number"));
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
 		verb.put("adverb", null);
@@ -1161,9 +1163,9 @@ public class Creature {
 		HashMap<String, String> itemNameAndAjective = item.getNameAndAdjective("singular");
 		itemNameAndAjective.put("name", nameOf(item));
 
-		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "present", subjectData.get("genere"),
-				subjectData.get("number"), itemData.get("genere"), itemData.get("number"), null, null, null, null, null,
-				null);
+		//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen, CDnum
+		Restrictions res = factoryR.getRestrictionsVbSujCd("singular", "third", "active", "present",
+				subjectData.get("genere"), subjectData.get("number"), itemData.get("genere"), itemData.get("number"));
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", "consume");
 		verb.put("adverb", null);
@@ -1234,10 +1236,10 @@ public class Creature {
 		}
 		HashMap<String, String> subjectData = source.getMorfData(verbData.get("VbNum"));
 		HashMap<String, String> subject = source.getNameAdjectiveKey(verbData.get("VbNum"));
-		Restrictions res = factoryR.getRestrictions(verbData.get("VbNum"), verbData.get("VbPerson"),
+		//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CiGen, Cinum, ccgen, ccnum
+		Restrictions res = factoryR.getRestrictionsVbSujCiCc(verbData.get("VbNum"), verbData.get("VbPerson"),
 				verbData.get("VbForm"), verbData.get("VbTime"), subjectData.get("genere"), subjectData.get("number"),
-				null, null, ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"),
-				null, null);
+				ciData.get("genere"), ciData.get("number"), ccData.get("genere"), ccData.get("number"));
 
 		HashMap<String, String> verb = new HashMap<>();
 		verb.put("actionType", verbData.get("actionType"));
@@ -1288,9 +1290,9 @@ public class Creature {
 		HashMap<String, String> subjectData = item.getMorfData("singular");
 		HashMap<String, String> atribute = item.getNameAndAdjective("singular");
 		HashMap<String, String> atrData = item.getMorfData("singular");
-		Restrictions res = factoryR.getRestrictions("singular", "third", "active", "pasive", subjectData.get("genere"),
-				subjectData.get("number"), null, null, null, null, null, null, atrData.get("genere"),
-				atrData.get("number"));
+		//VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, Atrgen, atrnum
+		Restrictions res = factoryR.getRestrictionsVbSujAtr("singular", "third", "active", "pasive",
+				subjectData.get("genere"), subjectData.get("number"), atrData.get("genere"), atrData.get("number"));
 		String phrase = getNotification(verb, subject, null, null, null, atribute, res, "ToBeSomething");
 		notify(phrase);
 		ai.setName(item, item.getName());

@@ -1,24 +1,10 @@
 package TextManagement;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
-
 public class RestrictionsFactory {
 
-	private String language;
 	private static RestrictionsFactory factory;
 
 	private RestrictionsFactory() {
-		Properties prop = new Properties();
-		InputStream input;
-		try {
-			input =  new FileInputStream("language.properties");
-			prop.load(input);
-		} catch (Exception e){
-			e.printStackTrace();
-		}	
-		this.language = prop.getProperty("language");
 	}
 
 	public static RestrictionsFactory getInstance() {
@@ -28,20 +14,53 @@ public class RestrictionsFactory {
 		return factory;
 	}
 
-	public Restrictions getRestrictions(String VbNum, String VbPerson, String VbForm, String VbTime, String SujGen,
-			String SujNum, String CDGen, String CDNum, String CIGen, String CINum, String CCIGen, String CCINum, String AtrGenere, String AtrNumber) {
-		switch (language) {
-		case "SPA":
-			RestrictionsSPA result_spa = new RestrictionsSPA(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen,
-					CDNum, CIGen, CINum, CCIGen, CCINum, AtrGenere, AtrNumber);
-			return result_spa;
-		case "ENG":
-			RestrictionsENG result_eng = new RestrictionsENG(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, CDGen,
-					CDNum, CIGen, CINum, CCIGen, CCINum,AtrGenere, AtrNumber);
-			return result_eng;
-		default:
-			return null;
-		}
+	public Restrictions getRestrictionsVbSuj(String VbNum, String VbPerson, String VbForm, String VbTime, String SujGen,
+			String SujNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, null, null, null, null, null, null,
+				null, null);
+
+	}
+
+	public Restrictions getRestrictionsVbSujCc(String VbNum, String VbPerson, String VbForm, String VbTime,
+			String SujGen, String SujNum, String ccGen, String ccNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, null, null, null, null, ccGen, ccNum,
+				null, null);
+	}
+
+	public Restrictions getRestrictionsVbCd(String VbNum, String VbPerson, String VbForm, String VbTime, String cdGen,
+			String cdNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, null, null, cdGen, cdNum, null, null, null, null, null,
+				null);
+	}
+
+	public Restrictions getRestrictionsVbSujCd(String VbNum, String VbPerson, String VbForm, String VbTime,
+			String SujGen, String SujNum, String cdGen, String cdNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, cdGen, cdNum, null, null, null, null,
+				null, null);
+	}
+
+	public Restrictions getRestrictionsVbSujAtr(String VbNum, String VbPerson, String VbForm, String VbTime,
+			String SujGen, String SujNum, String atrGen, String atrNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, null, null, null, null, null, null,
+				atrGen, atrNum);
+	}
+
+	public Restrictions getRestrictionsVbSujCdCi(String VbNum, String VbPerson, String VbForm, String VbTime,
+			String SujGen, String SujNum, String cdGen, String cdNum, String ciGen, String ciNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, cdGen, cdNum, ciGen, ciNum, null, null,
+				null, null);
+	}
+
+	public Restrictions getRestrictionsVbSujCiCc(String VbNum, String VbPerson, String VbForm, String VbTime,
+			String SujGen, String SujNum, String ciGen, String ciNum, String ccGen, String ccNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, null, null, ciGen, ciNum, ccGen, ccNum,
+				null, null);
+	}
+
+	public Restrictions getRestrictionsVbSujCdCc(String VbNum, String VbPerson, String VbForm, String VbTime,
+			String SujGen, String SujNum, String cdGen, String cdNum, String ccGen, String ccNum) {
+		return new Restrictions(VbNum, VbPerson, VbForm, VbTime, SujGen, SujNum, cdGen, cdNum, null, null, ccGen, ccNum,
+				null, null);
 	}
 
 }
