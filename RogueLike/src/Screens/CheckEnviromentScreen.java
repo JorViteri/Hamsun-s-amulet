@@ -3,10 +3,7 @@ package Screens;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.swing.JTextArea;
-
-import DungeonComponents.Corridor;
 import DungeonComponents.Line;
 import DungeonComponents.Room;
 import DungeonComponents.Tile;
@@ -55,7 +52,6 @@ public class CheckEnviromentScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
 		Room actualRoom = null;
 		ArrayList<Room> room_list = new ArrayList<>();
-		ArrayList<Corridor> corridor_list = new ArrayList<>();
 		ArrayList<String> aux_strings = new ArrayList<>();
 		ArrayList<Integer> aux_int = new ArrayList<>();
 		TextManager textManager = TextManager.getTextManager();
@@ -191,7 +187,7 @@ public class CheckEnviromentScreen implements Screen {
 		}
 
 		Tile tile = player.tile(x, y, player.getZ());
-		caption = tile.glyph() + " " + tile.getDetails();
+		caption = tile.utf() + " " + tile.getDetails(); //here
 	}
 	
 

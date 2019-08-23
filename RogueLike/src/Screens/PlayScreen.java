@@ -2,7 +2,10 @@ package Screens;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
@@ -41,7 +44,7 @@ public class PlayScreen implements Screen {
 	private Screen subscreen;
 	private TextManager textManager = TextManager.getTextManager();
 	private boolean newEnemies = true;
-	
+	private int depth = 0;
 
 	public PlayScreen() {
 		//TODO son eestos valores porque son los por defecto de la pantalla de juego, pero no del escenario!! el escenario es 90-31
@@ -58,6 +61,15 @@ public class PlayScreen implements Screen {
 		weaponsFactory = new WeaponsFactory(world);
 		createCreatures(creatureFactory);
 		createItems(armorFactory, potionFactory, elementsFactory, weaponsFactory, bookFactory);
+		Properties prop = new Properties();
+		InputStream input;
+		try{
+			input =  new FileInputStream("dungeon.properties");
+			prop.load(input);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		this.depth = Integer.valueOf(prop.getProperty("depth"));
 	}
 
 	private void createCreatures(CreatureFactory creatureFactory) {

@@ -14,16 +14,21 @@ import asciiPanel.AsciiPanel;
  */
 public enum Tile {
 
-	FLOOR((char) 250, AsciiPanel.yellow,WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Floor")), 
-	WALL((char) 177, AsciiPanel.yellow, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Wall")), 
-	BOUNDS('x', AsciiPanel.brightBlack, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Bounds")), 
-	STAIRS_DOWN('>', AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "StairsDown")), 
-	STAIRS_UP('<', AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "StairsUp")), 
-	UNKNOWN(' ', AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Unknown"));	
+	FLOOR((char) 250, '·',AsciiPanel.yellow,WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Floor")), 
+	WALL((char) 177, '▒',AsciiPanel.yellow, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Wall")), 
+	BOUNDS('x', 'x',AsciiPanel.brightBlack, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Bounds")), 
+	STAIRS_DOWN('>', '>',AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "StairsDown")), 
+	STAIRS_UP('<', '<',AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "StairsUp")), 
+	UNKNOWN(' ', ' ',AsciiPanel.white, WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter().getDirectTranslation("Tile", "Unknown"));	
 	
 	private char glyph;
 	public char glyph(){
 		return glyph;
+	}
+	
+	private char utf;
+	public char utf(){
+		return utf;
 	}
 	
 	private Color color;
@@ -32,13 +37,15 @@ public enum Tile {
 	}
 
 	private String details;
+
 	public String getDetails() {
-		return details; //TODO aqui esta el string a modificar que no tengo ni idea de donde se origino
+		return details;
 	}
 
-	Tile(char glyph, Color color, String details){
-		this.glyph= glyph;
-		this.color=color;
+	Tile(char glyph, char utf, Color color, String details) {
+		this.glyph = glyph;
+		this.utf = utf;
+		this.color = color;
 		this.details = details;
 	}
 	
