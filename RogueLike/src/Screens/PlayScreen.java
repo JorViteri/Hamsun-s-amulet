@@ -47,9 +47,18 @@ public class PlayScreen implements Screen {
 	private int depth = 0;
 
 	public PlayScreen() {
-		//TODO son eestos valores porque son los por defecto de la pantalla de juego, pero no del escenario!! el escenario es 90-31
-		screenWidth = 80; //TODO estas dos mierdas de aqui me rompen todo, tengo que cambiarlas YA
-		screenHeight = 23; //Si lo toco, rompe. Pero no entiendo, cómo se le asocia el valor 40 en x?? es el sx y sy de la checkenviroment
+		//TODO definir como constantes
+		screenWidth = 80; 
+		screenHeight = 23; 
+		Properties prop = new Properties();
+		InputStream input;
+		try{
+			input =  new FileInputStream("dungeon.properties");
+			prop.load(input);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		this.depth = Integer.valueOf(prop.getProperty("depth"));
 		messages = new ArrayList<String>();
 		createWorld();
 		fov = new FieldOfView(world);
@@ -61,15 +70,8 @@ public class PlayScreen implements Screen {
 		weaponsFactory = new WeaponsFactory(world);
 		createCreatures(creatureFactory);
 		createItems(armorFactory, potionFactory, elementsFactory, weaponsFactory, bookFactory);
-		Properties prop = new Properties();
-		InputStream input;
-		try{
-			input =  new FileInputStream("dungeon.properties");
-			prop.load(input);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		this.depth = Integer.valueOf(prop.getProperty("depth"));
+		
+	
 	}
 
 	private void createCreatures(CreatureFactory creatureFactory) {
@@ -106,7 +108,7 @@ public class PlayScreen implements Screen {
 	}
 
 	private void createWorld() {
-		world = new WorldBuilder(90, 31, 5).makeCaves().build();
+		world = new WorldBuilder(90, 31, depth).makeCaves().build();
 	}
 
 	public int getScrollX() { 
