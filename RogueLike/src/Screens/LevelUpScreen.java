@@ -7,6 +7,8 @@ import javax.swing.JTextArea;
 
 import Elements.Creature;
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.LevelUpController;
 import asciiPanel.AsciiPanel;
 
@@ -27,13 +29,14 @@ public class LevelUpScreen implements Screen {
 		int y = 5;
 		List<String> options  = controller.getLevelUpOptions();
 		TextManager textManager = TextManager.getTextManager();
+		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 		
 		//terminal.clear(' ', 5, y, 30, options.size() + 2);
 	    //terminal.write("     Choose a level up bonus       ", 5, y++);
 	    //terminal.write("------------------------------", 5, y++);
 	    
 	    textManager.clearTextArea(1);
-	    textManager.writeText("     Choose a level up bonus       ", 1);
+	    textManager.writeText(getter.getDirectTranslation("LevelUpScreen", "title"), 1);
 	    textManager.writeText("------------------------------", 1);
 	    
 

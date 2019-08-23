@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
+
 public class Item {
 
 	private char glyph;
@@ -183,23 +186,30 @@ public class Item {
 		defenseValue += amount;
 	}
 
-	public String getDetails() { 
+	public String getDetails() {
+		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 		String details = "";
+		String aux = "";
 
 		if (attackValue != 0)
-			details += "     attack:" + attackValue;
-		
+			aux = getter.getDirectTranslation("Item", "detailsAttack");
+		details += String.format(aux, attackValue);
+
 		if (thrownAttackValue != 1)
-			details += "  thrown:" + thrownAttackValue;
-		
+			aux = getter.getDirectTranslation("Item", "detailsThrowAttack");
+		details += String.format(aux, thrownAttackValue);
+
 		if (rangedAttackValue > 0)
-			details += "  ranged:" + rangedAttackValue;
-		
+			aux = getter.getDirectTranslation("Item", "detailsRangedAttack");
+		details += String.format(aux, rangedAttackValue);
+
 		if (defenseValue != 0)
-			details += "     defense:" + defenseValue;
+			aux = getter.getDirectTranslation("Item", "detailsDefense");
+		details += String.format(aux, defenseValue);
 
 		if (foodValue != 0)
-			details += "     food:" + foodValue;
+			aux = getter.getDirectTranslation("Item", "detailsFoodValue");
+		details += String.format(aux, foodValue);
 
 		return details;
 	}

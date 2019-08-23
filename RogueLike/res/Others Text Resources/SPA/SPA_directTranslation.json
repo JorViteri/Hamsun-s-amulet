@@ -104,6 +104,9 @@
       "manaPoints":"Incrementar maná.",
       "manaRegeneration":"Incrementar regeneración de maná."
    },
+   "LevelUpScreen":{
+   	  "title":"   Selecciona un bonus de nivel     "
+   },
    "ElementsFactory":{  
       "hamsunAmulet":"%s de Hamsun"
    },
@@ -122,5 +125,12 @@
       "lookSick":"Se siente enfermo.",
       "lookStrong":"Se siente una gran fuerza.",
       "lookNotSoStrong":"No se siente una gran fuerza."
+   },
+   "Item":{  
+      "detailsAttack":"     ataque:%d",
+      "detailsThrowAttack":"  lanzamiento:%d",
+      "detailsRangedAttack":"  ataque a distancia:%d",
+      "detailsDefense":"     defensa:%d",
+      "detailsFoodValue":"     alimento:%s"
    }
 }
