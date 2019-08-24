@@ -17,6 +17,7 @@ public class Room {
 	private Position bottomRight;
 	private Position center;
 	private ArrayList<Position> walls = new ArrayList<Position>();
+	private int id;
 
 	/** Constructor of a Room
 	 * @param bottomLeft the bottom-left Position
