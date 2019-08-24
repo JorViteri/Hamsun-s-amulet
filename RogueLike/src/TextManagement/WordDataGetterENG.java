@@ -3,10 +3,8 @@ package TextManagement;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
-
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,7 +39,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			object= new JSONObject(content);
 			objectNames = object.getJSONObject(noun);
 		} catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}		
 		
@@ -73,7 +70,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			object= new JSONObject(content);
 			objectAdjArr = object.getJSONArray(adj);
 		} catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}		
 		pos = random.nextInt(objectAdjArr.length());
@@ -98,7 +94,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			object= new JSONObject(content);
 			objectVerbs = object.getJSONObject(verb);
 		} catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}		
 		
@@ -133,7 +128,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			object= new JSONObject(content);
 			objectAdvArr = object.getJSONArray(adv);
 		} catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}		
 		pos = random.nextInt(objectAdvArr.length());
@@ -150,7 +144,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 		} catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}		
 		return object.getString(type);
@@ -165,7 +158,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 		} catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}
 		
@@ -180,7 +172,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 		} catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}		
 		return object.getString(type);
@@ -194,7 +185,6 @@ public class WordDataGetterENG implements WordDataGetter {
 			String content = FileUtils.readFileToString(file,"utf-8");	
 			object= new JSONObject(content);
 		}catch(Exception e){
-			boolean c = true;
 			e.printStackTrace();
 		}
 		

@@ -2,11 +2,9 @@ package CreaturesAI;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
-import TextManagement.Realizator;
 import TextManagement.Restrictions;
 import TextManagement.RestrictionsFactory;
 import TextManagement.WordDataGetter;

@@ -2,7 +2,6 @@ package CreaturesAI;
 
 import Elements.Creature;
 import Factories.CreatureFactory;
-import Factories.ElementsFactory;
 
 /**
  * Defines the basic AI behaviours of the fungus

@@ -1,10 +1,16 @@
 package Screens;
-
+/**
+ * Gives information about a slected item
+ */
 import Elements.Creature;
 import Elements.Item;
 
 public class ExamineScreen extends InventoryBasedScreen {
 
+	/**
+	 * Cosntructor
+	 * @param player creature that calls the function
+	 */
 	public ExamineScreen(Creature player) {
 		super(player);
 	}

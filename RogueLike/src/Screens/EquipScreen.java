@@ -1,10 +1,17 @@
 package Screens;
-
+/**
+ * Screen that allows the player to sellect an item and equip it
+ */
 import Elements.Creature;
 import Elements.Item;
 
 public class EquipScreen extends InventoryBasedScreen {
 
+	/**
+	 * Constructor
+	 * 
+	 * @param player creature that calls this function
+	 */
 	public EquipScreen(Creature player){
 		super(player);
 	}

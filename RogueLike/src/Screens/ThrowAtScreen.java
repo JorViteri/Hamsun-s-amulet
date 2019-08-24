@@ -1,13 +1,23 @@
 package Screens;
-
+/**
+ * Screen that allows the player to select the objective to launch an item
+ */
 import DungeonComponents.Line;
 import Elements.Creature;
 import Elements.Item;
 import Utils.Position;
 
 public class ThrowAtScreen extends TargetBasedScreen {
+	
 	private Item item;
 
+	/**
+	 * Construcor
+	 * @param player creature that called the screen
+	 * @param sx coordinate in x
+	 * @param sy coordinate in y
+	 * @param item item to launch
+	 */
     public ThrowAtScreen(Creature player, int sx, int sy, Item item) {
         super(player, "Throw " + player.nameOf(item) + " at?", sx, sy);
         this.item = item;

@@ -1,5 +1,7 @@
 package Screens;
-
+/**
+ * This screen allows to check the visible enviroment of the dungeon with detail
+ */
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +30,14 @@ public class CheckEnviromentScreen implements Screen {
 	private HashMap<String, String> uiPhrases = new HashMap<>();
 	private WordDataGetter getter = null;
 	
+	/**
+	 * Constructor
+	 * @param player creature that called this screen
+	 * @param caption string with some info about the action
+	 * @param sx coordinate in x
+	 * @param sy coordinate in y
+	 * @param world the dungeon in order to interact with it
+	 */
 	public CheckEnviromentScreen(Creature player, String caption, int sx, int sy, World world) {
 		this.world = world;
 		this.player=player;
@@ -38,6 +48,10 @@ public class CheckEnviromentScreen implements Screen {
 		this.uiPhrases = this.generateUiPhrases();
 	}
 	
+	/**
+	 * This functions obstains the messages that will be used in the interface of the screen
+	 * @return HashMap<String, String> with all the messages
+	 */
 	private HashMap<String, String> generateUiPhrases(){
 		HashMap<String, String> result = new HashMap<>();
 		result.put("playerPosition", getter.getDirectTranslation("CheckEnviromentScreen", "playerPosition"));
@@ -48,7 +62,7 @@ public class CheckEnviromentScreen implements Screen {
 		return result;
 	}
 	
-	//TODO hacer MUCHO mas ligera esta funcion
+	//TODO aligerar esta funcion aunque no se como
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
 		Room actualRoom = null;
 		ArrayList<Room> room_list = new ArrayList<>();
@@ -173,7 +187,12 @@ public class CheckEnviromentScreen implements Screen {
 
 	}
 
-	public void enterWorldCoordinate(int x, int y, int screenX, int screenY) { //este es el que le pasa el caption, lo que se debe mostrar creo
+	/**
+	 * Checks the contents of a coordinate
+	 * @param x coordinte in x
+	 * @param y coordinate in y 
+	 */
+	public void enterWorldCoordinate(int x, int y) { 
 		Creature creature = player.creature(x, y, player.getZ());
 		if (creature != null) {
 			caption = creature.glyph() + " " + creature.name() + creature.getDetails();
@@ -191,6 +210,11 @@ public class CheckEnviromentScreen implements Screen {
 	}
 	
 
+	/**
+	 * Checks if the creature that called the screen is in a room
+	 * @param p current position
+	 * @return true if it's in a room else false which means is in a corridor
+	 */
 	private boolean isRoom(Position p){ //TODO Hace falta la posicion en la matriz real porque los vecinos se consiguen con esos valoresv 
 		ArrayList<Position> neighbours = p.getNeighbors(8); //p tampoco tiene la Y correcta
 		ArrayList<Position> ground_tiles = new ArrayList<>();
@@ -255,7 +279,7 @@ public class CheckEnviromentScreen implements Screen {
             y = py;
         }
     
-        enterWorldCoordinate(player.getX() + x, player.getY() + y, sx + x, sy + y);
+        enterWorldCoordinate(player.getX() + x, player.getY() + y);
     
         return this;
 	}

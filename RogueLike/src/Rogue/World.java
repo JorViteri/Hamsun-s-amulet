@@ -5,7 +5,6 @@ package Rogue;
  */
 import java.awt.Color;
 import java.util.ArrayList;
-
 import DungeonComponents.Corridor;
 import DungeonComponents.Room;
 import DungeonComponents.Staircase;
@@ -13,7 +12,6 @@ import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
 import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.Position;
 
 

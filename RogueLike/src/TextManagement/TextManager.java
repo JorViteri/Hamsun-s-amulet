@@ -1,7 +1,7 @@
 package TextManagement;
-
-import java.util.ArrayList;
-
+/**
+ * Class that manages the printing of messages in the JTextAreas
+ */
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
@@ -12,15 +12,23 @@ public class TextManager {
 	private JTextArea textArea1;
 	private JTextArea textArea2;
 	private final static int linelimit=28;
-	private WordDataGetter getter;
 	
+	/**
+	 * Constructo
+	 * @param textArea1 superior right JTextArea
+	 * @param textArea2 bottom JTextArea
+	 */
 	private TextManager(JTextArea textArea1, JTextArea textArea2){
 		this.textArea1 = textArea1;
 		this.textArea2 = textArea2;
-		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
-		this.getter = factory.getWordDataGetter();
 	}
 	
+	/**
+	 * Singleton function
+	 * @param textArea1
+	 * @param textArea2
+	 * @return
+	 */
 	public static TextManager getSingletonInstance(JTextArea textArea1, JTextArea textArea2){
 		if(textManager==null){
 			textManager = new TextManager(textArea1, textArea2);
@@ -28,10 +36,19 @@ public class TextManager {
 		return textManager;
 	}
 
+	/**
+	 * Gets the instance of the text Manager if sure it's exists 
+	 * @return
+	 */
 	public static TextManager getTextManager(){
 		return textManager;
 	}
 	
+	/**
+	 * Pass text to write 
+	 * @param message string to write
+	 * @param id for selecting the JTextAre to write
+	 */
 	public void writeText(String message, int id){
 		switch(id){
 		case 1:

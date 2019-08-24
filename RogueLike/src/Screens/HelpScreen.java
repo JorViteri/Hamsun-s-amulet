@@ -1,5 +1,7 @@
 package Screens;
-
+/**
+ * Display helpful information about how to play the game
+ */
 import java.awt.event.KeyEvent;
 
 import javax.swing.JTextArea;

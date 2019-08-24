@@ -1,10 +1,10 @@
 package Screens;
-
+/**
+ * Screen that allows the player to select which stat imrpove whe leveling up
+ */
 import java.awt.event.KeyEvent;
 import java.util.List;
-
 import javax.swing.JTextArea;
-
 import Elements.Creature;
 import TextManagement.TextManager;
 import TextManagement.WordDataGetter;
@@ -18,6 +18,11 @@ public class LevelUpScreen implements Screen {
 	private Creature player;
 	private int picks;
 	
+	/**
+	 * Constructor
+	 * @param player creature that levels up
+	 * @param picks value to control the selection
+	 */
 	public LevelUpScreen(Creature player, int picks){
 		this.controller = new LevelUpController();
 		this.player = player;
@@ -26,22 +31,16 @@ public class LevelUpScreen implements Screen {
 	
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2){
-		int y = 5;
 		List<String> options  = controller.getLevelUpOptions();
 		TextManager textManager = TextManager.getTextManager();
 		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
-		
-		//terminal.clear(' ', 5, y, 30, options.size() + 2);
-	    //terminal.write("     Choose a level up bonus       ", 5, y++);
-	    //terminal.write("------------------------------", 5, y++);
-	    
+
 	    textManager.clearTextArea(1);
 	    textManager.writeText(getter.getDirectTranslation("LevelUpScreen", "title"), 1);
 	    textManager.writeText("------------------------------", 1);
 	    
 
 	    for (int i = 0; i < options.size(); i++){
-	      //terminal.write(String.format("[%d] %s", i+1, options.get(i)), 5, y++);
 	      textManager.writeText(String.format("[%d] %s", i+1, options.get(i)),1);
 	    }
 	}

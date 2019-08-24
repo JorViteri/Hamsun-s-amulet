@@ -1,5 +1,7 @@
 package Screens;
-
+/**
+ * Defines the Screen used to sellect which spell use
+ */
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -21,6 +23,13 @@ public class ReadSpellScreen implements Screen {
 	private int sx;
 	private int sy;
 	
+	/**
+	 * Constructor
+	 * @param player creature that calls this screen
+	 * @param sx position in x 
+	 * @param sy position in y
+	 * @param book being used
+	 */
 	public ReadSpellScreen(Creature player, int sx, int sy, Item item){
 		this.player = player;
 		this.letters = "abcdefghijklmnopqrstuvwxyz";
@@ -29,6 +38,7 @@ public class ReadSpellScreen implements Screen {
 		this.sy = sy;
 	}
 
+	
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
 		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
@@ -56,6 +66,10 @@ public class ReadSpellScreen implements Screen {
 
 	}
 	
+	/**
+	 *Obtains the list of spells that the item has 
+	 * @return The list with the spells as strings
+	 */
 	private ArrayList<String> getList() {
 		ArrayList<String> lines = new ArrayList<String>();
 
@@ -84,6 +98,11 @@ public class ReadSpellScreen implements Screen {
 		}
 	}
 
+	/**
+	 * Enters the CastSpellScreen in which the player must choose the objective
+	 * @param spell spell that is going to be used
+	 * @return the new scree
+	 */
 	protected Screen use(Spell spell) {
 		return new CastSpellScreen(player, "", sx, sy, spell);
 	}

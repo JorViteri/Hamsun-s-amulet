@@ -1,15 +1,14 @@
 package Screens;
-
+/**
+ * Screen in which the game takes places and the one from which the others screens are reached
+ */
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
-
 import javax.swing.JTextArea;
-import javax.swing.text.BadLocationException;
-
 import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
@@ -22,18 +21,16 @@ import Factories.WeaponsFactory;
 import Rogue.World;
 import Rogue.WorldBuilder;
 import TextManagement.TextManager;
-import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 
 public class PlayScreen implements Screen {
 
+	private static final int screenWidth = 80; 
+	private static final int screenHeight = 23; 
 	private World world;
 	private static Creature player;
 	private static ArrayList<String> messages;
-	private int screenWidth;
-	private int screenHeight;
 	private static ElementsFactory elementsFactory;
 	private static CreatureFactory creatureFactory;
 	private static WeaponsFactory weaponsFactory;
@@ -46,10 +43,10 @@ public class PlayScreen implements Screen {
 	private boolean newEnemies = true;
 	private int depth = 0;
 
+	/**
+	 * Constructor
+	 */
 	public PlayScreen() {
-		//TODO definir como constantes
-		screenWidth = 80; 
-		screenHeight = 23; 
 		Properties prop = new Properties();
 		InputStream input;
 		try{
@@ -74,6 +71,10 @@ public class PlayScreen implements Screen {
 	
 	}
 
+	/**
+	 * Creates and places creatures through the dungeon
+	 * @param creatureFactory factory used to creates the creatures
+	 */
 	private void createCreatures(CreatureFactory creatureFactory) {
 		player = creatureFactory.newPlayer(messages, fov);
 
@@ -90,7 +91,16 @@ public class PlayScreen implements Screen {
 		}
 	}
 
-	private void createItems(ArmorFactory armorFactory, PotionFactory potionFactory, ElementsFactory elementsFactory, WeaponsFactory weaponFactory, SpellBookFactory bookFactory) {
+	/**
+	 * Creates and places all sorts of items through the dungeon
+	 * @param armorFactory
+	 * @param potionFactory
+	 * @param elementsFactory
+	 * @param weaponFactory
+	 * @param bookFactory
+	 */
+	private void createItems(ArmorFactory armorFactory, PotionFactory potionFactory, ElementsFactory elementsFactory,
+			WeaponsFactory weaponFactory, SpellBookFactory bookFactory) {
 		for (int z = 0; z < world.getDepth(); z++) {
 			for (int i = 0; i < 20; i++) {
 				elementsFactory.newRock(z);
@@ -99,7 +109,7 @@ public class PlayScreen implements Screen {
 			weaponFactory.randomWeapon(z);
 			weaponFactory.randomWeapon(z);
 			weaponFactory.newBow(z);
-			for (int i = 0; i < 10; i++){
+			for (int i = 0; i < 10; i++) {
 				potionFactory.randomPotion(z);
 				bookFactory.randomSpellBook(z);
 			}
@@ -107,6 +117,9 @@ public class PlayScreen implements Screen {
 		elementsFactory.newVictoryItem(world.getDepth() - 1);
 	}
 
+	/**
+	 * Creates the world of the game
+	 */
 	private void createWorld() {
 		world = new WorldBuilder(90, 31, depth).makeCaves().build();
 	}
@@ -119,6 +132,12 @@ public class PlayScreen implements Screen {
 		return Math.max(0, Math.min(player.getY() - screenHeight / 2, world.getHeight() - screenHeight));
 	}
 
+	/**
+	 * Displays messages 
+	 * @param terminal ASCII terminal of the game
+	 * @param messages list os meesages to show
+	 * @param textArea JTextArea in which the messages are shown
+	 */
 	private void displayMessages(AsciiPanel terminal, ArrayList<String> messages, JTextArea textArea) {
 		for (int i = 0; i < messages.size(); i++) {			
 			if (textManager.textArea2ReachedLimit()){
@@ -131,6 +150,12 @@ public class PlayScreen implements Screen {
 
 	// TODO mejorar la funcion para que sea mas eficiente, tengo un apunte en la
 	// libreta al respecto
+	/**
+	 * Function that displays the tiles of the dungeon in the ASCII terminal
+	 * @param terminal ASCII terminal
+	 * @param left value in which the coordinate x is incremented when painting the tiles
+	 * @param top value in which the coordinate y is incremented when painting the tiles
+	 */
 	private void displayTiles(AsciiPanel terminal, int left, int top) {
 		fov.update(player.getX(), player.getY(), player.getZ(), player.visionRadius());
 
@@ -286,6 +311,10 @@ public class PlayScreen implements Screen {
 		return this;
 	}
 
+	/**
+	 * Adds zombie creatures to the dungeon (this is called agfter getting the amulet, not when creating the dungeon)
+	 * @param creatureFactory factory used to place and create the zombies
+	 */
 	private void createZombies(CreatureFactory creatureFactory){
 		for (int z = 0; z < world.getDepth(); z++) {
 			for (int i = 0; i < 7; i++) {
@@ -294,7 +323,10 @@ public class PlayScreen implements Screen {
 		}
 		
 	}
-	
+	 /**
+	  * Checks if the player has the victory item
+	  * @return true if the player has the item
+	  */
 	private boolean playerHasAmulet(){
 		for (Item item : player.inventory().getItems()) {
 			if (item != null && item.getName().equals("Hamsun's amulet")) {
@@ -304,11 +336,18 @@ public class PlayScreen implements Screen {
 		return false;
 	}
 	
-	
+	/**
+	 * Checks if the player is trying to leave the dungeon
+	 * @return true if the player is really trying it
+	 */
 	private boolean userIsTryingToExit() {
 		return player.getZ() == 0 && world.tile(player.getX(), player.getY(), player.getZ()) == Tile.STAIRS_UP;
 	}
 
+	/**
+	 * Allows the player to leave the dungeon
+	 * @return WinScreen if the player wins, LoseScreen in the other case
+	 */
 	private Screen userExits() {
 		if (playerHasAmulet()) {
 			return new WinScreen();
@@ -318,6 +357,10 @@ public class PlayScreen implements Screen {
 		
 	}
 
+	/**
+	 * Gets a player for the game
+	 * @return the creature Player
+	 */
 	public static Creature getPlayer() {
 		if (player != null)
 			return player;

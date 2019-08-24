@@ -1,5 +1,9 @@
 package Rogue;
-
+/**
+ * Defines the class that handles mathematical operations that are neccesary for the generation of the dungeon
+ * 
+ * @author comec
+ */
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -20,6 +24,12 @@ public class WorldBuilderMathOperations {
 		return (n != n);
 	}
 	
+	/**
+	 * Applies delaunay triangulation to the rooms considering the center of each one as the point to connect.
+	 * @param room_list list of rooms 
+	 * @param centers list of centers of each room
+	 * @return an arraylist of Nodes which represents the connected graph obtained by te triangulation
+	 */
 	public ArrayList<Node> delaunay(ArrayList<Room> room_list, ArrayList<Position> centers) {
 		ArrayList<Node> nodeResults = new ArrayList<>();
 		ArrayList<Position> adj;
@@ -128,7 +138,15 @@ public class WorldBuilderMathOperations {
 		return nodeResults;
 	}
 
-	
+
+	/**
+	 * Used to obtain al the permutations of the rooms in groups
+	 * @param elem List of string which represents each center 
+	 * @param act string that is added to the list
+	 * @param n the number of elements in each permutation
+	 * @param r size of the list
+	 * @param list list to which data is added
+	 */
 	private static void Perm2(String[] elem, String act, int n, int r, ArrayList<String> list) {
 		if (n == 0) {
 			list.add(act);
@@ -141,7 +159,13 @@ public class WorldBuilderMathOperations {
 		}
 	}
 	
-	
+	/**
+	 * Obtains a center for a circle given 3 positions, if possible
+	 * @param a First position
+	 * @param b Second position
+	 * @param c Third position
+	 * @return The Position which is the center of the circle
+	 */
 	private static Position getCirclCenter(Position a, Position b, Position c) {
 		double x1,x2,x3;
 		double y1,y2,y3;
@@ -197,6 +221,9 @@ public class WorldBuilderMathOperations {
 		return new Position(centx, centy, a.getZ());
 	}
 	
+	/**
+	 * Used to compare nodes by it's key value
+	 */
 	Comparator<Node> nodeKeyComparator = new Comparator<Node>() {
 		@Override
 		public int compare(Node n1, Node n2) {
@@ -208,7 +235,11 @@ public class WorldBuilderMathOperations {
 		}
 	};
 
-	
+	/**
+	 * Applies the Prim’s Minimum Spanning Tree algorithm to obtain the minimum tree from the grpah obtained by Delaunay
+	 * @param graph The connected graph obtained by Delaunay
+	 * @return The minnimum spanning tree 
+	 */
 	public ArrayList<Corridor> minSpanningTreePrim(ArrayList<Node> graph) {
 		ArrayList<Corridor> result = new ArrayList<>();
 		double inf = Double.POSITIVE_INFINITY;

@@ -3,9 +3,6 @@ package Screens;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JTextArea;
-
-import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public class StartScreen implements Screen {

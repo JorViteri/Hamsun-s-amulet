@@ -3,9 +3,7 @@ package Screens;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JTextArea;
-
 import TextManagement.TextManager;
-import TextManagement.WordDataGetter;
 import asciiPanel.AsciiPanel;
 
 public class LoseScreen implements Screen {

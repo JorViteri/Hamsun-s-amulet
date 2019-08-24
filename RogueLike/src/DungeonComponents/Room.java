@@ -2,7 +2,6 @@ package DungeonComponents;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
 import Utils.Position;
 
 /**
@@ -17,7 +16,6 @@ public class Room {
 	private Position upRight;
 	private Position bottomRight;
 	private Position center;
-	private int id;
 	private ArrayList<Position> walls = new ArrayList<Position>();
 
 	/** Constructor of a Room

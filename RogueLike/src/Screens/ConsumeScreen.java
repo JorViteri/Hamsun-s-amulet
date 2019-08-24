@@ -1,10 +1,16 @@
 package Screens;
-
+/**
+ * Screen that allows the creature to consume an item
+ */
 import Elements.Creature;
 import Elements.Item;
 
 public class ConsumeScreen extends InventoryBasedScreen{
 
+	/**
+	 * Constructor
+	 * @param player creature that called this screen
+	 */
 	public ConsumeScreen(Creature player){
 		super(player);
 	}

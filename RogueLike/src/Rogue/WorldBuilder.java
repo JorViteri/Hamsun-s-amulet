@@ -6,10 +6,7 @@ package Rogue;
  * @author comec
  */
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 import java.util.concurrent.ThreadLocalRandom;
-
 import DungeonComponents.Corridor;
 import DungeonComponents.Node;
 import DungeonComponents.Room;

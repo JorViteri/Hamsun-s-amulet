@@ -1,12 +1,8 @@
 package Screens;
 
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-
 import javax.swing.JTextArea;
-
 import TextManagement.TextManager;
-import TextManagement.WordDataGetter;
 import asciiPanel.AsciiPanel;
 
 public class WinScreen implements Screen {

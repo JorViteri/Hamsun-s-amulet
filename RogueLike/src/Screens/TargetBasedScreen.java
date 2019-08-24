@@ -1,11 +1,10 @@
 package Screens;
-
+/**
+ *Defines a screen with a pointer that allows the player to target things in the dungeon 
+ */
 import java.awt.event.KeyEvent;
-
 import javax.swing.JTextArea;
-
 import DungeonComponents.Line;
-import DungeonComponents.Tile;
 import Elements.Creature;
 import Elements.Item;
 import TextManagement.TextManager;
@@ -23,6 +22,13 @@ public class TargetBasedScreen implements Screen {
 	private int x;
 	private int y;
 
+	/**
+	 * Cosntructor
+	 * @param player creature that called this screen
+	 * @param caption string with some info about the action
+	 * @param sx coordinate in x
+	 * @param sy coordinate in y
+	 */
 	public TargetBasedScreen(Creature player, String caption, int sx, int sy) {
 		this.player = player;
 		this.caption = caption;
@@ -104,14 +110,34 @@ public class TargetBasedScreen implements Screen {
         return this;
 	}
 	
+	/**
+	 * Chech if the position is valid
+	 * @param x coordinate in x
+	 * @param y coordinate in y
+	 * @return true if it's valid, else false
+	 */
 	public boolean isAcceptable(int x, int y) {
 		return true;
 	}
 
+	/**
+	 * Defines what to do when moving the pointer to a new coordinate
+	 * @param x coordinate in x
+	 * @param y coordinate in y
+	 * @param screenX valor of the coordinate x in screen
+	 * @param screenY valor of the coordinate y in screen
+	 */
 	public void enterWorldCoordinate(int x, int y, int screenX, int screenY) {
 		
 	}
 
+	/**
+	 * Calls the action to do with to the selected target
+	 * @param x coordinate in x
+	 * @param y coordinate in y
+	 * @param screenX coordinate x in screen
+	 * @param screenY coordinate y in screen
+	 */
 	public void selectWorldCoordinate(int x, int y, int screenX, int screenY) {
 		
 	}

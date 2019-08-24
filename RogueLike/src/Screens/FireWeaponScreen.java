@@ -1,5 +1,8 @@
 package Screens;
 
+/**
+ * Screen that allows the creature to select a target to shoot
+ */
 import DungeonComponents.Line;
 import Elements.Creature;
 import TextManagement.WordDataGetter;
@@ -10,6 +13,12 @@ public class FireWeaponScreen extends TargetBasedScreen {
 
 	private static WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 
+	/**
+	 * Constructor
+	 * @param player creature that called the screen
+	 * @param sx coordinate x
+	 * @param sy coordinate y
+	 */
 	public FireWeaponScreen(Creature player, int sx, int sy) {
 
 		super(player, String.format(getter.getDirectTranslation("FireWeaponScreen", "title"),
