@@ -947,7 +947,6 @@ public class Creature {
 		commonAttack(other, attackValue / 2 + item.getThrownAttackValue(), verb, cd, cdData, ci, ciData, null, null,
 				"ThrowAttack", item);
 		other.addEffect(item.getQuaffEffect(), this);
-		//this.learnName(item); //A esto ya lo llamo desde el doActionComplex
 	}
 
 	/**

@@ -58,7 +58,7 @@ public class CheckEnviromentScreen implements Screen {
 		result.put("pointerPosition", getter.getDirectTranslation("CheckEnviromentScreen", "pointerPosition"));
 		result.put("objective", getter.getDirectTranslation("CheckEnviromentScreen", "objective"));
 		result.put("roomIs", getter.getDirectTranslation("CheckEnviromentScreen", "roomIs"));
-		result.put("inCorrirdor", getter.getDirectTranslation("CheckEnviromentScreen", "inCorridor"));
+		result.put("inCorridor", getter.getDirectTranslation("CheckEnviromentScreen", "inCorridor"));
 		return result;
 	}
 	

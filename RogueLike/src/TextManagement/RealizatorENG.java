@@ -151,21 +151,21 @@ public class RealizatorENG implements Realizator {
 		HashMap<String, String> res = restrictions.getRestrictions();
 		String result = "";
 		String number = res.get("AtrNum");
-		String type = "undefined_nvoc";
+		String type = "indefinite_nvoc";
 
 		if ((aux.get("ADJ") != null) && (atribute.get("characteristic") != null)) {
 			if (isVowel(atribute.get("characteristic").charAt(0))) {
-				type = "undefined_voc";
+				type = "indefinite_voc";
 			}
 		} else {
 			if (isVowel(atribute.get("name").charAt(0))) {
-				type = "undefined_voc";
+				type = "indefinite_voc";
 			}
 		}
 
 		if (aux.get("DetUn") != null) {
 			if (number.equals("singular")) {
-				result = result + getter.getDetUndefined(type, null);
+				result = result + getter.getDetIndefinite(type, null);
 			} else {
 				result = result + "";
 			}
@@ -192,7 +192,7 @@ public class RealizatorENG implements Realizator {
 			result = result + getter.getPreposition(cC.get("type"), null, null);
 		}
 		if (prepPhrase.get("ART") != null) {
-			result = result + " " + getter.getArticle("defined", null);
+			result = result + " " + getter.getArticle("definite", null);
 		}
 		if ((prepPhrase.get("ADJ") != null) && (cC.get("characteristic") != null)) {
 			result = result + " " + cC.get("characteristic");
@@ -218,7 +218,7 @@ public class RealizatorENG implements Realizator {
 			result = result + getter.getPreposition("CI", null, null);
 		}
 		if (prepPhrase.get("ART") != null) {
-			result = result + " " + getter.getArticle("defined", null);
+			result = result + " " + getter.getArticle("definite", null);
 		}
 		if ((prepPhrase.get("ADJ") != null) && (cI.get("characteristic") != null)) {
 			result = result + " " + cI.get("characteristic");
@@ -241,29 +241,31 @@ public class RealizatorENG implements Realizator {
 			Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
 		String result = "";
-		String type = "undefined_nvoc";
+		String type = "indefinite_nvoc";
 		String number = res.get("CDNum");
 
 		if ((nominalPhrase.get("ADJ") != null) && (cD.get("characteristic") != null)) {
 			if (isVowel(cD.get("characteristic").charAt(0))) {
-				type = "undefined_voc";
+				type = "indefinite_voc";
 
 			}
 		} else {
 			if (isVowel(cD.get("name").charAt(0))) {
-				type = "undefined_voc";
+				type = "indefinite_voc";
 			}
 		}
 
 		if (nominalPhrase.get("DetUn") != null) {
 			if (number.equals("singular")) {
-				result = result + getter.getDetUndefined(type, null);
+				result = result + getter.getDetIndefinite(type, null);
 			} else {
 				result = result + "";
 			}
 		}
+		if (nominalPhrase.get("ART") != null) {
+			result = result + " " + getter.getArticle("definite", null);
+		}
 		if ((nominalPhrase.get("ADJ") != null) && (cD.get("characteristic") != null)) {
-			result = result + getter.getArticle("defined", null) + " ";
 			result = result + " " + cD.get("characteristic");
 		}
 		/*if (nominalPhrase.get("ADJ") != null) {
@@ -284,7 +286,7 @@ public class RealizatorENG implements Realizator {
 	private String constructSUJ(HashMap<String, String> nominalPhrase, HashMap<String, String> subject,
 			Restrictions restrictions) {
 		String result = "";
-		result = result + getter.getArticle("defined", null);
+		result = result + getter.getArticle("definite", null);
 		if ((nominalPhrase.get("ADJ") != null) && (subject.get("characteristic") != null)) {
 			result = result + " " + subject.get("characteristic");
 		}
@@ -305,9 +307,10 @@ public class RealizatorENG implements Realizator {
 		Random random = new Random();
 		String objectString = null;
 		String[] StringArr;
+		String aux = "";
 		if (actionType != null) {
-			actionType = actionType.toLowerCase();
-			if (actionType.equals("be_space") || (actionType.equals("summon"))) {
+			aux = ID+"_"+actionType.toLowerCase();
+			if (aux.equals("CD_be_space") || (aux.equals("CI_throwattack"))) {
 				ID = ID + "_" + actionType;
 			}
 		}

@@ -198,7 +198,7 @@ public class RealizatorSPA implements Realizator {
 			Restrictions restrictions) {
 		HashMap<String, String> res = restrictions.getRestrictions();
 		String result = "";
-		result = result + getter.getDetUndefined(res.get("AtrGen"), res.get("AtrNum"));
+		result = result + getter.getDetIndefinite(res.get("AtrGen"), res.get("AtrNum"));
 		result = result + " " + atribute.get("name");
 		if ((aux.get("ADJ") != null) && (atribute.get("characteristic") != null)) {
 			result = result + " " + atribute.get("characteristic");
@@ -293,7 +293,7 @@ public class RealizatorSPA implements Realizator {
 		HashMap<String, String> res = restrict.getRestrictions();
 		String result = "";
 		if (nominalPhrase.get("DetUn") != null) {
-			result = result + getter.getDetUndefined(res.get("CDGen"), res.get("CDNum"));
+			result = result + getter.getDetIndefinite(res.get("CDGen"), res.get("CDNum"));
 		}
 		if (nominalPhrase.get("ART") != null) {
 			result = result + " " + getter.getArticle(res.get("CDGen"), res.get("CDNum"));

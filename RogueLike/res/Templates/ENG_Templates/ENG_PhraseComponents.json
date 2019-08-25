@@ -10,11 +10,11 @@
    "CD_be_space":[  
       "DetUn NOUN ADJ"
    ],
-   "CI":[  
+   "CI_ThrowAttack":[  
       "PR ART NOUN",
       "PR ART NOUN ADJ"
    ],
-   "CI_summon":[  
+   "CI":[  
       "ART NOUN",
       "ART NOUN ADJ"
    ],

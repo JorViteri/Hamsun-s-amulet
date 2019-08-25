@@ -1,5 +1,8 @@
 package TextManagement;
 
+/**
+ * Implements the WordDataGetterInterface for the english language
+ */
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,9 +16,16 @@ public class WordDataGetterENG implements WordDataGetter {
 	
 	private static WordDataGetterENG getter;
 	
+	/**
+	 * Constructor
+	 */
 	private WordDataGetterENG(){
 	}
 	
+	/**
+	 * Singleton function
+	 * @return
+	 */
 	public static WordDataGetterENG getSingletonInstance(){
 		if(getter == null){
 			getter = new  WordDataGetterENG();
@@ -151,7 +161,7 @@ public class WordDataGetterENG implements WordDataGetter {
 	
 
 	@Override
-	public String getDetUndefined(String type, String notused) {
+	public String getDetIndefinite(String type, String notused) {
 		JSONObject object = null;
 		try{
 			File file = new File("res/Others Text Resources/ENG/ENG_articles.json");

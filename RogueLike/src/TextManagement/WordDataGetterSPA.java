@@ -1,4 +1,7 @@
 package TextManagement;
+/**
+ * Implements the WordDataGetterInterface for the spanish language
+ */
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,9 +15,16 @@ public class WordDataGetterSPA implements WordDataGetter {
 
 	private static WordDataGetterSPA getter;
 
+	/**
+	 * Constructor
+	 */
 	private WordDataGetterSPA() {
 	}
 
+	/**
+	 * Singleton function
+	 * @return the instance of this class
+	 */
 	public static WordDataGetterSPA getSingletonInstance() {
 		if (getter == null) {
 			getter = new WordDataGetterSPA();
@@ -187,7 +197,7 @@ public class WordDataGetterSPA implements WordDataGetter {
 	}
 
 	@Override
-	public String getPreposition(String CID, String genere, String number) {
+	public String getPreposition(String cID, String genere, String number) {
 		JSONObject object = null;
 		JSONArray arr = null;
 		int index;
@@ -199,8 +209,8 @@ public class WordDataGetterSPA implements WordDataGetter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (CID.equals("CCI")) {
-			arr = object.getJSONArray(CID);
+		if (cID.equals("CCI")) {
+			arr = object.getJSONArray(cID);
 			index = r.nextInt(arr.length());
 			return arr.getString(index);
 		} else {
@@ -226,10 +236,10 @@ public class WordDataGetterSPA implements WordDataGetter {
 	}
 
 	@Override
-	public String getDetUndefined(String genere, String number) {
+	public String getDetIndefinite(String genere, String number) {
 		JSONObject object = null;
 		try {
-			File file = new File("res/Others Text Resources/SPA/SPA_undefinedDeter.json");
+			File file = new File("res/Others Text Resources/SPA/SPA_indefiniteDeter.json");
 			String content = FileUtils.readFileToString(file, "utf-8");
 			object = new JSONObject(content);
 		} catch (Exception e) {

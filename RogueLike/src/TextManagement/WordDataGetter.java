@@ -1,4 +1,5 @@
 package TextManagement;
+
 /**
  * Interface for defining the classes that have the duty to obtain the words and their data from the resources
  */
@@ -15,124 +16,123 @@ public interface WordDataGetter {
 	/**
 	 * Gets the data for a noun
 	 * @param noun
-	 * @return
+	 * @return HashMap with the data
 	 */
 	public HashMap<String, String> getNounData(String noun);
 
 	/**
 	 * Gets the data for an adjective
 	 * @param adj
-	 * @param genere
-	 * @return
+	 * @param gender
+	 * @return HashMap with the data
 	 */
-	public HashMap<String, String> getAdjData(String adj, String genere);
+	public HashMap<String, String> getAdjData(String adj, String gender);
 
 	/**
 	 * Gets the data for a verb
 	 * @param verb
-	 * @return
+	 * @return HashMap with the data
 	 */
 	public HashMap<String, String> getVerbData(String verb);
 
 	/**
 	 * Gets the dara for an adverb
 	 * @param adv
-	 * @return
+	 * @return HashMap with the data
 	 */
 	public HashMap<String, String> getAdvData(String adv);
-	
+
 	/**
 	 * Gets a direct translation for a phrase
-	 * @param mainKey
-	 * @param specificKey
-	 * @return
+	 * @param mainKey key that identifies the class that calls the function
+	 * @param specificKey that identifies the phrase
+	 * @return the translation of a phrase in string format
 	 */
 	public String getDirectTranslation(String mainKey, String specificKey);
 
 	/**
 	 * Obtains a random element from an array
 	 * @param arr
-	 * @return
+	 * @return the string key
 	 */
-	default String getRandomSeed(String[] arr){
+	default String getRandomSeed(String[] arr) {
 		Random r = new Random();
 		int randomNumber = r.nextInt(arr.length);
 		return arr[randomNumber];
 	}
-	
+
 	/**
 	 *  Gets an attack verb based on the tool of the attack
-	 * @param itemKey
-	 * @return
+	 * @param itemKey tool to look the verbs associated with it
+	 * @return the verb as string
 	 */
-	default String getAttackVerb(String itemKey){
-		JSONArray objectVbArr=null;
+	default String getAttackVerb(String itemKey) {
+		JSONArray objectVbArr = null;
 		JSONObject object = null;
 		Random random = new Random();
 		int pos;
-		try{
+		try {
 			File file = new File("res/Others Text Resources/weapons-verbs.json");
-			String content = FileUtils.readFileToString(file,"utf-8");	
-			object= new JSONObject(content);
+			String content = FileUtils.readFileToString(file, "utf-8");
+			object = new JSONObject(content);
 			objectVbArr = object.getJSONArray(itemKey);
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		pos = random.nextInt(objectVbArr.length());
 		return objectVbArr.getString(pos);
 	}
 
 	/**
 	 * Get a verb based o the type of action and tool if used
-	 * @param actionType
-	 * @param itemKey
-	 * @return
+	 * @param actionType type of action being performed
+	 * @param itemKey tool if it's necessary to look for it's verbs
+	 * @return the verb as string
 	 */
 	default String getActionVerb(String actionType, String itemKey) {
-		JSONArray objectVbArr=null;
+		JSONArray objectVbArr = null;
 		JSONObject object = null;
 		Random random = new Random();
 		int pos;
-		if ((actionType.equals("Attack"))||(actionType.equals("Summon"))){
+		if ((actionType.equals("Attack")) || (actionType.equals("Summon"))) {
 			return getAttackVerb(itemKey);
 		}
-	
-		try{
+
+		try {
 			File file = new File("res/Others Text Resources/screenActions-verbs.json");
-			String content = FileUtils.readFileToString(file,"utf-8");	
-			object= new JSONObject(content);
+			String content = FileUtils.readFileToString(file, "utf-8");
+			object = new JSONObject(content);
 			objectVbArr = object.getJSONArray(actionType);
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		pos = random.nextInt(objectVbArr.length());
 		return objectVbArr.getString(pos);
 	}
 
 	/**
 	 * Gets a preposition
-	 * @param CID
-	 * @param genere
-	 * @param number
-	 * @return
+	 * @param cID string that identifies the type of complement
+	 * @param string in spanish is the gender of the noun it acompains while in english is the type of article
+	 * @param string2, in spanish is the number of the noun it acompains while in english is not used
+	 * @return a prepositon in string format
 	 */
-	public String getPreposition(String CID, String genere, String number);
+	public String getPreposition(String cID, String string, String string2);
 
 	/**
 	 * Gets an article
-	 * @param genere
-	 * @param number
-	 * @return
+	 * @param string in spanish is the gender of the noun it acompains while in english is the type of article
+	 * @param string2, in spanish is the number of the noun it acompains while in english is not used
+	 * @return an article in string format
 	 */
-	public String getArticle(String genere, String number);
+	public String getArticle(String string, String string2);
 
 	/**
-	 * Gets an Undefined article
-	 * @param string
-	 * @param string2
-	 * @return
+	 * Gets an Indefinite article
+	 * @param string in spanish is the gender of the noun it acompains while in english is the type of idefinite
+	 * @param string2 in spanish is the number of the noun it acompains while in english is not used
+	 * @return the indefinite article in string format
 	 */
-	public String getDetUndefined(String string, String string2);
-
+	public String getDetIndefinite(String string, String string2);
 
 }
