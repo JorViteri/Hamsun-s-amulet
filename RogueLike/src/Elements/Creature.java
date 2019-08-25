@@ -968,6 +968,9 @@ public class Creature {
 		HashMap<String, String> ccData = weapon.getMorfData("singular");
 		commonAttack(other, attackValue / 2 + weapon.getRangedAttackValue(), verb, null, null, ci, ciData, cc, ccData,
 				"WeaponsAttacks", null);
+		if(!weapon.bowStringDegradation()){
+			this.notify(getter.getDirectTranslation("Creature", "bowString"));
+		}
 	}
 
 	/**

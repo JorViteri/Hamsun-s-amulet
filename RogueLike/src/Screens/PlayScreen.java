@@ -21,6 +21,8 @@ import Factories.WeaponsFactory;
 import Rogue.World;
 import Rogue.WorldBuilder;
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.FieldOfView;
 import asciiPanel.AsciiPanel;
 
@@ -42,6 +44,7 @@ public class PlayScreen implements Screen {
 	private TextManager textManager = TextManager.getTextManager();
 	private boolean newEnemies = true;
 	private int depth = 0;
+	private WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 
 	/**
 	 * Constructor
@@ -255,9 +258,10 @@ public class PlayScreen implements Screen {
 				break;
 			case KeyEvent.VK_F:
 				if (player.getWeapon() == null || player.getWeapon().getRangedAttackValue() == 0)
-					player.notify("You don't have a ranged weapon equiped.");
+					player.notify(getter.getDirectTranslation("PlayScreen", "cantFire"));
 				else
-					subscreen = new FireWeaponScreen(player, player.getX() - getScrollX(), player.getY() - getScrollY());
+					subscreen = new FireWeaponScreen(player, player.getX() - getScrollX(),
+							player.getY() - getScrollY());
 				break;
 			case KeyEvent.VK_Q:
 				subscreen = new QuaffScreen(player);
@@ -266,7 +270,8 @@ public class PlayScreen implements Screen {
 				subscreen = new ReadScreen(player, player.getX() - getScrollX(), player.getY() - getScrollY());
 				break;
 			case KeyEvent.VK_CONTROL:
-				subscreen = new CheckEnviromentScreen(player, "enviroment", player.getX()-getScrollX(), player.getY()-getScrollY(), world);
+				subscreen = new CheckEnviromentScreen(player, "enviroment", player.getX() - getScrollX(),
+						player.getY() - getScrollY(), world);
 			default:
 				update = false;
 			}

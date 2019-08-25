@@ -34,7 +34,8 @@
       "atNothing":"No se está apuntanto a nada.",
       "cantEquip":"No se puede equipar %s ya que llevas demasiado puesto.",
       "caveCeiling":"¡No se puede atravesar el techo!",
-      "caveFloor":"¡No se se puede atravesar el suelo!"
+      "caveFloor":"¡No se se puede atravesar el suelo!",
+      "bowString":"Se ha roto la cuerda del arco!."
    },
    "Tile":{  
       "Floor":"Suelo de rocas del piso.",
@@ -104,8 +105,8 @@
       "manaPoints":"Incrementar maná.",
       "manaRegeneration":"Incrementar regeneración de maná."
    },
-   "LevelUpScreen":{
-   	  "title":"   Selecciona un bonus de nivel     "
+   "LevelUpScreen":{  
+      "title":"   Selecciona un bonus de nivel     "
    },
    "ElementsFactory":{  
       "hamsunAmulet":"%s de Hamsun"
@@ -127,10 +128,13 @@
       "lookNotSoStrong":"No se siente una gran fuerza."
    },
    "Item":{  
-      "detailsAttack":"     ataque:%d",
-      "detailsThrowAttack":"  lanzamiento:%d",
-      "detailsRangedAttack":"  ataque a distancia:%d",
-      "detailsDefense":"     defensa:%d",
-      "detailsFoodValue":"     alimento:%s"
+      "detailsAttack":"     ataque directo: %d",
+      "detailsThrowAttack":"  ataque de lanzamiento: %d",
+      "detailsRangedAttack":"  ataque a distancia: %d",
+      "detailsDefense":"     defensa: %d",
+      "detailsFoodValue":"     alimento: %s"
+   },
+   "PlayScreen":{  
+      "cantFire":"No se puede disparar con el equipamiento actual."
    }
 }

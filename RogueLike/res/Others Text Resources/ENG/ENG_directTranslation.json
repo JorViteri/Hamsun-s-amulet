@@ -34,7 +34,8 @@
       "atNothing":"Targeting nothing.",
       "cantEquip":"Can't equip %s since you're holding too much stuff.",
       "caveCeiling":"Can't pass the ceiling!",
-      "caveFloor":"Can't pass the floor!"
+      "caveFloor":"Can't pass the floor!",
+      "bowString":"The bowstring broke!."
    },
    "Tile":{  
       "Floor":"A dirt and rock cave floor.",
@@ -127,10 +128,13 @@
       "lookNotSoStrong":"Feeling less strong."
    },
    "Item":{  
-      "detailsAttack":"     attack:%d",
-      "detailsThrowAttack":"  thrown:%d",
-      "detailsRangedAttack":"  ranged:%d",
-      "detailsDefense":"     defense:%d",
-      "detailsFoodValue":"     food:%s"
+      "detailsAttack":"     melee attack: %d",
+      "detailsThrowAttack":"  thrown attack: %d",
+      "detailsRangedAttack":"  ranged attack: %d",
+      "detailsDefense":"     defense: %d",
+      "detailsFoodValue":"     food: %s"
+   },
+   "PlayScreen":{  
+      "cantFire":"Can't fire with the current equipement."
    }
 }

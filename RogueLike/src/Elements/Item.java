@@ -191,29 +191,41 @@ public class Item {
 		String details = "";
 		String aux = "";
 
-		if (attackValue != 0)
+		if (attackValue != 0) {
 			aux = getter.getDirectTranslation("Item", "detailsAttack");
-		details += String.format(aux, attackValue);
+			details += String.format(aux, attackValue);
+		}
 
-		if (thrownAttackValue != 1)
+		if (thrownAttackValue != 1) {
 			aux = getter.getDirectTranslation("Item", "detailsThrowAttack");
-		details += String.format(aux, thrownAttackValue);
+			details += String.format(aux, thrownAttackValue);
+		}
 
-		if (rangedAttackValue > 0)
+		if (rangedAttackValue > 0) {
 			aux = getter.getDirectTranslation("Item", "detailsRangedAttack");
-		details += String.format(aux, rangedAttackValue);
+			details += String.format(aux, rangedAttackValue);
+		}
 
-		if (defenseValue != 0)
+		if (defenseValue != 0) {
 			aux = getter.getDirectTranslation("Item", "detailsDefense");
-		details += String.format(aux, defenseValue);
+			details += String.format(aux, defenseValue);
+		}
 
-		if (foodValue != 0)
+		if (foodValue != 0) {
 			aux = getter.getDirectTranslation("Item", "detailsFoodValue");
-		details += String.format(aux, foodValue);
+			details += String.format(aux, foodValue);
+		}
 
 		return details;
 	}
 
+	public boolean bowStringDegradation(){
+		this.modifyRangedAttackValue(-1);
+		if(this.rangedAttackValue==0){
+			return false;
+		}
+		return true;
+	}
 
 
 	public String getCharc_plu() {
@@ -248,5 +260,7 @@ public class Item {
 		}
 		return data;
 	}
+	
+	
 
 }
