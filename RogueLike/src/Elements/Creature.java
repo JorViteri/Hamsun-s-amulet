@@ -600,7 +600,9 @@ public class Creature {
 		for (Creature other : getCreaturesWhoSeeMe()) {
 			other.notify(phrase);
 			if (!verb.get("actionType").equals("Summon")) {
-				other.learnName(item);
+				if (item.getKey().contains("potion")){
+					other.learnName(item);
+				}
 			}
 		}
 	}
