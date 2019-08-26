@@ -21,6 +21,7 @@
    "Creature":{  
       "Damage points":"Puntos de daño: %d",
       "Cant take more":"¡No se puede coger más!.",
+      "noItem":"No hay nada en el suelo.",
       "Cant drop":"¡No hay sitio donde soltar!.",
       "modifyXpLevelUp":"Avance al nivel %d .",
       "modifyXpLose":"%d xp perdidos.",
@@ -35,7 +36,9 @@
       "cantEquip":"No se puede equipar %s ya que llevas demasiado puesto.",
       "caveCeiling":"¡No se puede atravesar el techo!",
       "caveFloor":"¡No se se puede atravesar el suelo!",
-      "bowString":"Se ha roto la cuerda del arco!."
+      "bowString":"Se ha roto la cuerda del arco!.",
+      "foodGainHp":"+%d HP",
+      "foodLooseHp":"%d HP"
    },
    "Tile":{  
       "Floor":"Suelo de rocas del piso.",

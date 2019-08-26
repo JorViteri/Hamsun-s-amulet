@@ -21,6 +21,7 @@
    "Creature":{  
       "Damage points":"Damage points: %d",
       "Cant take more":"Can't take more!.",
+      "noItem":"Nothing in the ground.",
       "Cant drop":"There's nowhere to drop!.",
       "modifyXpLose":"%d xp losed",
       "modifyXpGain":"%d xp gained",
@@ -35,7 +36,9 @@
       "cantEquip":"Can't equip %s since you're holding too much stuff.",
       "caveCeiling":"Can't pass the ceiling!",
       "caveFloor":"Can't pass the floor!",
-      "bowString":"The bowstring broke!."
+      "bowString":"The bowstring broke!.",
+      "foodGainHp":"+%d HP",
+      "foodLooseHp":"%d HP"
    },
    "Tile":{  
       "Floor":"A dirt and rock cave floor.",

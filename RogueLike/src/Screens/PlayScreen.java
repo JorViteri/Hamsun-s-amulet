@@ -111,10 +111,9 @@ public class PlayScreen implements Screen {
 			armorFactory.randomArmor(z);
 			weaponFactory.randomWeapon(z);
 			weaponFactory.randomWeapon(z);
-			weaponFactory.newBow(z);
-			for (int i = 0; i < 10; i++) {
+			bookFactory.randomSpellBook(z);
+			for (int i = 0; i < 5; i++) {
 				potionFactory.randomPotion(z);
-				bookFactory.randomSpellBook(z);
 			}
 		}
 		elementsFactory.newVictoryItem(world.getDepth() - 1);
@@ -334,7 +333,7 @@ public class PlayScreen implements Screen {
 	  */
 	private boolean playerHasAmulet(){
 		for (Item item : player.inventory().getItems()) {
-			if (item != null && item.getName().equals("Hamsun's amulet")) {
+			if (item != null && item.getKey().equals("Hamsun's amulet")) {
 				return true;
 			}
 		}

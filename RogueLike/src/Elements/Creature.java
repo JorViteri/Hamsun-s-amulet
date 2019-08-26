@@ -326,7 +326,11 @@ public class Creature {
 		String finalName = realizator.constructNounAndNoun(corpseData.get("baseNoun"), name);
 		Item corpse = new Item('%', color, name + " corpse", finalName, corpseData.get("plural"),
 				corpseData.get("genere"), adjData.get("singular"), adjData.get("plural"), null);
-		corpse.modifyFoodValue(maxHp);
+		if (this.key.equals("Zombie")){
+			corpse.modifyFoodValue(-maxHp/2);
+		} else{
+			corpse.modifyFoodValue(maxHp);
+		}
 		world.addAtEmptySpace(corpse, x, y, z);
 		for (Item item : inventory.getItems()) {
 			if (item != null)
@@ -776,9 +780,13 @@ public class Creature {
 	 */
 	public void pickup() {
 		Item item = world.item(x, y, z);
+		String phrase = "";
 
-		if (inventory.isFull() || item == null) {
-			String phrase = getter.getDirectTranslation("Creature", "Cant take more");
+		if (item == null) {
+			phrase = getter.getDirectTranslation("Creature", "noItem");
+			doAction(phrase);
+		} else if (inventory.isFull()) {
+			phrase = getter.getDirectTranslation("Creature", "Cant take more");
 			doAction(phrase);
 		} else {
 			HashMap<String, String> verb = new HashMap<>();
@@ -849,8 +857,24 @@ public class Creature {
 		world.addAtEmptySpace(item, wx, wy, wz);
 	}
 
-	public void modifyFood(int amount) {
+	public void modifyFood(int amount) { // le pongo on notify aqui tambien
+		String phrase = "";
+		int dif = maxHp - hp;
 		hp += amount;
+		if (amount < 0) {
+			phrase = getter.getDirectTranslation("Creature", "foodLooseHp");
+			this.notify(String.format(phrase, amount));
+		} else {
+			phrase = getter.getDirectTranslation("Creature", "foodGainHp");
+			if (hp > maxHp) {
+				hp = maxHp;
+				this.notify(String.format(phrase, dif));
+			} else {
+				this.notify(String.format(phrase, amount));
+			}
+
+		}
+
 		if (hp > maxHp) {
 			hp = maxHp;
 		}

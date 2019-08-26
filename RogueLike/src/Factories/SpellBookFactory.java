@@ -205,10 +205,12 @@ public class SpellBookFactory {
 	 * @param depth level of the dungeon in which the book will be placed
 	 * @return the book created
 	 */
-	public Item randomSpellBook(int depth){
-		switch ((int)(Math.random() * 2)){
-		case 0: return newWhiteMagesSpellbook(depth);
-		default: return newBlueMagesSpellbook(depth);
+	public Item randomSpellBook(int depth) {
+		switch ((int) (Math.random() * 2)) {
+		case 0:
+			return newWhiteMagesSpellbook(depth);
+		default:
+			return newBlueMagesSpellbook(depth);
 		}
 	}
 
