@@ -5,8 +5,6 @@ package TextManagement;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Map.Entry;
-
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;

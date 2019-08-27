@@ -5,12 +5,8 @@ package Utils;
  */
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Set;
-
 import Screens.PlayScreen;
-import TextManagement.WordDataGetter;
-import TextManagement.WordDataGetterAndRealizatorFactory;
 
 public class Position {
 
