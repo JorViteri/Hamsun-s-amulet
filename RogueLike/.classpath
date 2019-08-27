@@ -3,11 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="lib/asciiPanel.jar"/>
-	<classpathentry kind="lib" path="lib/SquidLib.jar"/>
-	<classpathentry kind="lib" path="lib/SquidLib-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/SquidLib-sources.jar"/>
 	<classpathentry kind="lib" path="lib/json-20180813.jar"/>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.47-bin.jar"/>
 	<classpathentry kind="lib" path="D:/Users/comec/git/Hamsun-s-amulet/RogueLike/lib/commons-io-2.6.jar"/>
 	<classpathentry kind="lib" path="D:/Users/comec/git/Hamsun-s-amulet/RogueLike/lib/commons-io-2.6-javadoc.jar"/>
 	<classpathentry kind="lib" path="D:/Users/comec/git/Hamsun-s-amulet/RogueLike/lib/commons-io-2.6-sources.jar"/>
