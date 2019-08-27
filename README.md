@@ -4,7 +4,7 @@
 Descend through the dungeons of Uqbar, find Hamsun's lost amulet, and return to the surface to win. 
 Use what you find to avoid death.
 
-***Controls****:
+***Controls***:
 Use the directional keys for movement
 [,] to pick up.
 [d] to drop.
@@ -18,6 +18,7 @@ Use the directional keys for movement
 [q] to quaff a potion.
 [r] to read something.
 
+***Options***:
 The game supports english and spanish languages. To change the language the value file language.properties must be changed 
 to ENG or SPA for english and spanish respectively.
 
