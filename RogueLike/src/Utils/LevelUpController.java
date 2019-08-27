@@ -1,5 +1,8 @@
 package Utils;
 
+/**
+ * Class that manages the options of the LevelUpScreen
+ */
 import java.util.ArrayList;
 import java.util.List;
 

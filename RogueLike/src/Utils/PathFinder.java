@@ -1,5 +1,8 @@
 package Utils;
 
+/**
+ * Defines the PathFinding functions
+ */
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,6 +16,9 @@ public class PathFinder {
 	private HashMap<Position, Position> parents;
 	private HashMap<Position, Integer> totalCost;
 
+	/**
+	 * Constructor
+	 */
 	public PathFinder() {
 		this.open = new ArrayList<Position>();
 		this.closed = new ArrayList<Position>();
@@ -20,14 +26,31 @@ public class PathFinder {
 		this.totalCost = new HashMap<Position, Integer>();
 	}
 
+	/**
+	 * Returns the heuristic cost for moving from one position to another. 
+	 * @param from Position initial
+	 * @param to Position final
+	 * @return max distance between the two positions in x or y
+	 */
 	private int heuristicCost(Position from, Position to) {
 		return Math.max(Math.abs(from.getIntX() - to.getIntX()), Math.abs(from.getIntY() - to.getIntY()));
 	}
 
+	/**
+	 * Obtains how much costed reaching the actual position
+	 * @param from actual position
+	 * @return how much costed comming the actual position
+	 */
 	private int costToGetTo(Position from) {
 		return parents.get(from) == null ? 0 : (1 + costToGetTo(parents.get(from)));
 	}
 
+	/**
+	 * Returns the total cost which is the sum of heuristic cost an the previous cost
+	 * @param from actual position
+	 * @param position of destination
+	 * @return total cost of movement
+	 */
 	private int totalCost(Position from, Position to) {
 		int cost;
 		if (totalCost.containsKey(from)) {
@@ -38,11 +61,24 @@ public class PathFinder {
 		return cost;
 	}
 
+	/**
+	 * Changes a child it's parent and then removes the child from the HashMap of totalCost
+	 * @param child the old child
+	 * @param parent the new parent
+	 */
 	private void reParent(Position child, Position parent) {
 		parents.put(child, parent);
 		totalCost.remove(child);
 	}
 
+	/**
+	 * Obtains the path to a position 
+	 * @param creature creatrue to move
+	 * @param start position from which movement starts
+	 * @param end  final position
+	 * @param maxTries number of tries 
+	 * @return ArrayList of the positions to the destination
+	 */
 	public ArrayList<Position> findPath(Creature creature, Position start, Position end, int maxTries) {
 		open.clear();
 		closed.clear();
@@ -66,6 +102,11 @@ public class PathFinder {
 		return null;
 	}
 
+	/**
+	 * Returns the closest position chechking the total cost
+	 * @param end Position from which the closest to it must be obtained
+	 * @return the closest position
+	 */
 	private Position getClosestPosition(Position end) {
 		Position closest = open.get(0);
 		for (Position p : open) {
@@ -76,6 +117,12 @@ public class PathFinder {
 		return closest;
 	}
 
+	/**
+	 * 
+	 * @param creature
+	 * @param end
+	 * @param closest
+	 */
 	private void checkNeighbors(Creature creature, Position end, Position closest) {
 		boolean enter;
 		for (Position p : closest.getNeighbors(8)) {
@@ -91,11 +138,21 @@ public class PathFinder {
 		}
 	}
 
+	/**
+	 * Sets a new parent for a neighbor position
+	 * @param closest new parent
+	 * @param neighbor the neighborr as a child
+	 */
 	private void reParentNeighbor(Position closest, Position neighbor) {
 		reParent(neighbor, closest);
 		open.add(neighbor);
 	}
 
+	/**
+	 * 
+	 * @param closest
+	 * @param neighbor
+	 */
 	private void reParentNeighborIfNecessary(Position closest, Position neighbor) {
 		Position originalParent;
 		double currentCost, reparentCost;
@@ -113,6 +170,12 @@ public class PathFinder {
 
 	}
 	
+	/**
+	 * 
+	 * @param start
+	 * @param end
+	 * @return
+	 */
 	private ArrayList<Position> createPath(Position start, Position end){
 		ArrayList<Position> path = new ArrayList<>();
 		

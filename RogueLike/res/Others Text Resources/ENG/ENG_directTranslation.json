@@ -139,5 +139,8 @@
    },
    "PlayScreen":{  
       "cantFire":"Can't fire with the current equipement."
+   },
+   "ThrowAtScreen":{  
+      "throwAt":"Throw %s at?"
    }
 }

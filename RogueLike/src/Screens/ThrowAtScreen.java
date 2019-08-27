@@ -5,11 +5,15 @@ package Screens;
 import DungeonComponents.Line;
 import Elements.Creature;
 import Elements.Item;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import Utils.Position;
 
 public class ThrowAtScreen extends TargetBasedScreen {
 	
 	private Item item;
+	private static WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
+	private static String phrase  = getter.getDirectTranslation("ThrowAtScreen", "throwAt");
 
 	/**
 	 * Construcor
@@ -19,7 +23,7 @@ public class ThrowAtScreen extends TargetBasedScreen {
 	 * @param item item to launch
 	 */
     public ThrowAtScreen(Creature player, int sx, int sy, Item item) {
-        super(player, "Throw " + player.nameOf(item) + " at?", sx, sy);
+        super(player, String.format(phrase, player.nameOf(item)), sx, sy);
         this.item = item;
     }
 

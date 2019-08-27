@@ -139,5 +139,8 @@
    },
    "PlayScreen":{  
       "cantFire":"No se puede disparar con el equipamiento actual."
+   },
+   "ThrowAtScreen":{  
+      "throwAt":"Lanzar %s a...?"
    }
 }

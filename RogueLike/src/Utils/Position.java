@@ -1,5 +1,8 @@
 package Utils;
 
+/**
+ * Defines the class of Position in the dungeon
+ */
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -76,7 +79,7 @@ public class Position {
 		return this.getX() + ", " + this.getY();
 	}
 
-	// TODO ??????????????????
+	
 	@Override
 	public int hashCode() {
 		final int prime = 93;
@@ -102,15 +105,6 @@ public class Position {
 		return (x && y && z);
 		
 	}
-	/*
-	@Override
-	public boolean equals(Object o){
-		Position p = (Position) o ;
-		boolean x = this.getX()==p.getX();
-		boolean y = this.getY()==p.getY();
-		
-		return (x && y);
-	}*/
 	
 	public double getX() {
 		return this.x;
@@ -144,7 +138,7 @@ public class Position {
 		this.z = z;
 	}
 
-	/**
+	/*/**
 	 * Returns the room wich contains a given position
 	 *  @param level  the level of the dungeon we are checking
 	 *  @return the index of the room, null if it doesn' t belong to any room
@@ -291,7 +285,6 @@ public class Position {
 	 * @param pos The position to which we're calculating the relative Position.
 	 * @return The description of relative position.
 	 */
-	//TODO esto me vale para oindicar la posicion relativa con los puntos cardinales
 	public String getRelativePosition(Position position) {
 		int x = position.getIntX() - this.getIntX();
 		int y = this.getIntY() - position.getIntY();
