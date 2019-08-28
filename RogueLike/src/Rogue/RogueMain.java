@@ -89,7 +89,7 @@ public class RogueMain extends JFrame implements KeyListener  {
 	 */
 	public static JTextArea init_textArea() {
 		final JTextArea textA = new JTextArea();
-		textA.setFont(new Font("Mincho", Font.PLAIN, 16));
+		textA.setFont(new Font("Maru Gothic", Font.PLAIN, 16));
 		textA.setBackground(color);
 		textA.setForeground(Color.white);
     	textA.setVisible(true);
