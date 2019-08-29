@@ -142,7 +142,7 @@ public class SpellBookFactory {
 			}
 		}, true);
 
-		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "summonBats"), 1, new Effect(1) {
+		item.addWrittenSpell(getter.getDirectTranslation("SpellBookFactory", "summonBats"), 11, new Effect(1) {
 			public void start(Creature creature, Creature source) {
 				HashMap<String, String> ciData = new HashMap<String, String>();
 				HashMap<String, String> CI = new HashMap<String, String>();
