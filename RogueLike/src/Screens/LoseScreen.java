@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTextArea;
 import TextManagement.TextManager;
+import TextManagement.WordDataGetter;
+import TextManagement.WordDataGetterAndRealizatorFactory;
 import asciiPanel.AsciiPanel;
 
 public class LoseScreen implements Screen {
@@ -14,12 +16,13 @@ public class LoseScreen implements Screen {
 	
 	@Override
 	public void displayOutput(AsciiPanel terminal, JTextArea textArea, JTextArea textArea2) {
+		WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 		terminal.write("You lost.", 1, 1);
         terminal.writeCenter("-- press [enter] to restart --", 22);
         TextManager textManager = TextManager.getTextManager();
         textManager.clearTextArea(1);
-        textManager.writeText("You lost.", 1);
-        textManager.writeText("-- press [enter] to restart --", 1);
+        textManager.writeText(getter.getDirectTranslation("LoseScreen", "lose"), 1);
+        textManager.writeText(getter.getDirectTranslation("LoseScreen", "press"), 1);
 	}
 
 	@Override

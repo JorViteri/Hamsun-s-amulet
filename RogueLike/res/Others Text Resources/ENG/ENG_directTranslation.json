@@ -142,5 +142,16 @@
    },
    "ThrowAtScreen":{  
       "throwAt":"Throw %s at?"
+   },
+   "StartScreen":{  
+      "start":"-- press [enter] to start --"
+   },
+   "WinScreen":{  
+      "win":"You won!",
+      "press":"-- press [enter] to restart --"
+   },
+   "LoseScreen":{  
+      "lose":"You lose...",
+      "press":"-- press [enter] to restart --"
    }
 }

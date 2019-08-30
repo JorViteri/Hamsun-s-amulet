@@ -65,8 +65,6 @@ public class WorldBuilder {
 		ArrayList<Position> centersList= new ArrayList<>();
 		WorldBuilderMathOperations mOperator = new WorldBuilderMathOperations();
 		
-		//TODO Comentar con java doc
-		
 		for (int depth = 0; depth< this.depth; depth++){
 			//Generamos las habitaciones y obtenemos una lista de sus centros
 			room_list = roomGenerator(depth);

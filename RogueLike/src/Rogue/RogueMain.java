@@ -44,13 +44,15 @@ public class RogueMain extends JFrame implements KeyListener  {
 	public RogueMain(){
 		super();
 		setResizable(false);
+		textArea1 = init_textArea();
+		textArea2 = init_textArea2();
 		screen = new StartScreen();
 		setFocusable(true); //TODO mirar que hace esto
 	    setLayout(new BorderLayout());
 	    terminal = new AsciiPanel();
 	    
 	    //TEXTAREA 1******************************************
-		textArea1 = init_textArea();
+		//textArea1 = init_textArea();
 		scroll1 = new JScrollPane(textArea1);
 		int widht1 = 54* terminal.getCharWidth();
 		int height1 = 23 * terminal.getCharHeight();
@@ -60,7 +62,7 @@ public class RogueMain extends JFrame implements KeyListener  {
 		
 		//TEXTAREA 2 ***************************************
 		//28 lineas
-		textArea2 = init_textArea2();
+		//textArea2 = init_textArea2();
 		scroll2 = new JScrollPane(textArea2);
 		int width = 135 * terminal.getCharWidth();
 		int height = 22 * terminal.getCharHeight();
@@ -137,11 +139,10 @@ public class RogueMain extends JFrame implements KeyListener  {
 	 * @param args not used
 	 */
 	public static void main(String[] args){
-		RogueMain rogue = new RogueMain(); 
-		TextManager.getSingletonInstance(textArea1, textArea2);
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		factory.getWordDataGetter();
 		factory.getRealizator();
+		RogueMain rogue = new RogueMain();
 		rogue.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rogue.setVisible(true);
 	}

@@ -142,5 +142,16 @@
    },
    "ThrowAtScreen":{  
       "throwAt":"Lanzar %s a...?"
+   },
+   "StartScreen":{  
+      "start":"-- pulse [enter] para empezar --"
+   },
+   "WinScreen":{  
+      "win":"¡Has ganado!",
+      "press":"-- pulse [enter] para volver a empezar --"
+   },
+   "LoseScreen":{  
+      "lose":"Has perdido...",
+      "press":"-- pulse [enter] para volver a empezar --"
    }
 }
