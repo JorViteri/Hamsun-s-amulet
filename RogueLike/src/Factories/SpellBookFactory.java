@@ -154,7 +154,7 @@ public class SpellBookFactory {
 						if (ox == 0 && oy == 0 || creature.creature(nx, ny, creature.getZ()) != null)
 							continue;
 						CreatureFactory cf = new CreatureFactory(world);
-						Creature bat = cf.newBat(0); //TODO la profundiadd no deberia ser 0, deberia ser donde este el jugador
+						Creature bat = cf.newBat(0); 
 
 						if (!bat.canEnter(nx, ny, creature.getZ())) {
 							world.remove(bat);
