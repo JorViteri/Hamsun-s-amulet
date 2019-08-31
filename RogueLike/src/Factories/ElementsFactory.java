@@ -17,7 +17,7 @@ public class ElementsFactory {
 	private World world;
 
 	/**
-	 * Construcot
+	 * Constructor
 	 * @param world world of the dungeon so it can add the items to it
 	 */
 	public ElementsFactory(World world) {

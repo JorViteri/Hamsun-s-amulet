@@ -126,7 +126,6 @@ public class RealizatorSPA implements Realizator {
 		StringArr = objectString.split(" ");
 		for (String s : StringArr) {
 			result.put(s, s);
-
 		}
 		return result;
 	}
