@@ -396,7 +396,7 @@ public class WorldBuilder {
 			corner_distance = p1.distance(middle);
 			if (corner_distance <= min_distance) {
 				beginningx = p1.getIntX();
-				beginningy = (height - 1) - p1.getIntY(); //TODO UFFF wtf hace sto aqui?
+				beginningy = (height - 1) - p1.getIntY(); 
 				min_distance = corner_distance;
 			}
 		}
