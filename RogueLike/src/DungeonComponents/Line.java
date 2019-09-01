@@ -6,7 +6,7 @@ import java.util.List;
 
 import Utils.Position;
 /**
- * Line composed by positions used to work with distances in the dingeon
+ * Line composed by positions used to work with distances in the dungeon
  * @author comec
  *
  */

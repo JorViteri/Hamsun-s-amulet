@@ -85,6 +85,8 @@
       "throw":"[t] to thow an object.",
       "quaff":"[q] to quaff a potion.",
       "read":"[r] to read something.",
+      "up":"[<] to go up stairs",
+      "down":"[>] to go down stairs",
       "pressContinue":"-- press any key to continue --"
    },
    "InventoryBasedScreen":{  

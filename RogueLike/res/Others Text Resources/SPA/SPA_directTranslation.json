@@ -85,6 +85,8 @@
       "throw":"[t] para lanzar un objeto.",
       "quaff":"[q] para beber una poción.",
       "read":"[r] para leer algo.",
+      "up":"[<] para subir escaleras",
+      "down":"[>] para bajar escaleras",
       "pressContinue":"-- pulsa cualquier tecla para continuar --"
    },
    "InventoryBasedScreen":{  
