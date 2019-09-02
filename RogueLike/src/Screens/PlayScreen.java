@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 import javax.swing.JTextArea;
 import DungeonComponents.Tile;
@@ -141,11 +142,19 @@ public class PlayScreen implements Screen {
 	 * @param textArea JTextArea in which the messages are shown
 	 */
 	private void displayMessages(AsciiPanel terminal, ArrayList<String> messages, JTextArea textArea) {
-		for (int i = 0; i < messages.size(); i++) {			
-			if (textManager.textArea2ReachedLimit()){
+		int messLenght = 0;
+		textManager.clearTextArea(2);
+		for (int i = 0; i < messages.size(); i++) {
+			if (textManager.textArea2ReachedLimit()) {
 				textManager.removeFirstLineTextArea(2);
 			}
 			textManager.writeText(messages.get(i), 2);
+			messLenght += messages.get(i).length();
+		}
+		if (messages.size() != 0) {
+			textManager.setCaret(messLenght, 2);
+		} else {
+			textManager.setCaretSimple(1);
 		}
 		messages.clear();
 	}
@@ -188,12 +197,14 @@ public class PlayScreen implements Screen {
 
 		stats = String.format("HP: %3d/%3d\nMana: %d/%d", player.hp(), player.maxHp(), player.getMana(), player.getMaxMana());
 		textManager.clearTextArea(1);
-	    textManager.writeText(stats, 1); 
+	    textManager.writeText(stats, 1);  //aqui es donde se escriben los stats, lo que hace que siempre reciba el focus la textarea1
+	    textManager.setFocus(2);
 
-		
-		
-		if (subscreen != null)
+		if (subscreen != null){
+			textManager.setFocus(1);
 			subscreen.displayOutput(terminal, textArea, textArea2);
+		}
+			
 	}
 
 	@Override

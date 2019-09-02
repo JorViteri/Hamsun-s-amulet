@@ -1,8 +1,11 @@
 package TextManagement;
+import java.util.HashMap;
+
 /**
  * Class that manages the printing of messages in the JTextAreas
  */
 import javax.swing.JTextArea;
+import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
 
 public class TextManager {
@@ -51,21 +54,66 @@ public class TextManager {
 	 */
 	public void writeText(String message, int id){
 		switch(id){
-		case 1:
+		case 1: //por aqui pasa siempre por mostrar la vida, el problema es que es algo que se manda escribir siempre..
 			textArea1.append(message+newline);
-			textArea1.setCaretPosition(textArea1.getDocument().getLength());
+			textArea1.requestFocus();
+			//textArea1.setCaretPosition(textArea1.getDocument().getLength());
 			break;
 		case 2:
 			textArea2.append(message+newline);
-			textArea2.setCaretPosition(textArea2.getDocument().getLength());
+			textArea2.requestFocus();
+			//textArea2.setCaretPosition(textArea2.getDocument().getLength());
 		}
 	}
 	
-
+	
+	public void setCaret(int messagesLength, int id) {
+		switch (id) {
+		case 1:
+			textArea1.setCaretPosition(textArea1.getDocument().getLength() - messagesLength);
+			break;
+		case 2:
+			textArea2.setCaretPosition(textArea2.getDocument().getLength() - messagesLength);
+			break;
+		}
+	}
+	
+	public void setCaretSimple(int id){
+		switch (id){
+		case 1:
+			textArea1.setCaretPosition(textArea1.getDocument().getLength());
+			break;
+		case 2:
+			textArea2.setCaretPosition(textArea2.getDocument().getLength());
+			break;
+		}
+	}
+	
+	public void removeFocus(int id) {
+		switch (id){
+		case 1:
+			textArea1.setFocusable(false);
+			break;
+		case 2:
+			textArea1.setFocusable(false);
+			break;
+		}
+	}
+	
+	public void setFocus(int id){
+		switch (id){
+		case 1:
+			textArea1.requestFocus();
+			break;
+		case 2:
+			textArea2.requestFocus();
+			break;
+		}
+	}
 	
 	public void clearTextArea(int id){
 		switch(id){
-		case 1:
+		case 1: 
 			textArea1.selectAll();
 			textArea1.replaceSelection("");
 			break;
@@ -109,4 +157,6 @@ public class TextManager {
 	public boolean textArea2ReachedLimit(){
 		return textArea2.getLineCount()==linelimit;
 	}
+
+
 }
