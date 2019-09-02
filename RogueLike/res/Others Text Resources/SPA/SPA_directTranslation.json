@@ -74,7 +74,7 @@
    "HelpScreen":{  
       "title":"Roguelike Ayuda",
       "gameDescription":"Desciende por las mazmorras de Uqbar, encuentra el amuleto perdido de Hamsun, y regresa a la superficie para ganar. Emplea lo que encuentres para evitar la muerte.",
-      "pickUp":"[g] o [,] para recoger",
+      "pickUp":"[g] o [,] para recoger.",
       "drop":"[d] para soltar.",
       "eat":"[e] para comer.",
       "wearEquip":"[w] para equiparse.",

@@ -29,11 +29,12 @@ public class RogueMain extends JFrame implements KeyListener  {
 
 	private static final long serialVersionUID = -1974790262751795811L;
 	private AsciiPanel terminal;
-	private Screen screen;
+	private static Screen screen;
 	private static JTextArea textArea1; //textarea for  sub-screens
 	private static JTextArea textArea2; //textarea for playscreen
 	private JScrollPane scroll1;
 	private JScrollPane scroll2;
+	private static RogueMain rogue;
 
 	private final static Color color = new Color(102, 102, 0);
 	private final static Border border = BorderFactory.createLineBorder(Color.BLACK);
@@ -97,11 +98,39 @@ public class RogueMain extends JFrame implements KeyListener  {
     	textA.setVisible(true);
     	textA.setLineWrap(true);
     	textA.setWrapStyleWord(true);
-    	textA.setEditable(true);
-    	textA.setFocusable(false);
+    	textA.setEditable(false);
+		textA.setFocusable(true);
 		textA.setHighlighter(null);
 		textA.setLayout(new BorderLayout());
 		textA.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+
+		textA.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				e.consume();
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(java.awt.event.KeyEvent key) {
+
+				int keyCode = key.getKeyCode();
+				switch (keyCode) {
+				case KeyEvent.VK_UP:
+				case KeyEvent.VK_DOWN:
+				case KeyEvent.VK_LEFT:
+				case KeyEvent.VK_RIGHT:
+					return;
+				}
+				setScreen(screen.respondToUserInput(key));
+				rogue.repaint();
+			}
+		});
+
 		return textA;
 	}
 
@@ -117,11 +146,39 @@ public class RogueMain extends JFrame implements KeyListener  {
 		textA.setVisible(true);
 		textA.setLineWrap(true);
     	textA.setWrapStyleWord(true);
-		textA.setEditable(true);
-		textA.setFocusable(false);
+		textA.setEditable(false);
+		textA.setFocusable(true);
 		textA.setHighlighter(null);
 		textA.setLayout(new BorderLayout());
 		textA.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+
+		textA.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				e.consume();
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(java.awt.event.KeyEvent key) {
+
+				int keyCode = key.getKeyCode();
+				switch (keyCode) {
+				case KeyEvent.VK_UP:
+				case KeyEvent.VK_DOWN:
+				case KeyEvent.VK_LEFT:
+				case KeyEvent.VK_RIGHT:
+					return;
+				}
+				setScreen(screen.respondToUserInput(key));
+				rogue.repaint();
+			}
+		});
+
 		return textA;
 	}
 	
@@ -142,9 +199,10 @@ public class RogueMain extends JFrame implements KeyListener  {
 		WordDataGetterAndRealizatorFactory factory = WordDataGetterAndRealizatorFactory.getInstance();
 		factory.getWordDataGetter();
 		factory.getRealizator();
-		RogueMain rogue = new RogueMain();
+		rogue = new RogueMain();
 		rogue.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rogue.setVisible(true);
+		rogue.requestFocus();
 	}
 	
 	
@@ -152,6 +210,10 @@ public class RogueMain extends JFrame implements KeyListener  {
 		terminal.clear();
 		screen.displayOutput(terminal, textArea1, textArea2);
 		super.repaint();
+	}
+
+	public static void setScreen(Screen s) {
+		screen = s;
 	}
 	
 }

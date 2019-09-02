@@ -214,11 +214,11 @@ public class PlayScreen implements Screen {
 				player.moveBy(-1, 0, 0);
 				break;
 			case KeyEvent.VK_RIGHT:
-			case KeyEvent.VK_L:
+			case KeyEvent.VK_K:
 				player.moveBy(1, 0, 0);
 				break;
 			case KeyEvent.VK_UP:
-			case KeyEvent.VK_K:
+			case KeyEvent.VK_U:
 				player.moveBy(0, -1, 0);
 				break;
 			case KeyEvent.VK_DOWN:
@@ -228,7 +228,7 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_Y:
 				player.moveBy(-1, -1, 0);
 				break;
-			case KeyEvent.VK_U:
+			case KeyEvent.VK_M:
 				player.moveBy(1, -1, 0);
 				break;
 			case KeyEvent.VK_B:

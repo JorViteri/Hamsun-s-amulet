@@ -53,9 +53,11 @@ public class TextManager {
 		switch(id){
 		case 1:
 			textArea1.append(message+newline);
+			textArea1.setCaretPosition(textArea1.getDocument().getLength());
 			break;
 		case 2:
 			textArea2.append(message+newline);
+			textArea2.setCaretPosition(textArea2.getDocument().getLength());
 		}
 	}
 	
