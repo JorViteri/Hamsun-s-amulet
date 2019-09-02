@@ -71,9 +71,7 @@ public class PlayScreen implements Screen {
 		bookFactory = new SpellBookFactory(world);
 		weaponsFactory = new WeaponsFactory(world);
 		createCreatures(creatureFactory);
-		createItems(armorFactory, potionFactory, elementsFactory, weaponsFactory, bookFactory);
-		
-	
+		createItems(armorFactory, potionFactory, elementsFactory, weaponsFactory, bookFactory);	
 	}
 
 	/**

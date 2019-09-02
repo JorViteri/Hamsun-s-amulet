@@ -82,6 +82,8 @@ public class RogueMain extends JFrame implements KeyListener  {
     	setMinimumSize(panelDimension);
     	setPreferredSize(panelDimension);
 		pack(); 
+		terminal.setFocusable(false);
+		textArea1.requestFocus();
 		addKeyListener(this);
 		repaint();
 	}
@@ -202,7 +204,7 @@ public class RogueMain extends JFrame implements KeyListener  {
 		rogue = new RogueMain();
 		rogue.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rogue.setVisible(true);
-		rogue.requestFocus();
+		//rogue.requestFocus();
 	}
 	
 	
