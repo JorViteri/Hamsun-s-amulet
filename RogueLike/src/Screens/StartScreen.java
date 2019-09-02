@@ -22,6 +22,7 @@ public class StartScreen implements Screen {
 		terminal.writeCenter("-- press [enter] to start --", 22);
 		TextManager manager = TextManager.getSingletonInstance(textArea, textArea2);
 		manager.writeText(getter.getDirectTranslation("StartScreen", "start"), 1);
+		manager.setCaretSimple(1);	
 				
 	}
 

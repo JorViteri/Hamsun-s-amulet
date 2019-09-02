@@ -34,6 +34,7 @@ public class HelpScreen implements Screen {
 		textManager.writeText(getter.getDirectTranslation("HelpScreen", "up"), 1);
 		textManager.writeText(getter.getDirectTranslation("HelpScreen", "down"), 1);
 		textManager.writeText(getter.getDirectTranslation("HelpScreen", "pressContinue"), 1);
+		textManager.setCaretSimple(1);	
 	}
 
 	@Override

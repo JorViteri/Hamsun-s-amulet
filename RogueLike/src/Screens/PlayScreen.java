@@ -142,19 +142,17 @@ public class PlayScreen implements Screen {
 	 * @param textArea JTextArea in which the messages are shown
 	 */
 	private void displayMessages(AsciiPanel terminal, ArrayList<String> messages, JTextArea textArea) {
-		int messLenght = 0;
+		//int messLenght = 0;
 		textManager.clearTextArea(2);
 		for (int i = 0; i < messages.size(); i++) {
 			if (textManager.textArea2ReachedLimit()) {
 				textManager.removeFirstLineTextArea(2);
 			}
 			textManager.writeText(messages.get(i), 2);
-			messLenght += messages.get(i).length();
+			//messLenght += messages.get(i).length();
 		}
 		if (messages.size() != 0) {
-			textManager.setCaret(messLenght, 2);
-		} else {
-			textManager.setCaretSimple(1);
+			textManager.setCaretSimple(2);
 		}
 		messages.clear();
 	}
@@ -202,6 +200,7 @@ public class PlayScreen implements Screen {
 
 		if (subscreen != null){
 			textManager.setFocus(1);
+			textManager.setCaretSimple(1);
 			subscreen.displayOutput(terminal, textArea, textArea2);
 		}
 			

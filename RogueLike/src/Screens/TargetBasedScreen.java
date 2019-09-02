@@ -75,7 +75,7 @@ public class TargetBasedScreen implements Screen {
 		textManager.writeText(pointer_pos, 1);
 		textManager.writeText(objective, 1);
 		textManager.writeText(caption, 1);
-		
+		textManager.setCaretSimple(1);		
 	}
 
 	@Override

@@ -23,6 +23,7 @@ public class LoseScreen implements Screen {
         textManager.clearTextArea(1);
         textManager.writeText(getter.getDirectTranslation("LoseScreen", "lose"), 1);
         textManager.writeText(getter.getDirectTranslation("LoseScreen", "press"), 1);
+        textManager.setCaretSimple(1);	
 	}
 
 	@Override

@@ -23,6 +23,7 @@ public class WinScreen implements Screen {
         textManager.clearTextArea(1);
         textManager.writeText(getter.getDirectTranslation("WinScreen", "win"), 1);
         textManager.writeText(getter.getDirectTranslation("WinScreen", "press"), 1);
+        textManager.setCaretSimple(1);	
 
 	}
 

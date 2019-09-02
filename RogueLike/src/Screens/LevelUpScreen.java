@@ -43,6 +43,7 @@ public class LevelUpScreen implements Screen {
 	    for (int i = 0; i < options.size(); i++){
 	      textManager.writeText(String.format("[%d] %s", i+1, options.get(i)),1);
 	    }
+	    textManager.setCaretSimple(1);	
 	}
 	
 	@Override

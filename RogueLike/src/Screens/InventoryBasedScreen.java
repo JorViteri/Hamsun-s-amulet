@@ -64,8 +64,8 @@ public abstract class InventoryBasedScreen implements Screen {
 		
 		for (String line : lines) {
 			textManager.writeText(line, 1);
-
 		}
+		textManager.setCaretSimple(1);	
 	}
 
 	private ArrayList<String> getList() {

@@ -81,10 +81,10 @@ public class TextManager {
 	public void setCaretSimple(int id){
 		switch (id){
 		case 1:
-			textArea1.setCaretPosition(textArea1.getDocument().getLength());
+			textArea1.setCaretPosition(0);
 			break;
 		case 2:
-			textArea2.setCaretPosition(textArea2.getDocument().getLength());
+			textArea2.setCaretPosition(0);
 			break;
 		}
 	}
