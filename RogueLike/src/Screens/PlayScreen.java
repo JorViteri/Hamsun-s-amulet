@@ -43,7 +43,7 @@ public class PlayScreen implements Screen {
 	private Screen subscreen;
 	private TextManager textManager = TextManager.getTextManager();
 	private boolean newEnemies = true;
-	private int depth = 0;
+	private int depth = 5;
 	private WordDataGetter getter = WordDataGetterAndRealizatorFactory.getInstance().getWordDataGetter();
 
 	/**
@@ -58,7 +58,9 @@ public class PlayScreen implements Screen {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		this.depth = Integer.valueOf(prop.getProperty("depth"));
+		if (Integer.valueOf(prop.getProperty("depth"))>2){
+			this.depth = Integer.valueOf(prop.getProperty("depth"));
+		}
 		messages = new ArrayList<String>();
 		createWorld();
 		fov = new FieldOfView(world);
