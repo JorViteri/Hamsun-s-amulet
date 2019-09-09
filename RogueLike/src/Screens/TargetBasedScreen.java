@@ -68,7 +68,7 @@ public class TargetBasedScreen implements Screen {
 		
 		
 		terminal.clear(' ', 0, 23, 80, 1);
-		terminal.write(caption, 0, 23);
+		//terminal.write(caption, 0, 23);
 		textManager.clearTextArea(1);
 		player_pos = String.format(getter.getDirectTranslation("TargetBasedScreen", "playerPosition"),player.getX(), player.getY());
 		textManager.writeText(player_pos, 1);
