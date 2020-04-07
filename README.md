@@ -29,3 +29,6 @@ to ENG or SPA for english and spanish respectively.
 
 The number of levels in the dungeon can also be changed in the file dungeon.properties. 2 is the minimun value acceptable.
 
+***Links***:
+The text resources were created with this tool: https://github.com/JorViteri/LanguageStructGen
+
